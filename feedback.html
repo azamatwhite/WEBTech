@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Feedback — Saya Sushi</title>
+    <meta name="description" content="Leave a review or read customer experiences about Saya Sushi restaurant.">
+    <meta name="author" content="Miko">
+    <!-- Page author: Miko. Contains an interactive HTML form for Assignment 1. -->
+</head>
+<body>
+
+    <header>
+        <p><strong>Saya Sushi</strong> — Japanese Cuisine Restaurant</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="colophon.html">Colophon</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="delivery.html">Delivery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Anchor links -->
+        <p>Quick navigation:</p>
+        <ul>
+            <li><a href="#reviews-list">Guest Reviews</a></li>
+            <li><a href="#feedback-form-section">Leave a Review</a></li>
+        </ul>
+
+        <h1>Guest Feedback and Reviews</h1>
+
+        <section id="reviews-list">
+            <h2>What Guests Say</h2>
+            
+            <article>
+                <h3>Wonderful Evening</h3>
+                <p>
+                    <mark>Amazing rolls!</mark> We especially enjoyed the Philadelphia set. Service was top-tier, we will definitely return.
+                </p>
+                <p><small>Visit date: September 10, 2026</small></p>
+            </article>
+
+            <!-- 4th interior photo used on this page -->
+            <figure>
+                <img src="images/ima7.jpg" alt="Evening dining atmosphere at Saya Sushi with guests enjoying their meals" width="600">
+                <figcaption>Paintings in the café (original photo #4)</figcaption>
+            </figure>
+
+            <aside>
+                <h3>Feedback Note</h3>
+                <p>We read every review to continuously improve our food quality and service.</p>
+            </aside>
+        </section>
+
+        <hr>
+
+        <section id="feedback-form-section">
+            <h2>Feedback Form</h2>
+            <p>Please complete the form below to share your dining experience with us.</p>
+
+            <!-- Complete HTML form matching all requirement constraints -->
+            <!-- HTML comment: This form is constructed for HTML markup demonstration and does not send data due to the absence of a server backend. -->
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Your Review for Saya Sushi</legend>
+
+                    <p>
+                        <label for="user-name">Your Full Name *:</label><br>
+                        <input type="text" id="user-name" name="userName" placeholder="John Doe" required>
+                    </p>
+
+                    <p>
+                        <label for="user-email">Your Email *:</label><br>
+                        <input type="email" id="user-email" name="userEmail" placeholder="example@mail.com" required>
+                    </p>
+
+                    <p>
+                        <label for="user-phone">Phone Number:</label><br>
+                        <input type="tel" id="user-phone" name="userPhone" placeholder="+7 (700) 000-00-00">
+                    </p>
+
+                    <p>
+                        <label for="visit-date">Date of Visit *:</label><br>
+                        <input type="date" id="visit-date" name="visitDate" required>
+                    </p>
+
+                    <p>
+                        <label for="service-rating">Service Rating (1 to 5) *:</label><br>
+                        <input type="number" id="service-rating" name="serviceRating" min="1" max="5" value="5" required>
+                    </p>
+
+                    <p>
+                        Would you recommend us to friends?<br>
+                        <input type="radio" id="rec-yes" name="recommend" value="yes" checked>
+                        <label for="rec-yes">Yes, definitely</label><br>
+                        <input type="radio" id="rec-no" name="recommend" value="no">
+                        <label for="rec-no">No, needs improvement</label>
+                    </p>
+
+                    <p>
+                        <label for="visit-reason">Occasion for Visit:</label><br>
+                        <select id="visit-reason" name="visitReason">
+                            <option value="lunch">Business Lunch</option>
+                            <option value="date">Romantic Date</option>
+                            <option value="family">Family Dinner</option>
+                            <option value="friends">Gathering with Friends</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="review-text">Your Review / Comments *:</label><br>
+                        <textarea id="review-text" name="reviewText" rows="5" cols="40" placeholder="Write your thoughts about our food and service..." required></textarea>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">I consent to publishing this review on the website *</label>
+                    </p>
+
+                    <p>
+                        <button type="submit">Submit Review</button>
+                        <button type="reset">Reset Form</button>
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Additional semantic sections -->
+        <section>
+            <h3>Additional Information</h3>
+            <!-- span element with explaining comment as requested -->
+            <p>All submitted reviews undergo <!-- span used for inline highlighting without adding a new structural section --> <span class="status-badge">moderation</span> within 24 hours.</p>
+            
+            <p>Contact Quality Assurance: <a href="mailto:quality@sayasushi.com">quality@sayasushi.com</a> or phone <a href="tel:+77009998877">+7 (700) 999-88-77</a>.</p>
+            <p>Read external reviews: <a href="https://google.com" target="_blank" rel="noopener noreferrer">Google Reviews</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Saya Sushi. All rights reserved. Page author: Miko.</p>
+    </footer>
+
+</body>
+</html>
