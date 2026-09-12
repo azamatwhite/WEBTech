@@ -1,0 +1,298 @@
+{
+  "menu": {
+    "Classic Rolls": [
+      {
+        "name": "Philadelphia Classic",
+        "price": 2590,
+        "currency": "KZT",
+        "weight": "240g"
+      },
+      {
+        "name": "Philadelphia with Avocado",
+        "price": 2690,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Philadelphia with Cucumber",
+        "price": 2590,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Philadelphia Premium",
+        "price": 3590,
+        "currency": "KZT",
+        "weight": "280g"
+      },
+      {
+        "name": "Philadelphia Maki",
+        "price": 3490,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Kiss of a Geisha with Classic Sauce",
+        "price": 2690,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Creamy Roll",
+        "price": 1490,
+        "currency": "KZT",
+        "weight": "220g"
+      },
+      {
+        "name": "Tuna Pie",
+        "price": 1490,
+        "currency": "KZT",
+        "weight": "210g"
+      },
+      {
+        "name": "Planet Maki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "200g"
+      },
+      {
+        "name": "Syake Maki",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "150g"
+      },
+      {
+        "name": "Shrimp Roll",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "190g"
+      },
+      {
+        "name": "Unagi Maki",
+        "price": 1490,
+        "currency": "KZT",
+        "weight": "150g"
+      },
+      {
+        "name": "Sakura Blossom",
+        "price": 1490,
+        "currency": "KZT",
+        "weight": "210g"
+      },
+      {
+        "name": "Philadelphia with Eel",
+        "price": 2590,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Sugoi Maki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "200g"
+      },
+      {
+        "name": "Bonito Maki",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "210g"
+      },
+      {
+        "name": "Caesar Maki",
+        "price": 1490,
+        "currency": "KZT",
+        "weight": "220g"
+      },
+      {
+        "name": "California with Crab",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "230g"
+      },
+      {
+        "name": "California Maki",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "230g"
+      },
+      {
+        "name": "California with Salmon",
+        "price": 2490,
+        "currency": "KZT",
+        "weight": "230g"
+      },
+      {
+        "name": "Dragon Maki",
+        "price": 2590,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Canada Maki",
+        "price": 2990,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Kappa Maki",
+        "price": 890,
+        "currency": "KZT",
+        "weight": "140g"
+      },
+      {
+        "name": "Greenwich Maki",
+        "price": 1190,
+        "currency": "KZT",
+        "weight": "200g"
+      },
+      {
+        "name": "Toyama Maki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "210g"
+      },
+      {
+        "name": "Chicken Tortilla",
+        "price": 2990,
+        "currency": "KZT",
+        "weight": "260g"
+      }
+    ],
+    "Baked Rolls": [
+      {
+        "name": "Baked Philadelphia",
+        "price": 2690,
+        "currency": "KZT",
+        "weight": "270g"
+      },
+      {
+        "name": "Kiss of a Geisha with Spicy Sauce",
+        "price": 2690,
+        "currency": "KZT",
+        "weight": "270g"
+      },
+      {
+        "name": "Kiss of a Geisha with Cheese Sauce",
+        "price": 2690,
+        "currency": "KZT",
+        "weight": "270g"
+      },
+      {
+        "name": "Baked Kabayaki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Hit Roll",
+        "price": 1990,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Baked Bonito",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Fuji High",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Baked Kani Maki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Baked Caesar",
+        "price": 1390,
+        "currency": "KZT",
+        "weight": "240g"
+      },
+      {
+        "name": "Baked Osaka Maki",
+        "price": 1990,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Baked Syake Tempura",
+        "price": 1990,
+        "currency": "KZT",
+        "weight": "280g"
+      }
+    ],
+    "Hot & Tempura Rolls": [
+      {
+        "name": "Fried Philadelphia",
+        "price": 2290,
+        "currency": "KZT",
+        "weight": "280g"
+      },
+      {
+        "name": "Hot Spicy Chicken Tortilla",
+        "price": 2390,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Hot Salmon Tortilla",
+        "price": 2990,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Sunny Crispy Roll",
+        "price": 1390,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Eel Crispy",
+        "price": 1990,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Tanto Tempura",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "270g"
+      },
+      {
+        "name": "Singapore Maki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "270g"
+      },
+      {
+        "name": "Bonito Tempura",
+        "price": 1790,
+        "currency": "KZT",
+        "weight": "270g"
+      },
+      {
+        "name": "Fried Caesar",
+        "price": 1390,
+        "currency": "KZT",
+        "weight": "260g"
+      },
+      {
+        "name": "Salmon Crispy",
+        "price": 1990,
+        "currency": "KZT",
+        "weight": "250g"
+      },
+      {
+        "name": "Udzumi Maki",
+        "price": 1590,
+        "currency": "KZT",
+        "weight": "260g"
+      }
+    ]
+  }
+}
