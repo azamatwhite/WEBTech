@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order and Delivery for Saya Sushi across Astana">
+  <meta name="author" content="Azamat Zhiyembetov">
+  <title>Delivery - Saya Sushi</title>
+</head>
+<body>
+<header>
+  <b>Saya Sushi</b>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="delivery.html">Delivery</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="colophon.html">Colophon</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Delivery &amp; Ordering</h1>
+
+  <article>
+    <h2>Delivery Zones and Times</h2>
+    <p>Great news! We deliver to <strong>all districts</strong> of Astana. Your sushi arrives fresh, carefully packed in our eco-friendly O<sub>2</sub>-permeable containers.</p>
+    <p>We guarantee 100<sup>%</sup> quality from our kitchen directly to your door.</p>
+  </article>
+
+  <section>
+    <h2>How to Make an Order</h2>
+    <p>You can fill out the form below, or reach us through our direct contacts:</p>
+    <ul>
+      <li>Phone: <a href="tel:+77017650303">+7 701 765 03 03</a></li>
+      <li>WhatsApp: <a href="tel:+77087140263">+7 708 714 02 63</a></li>
+      <li>Email: <a href="mailto:order@sayasushi.kz">order@sayasushi.kz</a></li>
+    </ul>
+    <p>Check our location and reviews on <a href="https://go.2gis.com/X1lKv" target="_blank" rel="noopener">2GIS</a>.</p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Order Form</h2>
+    <form method="get" action="#">
+      <!-- This form does not send anything yet - there is no server behind it -->
+
+      <fieldset>
+        <legend>Contact Information</legend>
+
+        <!-- Using div here as a generic block container to group label and input visually, since HTML5 does not have a specific semantic tag for form rows -->
+        <div>
+          <label for="userName">Full Name:</label>
+          <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+        </div>
+        <br>
+        <div>
+          <label for="userEmail">Email Address:</label>
+          <input type="email" id="userEmail" name="userEmail" placeholder="email@example.com" required>
+        </div>
+        <br>
+        <div>
+          <label for="userPhone">Phone Number:</label>
+          <input type="tel" id="userPhone" name="userPhone" placeholder="+7 700 000 00 00" required>
+        </div>
+      </fieldset>
+
+      <br>
+
+      <fieldset>
+        <legend>Order Details</legend>
+
+        <div>
+          <label for="portionCount">Number of Portions/People:</label>
+          <input type="number" id="portionCount" name="portionCount" min="1" max="20" required>
+        </div>
+        <br>
+        <div>
+          <label for="deliveryDate">Requested Delivery Date:</label>
+          <input type="date" id="deliveryDate" name="deliveryDate" required>
+        </div>
+        <br>
+        <div>
+          <label for="districtSelect">Delivery District:</label>
+          <select id="districtSelect" name="districtSelect">
+            <option value="" disabled selected>Select your district...</option>
+            <option value="yesil">Yesil District</option>
+            <option value="almaty">Almaty District</option>
+            <option value="saryarka">Saryarka District</option>
+            <option value="nura">Nura District</option>
+            <option value="baikonyr">Baikonyr District</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <br>
+
+      <fieldset>
+        <legend>Payment and Preferences</legend>
+
+        <p>Select Payment Method:</p>
+        <input type="radio" id="payCard" name="paymentMethod" value="card" checked>
+        <label for="payCard">Card via Terminal (Courier)</label><br>
+        <input type="radio" id="payCash" name="paymentMethod" value="cash">
+        <label for="payCash">Cash to Courier</label>
+
+        <br><br>
+
+        <input type="checkbox" id="needUtensils" name="needUtensils" value="yes">
+        <label for="needUtensils">I need chopsticks and soy sauce bowls</label>
+
+        <br><br>
+
+        <label for="orderComments">Additional Comments:</label><br>
+        <textarea id="orderComments" name="orderComments" rows="4" cols="40" placeholder="Any special requests for the chef or courier?"></textarea>
+      </fieldset>
+
+      <br>
+
+      <div>
+        <!-- Using span here to isolate the button text for potential microdata or script targeting, as there is no specific semantic inline tag for generic text segments -->
+        <button type="submit"><span>Submit Order</span></button>
+        <button type="reset">Reset Form</button>
+      </div>
+    </form>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Delivery Gallery</h2>
+    <!-- 3 images with meaningful alt text as required -->
+    <figure>
+      <img src="images/packaging.jpg" alt="Eco-friendly cardboard packaging for Saya Sushi delivery orders">
+      <figcaption>Our sustainable packaging</figcaption>
+    </figure>
+
+    <p>
+      <img src="images/courier.jpg" alt="Smiling courier holding a Saya Sushi insulated delivery bag">
+    </p>
+
+    <p>
+      <img src="images/takeout.jpg" alt="A freshly packed set of rolls ready for takeout on the restaurant counter">
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Follow us on <a href="https://www.instagram.com/sayasushi.kz" target="_blank" rel="noopener">Instagram</a></p>
+  <p>&copy; 2026 Saya Sushi</p>
+</footer>
+</body>
+</html>
