@@ -13,12 +13,7 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li>
-                Menu
-                <ul>
-                    <li><a href="menu.html">Rolls &amp; Sets</a></li>
-                </ul>
-            </li>
+            <li><a href="menu.html">Menu</a></li>
             <li><a href="delivery.html">Delivery</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="booking.html">Booking</a></li>
@@ -30,11 +25,30 @@
 </header>
 
 <main>
-    <h1>Saya Sushi Menu</h1>
+    <h1 id="top">Saya Sushi Menu</h1>
 
-    <section id="menu-section">
+    <section>
+        <h2>Menu Categories</h2>
+        <!-- Nested list requirement -->
+        <ul>
+            <li>Rolls
+                <ul>
+                    <li><a href="#classic">Classic Rolls</a></li>
+                    <li><a href="#baked">Baked Rolls</a></li>
+                    <li><a href="#tempura">Tempura &amp; Hot Rolls</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
         <h2>Our Selection</h2>
-        <p>Jump to: <a href="#classic-rolls">Classic Rolls</a> | <a href="#baked-rolls">Baked Rolls</a></p>
+        <!-- div is used here purely as a generic container to group these anchor links together visually, as they do not constitute a full semantic section or paragraph -->
+        <div>
+            <p>Jump to: <a href="#classic">Classic Rolls</a> | <a href="#baked">Baked Rolls</a> | <a href="#tempura">Tempura Rolls</a></p>
+        </div>
 
         <table border="1">
             <caption>Menu as of September 2026</caption>
@@ -46,56 +60,145 @@
             </tr>
             </thead>
             <tbody>
-            <tr id="classic-rolls">
+            <!-- Classic Rolls -->
+            <tr>
+                <th colspan="3" id="classic"><i>Classic Rolls</i></th>
+            </tr>
+            <tr>
+                <th scope="row">Philadelphia Classic</th>
+                <td>240<abbr title="grams">g</abbr></td>
+                <!-- span is used here to group the currency abbreviation separately from the price value for potential microdata or styling, as no specific semantic tag exists for currencies -->
+                <td><strong>2590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Philadelphia with Avocado</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2690</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
                 <th scope="row">Philadelphia Premium</th>
                 <td>280<abbr title="grams">g</abbr></td>
                 <td><strong>3590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">California with Salmon</th>
+                <td>230<abbr title="grams">g</abbr></td>
+                <td><strong>2490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Dragon Maki</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>2590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Syake Maki</th>
+                <td>150<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Kappa Maki</th>
+                <td>140<abbr title="grams">g</abbr></td>
+                <td><strong>890</strong> <span>KZT</span></td>
+            </tr>
+
+            <!-- Baked Rolls -->
+            <tr>
+                <th colspan="3" id="baked"><i>Baked Rolls</i></th>
+            </tr>
+            <tr>
+                <th scope="row">Baked Philadelphia</th>
+                <td>270<abbr title="grams">g</abbr></td>
+                <td><strong>2690</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Kiss of a Geisha with Spicy Sauce</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>2690</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Kiss of a Geisha with Cheese Sauce</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>2690</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Hit Roll</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Baked Caesar</th>
+                <td>230<abbr title="grams">g</abbr></td>
+                <td><strong>1390</strong> <span>KZT</span></td>
+            </tr>
+
+            <!-- Tempura & Hot Rolls -->
+            <tr>
+                <th colspan="3" id="tempura"><i>Tempura &amp; Hot Rolls</i></th>
             </tr>
             <tr>
                 <th scope="row">Sushidoner with Shrimp</th>
                 <td>320<abbr title="grams">g</abbr></td>
                 <td><strong>2990</strong> <span>KZT</span> <mark>New</mark></td>
             </tr>
-            <tr id="baked-rolls">
-                <th scope="row">Baked Kiss of a Geisha</th>
+            <tr>
+                <th scope="row">Sushidoner Classic</th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>1690</strong> <span>KZT</span> <mark>New</mark></td>
+            </tr>
+            <tr>
+                <th scope="row">Hot Tortilla with Salmon</th>
+                <td>280<abbr title="grams">g</abbr></td>
+                <td><strong>2990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Eel Crispy</th>
                 <td>260<abbr title="grams">g</abbr></td>
-                <td><strong>2690</strong> <span>KZT</span></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <th scope="row">Syake Tempura</th>
+                <td>270<abbr title="grams">g</abbr></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
             </tr>
             </tbody>
         </table>
 
         <br>
         <small>
-            <strong>Allergen Warning:</strong> Please be advised that our food may contain or come into contact with common allergens such as <em>dairy, fish, or wheat</em>.
+            <strong>Allergen Warning:</strong> Please be advised that our food may contain or come into contact with common allergens, such as <em>dairy, eggs, wheat, soybeans, tree nuts, peanuts, fish, shellfish, or wheat</em>. Always inform your server of any severe allergies before ordering.
         </small>
     </section>
 
     <aside>
-        <em>Chef's Note:</em> <q>If you are looking for a unique flavor explosion, I highly recommend trying our Sushidoner series!</q>
+        <em>Chef's Note:</em> <q>If you are looking for a unique flavor explosion, I highly recommend trying our <mark>Sushidoner series</mark>. It is a perfectly balanced, <strong>crunchy</strong> fusion dish that completely rethinks the way you eat sushi!</q>
     </aside>
 
     <hr>
 
-    <section>
+    <article>
         <h2>Top 5 Rolls of the Month</h2>
+        <!-- Ordered list with attribute requirement -->
         <ol start="1">
-            <li>Philadelphia Premium</li>
-            <li>Sushidoner with Shrimp</li>
-            <li>Baked Kiss of a Geisha</li>
-            <li>Dragon Maki</li>
-            <li>Hot Tortilla with Salmon</li>
+            <li><strong>Philadelphia Premium</strong><br> A luxurious take on the classic, generously wrapped in fresh salmon.</li>
+            <li><strong><mark>Sushidoner with Shrimp</mark></strong><br> Our <em>newest</em> sensation! A street-food style roll bursting with crispy shrimp.</li>
+            <li><strong>Baked Kiss of a Geisha</strong><br> Warm and creamy, topped with our signature melted cheese sauce.</li>
+            <li><strong>Dragon Maki</strong><br> An elegant roll draped in savory roasted eel and unagi sauce.</li>
+            <li><strong>Hot Tortilla with Salmon</strong><br> A hearty, crispy alternative wrapped in a toasted cheese tortilla.</li>
         </ol>
-    </section>
+    </article>
 
     <section>
         <h2>Terminology</h2>
+        <!-- Definition list requirement -->
         <dl>
-            <dt>Syake</dt>
+            <dt><strong>Syake</strong></dt>
             <dd>Salmon</dd>
-            <dt>Unagi</dt>
+            <dt><strong>Unagi</strong></dt>
             <dd>Freshwater Eel</dd>
-            <dt>Maki</dt>
-            <dd>Traditional rolled <i>sushi</i></dd>
+            <dt><strong>Maki</strong></dt>
+            <dd>Traditional rolled sushi, typically with seaweed on the outside</dd>
+            <dt><strong>Kani</strong></dt>
+            <dd>Crab (often refers to crab stick / surimi in modern sushi)</dd>
         </dl>
     </section>
 
@@ -104,10 +207,13 @@
         <figcaption>Our signature Philadelphia Premium</figcaption>
     </figure>
 
+    <p><a href="#top">Back to top &uarr;</a></p>
+
 </main>
 
 <footer>
-    <p>Follow us on <a href="https://www.instagram.com/sayasushi.kz" target="_blank" rel="noopener">Instagram</a></p>
+    <p>Follow us on <a href="https://www.instagram.com/sayasushi.kz" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://go.2gis.com/X1lKv" target="_blank" rel="noopener">2GIS</a>.</p>
+    <p>Phone: <a href="tel:+77017650303">+7 701 765 03 03</a></p>
     <p>&copy; 2026 Saya Sushi</p>
 </footer>
 </body>
