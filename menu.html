@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Author: Azamat Zhiyembetov -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +30,7 @@
 
     <section>
         <h2>Menu Categories</h2>
-        <!-- Nested list requirement -->
+        <!-- Using a nested ul here because the categories naturally form a hierarchy of items under the primary 'Rolls' heading -->
         <ul>
             <li>Rolls
                 <ul>
@@ -44,16 +45,12 @@
     <hr>
 
     <section>
-        <h2>Our Selection</h2>
-        <!-- div is used here purely as a generic container to group these anchor links together visually, as they do not constitute a full semantic section or paragraph -->
-        <div>
-            <p>Jump to: <a href="#classic">Classic Rolls</a> | <a href="#baked">Baked Rolls</a> | <a href="#tempura">Tempura Rolls</a></p>
-        </div>
 
         <table border="1">
             <caption>Menu as of September 2026</caption>
             <thead>
             <tr>
+                <th scope="col">Photo</th>
                 <th scope="col">Name</th>
                 <th scope="col">Weight</th>
                 <th scope="col">Price</th>
@@ -62,103 +59,304 @@
             <tbody>
             <!-- Classic Rolls -->
             <tr>
-                <th colspan="3" id="classic"><i>Classic Rolls</i></th>
+                <th colspan="4" id="classic"><i>Classic Rolls</i></th>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/philadelfia_classic.webp" alt="Philadelphia Classic" width="100"></td>
                 <th scope="row">Philadelphia Classic</th>
                 <td>240<abbr title="grams">g</abbr></td>
-                <!-- span is used here to group the currency abbreviation separately from the price value for potential microdata or styling, as no specific semantic tag exists for currencies -->
+                <!-- Using span here to isolate the currency abbreviation so it can be targeted by scripts or styling later, as there is no specific semantic tag for currency text -->
                 <td><strong>2590</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/philadelfia_avocado.webp" alt="Philadelphia with Avocado" width="100"></td>
                 <th scope="row">Philadelphia with Avocado</th>
                 <td>250<abbr title="grams">g</abbr></td>
                 <td><strong>2690</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/philadelfia_cucumber.webp" alt="Philadelphia with Cucumber" width="100"></td>
+                <th scope="row">Philadelphia with Cucumber</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/philadelfia_premium.webp" alt="Philadelphia Premium" width="100"></td>
                 <th scope="row">Philadelphia Premium</th>
                 <td>280<abbr title="grams">g</abbr></td>
                 <td><strong>3590</strong> <span>KZT</span></td>
             </tr>
             <tr>
-                <th scope="row">California with Salmon</th>
-                <td>230<abbr title="grams">g</abbr></td>
-                <td><strong>2490</strong> <span>KZT</span></td>
+                <td><img src="saya_sushi_photo/philadelfia_maki.webp" alt="Philadelphia Maki" width="100"></td>
+                <th scope="row">Philadelphia Maki</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>3490</strong> <span>KZT</span></td>
             </tr>
             <tr>
-                <th scope="row">Dragon Maki</th>
+                <td><img src="saya_sushi_photo/potseluy_geyshi_klassicheskiy_sous.webp" alt="Kiss of a Geisha with Classic Sauce" width="100"></td>
+                <th scope="row">Kiss of a Geisha with Classic Sauce</th>
                 <td>260<abbr title="grams">g</abbr></td>
-                <td><strong>2590</strong> <span>KZT</span></td>
+                <td><strong>2690</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/slivochnyy_roll.jpg" alt="Creamy Roll" width="100"></td>
+                <th scope="row">Creamy Roll</th>
+                <td>220<abbr title="grams">g</abbr></td>
+                <td><strong>1490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tuna_pay.jpg" alt="Tuna Pie" width="100"></td>
+                <th scope="row">Tuna Pie</th>
+                <td>210<abbr title="grams">g</abbr></td>
+                <td><strong>1490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/planeta_maki.webp" alt="Planet Maki" width="100"></td>
+                <th scope="row">Planet Maki</th>
+                <td>200<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/syake_maki.webp" alt="Syake Maki" width="100"></td>
                 <th scope="row">Syake Maki</th>
                 <td>150<abbr title="grams">g</abbr></td>
                 <td><strong>1790</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/shrimp.webp" alt="Shrimp Roll" width="100"></td>
+                <th scope="row">Shrimp Roll</th>
+                <td>190<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/unagi_maki.webp" alt="Unagi Maki" width="100"></td>
+                <th scope="row">Unagi Maki</th>
+                <td>150<abbr title="grams">g</abbr></td>
+                <td><strong>1490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tsvetenie_sakury.webp" alt="Sakura Blossom" width="100"></td>
+                <th scope="row">Sakura Blossom</th>
+                <td>210<abbr title="grams">g</abbr></td>
+                <td><strong>1490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/filadelfiya_s_ugrem.webp" alt="Philadelphia with Eel" width="100"></td>
+                <th scope="row">Philadelphia with Eel</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/sugoi_maki.webp" alt="Sugoi Maki" width="100"></td>
+                <th scope="row">Sugoi Maki</th>
+                <td>200<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/bonito_maki.webp" alt="Bonito Maki" width="100"></td>
+                <th scope="row">Bonito Maki</th>
+                <td>210<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tsezar_maki.webp" alt="Caesar Maki" width="100"></td>
+                <th scope="row">Caesar Maki</th>
+                <td>220<abbr title="grams">g</abbr></td>
+                <td><strong>1490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/kaliforniya_s_krabom.webp" alt="California with Crab" width="100"></td>
+                <th scope="row">California with Crab</th>
+                <td>230<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/kaliforniya_maki.webp" alt="California Maki" width="100"></td>
+                <th scope="row">California Maki</th>
+                <td>230<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/kaliforniya_s_lososem.webp" alt="California with Salmon" width="100"></td>
+                <th scope="row">California with Salmon</th>
+                <td>230<abbr title="grams">g</abbr></td>
+                <td><strong>2490</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/drakon_maki.webp" alt="Dragon Maki" width="100"></td>
+                <th scope="row">Dragon Maki</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/kanada_maki.webp" alt="Canada Maki" width="100"></td>
+                <th scope="row">Canada Maki</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/kappa_maki.webp" alt="Kappa Maki" width="100"></td>
                 <th scope="row">Kappa Maki</th>
                 <td>140<abbr title="grams">g</abbr></td>
                 <td><strong>890</strong> <span>KZT</span></td>
             </tr>
-
-            <!-- Baked Rolls -->
             <tr>
-                <th colspan="3" id="baked"><i>Baked Rolls</i></th>
+                <td><img src="saya_sushi_photo/grinvich_maki.webp" alt="Greenwich Maki" width="100"></td>
+                <th scope="row">Greenwich Maki</th>
+                <td>200<abbr title="grams">g</abbr></td>
+                <td><strong>1190</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/toyama_maki.jpeg" alt="Toyama Maki" width="100"></td>
+                <th scope="row">Toyama Maki</th>
+                <td>210<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tortilya_s_kuritsey.webp" alt="Chicken Tortilla" width="100"></td>
+                <th scope="row">Chicken Tortilla</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>2990</strong> <span>KZT</span></td>
+            </tr>
+            <!-- Baked Rolls -->
+            <tr>
+                <th colspan="4" id="baked"><i>Baked Rolls</i></th>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/filadelfiya_zapechennaya.webp" alt="Baked Philadelphia" width="100"></td>
                 <th scope="row">Baked Philadelphia</th>
                 <td>270<abbr title="grams">g</abbr></td>
                 <td><strong>2690</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/potseluy_geyshi_s_ostrym_sousom.webp" alt="Kiss of a Geisha with Spicy Sauce" width="100"></td>
                 <th scope="row">Kiss of a Geisha with Spicy Sauce</th>
-                <td>260<abbr title="grams">g</abbr></td>
+                <td>270<abbr title="grams">g</abbr></td>
                 <td><strong>2690</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/potseluy_geyshi_s_syrnym_sousom.webp" alt="Kiss of a Geisha with Cheese Sauce" width="100"></td>
                 <th scope="row">Kiss of a Geisha with Cheese Sauce</th>
-                <td>260<abbr title="grams">g</abbr></td>
+                <td>270<abbr title="grams">g</abbr></td>
                 <td><strong>2690</strong> <span>KZT</span></td>
             </tr>
             <tr>
+                <td><img src="saya_sushi_photo/kabayaki.webp" alt="Baked Kabayaki" width="100"></td>
+                <th scope="row">Baked Kabayaki</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/hit_roll.webp" alt="Hit Roll" width="100"></td>
                 <th scope="row">Hit Roll</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/bonito_zapechennaya.webp" alt="Baked Bonito" width="100"></td>
+                <th scope="row">Baked Bonito</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/fudzi_hay.webp" alt="Fuji High" width="100"></td>
+                <th scope="row">Fuji High</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/kani_maki.webp" alt="Baked Kani Maki" width="100"></td>
+                <th scope="row">Baked Kani Maki</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tsezar_zapechennyy.webp" alt="Baked Caesar" width="100"></td>
+                <th scope="row">Baked Caesar</th>
+                <td>240<abbr title="grams">g</abbr></td>
+                <td><strong>1390</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/osaka_maki.webp" alt="Baked Osaka Maki" width="100"></td>
+                <th scope="row">Baked Osaka Maki</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/syake_tempura.webp" alt="Baked Syake Tempura" width="100"></td>
+                <th scope="row">Baked Syake Tempura</th>
+                <td>280<abbr title="grams">g</abbr></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
+            </tr>
+            <!-- Hot & Tempura Rolls -->
+            <tr>
+                <th colspan="4" id="tempura"><i>Hot &amp; Tempura Rolls</i></th>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/filadelfiya_zharennaya.jpeg" alt="Fried Philadelphia" width="100"></td>
+                <th scope="row">Fried Philadelphia</th>
+                <td>280<abbr title="grams">g</abbr></td>
+                <td><strong>2290</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tortilya_s_kuritsey_ostraya.webp" alt="Hot Spicy Chicken Tortilla" width="100"></td>
+                <th scope="row">Hot Spicy Chicken Tortilla</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>2390</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tortilya_s_lososem.webp" alt="Hot Salmon Tortilla" width="100"></td>
+                <th scope="row">Hot Salmon Tortilla</th>
+                <td>260<abbr title="grams">g</abbr></td>
+                <td><strong>2990</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/sanni_krispi_roll.jpg" alt="Sunny Crispy Roll" width="100"></td>
+                <th scope="row">Sunny Crispy Roll</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1390</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/ugor_krispi.webp" alt="Eel Crispy" width="100"></td>
+                <th scope="row">Eel Crispy</th>
                 <td>250<abbr title="grams">g</abbr></td>
                 <td><strong>1990</strong> <span>KZT</span></td>
             </tr>
             <tr>
-                <th scope="row">Baked Caesar</th>
-                <td>230<abbr title="grams">g</abbr></td>
+                <td><img src="saya_sushi_photo/tanto_tempura.webp" alt="Tanto Tempura" width="100"></td>
+                <th scope="row">Tanto Tempura</th>
+                <td>270<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/singapur_maki.webp" alt="Singapore Maki" width="100"></td>
+                <th scope="row">Singapore Maki</th>
+                <td>270<abbr title="grams">g</abbr></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/bonito_tempura.webp" alt="Bonito Tempura" width="100"></td>
+                <th scope="row">Bonito Tempura</th>
+                <td>270<abbr title="grams">g</abbr></td>
+                <td><strong>1790</strong> <span>KZT</span></td>
+            </tr>
+            <tr>
+                <td><img src="saya_sushi_photo/tsezar_zharenyy.webp" alt="Fried Caesar" width="100"></td>
+                <th scope="row">Fried Caesar</th>
+                <td>260<abbr title="grams">g</abbr></td>
                 <td><strong>1390</strong> <span>KZT</span></td>
             </tr>
-
-            <!-- Tempura & Hot Rolls -->
             <tr>
-                <th colspan="3" id="tempura"><i>Tempura &amp; Hot Rolls</i></th>
+                <td><img src="saya_sushi_photo/losos_krispi.webp" alt="Salmon Crispy" width="100"></td>
+                <th scope="row">Salmon Crispy</th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1990</strong> <span>KZT</span></td>
             </tr>
             <tr>
-                <th scope="row">Sushidoner with Shrimp</th>
-                <td>320<abbr title="grams">g</abbr></td>
-                <td><strong>2990</strong> <span>KZT</span> <mark>New</mark></td>
-            </tr>
-            <tr>
-                <th scope="row">Sushidoner Classic</th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td><strong>1690</strong> <span>KZT</span> <mark>New</mark></td>
-            </tr>
-            <tr>
-                <th scope="row">Hot Tortilla with Salmon</th>
-                <td>280<abbr title="grams">g</abbr></td>
-                <td><strong>2990</strong> <span>KZT</span></td>
-            </tr>
-            <tr>
-                <th scope="row">Eel Crispy</th>
+                <td><img src="saya_sushi_photo/udzumi_maki.webp" alt="Udzumi Maki" width="100"></td>
+                <th scope="row">Udzumi Maki</th>
                 <td>260<abbr title="grams">g</abbr></td>
-                <td><strong>1990</strong> <span>KZT</span></td>
-            </tr>
-            <tr>
-                <th scope="row">Syake Tempura</th>
-                <td>270<abbr title="grams">g</abbr></td>
-                <td><strong>1990</strong> <span>KZT</span></td>
+                <td><strong>1590</strong> <span>KZT</span></td>
             </tr>
             </tbody>
         </table>
@@ -177,7 +375,7 @@
 
     <article>
         <h2>Top 5 Rolls of the Month</h2>
-        <!-- Ordered list with attribute requirement -->
+        <!-- Using an ordered list with a start attribute to explicitly rank these items sequentially, rather than just grouping them -->
         <ol start="1">
             <li><strong>Philadelphia Premium</strong><br> A luxurious take on the classic, generously wrapped in fresh salmon.</li>
             <li><strong><mark>Sushidoner with Shrimp</mark></strong><br> Our <em>newest</em> sensation! A street-food style roll bursting with crispy shrimp.</li>
@@ -189,7 +387,7 @@
 
     <section>
         <h2>Terminology</h2>
-        <!-- Definition list requirement -->
+        <!-- Using a definition list because we are directly associating foreign terms with their English definitions, which is semantically correct for a glossary -->
         <dl>
             <dt><strong>Syake</strong></dt>
             <dd>Salmon</dd>
@@ -203,7 +401,7 @@
     </section>
 
     <figure>
-        <img src="images/signature-roll.jpg" alt="Close-up of the Philadelphia Premium roll with fresh salmon and cream cheese">
+        <img src="saya_sushi_photo/philadelfia_premium.webp" alt="Close-up of the Philadelphia Premium roll with fresh salmon and cream cheese" width="400">
         <figcaption>Our signature Philadelphia Premium</figcaption>
     </figure>
 

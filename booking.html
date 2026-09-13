@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Table reservation form for Saya Sushi bar in Astana. Book your table online easily.">
     <meta name="author" content="Ruslan Absamat">
-    <title>Book a Table - Saya Sushi</title>
-    
+    <title>Book a Table — Saya Sushi</title>
 </head>
-<header><h1>Saya Sushi<h1></header>
 <body>
- <nav>
-    <ul>
-       <li><a href="index.html">Home</a></li>
+
+    <!-- Comment 1 (Why this tag was chosen):
+         The header tag is used to wrap the top header of the booking page, 
+         ensuring consistent semantic structure across all site pages. -->
+    <header>
+        <h1>Saya Sushi</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="delivery.html">Delivery</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -21,13 +26,125 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="feedback.html">Feedback</a></li>
             <li><a href="colophon.html">Colophon</a></li>
-    </ul>
- </nav>
- <main>
-    <section>
-        <h1>Table reservation</h1>
-        <p>Reserve a table in advance to enjoy fresh Japanese cuisine in our comfortable hall or on the veranda.</p>
-    </section>
- </main>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Table Reservation</h2>
+            <p>Reserve a table in advance to enjoy fresh Japanese cuisine in our comfortable hall or on the veranda.</p>
+
+            <!-- 3 images with meaningful alt text as required by assignment -->
+            <figure>
+                <img src="images/hall.jpg" alt="Main dining room with comfortable seats at Saya Sushi">
+                <figcaption>Main Dining Hall</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/veranda.jpg" alt="Outdoor summer veranda area of Saya Sushi">
+                <figcaption>Summer Veranda Area</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/vip.jpg" alt="Private VIP room for family gatherings at Saya Sushi">
+                <figcaption>Private VIP Room</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Reservation Form</h2>
+
+            <!-- Complete required form -->
+            <form method="post" action="#">
+                <!-- MANDATORY COMMENT: The form does not send anything yet as there is no backend server -->
+                <!-- Note: This form is purely frontend markup and does not send data to any server backend yet. -->
+
+                <fieldset>
+                    <legend>Booking Details</legend>
+
+                    <p>
+                        <label for="guest-name">Full Name:</label><br>
+                        <input type="text" id="guest-name" name="name" placeholder="John Doe" required>
+                    </p>
+
+                    <p>
+                        <label for="guest-email">Email Address:</label><br>
+                        <input type="email" id="guest-email" name="email" placeholder="example@gmail.com" required>
+                    </p>
+
+                    <p>
+                        <label for="guest-phone">Phone Number:</label><br>
+                        <input type="tel" id="guest-phone" name="phone" placeholder="+7 (700) 000-00-00" required>
+                    </p>
+
+                    <p>
+                        <label for="guest-count">Number of Guests:</label><br>
+                        <input type="number" id="guest-count" name="guests" min="1" max="12" placeholder="2" required>
+                    </p>
+
+                    <p>
+                        <label for="booking-date">Visit Date:</label><br>
+                        <input type="date" id="booking-date" name="date" required>
+                    </p>
+
+                    <p>
+                        Preferred Seating Zone:<br>
+                        <input type="radio" id="zone-hall" name="zone" value="hall" checked>
+                        <label for="zone-hall">Main Hall</label>
+
+                        <input type="radio" id="zone-veranda" name="zone" value="veranda">
+                        <label for="zone-veranda">Veranda</label>
+
+                        <input type="radio" id="zone-vip" name="zone" value="vip">
+                        <label for="zone-vip">VIP Room</label>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" id="high-chair" name="high_chair">
+                        <label for="high-chair">Require a child high chair</label>
+                    </p>
+
+                    <p>
+                        <label for="booking-time">Time Slot:</label><br>
+                        <select id="booking-time" name="time" required>
+                            <option value="">Select time slot</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="special-wishes">Special Requests:</label><br>
+                        <textarea id="special-wishes" name="wishes" rows="4" cols="40" placeholder="Specify any dietary requirements or celebration details..."></textarea>
+                    </p>
+
+                    <p>
+                        <button type="submit">Submit Booking</button>
+                        <button type="reset">Reset Form</button>
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+
+        <section>
+            <h2>Direct Contact for Instant Booking</h2>
+            <p>For immediate reservations, contact our front desk directly:</p>
+            <p>
+                Email: <a href="mailto:booking@sayasushi.kz">booking@sayasushi.kz</a><br>
+                Phone: <a href="tel:+77771234567">+7 (777) 123-45-67</a>
+            </p>
+        </section>
+    </main>
+
+    <!-- Comment 2 (Why this tag was chosen):
+         The footer tag is used to contain contact information and copyright details, 
+         completing the standard semantic layout structure. -->
+    <footer>
+        <p>Address: 5 Dostyk Street, Astana | Tel: +7 (777) 123-45-67</p>
+        <p>&copy; 2026 Saya Sushi. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

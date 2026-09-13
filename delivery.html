@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Author: Azamat Zhiyembetov -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -29,9 +30,19 @@
 
   <article>
     <h2>Delivery Zones and Times</h2>
+    <!-- The slogan appears here because the delivery page is a key entry point for customers placing orders - reinforcing the brand before they fill the form -->
+    <p><em><strong>Say Saya &mdash; Eat Sushi!</strong></em> We bring the experience to your door.</p>
     <p>Great news! We deliver to <strong>all districts</strong> of Astana. Your sushi arrives fresh, carefully packed in our eco-friendly O<sub>2</sub>-permeable containers.</p>
     <p>We guarantee 100<sup>%</sup> quality from our kitchen directly to your door.</p>
   </article>
+
+  <hr>
+
+  <section>
+    <h2>Our Reliable Delivery Process</h2>
+    <p>We know that when you order sushi, you expect it to be fresh, beautiful, and on time. That is why we have built an in-house fleet of dedicated couriers who understand the importance of careful handling. We do not use third-party delivery apps because we want to maintain strict quality control over every order.</p>
+    <p>Once you submit your order, our kitchen receives it instantly. The chefs prepare your rolls precisely when the courier is ready to depart. This synchronization ensures that hot items like our baked rolls stay warm in thermal bags, while cold items remain perfectly chilled. On average, our delivery takes between 45 to 60 minutes depending on your district, but we always strive to beat the clock without sacrificing safety.</p>
+  </section>
 
   <section>
     <h2>How to Make an Order</h2>
@@ -61,11 +72,6 @@
         </div>
         <br>
         <div>
-          <label for="userEmail">Email Address:</label>
-          <input type="email" id="userEmail" name="userEmail" placeholder="email@example.com" required>
-        </div>
-        <br>
-        <div>
           <label for="userPhone">Phone Number:</label>
           <input type="tel" id="userPhone" name="userPhone" placeholder="+7 700 000 00 00" required>
         </div>
@@ -77,13 +83,18 @@
         <legend>Order Details</legend>
 
         <div>
-          <label for="portionCount">Number of Portions/People:</label>
+          <label for="portionCount">Number of People:</label>
           <input type="number" id="portionCount" name="portionCount" min="1" max="20" required>
         </div>
         <br>
         <div>
           <label for="deliveryDate">Requested Delivery Date:</label>
           <input type="date" id="deliveryDate" name="deliveryDate" required>
+        </div>
+        <br>
+        <div>
+          <label for="deliveryTime">Requested Delivery Time:</label>
+          <input type="time" id="deliveryTime" name="deliveryTime" required>
         </div>
         <br>
         <div>
@@ -97,6 +108,18 @@
             <option value="baikonyr">Baikonyr District</option>
           </select>
         </div>
+        <div>
+        <label for="deliveryAddress">Your Address:</label>
+        <input type="text" id="deliveryAddress" name="deliveryAddress" required>
+        
+        <label for="entranceNumber">Entrance number:</label>
+        <input type="number" id="entranceNumber" name="entranceNumber" min="1" required>
+        
+        <label for="apartmentNumber">Apartment number:</label>
+        <input type="number" id="apartmentNumber" name="apartmentNumber" min="1" required>
+        </div>
+
+
       </fieldset>
 
       <br>
@@ -105,10 +128,12 @@
         <legend>Payment and Preferences</legend>
 
         <p>Select Payment Method:</p>
-        <input type="radio" id="payCard" name="paymentMethod" value="card" checked>
-        <label for="payCard">Card via Terminal (Courier)</label><br>
-        <input type="radio" id="payCash" name="paymentMethod" value="cash">
-        <label for="payCash">Cash to Courier</label>
+        <input type="radio" id="payOnline" name="paymentMethod" value="online" checked>
+        <label for="payOnline">Online via Card</label><br>
+        <input type="radio" id="payKaspi" name="paymentMethod" value="kaspi">
+        <label for="payKaspi">Kaspi.kz app</label><br>
+        <input type="radio" id="payHalyk" name="paymentMethod" value="halyk">
+        <label for="payHalyk">Halyk bank app</label>
 
         <br><br>
 
@@ -135,19 +160,26 @@
 
   <section>
     <h2>Delivery Gallery</h2>
-    <!-- 3 images with meaningful alt text as required -->
+    <!-- Real food photos taken at Saya Sushi are used here so the visitor sees actual products, not stock imagery -->
     <figure>
-      <img src="images/packaging.jpg" alt="Eco-friendly cardboard packaging for Saya Sushi delivery orders">
-      <figcaption>Our sustainable packaging</figcaption>
+      <img src="saya_sushi_photo/foodphoto1.png" alt="Freshly prepared sushi rolls on a plate at Saya Sushi ready for delivery" width="400">
+      <figcaption>Every order made fresh before it leaves our kitchen</figcaption>
     </figure>
 
-    <p>
-      <img src="images/courier.jpg" alt="Smiling courier holding a Saya Sushi insulated delivery bag">
-    </p>
+    <figure>
+      <img src="saya_sushi_photo/foodphoto2.png" alt="A selection of Saya Sushi rolls arranged for a delivery order" width="400">
+      <figcaption>Packaged with care for your delivery</figcaption>
+    </figure>
 
-    <p>
-      <img src="images/takeout.jpg" alt="A freshly packed set of rolls ready for takeout on the restaurant counter">
-    </p>
+    <figure>
+      <img src="saya_sushi_photo/foodphoto3.png" alt="Assorted rolls from Saya Sushi ready for takeout on the restaurant counter" width="400">
+      <figcaption>Ready for takeout or delivery &mdash; your choice!</figcaption>
+    </figure>
+
+    <figure>
+      <img src="saya_sushi_photo/Inside photo 3.png" alt="Inside Saya Sushi showing the pickup counter where orders are collected" width="400">
+      <figcaption>You can also pick up your order in-person at any of our branches</figcaption>
+    </figure>
   </section>
 
 </main>
