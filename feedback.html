@@ -11,18 +11,16 @@
 <body>
 
     <header>
-        <p><strong>Saya Sushi</strong> — Japanese Cuisine Restaurant</p>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="colophon.html">Colophon</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-            </ul>
+        <h1 align="center">Saya Sushi</h1>
+        <nav align="center">
+            <a href="index.html">Home</a> |
+            <a href="colophon.html">Colophon</a> |
+            <a href="menu.html">Menu</a> |
+            <a href="delivery.html">Delivery</a> |
+            <a href="about.html">About Us</a> |
+            <a href="booking.html">Booking</a> |
+            <a href="gallery.html">Gallery</a> |
+            <a href="feedback.html">Feedback</a>
         </nav>
     </header>
 
@@ -38,21 +36,81 @@
 
         <section id="reviews-list">
             <h2>What Guests Say</h2>
-            
+
+            <!-- Review 1 -->
             <article>
-                <h3>Wonderful Evening</h3>
+                <h3>Aibar</h3>
+                <figure>
+                    <img src="images/ima10.jpg" alt="Aibar's photo" width="80" height="80">
+                    <figcaption><small>Guest photo</small></figcaption>
+                </figure>
                 <p>
-                    <mark>Amazing rolls!</mark> We especially enjoyed the Philadelphia set. Service was top-tier, we will definitely return.
+                    <q>The best thing I've ever eaten in my life.</q>
                 </p>
-                <p><small>Visit date: September 10, 2026</small></p>
+                <p><time datetime="2026-09-01">September 1, 2026</time></p>
             </article>
 
-            <!-- 4th interior photo used on this page -->
-            <figure>
-                <img src="images/ima7.jpg" alt="Evening dining atmosphere at Saya Sushi with guests enjoying their meals" width="600">
-                <figcaption>Paintings in the café (original photo #4)</figcaption>
-            </figure>
+            <hr>
 
+            <!-- Review 2 -->
+            <article>
+                <h3>Dana</h3>
+                <figure>
+                    <img src="images/ima9.jpg" alt="Dana's photo" width="80" height="80">
+                    <figcaption><small>Guest photo</small></figcaption>
+                </figure>
+                <p>
+                    <q>I kissed the hands of the chef who prepared this—tears even welled up in my eyes.</q>
+                </p>
+                <p><time datetime="2026-09-04">September 4, 2026</time></p>
+            </article>
+
+            <hr>
+
+            <!-- Review 3 -->
+            <article>
+                <h3>Arman</h3>
+                <figure>
+                    <img src="images/ima7.jpg" alt="Arman's photo" width="80" height="80">
+                    <figcaption><small>Guest photo</small></figcaption>
+                </figure>
+                <p>
+                    <q>I’ve never encountered an atmosphere like the one here, and the food is a work of art in itself.</q>
+                </p>
+                <p><time datetime="2026-09-07">September 7, 2026</time></p>
+            </article>
+
+            <hr>
+
+            <!-- Review 4 -->
+            <article>
+                <h3>Madina</h3>
+                <figure>
+                    <img src="images/ima13.jpg" alt="Madina's photo" width="80" height="80">
+                    <figcaption><small>Guest photo</small></figcaption>
+                </figure>
+                <p>
+                    <q>I’m a student, and this meal is worth the 1,000 tenge—it tastes just like my mom cooked it for me herself.</q>
+                </p>
+                <p><time datetime="2026-09-10">September 10, 2026</time></p>
+            </article>
+
+            <hr>
+
+            <!-- Review 5 -->
+            <article>
+                <h3>Alikhan</h3>
+                <figure>
+                    <img src="images/ima11.jpg" alt="Alikhan's photo" width="80" height="80">
+                    <figcaption><small>Guest photo</small></figcaption>
+                </figure>
+                <p>
+                    <q>Came for a date, left with a wife.</q>
+                </p>
+                <p><time datetime="2026-09-12">September 12, 2026</time></p>
+            </article>
+
+            <br>
             <aside>
                 <h3>Feedback Note</h3>
                 <p>We read every review to continuously improve our food quality and service.</p>
@@ -65,8 +123,6 @@
             <h2>Feedback Form</h2>
             <p>Please complete the form below to share your dining experience with us.</p>
 
-            <!-- Complete HTML form matching all requirement constraints -->
-            <!-- HTML comment: This form is constructed for HTML markup demonstration and does not send data due to the absence of a server backend. -->
             <form action="#" method="post">
                 <fieldset>
                     <legend>Your Review for Saya Sushi</legend>
@@ -74,11 +130,6 @@
                     <p>
                         <label for="user-name">Your Full Name *:</label><br>
                         <input type="text" id="user-name" name="userName" placeholder="John Doe" required>
-                    </p>
-
-                    <p>
-                        <label for="user-email">Your Email *:</label><br>
-                        <input type="email" id="user-email" name="userEmail" placeholder="example@mail.com" required>
                     </p>
 
                     <p>
@@ -97,31 +148,15 @@
                     </p>
 
                     <p>
-                        Would you recommend us to friends?<br>
-                        <input type="radio" id="rec-yes" name="recommend" value="yes" checked>
-                        <label for="rec-yes">Yes, definitely</label><br>
-                        <input type="radio" id="rec-no" name="recommend" value="no">
-                        <label for="rec-no">No, needs improvement</label>
-                    </p>
-
-                    <p>
-                        <label for="visit-reason">Occasion for Visit:</label><br>
-                        <select id="visit-reason" name="visitReason">
-                            <option value="lunch">Business Lunch</option>
-                            <option value="date">Romantic Date</option>
-                            <option value="family">Family Dinner</option>
-                            <option value="friends">Gathering with Friends</option>
-                        </select>
-                    </p>
-
-                    <p>
                         <label for="review-text">Your Review / Comments *:</label><br>
                         <textarea id="review-text" name="reviewText" rows="5" cols="40" placeholder="Write your thoughts about our food and service..." required></textarea>
                     </p>
 
                     <p>
-                        <input type="checkbox" id="consent" name="consent" required>
-                        <label for="consent">I consent to publishing this review on the website *</label>
+                        <label for="consent">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            I consent to publishing this review on the website *
+                        </label>
                     </p>
 
                     <p>
@@ -135,7 +170,6 @@
         <!-- Additional semantic sections -->
         <section>
             <h3>Additional Information</h3>
-            <!-- span element with explaining comment as requested -->
             <p>All submitted reviews undergo <!-- span used for inline highlighting without adding a new structural section --> <span class="status-badge">moderation</span> within 24 hours.</p>
             
             <p>Contact Quality Assurance: <a href="mailto:quality@sayasushi.com">quality@sayasushi.com</a> or phone <a href="tel:+77009998877">+7 (700) 999-88-77</a>.</p>
