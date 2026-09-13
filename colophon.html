@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- Author: Azamat, Ruslan, Miko -->
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,129 +8,99 @@
     <meta name="author" content="Azamat, Ruslan, Miko">
     <title>Colophon - Saya Sushi</title>
 </head>
-
 <body>
-    <header>
-        <b>Saya Sushi</b>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="colophon.html">Colophon</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <b>Saya Sushi</b>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="colophon.html">Colophon</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <h1>How We Built This Site</h1>
+<main>
+    <h1>How We Built This Site</h1>
 
-        <section>
-            <h2>Project Overview</h2>
-            <p>This project was developed for our Web Technologies Assignment 1 at Astana IT University. We were tasked
-                with building a fully functional, multi-page website using pure HTML5 without any CSS, JavaScript, or
-                front-end frameworks. The goal was to prove our foundational understanding of semantic web structure and
-                to create a site that degrades gracefully when styles are entirely absent.</p>
-            <p>We chose to build a website for Saya Sushi, a popular local restaurant chain. Documenting a real business
-                allowed us to practice gathering real-world assets, such as menus, pricing, and photography, rather than
-                relying on placeholder text like Lorem Ipsum or stock imagery.</p>
-            <!-- The slogan is shown here to remind the reader which real-world project this site represents -->
-            <p>The site represents <em><strong>Say Saya &mdash; Eat Sushi!</strong></em> &mdash; the official slogan of
-                <cite>Saya Sushi</cite>, a local restaurant chain in Astana.
-            </p>
+    <section>
+        <h2>Project Overview</h2>
+        <p>This project was developed for our Web Technologies Assignment 1 at Astana IT University. We were tasked with building a fully functional, multi-page website using pure HTML5 without any CSS, JavaScript, or front-end frameworks. The goal was to prove our foundational understanding of semantic web structure and to create a site that degrades gracefully when styles are entirely absent.</p>
+        <p>We chose to build a website for Saya Sushi, a popular local restaurant chain. Documenting a real business allowed us to practice gathering real-world assets, such as menus, pricing, and photography, rather than relying on placeholder text like Lorem Ipsum or stock imagery.</p>
+        <!-- The slogan is shown here to remind the reader which real-world project this site represents -->
+        <p>The site represents <em><strong>Say Saya &mdash; Eat Sushi!</strong></em> &mdash; the official slogan of <cite>Saya Sushi</cite>, a local restaurant chain in Astana.</p>
 
-            <h3>Repository Structure</h3>
-            <pre>
-WEBTech/
-├── index.html          (Azamat &mdash; homepage)
-├── colophon.html       (Team &mdash; how we built the site)
-├── menu.html           (Azamat &mdash; full menu with photos)
-├── delivery.html       (Azamat &mdash; delivery info and order form)
-├── about.html          (Ruslan &mdash; history and philosophy)
-├── booking.html        (Ruslan &mdash; table reservation form)
-├── gallery.html        (Meiirzhan &mdash; photo gallery)
-├── feedback.html       (Meiirzhan &mdash; customer feedback form)
-├── menu_rolls.json     (menu data source)
-└── saya_sushi_photo/   (60 real photos &mdash; interior, exterior, food, menu items)
+        <h3>Repository Structure</h3>
+        <pre>
+saya-sushi-project/
+├── index.html
+├── colophon.html
+├── menu.html
+├── delivery.html
+├── about.html
+├── booking.html
+├── gallery.html
+├── feedback.html
+└── saya_sushi_photo/
       </pre>
-        </section>
+    </section>
 
-        <hr>
+    <hr>
 
-        <article>
-            <h2>Team Contributions</h2>
-
-            <section>
-                <h3>Azamat's Work</h3>
-                <p> Azamat was responsible for the <code>menu.html</code> and <code>delivery.html</code> pages. He wrote
-                    code using WEBStorm.</p>
-                <p>The most interesting part was structuring the menu table using appropriate scope attributes:</p>
-                <p><code>&lt;th scope="col"&gt;Price&lt;/th&gt;</code></p>
-            </section>
-
-            <section>
-                <h3>Ruslan's Work</h3>
-                <p>Ruslan created the <code>about.html</code> and <code>booking.html</code> pages. His About page covers
-                    the full history of Saya Sushi since 2022, the kitchen philosophy with a real
-                    <code>&lt;blockquote&gt;</code> from Head Chef Askar, a glossary using <code>&lt;dl&gt;</code>, and
-                    a comparison table of popular sushi sets.
-                </p>
-                <p>For the Booking page, Ruslan built a table reservation form with date, time, and guest count inputs
-                    wrapped in <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> tags.</p>
-            </section>
-
-            <section>
-                <h3>Meiirzhan's Work</h3>
-                <p>Meiirzhan was responsible for the <code>gallery.html</code> and <code>feedback.html</code> pages. The
-                    Gallery page showcases real photographs of the restaurant interior, exterior, and food, all wrapped
-                    in <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> elements.</p>
-                <p>His Feedback page features a customer review form with radio buttons for rating, a
-                    <code>&lt;select&gt;</code> dropdown for choosing the branch, and a <code>&lt;textarea&gt;</code>
-                    for writing a detailed review.
-                </p>
-            </section>
-        </article>
-
-        <hr>
+    <article>
+        <h2>Team Contributions</h2>
 
         <section>
-            <h2>Validation</h2>
-            <p>We strictly followed W3C standards. After running our files through the W3C Markup Validation Service, we
-                received the following output:</p>
-            <p><samp>Document checking completed. No errors or warnings to show.</samp></p>
+            <h3>Azamat's Work</h3>
+            <p>I was responsible for the <code>menu.html</code> and <code>delivery.html</code> pages. I wrote my code on a MacBook using VS Code and PyCharm. One of the habits I developed was constantly pressing <kbd>Cmd</kbd> + <kbd>S</kbd> to save my progress before committing to Git.</p>
+            <p>The most interesting part was structuring the menu table using appropriate scope attributes:</p>
+            <p><code>&lt;th scope="col"&gt;Price&lt;/th&gt;</code></p>
         </section>
 
         <section>
-            <h2>The Restaurant We Documented</h2>
-            <p>All photographs used on this site were taken by the project team at the real Saya Sushi locations in
-                Astana. No stock or AI-generated images were used.</p>
-
-            <figure>
-                <!-- Inside photo 4 is placed here to visually confirm to the reader that these are real premises, supporting the statement above -->
-                <img src="saya_sushi_photo/Inside photo 4.png"
-                    alt="Interior of Saya Sushi restaurant showing the dining hall and branded decorations" width="400">
-                <figcaption>Inside one of the Saya Sushi branches &mdash; photos taken by the project team</figcaption>
-            </figure>
-
-            <figure>
-                <img src="saya_sushi_photo/Inside photo 5.png"
-                    alt="Another interior view of Saya Sushi showing furniture and lighting" width="400">
-                <figcaption>The welcoming atmosphere we wanted to capture through this website</figcaption>
-            </figure>
+            <h3>Ruslan's Work</h3>
+            
         </section>
 
-    </main>
+        <section>
+            <h3>Meiirzhan's Work</h3>
+            
+        </section>
+    </article>
 
-    <footer>
-        <p>Follow us on <a href="https://www.instagram.com/sayasushi.kz" target="_blank" rel="noopener">Instagram</a> or
-            find us on <a href="https://go.2gis.com/X1lKv" target="_blank" rel="noopener">2GIS</a>.</p>
-        <p>Phone: <a href="tel:+77017650303">+7 701 765 03 03</a></p>
-        <p>&copy; 2026 Saya Sushi</p>
-    </footer>
+    <hr>
+
+    <section>
+        <h2>Validation</h2>
+        <p>We strictly followed W3C standards. After running our files through the W3C Markup Validation Service, we received the following output:</p>
+        <p><samp>Document checking completed. No errors or warnings to show.</samp></p>
+    </section>
+
+    <section>
+        <h2>The Restaurant We Documented</h2>
+        <p>All photographs used on this site were taken by the project team at the real Saya Sushi locations in Astana. No stock or AI-generated images were used.</p>
+
+        <figure>
+            <!-- Inside photo 4 is placed here to visually confirm to the reader that these are real premises, supporting the statement above -->
+            <img src="saya_sushi_photo/Inside photo 4.png" alt="Interior of Saya Sushi restaurant showing the dining hall and branded decorations" width="400">
+            <figcaption>Inside one of the Saya Sushi branches &mdash; photos taken by the project team</figcaption>
+        </figure>
+
+        <figure>
+            <img src="saya_sushi_photo/Inside photo 5.png" alt="Another interior view of Saya Sushi showing furniture and lighting" width="400">
+            <figcaption>The welcoming atmosphere we wanted to capture through this website</figcaption>
+        </figure>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Saya Sushi Project Team</p>
+</footer>
 </body>
-
 </html>
