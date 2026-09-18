@@ -6,13 +6,13 @@ A simple static website for a restaurant, featuring menus, booking, gallery, and
 
 The project consists of HTML files for different pages of the website:
 - `index.html` - Homepage
-- `menu.html` - Restaurant menu (uses `menu_rolls.json` for data)
+- `menu.html` - Restaurant menu 
 - `booking.html` - Table reservation
 - `delivery.html` - Delivery information
 - `gallery.html` - Photo gallery
 - `about.html` - About us
 - `feedback.html` - Customer feedback
-- `colophon.html` - Site colophon
+- `careers.html` - To start career with us
 
 ## Getting Started
 
