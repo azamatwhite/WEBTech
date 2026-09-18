@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interior Gallery & Allergens — Saya Sushi</title>
-    <meta name="description" content="Interior gallery of Saya Sushi restaurant, atmosphere, and full menu allergen and ingredient information.">
+    <meta name="description" content="Interior gallery, traditional oriental atmosphere, composition, and allergens of dishes at Dastarkhan restaurant in Astana.">
     <meta name="author" content="Miko">
-    <!-- Page author: Miko. Pure HTML5 code built for Assignment 1 without CSS or JavaScript. -->
+    <title>Gallery &amp; Allergen Guide — Dastarkhan</title>
 </head>
 <body>
 
-    <!-- The header groups the site brand and navigation together so that screen readers can identify the top-level site chrome as a single landmark -->
     <header>
-        <b>Saya Sushi</b>
+        <b>Dastarkhan</b>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -28,64 +26,63 @@
     </header>
 
     <main>
-        <!-- Anchor links for in-page navigation -->
-        <p>Quick navigation:</p>
-        <ul>
-            <li><a href="#interior-section">Interior &amp; Atmosphere</a></li>
-            <li><a href="#allergens-section">Ingredients &amp; Allergens</a></li>
-        </ul>
+        <!-- Internal quick navigation links -->
+        <p>Quick navigation: 
+            <a href="#interior-section">Go to Interior Gallery</a> | 
+            <a href="#allergens-section">Go to Composition &amp; Allergens</a>
+        </p>
 
-        <h2>Restaurant Interior and Dish Details</h2>
+        <h1>Restaurant Interior &amp; Dish Composition</h1>
 
         <section id="interior-section">
-            <h2>Atmosphere and Interior Design</h2>
+            <h2>Atmosphere &amp; Traditional Interior</h2>
             
             <article>
-                <h3>Modern Japanese Comfort Concept</h3>
+                <h3>Authentic Oriental Design in Astana</h3>
                 <p>
-                    The interior of <cite>Saya Sushi</cite> is designed in a minimalist style featuring natural wood elements and soft warm lighting. 
-                    We created a space that is equally comfortable for a quick business lunch or a cozy evening dinner.
+                    The interior of <strong>Dastarkhan</strong> is designed in a warm, traditional Kazakh and Oriental style. 
+                    Featuring rich wood, handmade tapestries, and comfortable seating, we created an atmosphere where family feasts and business meetings feel equally welcoming.
                 </p>
                 <p>
-                    Special attention is given to layout zoning: from an open sushi bar to comfortable sofas for large groups.
+                    Our spacious dining halls include private VIP rooms for special occasions and main halls decorated with authentic Kazakh motifs.
                 </p>
             </article>
 
             <aside>
-                <h3>Atmosphere Note</h3>
+                <h4>Atmosphere Note</h4>
                 <p>
-                    Background <abbr title="Lo-Fi Beats — relaxing ambient music">Lo-Fi</abbr> music plays in the dining area, 
-                    while lighting adapts according to the time of day: brighter during daylight and dim in the evening.
+                    Guests enjoy traditional background instrumental music while dining, and our halls are illuminated with warm ambient lighting during evening hours.
                 </p>
             </aside>
 
             <!-- 4 photos arranged in a 2x2 grid using pure HTML table -->
             <table border="0">
+                <caption>Interior and Exterior Photo Gallery</caption>
                 <tr>
                     <td>
                         <figure>
-                            <img src="images/ima8.jpg" alt="Restaurant entrance" width="350" height="350">
-                            <figcaption>Restaurant entrance</figcaption>
+                            <img src="images/interior/IMG_1167.jpg" width="350" height="250" alt="Main dining area at Dastarkhan with oriental decor">
+                            <figcaption>Entrance to our restaurant</figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure>
-                            <img src="images/ima6.jpg" alt="Main Hall" width="350" height="350">
-                            <figcaption>Main Hall</figcaption>
+                            <img src="images/interior/IMG_1163.jpg" width="350" height="250" alt="Cozy VIP room seating with traditional carpets">
+                            <figcaption>Main hall in an Oriental style</figcaption>
                         </figure>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <figure>
-                            <img src="images/ima7.jpg" alt="Restaurant atmosphere" width="350" height="350">
-                            <figcaption>Restaurant atmosphere</figcaption>
+                            <img src="images/interior/IMG_1160.jpg" width="350" height="250" alt="Dastarkhan restaurant exterior and main entrance on Dostyk Street">
+                            <figcaption>VIP private lounge</figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure>
-                            <img src="images/ima9.jpg" alt="A tasty snack" width="350" height="350">
-                            <figcaption>A tasty snack</figcaption>
+                            <img src="images/interior/IMG_1171.jpg" width="350" height="250" alt="Open kitchen view where chefs prepare plov and lagman">
+                            <figcaption>Other locations of our restaurant</figcaption>
                         </figure>
                     </td>
                 </tr>
@@ -95,112 +92,109 @@
         <hr>
 
         <section id="allergens-section">
-            <details>
-                <summary><strong>Ingredients, Nutrition Values, and Allergens</strong></summary>
-                
-                <p>We care about our guests' health. Below is a breakdown of ingredients and potential allergens for popular dishes.</p>
+            <h2>Dish Composition &amp; Allergen Guide</h2>
+            
+            <p>
+                We value our guests' health and safety. Below is a detailed breakdown of ingredients and potential allergens for our most popular traditional dishes.
+            </p>
 
-                <!-- Required table with caption, thead, tbody, th scope -->
-                <table border="1">
-                    <caption>Allergen and nutritional value table of selected dishes</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Dish Name</th>
-                            <th scope="col">Main Ingredients</th>
-                            <th scope="col">Contains Allergens</th>
-                            <th scope="col">Calories (per 100<abbr title="grams">g</abbr>)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Philadelphia Classic</th>
-                            <td>Salmon, cream cheese, rice, nori, cucumber</td>
-                            <td>Fish, dairy (lactose)</td>
-                            <td>185 <abbr title="kilocalories">kcal</abbr></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">California Crab</th>
-                            <td>Snow crab, avocado, tobiko roe, rice, mayo</td>
-                            <td>Crustaceans, eggs, soy</td>
-                            <td>160 <abbr title="kilocalories">kcal</abbr></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Baked Eel Roll</th>
-                            <td>Eel, spicy sauce, unagi sauce, sesame, rice</td>
-                            <td>Fish, soy, sesame, gluten</td>
-                            <td>210 <abbr title="kilocalories">kcal</abbr></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Mandatory table with caption, thead, tbody, and th scope -->
+            <table border="1">
+                <caption>Composition and Allergen Analysis of Traditional Dishes</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Dish Name</th>
+                        <th scope="col">Main Ingredients</th>
+                        <th scope="col">Potential Allergens</th>
+                        <th scope="col">Calories (per 100<abbr title="grams">g</abbr>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Special Lagman</th>
+                        <td>Handmade wheat noodles, beef, bell peppers, garlic, house broth</td>
+                        <td>Gluten, garlic</td>
+                        <td>190 <abbr title="kilocalories">kcal</abbr></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Festive Tashkent Plov</th>
+                        <td>Devzira rice, tender lamb, yellow carrots, chickpeas, raisins, zira</td>
+                        <td>Sesame (oil), raisins</td>
+                        <td>240 <abbr title="kilocalories">kcal</abbr></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Traditional Manty</th>
+                        <td>Minced beef and lamb, thin dough, onion, black pepper</td>
+                        <td>Gluten, onion</td>
+                        <td>210 <abbr title="kilocalories">kcal</abbr></td>
+                    </tr>
+                </tbody>
+            </table>
 
-                <p><small>* If you have severe food allergies, please inform your waiter before ordering.</small></p>
-            </details>
+            <p><small>* If you have severe food allergies, please inform your waiter before placing an order.</small></p>
 
-            <br>
+            <h3>Hall Zones (Nested List)</h3>
+            <ul>
+                <li>Main Dining Hall
+                    <ul>
+                        <li>Tables near panoramic windows</li>
+                        <li>Central booths for 4–6 guests</li>
+                    </ul>
+                </li>
+                <li>VIP Halls
+                    <ul>
+                        <li>East Hall (up to 12 guests)</li>
+                        <li>Khan Room (up to 20 guests)</li>
+                    </ul>
+                </li>
+                <li>Tea Lounge</li>
+            </ul>
 
-            <details>
-                <summary><strong>Hall Zoning</strong></summary>
-                <ul>
-                    <li>Main Hall
-                        <ul>
-                            <li>Tables near panoramic windows</li>
-                            <li>Central seating for 2–4 guests</li>
-                        </ul>
-                    </li>
-                    <li>VIP Room
-                        <ul>
-                            <li>Private area for up to 10 guests</li>
-                        </ul>
-                    </li>
-                    <li>Bar Counter Area</li>
-                </ul>
-            </details>
+            <h3>Directions to Our Restaurant (Ordered List with Attribute)</h3>
+            <ol start="1">
+                <li>Arrive at Dostyk Street near the central park area.</li>
+                <li>Look for the traditional illuminated <mark>Dastarkhan</mark> sign.</li>
+                <li>Free guest parking is available behind the main building.</li>
+            </ol>
 
-            <br>
-
-            <details>
-                <summary><strong>How to Reach Us</strong></summary>
-                <ol start="1">
-                    <li>Exit the subway station and turn left.</li>
-                    <li>Walk straight for 150 meters along the main street.</li>
-                    <li>Look for the logo sign of <mark>Saya Sushi</mark>.</li>
-                </ol>
-            </details>
-
-            <br>
-
-            <details>
-                <summary><strong>Culinary Terms</strong></summary>
-                <dl>
-                    <dt><strong>Omakase</strong></dt>
-                    <dd>A traditional practice where guests leave the dish selection entirely to the chef.</dd>
-                    <dt><strong>Tatami</strong></dt>
-                    <dd>Traditional Japanese mats used in decorative VIP area flooring.</dd>
-                </dl>
-            </details>
+            <h3>Eastern Culinary Terms (Definition List)</h3>
+            <dl>
+                <dt><strong>Kazan</strong></dt>
+                <dd>A large cast-iron cooking pot traditionally used across Central Asia to prepare plov and meat dishes.</dd>
+                <dt><strong>Shero</strong></dt>
+                <dd>A rich, highly seasoned noodle broth infused with garlic and fresh green herbs.</dd>
+            </dl>
         </section>
 
         <section>
-            <h2>Quotes &amp; Info</h2>
-            
-            <p>Chef <b>Alex</b>: <i>"Fresh fish is key."</i> Water: H<sub>2</sub>O | Storage: T<sup>o</sup> (+2 to +4 °C).</p>
+            <h2>Quotes &amp; Quality Notes</h2>
+            <p>
+                Our Administrator <b>Erlan</b> highlights: <i>“True Kazakh hospitality starts with a hot pot of tea and fresh baursaks.”</i> 
+                Our team brews mineral H<sub>2</sub>O tea at temperatures over 100<sup>o</sup>C for maximum flavor.
+            </p>
 
-            <blockquote cite="https://sayasushi.kz">
-                "Every detail in Saya Sushi reflects genuine Japanese hospitality."
+            <blockquote cite="https://dastarkhan.kz">
+                <p>“We designed Dastarkhan so that every visitor feels like a honored guest in a traditional Kazakh home.”</p>
             </blockquote>
-            <p>— Manager <cite>(Sept 15, 2026)</cite> | Chef's motto: <q>Cook with passion.</q></p>
+            <p>— Interview with the venue founder (date: February 12, 2026).</p>
 
-            <p>Contacts: <a href="mailto:info@sayasushi.com">info@sayasushi.com</a> | <a href="tel:+77017650303">+7 (701) 765-03-03</a> | <a href="https://2gis.kz/astana/geo/70000001100556883" target="_blank" rel="noopener noreferrer">2GIS</a></p>
-
-            <p><small>Entities: &copy; &trade; &amp; &infin;</small></p>
+            <p>Chef's note: <q>Traditional taste requires patience and zero shortcuts.</q></p>
         </section>
+
+        <!-- Comment explaining span/div usage -->
+        <!-- The div tag is used here strictly to wrap contact details as no specific semantic layout wrapper exists -->
+        <div class="contacts-block">
+            <p>For banquet reservations email us at: <a href="mailto:info@dastarkhan.kz">info@dastarkhan.kz</a> or call: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
+            <p>View location and directions on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener noreferrer">2GIS Astana Dastarkhan</a>.</p>
+        </div>
+
+        <p>HTML Entities used on this page: &copy; (copyright), &trade; (trademark), &amp; (ampersand), &infin; (infinity).</p>
     </main>
 
-    <!-- The footer closes the page with consistent contact details and copyright, matching the rest of the site -->
     <footer>
-        <p>Follow us on <a href="https://www.instagram.com/sayasushi.kz" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://go.2gis.com/X1lKv" target="_blank" rel="noopener">2GIS</a>.</p>
-        <p>Phone: <a href="tel:+77017650303">+7 701 765 03 03</a></p>
-        <p>&copy; 2026 Saya Sushi</p>
+        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener">2GIS</a>.</p>
+        <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
+        <p>&copy; 2026 Dastarkhan Restaurant. Page Author: Miko.</p>
     </footer>
 
 </body>
