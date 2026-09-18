@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Table reservation form for Saya Sushi bar in Astana. Book your table online easily.">
+    <meta name="description" content="Table reservation form for Dastarkhan restaurant in Astana. Book your table online easily.">
     <meta name="author" content="Ruslan Absamat">
-    <title>Book a Table — Saya Sushi</title>
+    <title>Book a Table — Dastarkhan</title>
 </head>
 <body>
 
     <!-- The header groups the site brand and navigation together so that screen readers can identify the top-level site chrome as a single landmark -->
     <header>
-        <b>Saya Sushi</b>
+        <b>Dastarkhan</b>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,7 +21,6 @@
                 <li><a href="booking.html">Booking</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="colophon.html">Colophon</a></li>
             </ul>
         </nav>
     </header>
@@ -29,21 +28,21 @@
     <main>
         <section>
             <h1>Table Reservation</h1>
-            <p>Reserve a table in advance to enjoy fresh Japanese cuisine in our comfortable hall or on the veranda.</p>
+            <p>Reserve a table in advance to enjoy authentic Eastern and Kazakh national cuisine in our comfortable hall, oriental tapchan zone, or private VIP room.</p>
 
-            <!-- 3 images with meaningful alt text as required by assignment -->
+            <!-- 3 images with meaningful alt text and explicit width/height as required by assignment -->
             <figure>
-                <img src="images/inside_photo_5.png" alt="Main dining room with comfortable seats at Saya Sushi" width="355" height="250">
+                <img src="images/interior/IMG_1170.jpg" alt="Main dining hall with oriental wood carvings at Dastarkhan" width="400" height="300">
                 <figcaption>Main Dining Hall</figcaption>
             </figure>
 
             <figure>
-                <img src="images/ima8.jpg" alt="Outdoor summer veranda area of Saya Sushi" width="320" height="426">
-                <figcaption>Summer Veranda Area</figcaption>
+                <img src="images/interior/IMG_1157.jpg" alt="Cozy eastern style seating area at Dastarkhan" width="400" height="300">
+                <figcaption>Eastern Tapchan Area</figcaption>
             </figure>
 
             <figure>
-                <img src="images/ima2.jpg" alt="Private VIP room for family gatherings at Saya Sushi" width="426" height="321">
+                <img src="images/interior/IMG_1160.jpg" alt="Private VIP banquet room for family events at Dastarkhan" width="400" height="300">
                 <figcaption>Private VIP Room</figcaption>
             </figure>
         </section>
@@ -71,12 +70,12 @@
 
                     <p>
                         <label for="guest-phone">Phone Number:</label><br>
-                        <input type="tel" id="guest-phone" name="phone" placeholder="+7 (700) 000-00-00" required>
+                        <input type="tel" id="guest-phone" name="phone" placeholder="+7 (7172) 31-95-95" required>
                     </p>
 
                     <p>
                         <label for="guest-count">Number of Guests:</label><br>
-                        <input type="number" id="guest-count" name="guests" min="1" max="12" placeholder="2" required>
+                        <input type="number" id="guest-count" name="guests" min="1" max="20" placeholder="4" required>
                     </p>
 
                     <p>
@@ -89,8 +88,8 @@
                         <input type="radio" id="zone-hall" name="zone" value="hall" checked>
                         <label for="zone-hall">Main Hall</label>
 
-                        <input type="radio" id="zone-veranda" name="zone" value="veranda">
-                        <label for="zone-veranda">Veranda</label>
+                        <input type="radio" id="zone-tapchan" name="zone" value="tapchan">
+                        <label for="zone-tapchan">Tapchan Area</label>
 
                         <input type="radio" id="zone-vip" name="zone" value="vip">
                         <label for="zone-vip">VIP Room</label>
@@ -105,6 +104,7 @@
                         <label for="booking-time">Time Slot:</label><br>
                         <select id="booking-time" name="time" required>
                             <option value="">Select time slot</option>
+                            <option value="11:00">11:00</option>
                             <option value="12:00">12:00</option>
                             <option value="13:00">13:00</option>
                             <option value="14:00">14:00</option>
@@ -116,13 +116,12 @@
                             <option value="20:00">20:00</option>
                             <option value="21:00">21:00</option>
                             <option value="22:00">22:00</option>
-                            <option value="23:00">23:00</option>
                         </select>
                     </p>
 
                     <p>
                         <label for="special-wishes">Special Requests:</label><br>
-                        <textarea id="special-wishes" name="wishes" rows="4" cols="40" placeholder="Specify any dietary requirements or celebration details..."></textarea>
+                        <textarea id="special-wishes" name="wishes" rows="4" cols="40" placeholder="Specify any dietary requirements, anniversary celebration, or guest preferences..."></textarea>
                     </p>
 
                     <p>
@@ -135,19 +134,19 @@
 
         <section>
             <h2>Direct Contact for Instant Booking</h2>
-            <p>For immediate reservations, contact our front desk directly:</p>
+            <p>For immediate reservations or large banquet bookings, contact our front desk directly:</p>
             <p>
-                Email: <a href="mailto:booking@sayasushi.kz">booking@sayasushi.kz</a><br>
-                Phone: <a href="tel:+77771234567">+7 (777) 123-45-67</a>
+                Email: <a href="mailto:booking@dastarkhan.kz">booking@dastarkhan.kz</a><br>
+                Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>
             </p>
         </section>
     </main>
 
     <!-- The footer closes the page with consistent contact details and copyright, matching the rest of the site -->
     <footer>
-        <p>Follow us on <a href="https://www.instagram.com/sayasushi.kz" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://go.2gis.com/X1lKv" target="_blank" rel="noopener">2GIS</a>.</p>
-        <p>Phone: <a href="tel:+77017650303">+7 701 765 03 03</a></p>
-        <p>&copy; 2026 Saya Sushi</p>
+        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank" rel="noopener">2GIS</a>.</p>
+        <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
+        <p>&copy; 2026 Dastarkhan Restaurant</p>
     </footer>
 
 </body>
