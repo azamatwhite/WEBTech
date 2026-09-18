@@ -1,16 +1,12 @@
-Да, вижу конфликт в `gallery.html`. Вот исправленная версия файла без `<<<<<<< HEAD`/`>>>>>>>` и без смешения брендов.
-
-````html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interior Gallery &amp; Allergens — Dastarkhan</title>
-    <meta name="description"
-        content="Interior gallery, traditional oriental atmosphere, composition, and allergens of dishes at Dastarkhan restaurant in Astana.">
+    <meta name="description" content="Interior gallery, traditional oriental atmosphere, composition, and allergens of dishes at Dastarkhan restaurant in Astana.">
     <meta name="author" content="Miko">
+    <title>Gallery &amp; Allergen Guide — Dastarkhan</title>
 </head>
 
 <body>
@@ -32,8 +28,9 @@
     </header>
 
     <main>
-        <p>Quick navigation:
-            <a href="#interior-section">Go to Interior Gallery</a> |
+        <!-- Internal quick navigation links -->
+        <p>Quick navigation: 
+            <a href="#interior-section">Go to Interior Gallery</a> | 
             <a href="#allergens-section">Go to Composition &amp; Allergens</a>
         </p>
 
@@ -41,11 +38,11 @@
 
         <section id="interior-section">
             <h2>Atmosphere &amp; Traditional Interior</h2>
-
+            
             <article>
                 <h3>Authentic Oriental Design in Astana</h3>
                 <p>
-                    The interior of <strong>Dastarkhan</strong> is designed in a warm, traditional Kazakh and Oriental style.
+                    The interior of <strong>Dastarkhan</strong> is designed in a warm, traditional Kazakh and Oriental style. 
                     Featuring rich wood, handmade tapestries, and comfortable seating, we created an atmosphere where family feasts and business meetings feel equally welcoming.
                 </p>
                 <p>
@@ -60,6 +57,7 @@
                 </p>
             </aside>
 
+            <!-- 4 photos arranged in a 2x2 grid using pure HTML table -->
             <table border="0">
                 <caption>Interior and Exterior Photo Gallery</caption>
                 <tr>
@@ -97,16 +95,12 @@
 
         <section id="allergens-section">
             <h2>Dish Composition &amp; Allergen Guide</h2>
-
+            
             <p>
                 We value our guests' health and safety. Below is a detailed breakdown of ingredients and potential allergens for our most popular traditional dishes.
             </p>
 
-            <details>
-                <summary><strong>Ingredients, Nutrition Values, and Allergens</strong></summary>
-                <p>We care about our guests' health. Below is a breakdown of ingredients and potential allergens for popular dishes.</p>
-            </details>
-
+            <!-- Mandatory table with caption, thead, tbody, and th scope -->
             <table border="1">
                 <caption>Composition and Allergen Analysis of Traditional Dishes</caption>
                 <thead>
@@ -177,7 +171,7 @@
         <section>
             <h2>Quotes &amp; Quality Notes</h2>
             <p>
-                Our Administrator <b>Erlan</b> highlights: <i>“True Kazakh hospitality starts with a hot pot of tea and fresh baursaks.”</i>
+                Our Administrator <b>Erlan</b> highlights: <i>“True Kazakh hospitality starts with a hot pot of tea and fresh baursaks.”</i> 
                 Our team brews mineral H<sub>2</sub>O tea at temperatures over 100<sup>o</sup>C for maximum flavor.
             </p>
 
@@ -189,6 +183,8 @@
             <p>Chef's note: <q>Traditional taste requires patience and zero shortcuts.</q></p>
         </section>
 
+        <!-- Comment explaining span/div usage -->
+        <!-- The div tag is used here strictly to wrap contact details as no specific semantic layout wrapper exists -->
         <div class="contacts-block">
             <p>For banquet reservations email us at: <a href="mailto:info@dastarkhan.kz">info@dastarkhan.kz</a> or call: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
             <p>View location and directions on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener noreferrer">2GIS Astana Dastarkhan</a>.</p>
@@ -206,6 +202,3 @@
 </body>
 
 </html>
-````
-
-Если хочешь, я могу ещё сразу сделать аналогичную чистку для остальных конфликтующих файлов в проекте.
