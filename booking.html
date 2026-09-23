@@ -8,154 +8,236 @@
         content="Table reservation form for Dastarkhan restaurant in Astana. Book your table online easily.">
     <meta name="author" content="Ruslan Absamat">
     <title>Book a Table — Dastarkhan</title>
+
+    <link rel="stylesheet" href="css/base.css">
+
+   
+    <link rel="stylesheet" href="css/ruslan.css">
+
+    
+    <style>
+      .booking-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .booking-info-card {
+        background: var(--color-white);
+        padding: 2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        height: fit-content;
+      }
+
+      .booking-form-card {
+        background: var(--color-white);
+        padding: 2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* 3 суретті қатар қоятын mini-gallery сеткасы */
+      .halls-mini-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hall-thumb {
+        text-align: center;
+      }
+
+      .hall-thumb img {
+        width: 100%;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 6px;
+        box-shadow: var(--shadow);
+      }
+
+      .hall-thumb span {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-top: 0.3rem;
+        color: var(--color-primary);
+      }
+
+      /* Мобильді құрылғыларда 1 колонкаға түсіру */
+      @media (max-width: 850px) {
+        .booking-grid-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .rules-list {
+        padding-left: 1.2rem;
+        margin-top: 0.5rem;
+        line-height: 1.8;
+      }
+
+      .rules-list li::marker {
+        color: var(--color-primary);
+      }
+    </style>
 </head>
 
 <body>
 
-    <!-- The header groups the site brand and navigation together so that screen readers can identify the top-level site chrome as a single landmark -->
-    <header>
-        <b>Dastarkhan</b>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="careers.html">Careers</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Header & Navigation -->
+    <header class="site-header">
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Dastarkhan Logo">
+    </a>
+    <nav>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="careers.html">Careers</a></li>
+        </ul>
+    </nav>
+</header>
+    <main class="content-wrapper">
+        
+        <!-- Page Title Block -->
+        <div class="page-title-wrap">
+            <h1 id="pageTitle">Table Reservation</h1>
+        </div>
 
-    <main>
-        <section>
-            <h1>Table Reservation</h1>
-            <p>Reserve a table in advance to enjoy authentic Eastern and Kazakh national cuisine in our comfortable
-                hall, oriental tapchan zone, or private VIP room.</p>
+      
+        <div class="booking-grid-container">
+            
+            
+            <div class="booking-info-card">
+                <h2 style="color: var(--color-primary); margin-bottom: 0.8rem;">Our Dining Zones</h2>
+                <p style="margin-bottom: 1.2rem; color: var(--color-text-light); line-height: 1.5; font-size: 0.95rem;">
+                    Reserve a table in advance to enjoy authentic national and oriental cuisine in our comfortable main hall, oriental tapchan zone, or private VIP room.
+                </p>
 
-            <!-- 3 images with meaningful alt text and explicit width/height as required by assignment -->
-            <figure>
-                <img src="images/interior/IMG_1170.jpg" alt="Main dining hall with oriental wood carvings at Dastarkhan"
-                    width="400" height="300">
-                <figcaption>Main Dining Hall</figcaption>
-            </figure>
+              
+<div class="halls-mini-gallery">
+    <div class="hall-thumb">
+        <img src="images/interior/IMG_1170.jpg" alt="Main Hall" style="width: %; height: 500px; object-fit: cover; border-radius: 6px;">
+        <span>Main Hall</span>
+    </div>
+    <div class="hall-thumb">
+        <img src="images/interior/IMG_1157.jpg" alt="Tapchan Area" style="width: 100%; height: 500px; object-fit: cover; border-radius: 6px;">
+        <span>Tapchan</span>
+    </div>
+    <div class="hall-thumb">
+        <img src="images/interior/IMG_1160.jpg" alt="VIP Room" style="width: 100%; height: 500px; object-fit: cover; border-radius: 6px;">
+        <span>VIP Room</span>
+    </div>
+</div>
+                <h3 style="color: var(--color-primary); font-size: 1.1rem; margin-top: 1.5rem;">Reservation Policy:</h3>
+                <ul class="rules-list">
+                    <li>Table retention time is <strong>20 minutes</strong> from the reserved hour.</li>
+                    <li>For groups over 10 guests, an advance deposit may be requested.</li>
+                    <li>VIP rooms require a minimum order limit per person.</li>
+                    <li>No outside food or beverages are permitted.</li>
+                </ul>
 
-            <figure>
-                <img src="images/interior/IMG_1157.jpg" alt="Cozy eastern style seating area at Dastarkhan" width="400"
-                    height="300">
-                <figcaption>Eastern Tapchan Area</figcaption>
-            </figure>
+                <hr style="margin: 1.2rem 0;">
 
-            <figure>
-                <img src="images/interior/IMG_1160.jpg" alt="Private VIP banquet room for family events at Dastarkhan"
-                    width="400" height="300">
-                <figcaption>Private VIP Room</figcaption>
-            </figure>
-        </section>
+                <h3 style="color: var(--color-primary); font-size: 1.1rem;">Instant Assistance:</h3>
+                <p style="margin-top: 0.4rem; font-size: 0.95rem;">
+                    <strong>Hostess Desk:</strong> <a href="tel:+77172319595">+7 (7172) 31-95-95</a><br>
+                    <strong>Working Hours:</strong> Mon-Sun, 11:00 – 23:00
+                </p>
+            </div>
 
-        <section>
-            <h2>Reservation Form</h2>
+            <!-- RIGHT COLUMN: Booking Form -->
+            <div class="booking-form-card">
+                <form id="booking-form" method="post" action="#">
+                    <!-- Note: Frontend form markup without backend integration -->
+                    <fieldset style="border: none; padding: 0; margin: 0;">
+                        <legend style="font-size: 1.25rem; font-weight: 700; color: var(--color-primary); margin-bottom: 1rem;">
+                            ✦ Booking Details
+                        </legend>
 
-            <!-- Complete required form -->
-            <form method="post" action="#">
-                <!-- MANDATORY COMMENT: The form does not send anything yet as there is no backend server -->
-                <!-- Note: This form is purely frontend markup and does not send data to any server backend yet. -->
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label for="guest-name" style="display: block; margin-bottom: 0.3rem;">Full Name:</label>
+                            <input type="text" id="guest-name" name="name" placeholder="John Doe" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;">
+                        </div>
 
-                <fieldset>
-                    <legend>Booking Details</legend>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label for="guest-email" style="display: block; margin-bottom: 0.3rem;">Email Address:</label>
+                            <input type="email" id="guest-email" name="email" placeholder="example@gmail.com" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;">
+                        </div>
 
-                    <p>
-                        <label for="guest-name">Full Name:</label><br>
-                        <input type="text" id="guest-name" name="name" placeholder="John Doe" required>
-                    </p>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label for="guest-phone" style="display: block; margin-bottom: 0.3rem;">Phone Number:</label>
+                            <input type="tel" id="guest-phone" name="phone" placeholder="+7 (7172) 31-95-95" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;">
+                        </div>
 
-                    <p>
-                        <label for="guest-email">Email Address:</label><br>
-                        <input type="email" id="guest-email" name="email" placeholder="example@gmail.com" required>
-                    </p>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label for="guest-count" style="display: block; margin-bottom: 0.3rem;">Number of Guests:</label>
+                            <input type="number" id="guest-count" name="guests" min="1" max="20" placeholder="4" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;">
+                        </div>
 
-                    <p>
-                        <label for="guest-phone">Phone Number:</label><br>
-                        <input type="tel" id="guest-phone" name="phone" placeholder="+7 (7172) 31-95-95" required>
-                    </p>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label for="booking-date" style="display: block; margin-bottom: 0.3rem;">Visit Date:</label>
+                            <input type="date" id="booking-date" name="date" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;">
+                        </div>
 
-                    <p>
-                        <label for="guest-count">Number of Guests:</label><br>
-                        <input type="number" id="guest-count" name="guests" min="1" max="20" placeholder="4" required>
-                    </p>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.3rem;">Preferred Zone:</label>
+                            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                                <label><input type="radio" name="zone" value="hall" checked> Main Hall</label>
+                                <label><input type="radio" name="zone" value="tapchan"> Tapchan Area</label>
+                                <label><input type="radio" name="zone" value="vip"> VIP Room</label>
+                            </div>
+                        </div>
 
-                    <p>
-                        <label for="booking-date">Visit Date:</label><br>
-                        <input type="date" id="booking-date" name="date" required>
-                    </p>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label><input type="checkbox" name="high_chair"> Require a child high chair</label>
+                        </div>
 
-                    <p>
-                        Preferred Seating Zone:<br>
-                        <input type="radio" id="zone-hall" name="zone" value="hall" checked>
-                        <label for="zone-hall">Main Hall</label>
+                        <div class="form-row" style="margin-bottom: 1rem;">
+                            <label for="booking-time" style="display: block; margin-bottom: 0.3rem;">Time Slot:</label>
+                            <select id="booking-time" name="time" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;">
+                                <option value="">Select time slot</option>
+                                <option value="12:00">12:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="20:00">20:00</option>
+                            </select>
+                        </div>
 
-                        <input type="radio" id="zone-tapchan" name="zone" value="tapchan">
-                        <label for="zone-tapchan">Tapchan Area</label>
+                        <div class="form-row" style="margin-bottom: 1.5rem;">
+                            <label for="special-wishes" style="display: block; margin-bottom: 0.3rem;">Special Requests:</label>
+                            <textarea id="special-wishes" name="wishes" rows="3" placeholder="Specify any dietary requirements, anniversary celebration, or guest preferences..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: 4px;"></textarea>
+                        </div>
 
-                        <input type="radio" id="zone-vip" name="zone" value="vip">
-                        <label for="zone-vip">VIP Room</label>
-                    </p>
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn btn--primary" style="flex: 1;">Submit Booking</button>
+                            <button type="reset" class="btn btn--secondary">Reset</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
 
-                    <p>
-                        <input type="checkbox" id="high-chair" name="high_chair">
-                        <label for="high-chair">Require a child high chair</label>
-                    </p>
+        </div>
 
-                    <p>
-                        <label for="booking-time">Time Slot:</label><br>
-                        <select id="booking-time" name="time" required>
-                            <option value="">Select time slot</option>
-                            <option value="11:00">11:00</option>
-                            <option value="12:00">12:00</option>
-                            <option value="13:00">13:00</option>
-                            <option value="14:00">14:00</option>
-                            <option value="15:00">15:00</option>
-                            <option value="16:00">16:00</option>
-                            <option value="17:00">17:00</option>
-                            <option value="18:00">18:00</option>
-                            <option value="19:00">19:00</option>
-                            <option value="20:00">20:00</option>
-                            <option value="21:00">21:00</option>
-                            <option value="22:00">22:00</option>
-                        </select>
-                    </p>
-
-                    <p>
-                        <label for="special-wishes">Special Requests:</label><br>
-                        <textarea id="special-wishes" name="wishes" rows="4" cols="40"
-                            placeholder="Specify any dietary requirements, anniversary celebration, or guest preferences..."></textarea>
-                    </p>
-
-                    <p>
-                        <button type="submit">Submit Booking</button>
-                        <button type="reset">Reset Form</button>
-                    </p>
-                </fieldset>
-            </form>
-        </section>
-
-        <section>
-            <h2>Direct Contact for Instant Booking</h2>
-            <p>For immediate reservations or large banquet bookings, contact our front desk directly:</p>
-            <p>
-                Email: <a href="mailto:booking@dastarkhan.kz">booking@dastarkhan.kz</a><br>
-                Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>
-            </p>
-        </section>
     </main>
 
-    <!-- The footer closes the page with consistent contact details and copyright, matching the rest of the site -->
-    <footer>
-        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
-                rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-                rel="noopener">2GIS</a>.</p>
+    <!-- Floating Top Button -->
+    <a href="#" class="back-to-top" id="quickOrder">Top ↑</a>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank" rel="noopener">2GIS</a>.</p>
         <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
         <p>&copy; 2026 Dastarkhan Restaurant</p>
     </footer>

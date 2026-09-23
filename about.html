@@ -8,19 +8,77 @@
         content="History of creation, kitchen philosophy, and team of Dastarkhan restaurant in Astana.">
     <meta name="author" content="Ruslan Absamat">
     <title>About Dastarkhan — History and Philosophy</title>
+
+    <!-- 1. Азаматтың дизайны негізіндегі ортақ CSS -->
+    <link rel="stylesheet" href="css/base.css">
+
+    <!-- 2. Русланның жеке CSS файлы -->
+    <link rel="stylesheet" href="css/ruslan.css">
+
+    <!-- Ішкі стиль демонстрациясы (Cascade & Priority) -->
+    <style>
+      /* Hero Banner стилі - About бетіне арналған эксклюзивті дизайн */
+      .about-hero-banner {
+        position: relative;
+        background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('images/interior/IMG_1167.jpg') center/cover no-repeat;
+        color: var(--color-white);
+        padding: 4rem 2rem;
+        border-radius: var(--radius);
+        text-align: center;
+        margin-bottom: 2.5rem;
+        box-shadow: var(--shadow);
+      }
+      .about-hero-banner h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+      }
+      .about-hero-banner p {
+        font-size: 1.15rem;
+        max-width: 750px;
+        margin: 0 auto 1.5rem auto;
+        line-height: 1.6;
+      }
+      
+      /* Статистика көрсеткіштері блогы */
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2.5rem 0;
+      }
+      .stat-card {
+        background: var(--color-white);
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        text-align: center;
+        box-shadow: var(--shadow);
+        border-bottom: 4px solid var(--color-primary);
+      }
+      .stat-number {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: var(--color-primary);
+      }
+      .stat-label {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+        margin-top: 0.3rem;
+      }
+    </style>
 </head>
 
 <body>
 
-    <!-- The header groups the site brand and navigation together so that screen readers can identify the top-level site chrome as a single landmark -->
-    <header>
-        <b>Dastarkhan</b>
+    <!-- Header & Navigation -->
+    <header class="site-header">
+        <div class="logo">Dastarkhan</div>
         <nav>
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
                 <li><a href="booking.html">Booking</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
@@ -29,18 +87,49 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Anchor links for fast internal navigation -->
-        <p>Quick navigation:
-            <a href="#history-section">Go to History</a> |
-            <a href="#philosophy-section">Go to Philosophy</a>
-        </p>
+    <main class="content-wrapper">
+        
+        <!-- EXCLUSIVE HERO BANNER FOR ABOUT PAGE -->
+        <section class="about-hero-banner">
+            <h1 id="pageTitle">Our Heritage &amp; Tradition</h1>
+            <p>Bringing authentic Eastern hospitality and traditional Kazakh recipes to the heart of Astana since 2005. Discover the passion behind every dish we cook.</p>
+            <div>
+                <a href="#history-section" class="btn btn--primary" style="margin-right: 0.5rem;">Read Story</a>
+                <a href="#philosophy-section" class="btn btn--secondary">Our Philosophy</a>
+            </div>
+        </section>
 
-        <section id="history-section">
-            <h1>Our History &amp; Concept</h1>
+        <!-- STATS HIGHLIGHT BLOCK -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">2005</div>
+                <div class="stat-label">Year Established</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Fresh Halal Meat Daily</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Happy Guests Yearly</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100°C</div>
+                <div class="stat-label">Traditional Kazan Cooking</div>
+            </div>
+        </div>
 
-            <article>
+        <!-- SECTION 1: HISTORY WITH FLOAT AND CLEARFIX -->
+        <section id="history-section" class="about-section clearfix">
+            <h2 class="section-heading">Our History &amp; Concept</h2>
+
+            <article class="about-card" style="padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem;">
                 <h3>How Dastarkhan Started in Astana</h3>
+                
+                <!-- Float image example -->
+                <img src="images/interior/IMG_1167.jpg" class="float-left"
+                    alt="Interior of the main dining hall and traditional oriental decoration at Dastarkhan">
+
                 <p>
                     The story of <strong>Dastarkhan</strong> restaurant began in <b>2005</b> with a simple yet strict
                     concept: serving authentic Eastern and Kazakh national cuisine using traditional recipes and local
@@ -54,134 +143,131 @@
                 </p>
             </article>
 
-            <aside>
+            <aside class="chef-note">
                 <h4>Interesting Kitchen Fact</h4>
                 <p>
                     The dough for our legendary handmade lagman noodles is pulled by hand and cooked at a temperature of
                     exactly <mark>100°C</mark>, ensuring its unique authentic chewy texture.
                 </p>
             </aside>
-
-            <figure>
-                <img src="images/interior/IMG_1167.jpg" width="600" height="500"
-                    alt="Interior of the main dining hall and traditional oriental decoration at Dastarkhan">
-                <figcaption>Main dining area and classic oriental interior layout of Dastarkhan in Astana</figcaption>
-            </figure>
         </section>
 
         <hr>
 
+        <!-- SECTION 2: PHILOSOPHY AND STRUCTURE -->
         <section id="philosophy-section">
-            <h2>Taste Philosophy &amp; Quote</h2>
+            <h2 class="section-heading">Taste Philosophy &amp; Quote</h2>
 
-            <!-- Real quote from an employee with source and date -->
-            <blockquote cite="https://dastarkhan.kz">
+            <!-- Blockquote with testimonial styling -->
+            <blockquote class="testimonial" cite="https://dastarkhan.kz">
                 <p>“Hospitality is the core of our tradition. If the dough for lagman was pulled this morning, those
                     exact fresh noodles will be served in your bowl tonight. Real flavor tolerates no compromises.”</p>
+                <cite>— Head Chef Serik, personal interview during a visit on February 10, 2026</cite>
             </blockquote>
-            <p>— Head Chef Serik, <cite>personal interview during a visit on February 10, 2026</cite>.</p>
 
             <h3>Key Stages of Development</h3>
-            <!-- Ordered list with attribute -->
-            <ol start="2005">
+            <!-- Top-list with custom counter badges -->
+            <ol class="top-list" start="2005">
                 <li>Opening of the first oriental cafe on Mukhtar Auezov Street.</li>
                 <li>Expanding the main dining hall and opening a second flagship venue on Dostyk Street.</li>
                 <li>Introducing an updated author's menu featuring traditional Turkish and Uygur specialties.</li>
             </ol>
 
-            <h3>Our Team Structure</h3>
-            <!-- Nested list -->
-            <ul>
-                <li>Kitchen Department
-                    <ul>
-                        <li>Head Kazan Chef</li>
-                        <li>Dough &amp; Noodle Station Cooks</li>
-                        <li>Shashlik Grill Masters</li>
+            <div class="about-grid" style="margin-top: 2rem;">
+                <div class="advantage-card">
+                    <h3>Our Team Structure</h3>
+                    <ul style="text-align: left; padding-left: 1.2rem;">
+                        <li>Kitchen Department
+                            <ul>
+                                <li>Head Kazan Chef</li>
+                                <li>Dough &amp; Noodle Station Cooks</li>
+                                <li>Shashlik Grill Masters</li>
+                            </ul>
+                        </li>
+                        <li style="margin-top: 0.5rem;">Service Department
+                            <ul>
+                                <li>Hall Administrators</li>
+                                <li>Courier Delivery Team</li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-                <li>Service Department
-                    <ul>
-                        <li>Hall Administrators</li>
-                        <li>Courier Delivery Team</li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
 
-            <h3>Eastern Cuisine Glossary</h3>
-            <!-- Definition list -->
-            <dl>
-                <dt>Dastarkhan</dt>
-                <dd>A traditional Central Asian tablecloth or dining space where guests gather to share a feast.</dd>
-                <dt>Shero</dt>
-                <dd>Specifically seasoned noodle broth infused with fresh herbs, garlic, and traditional eastern spices.
-                </dd>
-            </dl>
+                <div class="advantage-card">
+                    <h3>Eastern Cuisine Glossary</h3>
+                    <dl class="terms-list" style="text-align: left;">
+                        <dt><strong>Dastarkhan</strong></dt>
+                        <dd>A traditional Central Asian tablecloth or dining space where guests gather to share a feast.</dd>
+                        <dt><strong>Shero</strong></dt>
+                        <dd>Specifically seasoned noodle broth infused with fresh herbs, garlic, and traditional eastern spices.</dd>
+                    </dl>
+                </div>
+            </div>
         </section>
 
         <hr>
 
+        <!-- SECTION 3: TABLE STYLING -->
         <section>
-            <h2>Popular Dishes Comparison</h2>
-            <p>The table below provides a comparison of our main traditional dishes for small and large groups:</p>
+            <h2 class="section-heading">Popular Dishes Comparison</h2>
+            <p style="margin-bottom: 1rem;">The table below provides a comparison of our main traditional dishes for small and large groups:</p>
 
-            <!-- Table with caption, thead, tbody, and th scope -->
-            <table border="1">
-                <caption>Comparative Analysis of Popular Dastarkhan Dishes</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Dish Name</th>
-                        <th scope="col">Ingredients / Composition</th>
-                        <th scope="col">Serving Size</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Special Lagman</th>
-                        <td>Handmade pulled noodles, beef, fresh peppers, garlic, house broth</td>
-                        <td>1 person</td>
-                        <td>
-                            <!-- Comment for span: 
-                                 The span tag is used specifically to group the local currency symbol (KZT), 
-                                 as no dedicated semantic HTML tag exists for currency symbols. -->
-                            2,800 <span class="currency">₸</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Festive Tashkent Plov</th>
-                        <td>Devzira rice, tender lamb, yellow carrots, chickpeas, raisins</td>
-                        <td>1–2 people</td>
-                        <td>3,600 <span class="currency">₸</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Assorted Shashlik Set</th>
-                        <td>Lamb chops, beef tikka, chicken kebab, grilled vegetables</td>
-                        <td>3–4 people</td>
-                        <td>12,500 <span class="currency">₸</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; background: var(--color-white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);">
+                    <caption style="padding: 0.75rem; font-weight: 700; color: var(--color-primary);">Comparative Analysis of Popular Dastarkhan Dishes</caption>
+                    <thead>
+                        <tr style="background: var(--color-bg-dark); color: var(--color-white);">
+                            <th scope="col" style="padding: 0.75rem 1rem; text-align: left;">Dish Name</th>
+                            <th scope="col" style="padding: 0.75rem 1rem; text-align: left;">Ingredients / Composition</th>
+                            <th scope="col" style="padding: 0.75rem 1rem; text-align: left;">Serving Size</th>
+                            <th scope="col" style="padding: 0.75rem 1rem; text-align: left;">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <th scope="row" style="padding: 0.75rem 1rem; text-align: left;">Special Lagman</th>
+                            <td style="padding: 0.75rem 1rem;">Handmade pulled noodles, beef, fresh peppers, garlic, house broth</td>
+                            <td style="padding: 0.75rem 1rem;">1 person</td>
+                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--color-primary);">2,800 <span class="currency">₸</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border); background-color: #fef3f5;">
+                            <th scope="row" style="padding: 0.75rem 1rem; text-align: left;">Festive Tashkent Plov</th>
+                            <td style="padding: 0.75rem 1rem;">Devzira rice, tender lamb, yellow carrots, chickpeas, raisins</td>
+                            <td style="padding: 0.75rem 1rem;">1–2 people</td>
+                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--color-primary);">3,600 <span class="currency">₸</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="padding: 0.75rem 1rem; text-align: left;">Assorted Shashlik Set</th>
+                            <td style="padding: 0.75rem 1rem;">Lamb chops, beef tikka, chicken kebab, grilled vegetables</td>
+                            <td style="padding: 0.75rem 1rem;">3–4 people</td>
+                            <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--color-primary);">12,500 <span class="currency">₸</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <p><small>*All prices are in Kazakhstani Tenge including <abbr title="Value Added Tax">VAT</abbr> &amp;
-                    service charge.</small></p>
+            <p style="margin-top: 0.75rem;"><small>*All prices are in Kazakhstani Tenge including <abbr title="Value Added Tax">VAT</abbr> &amp; service charge.</small></p>
             <p>Our traditional tea formula includes mineral H<sub>2</sub>O and special mountain herbs<sup>1</sup>.</p>
         </section>
 
-        <section>
-            <h2>Additional Information &amp; Contacts</h2>
+        <section style="margin-top: 3rem;">
+            <h2 class="section-heading">Additional Information &amp; Contacts</h2>
             <p>
                 You can read detailed reviews and view our location on the
                 <a href="https://2gis.kz" target="_blank" rel="noopener noreferrer">2GIS Astana portal</a>.
             </p>
-            <p>
+            <p style="margin-top: 0.5rem;">
                 Email for inquiries: <a href="mailto:info@dastarkhan.kz">info@dastarkhan.kz</a><br>
                 Administrator Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>
             </p>
         </section>
     </main>
 
-    <!-- The footer closes the page with consistent contact details and copyright, matching the rest of the site -->
-    <footer>
+    <!-- Floating Top Button -->
+    <a href="#" class="back-to-top" id="quickOrder">Top ↑</a>
+
+    <!-- Footer -->
+    <footer class="site-footer">
         <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
                 rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
                 rel="noopener">2GIS</a>.</p>
