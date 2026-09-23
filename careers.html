@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Careers at Dastarkhan - Join our team and build a career in authentic Eastern hospitality.">
-    <meta name="author" content="Ruslan Absamat">
+    <meta name="author" content="Zhiyembetov Azamat">
+    <link rel="stylesheet" href="css/azamat.css">
     <title>Careers - Dastarkhan</title>
 </head>
 <body>
-<header>
-    <b>Dastarkhan</b>
+<header class="site-header">
+    <b class="logo">Dastarkhan</b>
     <nav>
-        <ul>
+        <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="delivery.html">Delivery</a></li>
@@ -19,111 +20,129 @@
             <li><a href="booking.html">Booking</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="feedback.html">Feedback</a></li>
-            <li><a href="careers.html">Careers</a></li>
+            <li><a href="careers.html" class="active">Careers</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
-    <h1>Join Our Team</h1>
-
-    <section>
-        <h2>Build a Career in Eastern Hospitality</h2>
-        <p>Dastarkhan is growing! We are always looking for passionate, hardworking individuals who love authentic Eastern and Kazakh national cuisine to join our family. Whether you are an experienced chef or looking for your first job in the restaurant industry, we have a place for you.</p>
-
-        <h3>Why Work With Us?</h3>
-        <ul>
-            <li><strong>Competitive Salary:</strong> We offer great pay and fair compensation for all our staff.</li>
-            <li><strong>Free Staff Meals:</strong> Enjoy our delicious lagman, plov, and more during your shifts.</li>
-            <li><strong>Career Growth:</strong> We believe in promoting from within and training our team.</li>
-            <li><strong>Friendly Atmosphere:</strong> Work in a supportive, respectful, and fast-paced environment.</li>
-        </ul>
+    <!-- Hero section — reuses the same .hero treatment as delivery.html -->
+    <section class="hero">
+        <h1>Join Our Team</h1>
+        <p class="hero-subtitle"><em><strong>Build a career in authentic Eastern hospitality.</strong></em></p>
     </section>
 
-    <hr>
+    <div class="content-wrapper">
 
-    <section>
-        <h2>Open Positions</h2>
-        
-        <article>
-            <h3>Line Cooks / Chefs</h3>
-            <p>Prepare our authentic dishes! Experience with kazans, pulling lagman dough, or grilling shashlyk is a big plus.</p>
-        </article>
+        <section>
+            <h2 class="section-heading">Build a Career in Eastern Hospitality</h2>
+            <p>Dastarkhan is growing! We are always looking for passionate, hardworking individuals who love authentic Eastern and Kazakh national cuisine to join our family. Whether you are an experienced chef or looking for your first job in the restaurant industry, we have a place for you.</p>
 
-        <article>
-            <h3>Waitstaff / Servers</h3>
-            <p>Provide excellent customer service, guide guests through our menu, and ensure they experience true Eastern hospitality.</p>
-        </article>
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: var(--color-primary);">Why Work With Us?</h3>
 
-        <article>
-            <h3>Host / Hostess</h3>
-            <p>Be the welcoming face of Dastarkhan! Greet guests, manage reservations, and seat them comfortably.</p>
-        </article>
-        
-        <article>
-            <h3>Cleaning Staff / Dishwashers</h3>
-            <p>Keep our restaurant sparkling clean. Responsible for doing the dishes, cleaning the kitchen, and maintaining a hygienic dining hall.</p>
-        </article>
-
-        <article>
-            <h3>Delivery Couriers</h3>
-            <p>Deliver our hot food safely and on time to our customers across Astana.</p>
-        </article>
-    </section>
-
-    <hr>
-
-    <section>
-        <h2>Apply Now</h2>
-        <p>Fill out the form below to apply for a position. We will get back to you soon!</p>
-        
-        <form method="get" action="#">
-            <fieldset>
-                <legend>Applicant Information</legend>
-                <div>
-                    <label for="appName">Full Name:</label>
-                    <input type="text" id="appName" name="appName" placeholder="Your Name" required>
+            <!-- Reuses the .advantages / .advantage-card component from delivery.html -->
+            <div class="advantages" style="padding: 1.5rem 0; justify-content: flex-start; max-width: none; margin: 0;">
+                <div class="advantage-card">
+                    <h3>Competitive Salary</h3>
+                    <p>We offer great pay and fair compensation for all our staff.</p>
                 </div>
-                <br>
-                <div>
-                    <label for="appPhone">Phone Number:</label>
-                    <input type="tel" id="appPhone" name="appPhone" placeholder="+7 700 000 00 00" required>
+                <div class="advantage-card">
+                    <h3>Free Staff Meals</h3>
+                    <p>Enjoy our delicious lagman, plov, and more during your shifts.</p>
                 </div>
-            </fieldset>
-
-            <br>
-
-            <fieldset>
-                <legend>Position Details</legend>
-                <div>
-                    <label for="positionSelect">Position of Interest:</label>
-                    <select id="positionSelect" name="positionSelect" required>
-                        <option value="" disabled selected>Select a position...</option>
-                        <option value="chef">Line Cook / Chef</option>
-                        <option value="waiter">Waitstaff / Server</option>
-                        <option value="host">Host / Hostess</option>
-                        <option value="cleaner">Cleaning Staff / Dishwasher</option>
-                        <option value="courier">Delivery Courier</option>
-                    </select>
+                <div class="advantage-card">
+                    <h3>Career Growth</h3>
+                    <p>We believe in promoting from within and training our team.</p>
                 </div>
-                <br>
-                <div>
-                    <label for="appExperience">Brief Experience / Cover Letter:</label><br>
-                    <textarea id="appExperience" name="appExperience" rows="5" cols="40" placeholder="Tell us a bit about your experience..."></textarea>
+                <div class="advantage-card">
+                    <h3>Friendly Atmosphere</h3>
+                    <p>Work in a supportive, respectful, and fast-paced environment.</p>
                 </div>
-            </fieldset>
-
-            <br>
-
-            <div>
-                <button type="submit">Submit Application</button>
             </div>
-        </form>
-    </section>
+        </section>
 
+        <hr>
+
+        <section>
+            <h2 class="section-heading">Open Positions</h2>
+
+            <!-- New page-specific component: .positions-grid / .position-card (see azamat.css §27) -->
+            <div class="positions-grid">
+                <article class="position-card">
+                    <h3>Line Cooks / Chefs</h3>
+                    <p>Prepare our authentic dishes! Experience with kazans, pulling lagman dough, or grilling shashlyk is a big plus.</p>
+                </article>
+
+                <article class="position-card">
+                    <h3>Waitstaff / Servers</h3>
+                    <p>Provide excellent customer service, guide guests through our menu, and ensure they experience true Eastern hospitality.</p>
+                </article>
+
+                <article class="position-card">
+                    <h3>Host / Hostess</h3>
+                    <p>Be the welcoming face of Dastarkhan! Greet guests, manage reservations, and seat them comfortably.</p>
+                </article>
+
+                <article class="position-card">
+                    <h3>Cleaning Staff / Dishwashers</h3>
+                    <p>Keep our restaurant sparkling clean. Responsible for doing the dishes, cleaning the kitchen, and maintaining a hygienic dining hall.</p>
+                </article>
+
+                <article class="position-card">
+                    <h3>Delivery Couriers</h3>
+                    <p>Deliver our hot food safely and on time to our customers across Astana.</p>
+                </article>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2 class="section-heading">Apply Now</h2>
+            <p>Fill out the form below to apply for a position. We will get back to you soon!</p>
+
+            <form method="get" action="#">
+                <fieldset>
+                    <legend>Applicant Information</legend>
+                    <div class="form-row">
+                        <label for="appName">Full Name:</label>
+                        <input type="text" id="appName" name="appName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="appPhone">Phone Number:</label>
+                        <input type="tel" id="appPhone" name="appPhone" placeholder="+7 700 000 00 00" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Position Details</legend>
+                    <div class="form-row">
+                        <label for="positionSelect">Position of Interest:</label>
+                        <select id="positionSelect" name="positionSelect" required>
+                            <option value="" disabled selected>Select a position...</option>
+                            <option value="chef">Line Cook / Chef</option>
+                            <option value="waiter">Waitstaff / Server</option>
+                            <option value="host">Host / Hostess</option>
+                            <option value="cleaner">Cleaning Staff / Dishwasher</option>
+                            <option value="courier">Delivery Courier</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="appExperience">Brief Experience / Cover Letter:</label>
+                        <textarea id="appExperience" name="appExperience" rows="5" cols="40" placeholder="Tell us a bit about your experience..."></textarea>
+                    </div>
+                </fieldset>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn--primary"><span>Submit Application</span></button>
+                </div>
+            </form>
+        </section>
+
+    </div>
 </main>
 
-<footer>
+<footer class="site-footer">
     <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank" rel="noopener">2GIS</a>.</p>
     <p>Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a href="tel:+77788710792">+7-778-871-07-92</a></p>
     <p>&copy; 2026 Dastarkhan Restaurant</p>
