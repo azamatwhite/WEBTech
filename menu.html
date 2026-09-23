@@ -1,571 +1,700 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Menu of Dastarkhan in Astana - Authentic Eastern and Kazakh national cuisine">
-    <meta name="author" content="Ruslan Absamat">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="Menu of Dastarkhan in Astana - Authentic Eastern and Kazakh national cuisine" name="description"/>
+    <meta content="Ruslan Absamat" name="author"/><link href="css/azamat.css" rel="stylesheet"/>
     <title>Menu - Dastarkhan</title>
 </head>
-
 <body>
-    <header>
-        <b>Dastarkhan</b>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="careers.html">Careers</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="site-header">
+    <b class="logo">Dastarkhan</b>
+    <nav>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="menu.html">Menu</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="careers.html">Careers</a></li>
+        </ul>
+    </nav>
+    <button aria-label="Open cart" class="cart-toggle" id="cartToggle" type="button">🛒<span class="cart-badge" id="cartBadge">0</span></button></header>
+<main><div class="content-wrapper">
+    <h1 class="section-heading" id="top">Dastarkhan Menu</h1>
+    <section>
+        <h2 class="section-heading">Menu Categories</h2>
+        <ul class="menu-categories">
+            <li><a href="#lagmans">Lagmans &amp; Ganfan</a></li>
+            <li><a href="#salads">Salads</a></li>
+            <li><a href="#turkish">Turkish Cuisine &amp; Kebabs</a></li>
+            <li><a href="#oriental">Oriental &amp; Main Dishes</a></li>
+        </ul>
+    </section>
+    <hr/>
+    <section>
+        <div class="table-wrap"><table class="menu-table">
+            <caption>Menu as of September 2026</caption>
+            <thead>
+            <tr>
+                <th scope="col">Photo</th>
+                <th scope="col">Name &amp; Ingredients</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Price</th>
+                <th scope="col">Order</th></tr>
+            </thead>
+            <tbody>
+            <!-- Lagmans & Ganfan -->
+            <tr>
+                <th class="category-header" colspan="5" id="lagmans"><i>Lagmans &amp; Ganfan</i></th>
+            </tr>
+            <tr>
+                <td><img alt="Fried Boso Lagman with Tomato" src="images/lagman/zhar_lagman_boso_tomat.jpeg" width="100"/></td>
+                <th scope="row">Fried Boso Lagman with Tomato<br/><small>Beef, vegetables, and noodles quickly
+                    stir-fried with tomato paste</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="fried-boso-lagman-with-tomato" data-name="Fried Boso Lagman with Tomato" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Fried Boso Lagman with Soy Sauce" src="images/lagman/zhar_lagman_boso_coya.jpeg" width="100"/></td>
+                <th scope="row">Fried Boso Lagman with Soy Sauce<br/><small>Beef, vegetables, and noodles quickly
+                    stir-fried with soy sauce</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="fried-boso-lagman-with-soy-sauce" data-name="Fried Boso Lagman with Soy Sauce" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Kuldzha Lagman" src="images/lagman/lagman_kuldzhinskii.jpeg" width="100"/></td>
+                <th scope="row">Kuldzha Lagman<br/><small>Mutton lagman with two types of gravy (egg and wild
+                    leek/jusai)</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="kuldzha-lagman" data-name="Kuldzha Lagman" data-price="2990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Guiru Lagman" src="images/lagman/guiru_lagman.jpeg" width="100"/></td>
+                <th scope="row">Guiru Lagman<br/><small>Beef, noodles, and coarsely chopped vegetables served
+                    separately</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="guiru-lagman" data-name="Guiru Lagman" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Guiru Ganfan" src="images/lagman/guiru_ganfan.jpeg" width="100"/></td>
+                <th scope="row">Guiru Ganfan<br/><small>Beef, rice, and coarsely chopped vegetables served
+                    separately</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="guiru-ganfan" data-name="Guiru Ganfan" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Home-style Lagman / Ganfan" src="images/lagman/lagman_gaifan_domashnii.jpeg" width="100"/></td>
+                <th scope="row">Home-style Lagman / Ganfan<br/><small>Beef, home-style lagman/rice in beef
+                    broth</small></th>
+                <td>500<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="home-style-lagman-ganfan" data-name="Home-style Lagman / Ganfan" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Lopeiza Lagman" src="images/lagman/lagman_lopeiza.jpeg" width="100"/></td>
+                <th scope="row">Lopeiza Lagman<br/><small>Ancient Uyghur recipe (mutton, glass noodles,
+                    vegetables, egg, spices)</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="lopeiza-lagman" data-name="Lopeiza Lagman" data-price="2990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="4 Seasons Lagman" src="images/lagman/lagman_4_sezona.jpeg" width="100"/></td>
+                <th scope="row">4 Seasons Lagman<br/><small>Fried eggplants, fried chicken fillet, beef, mutton,
+                    vegetables</small></th>
+                <td>500<abbr title="grams">g</abbr></td>
+                <td><strong>3 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="4-seasons-lagman" data-name="4 Seasons Lagman" data-price="3190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Moguru Lagman" src="images/lagman/moguru_lagman.jpeg" width="100"/></td>
+                <th scope="row">Moguru Lagman<br/><small>Beef with mushrooms, lagman dough</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="moguru-lagman" data-name="Moguru Lagman" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Dastarkhan Lagman" src="images/lagman/lagman_dastarkhan.jpeg" width="100"/></td>
+                <th scope="row">Dastarkhan Lagman<br/><small>Beef, noodles, coarsely chopped vegetables, wood ear
+                    mushrooms</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="dastarkhan-lagman" data-name="Dastarkhan Lagman" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Ganbyan-Tsomyan Lagman" src="images/lagman/lagman_ganbyan_comyan.jpeg" width="100"/></td>
+                <th scope="row">Ganbyan-Tsomyan Lagman<br/><small>Fried lagman with beef, sesame, wild leek
+                    (jusai), coarsely chopped</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="ganbyan-tsomyan-lagman" data-name="Ganbyan-Tsomyan Lagman" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Adzhaiyp Guiru Lagman" src="images/lagman/adzhaiyp_guiru_lagman.jpeg" width="100"/>
+                </td>
+                <th scope="row">Adzhaiyp Guiru Lagman<br/><small>Fried beef, green onions, spices, hot
+                    pepper</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>3 490</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="adzhaiyp-guiru-lagman" data-name="Adzhaiyp Guiru Lagman" data-price="3490" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Din-Din Tsomyan Lagman" src="images/lagman/lagman_din_din_comyan.jpeg" width="100"/></td>
+                <th scope="row">Din-Din Tsomyan Lagman<br/><small>Fried lagman with mutton, finely chopped
+                    ingredients</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="din-din-tsomyan-lagman" data-name="Din-Din Tsomyan Lagman" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Tandoor Lagman" src="images/lagman/tandyr_lagman.jpeg" width="100"/></td>
+                <th scope="row">Tandoor Lagman<br/><small>Fried lamb ribs with vegetables and spices, lagman
+                    dough</small></th>
+                <td>500<abbr title="grams">g</abbr></td>
+                <td><strong>4 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="tandoor-lagman" data-name="Tandoor Lagman" data-price="4190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Lazro Lagman" src="images/lagman/lazro_lagman.jpeg" width="100"/></td>
+                <th scope="row">Lazro Lagman<br/><small>Fried mutton with vegetables and spices, lagman
+                    dough</small></th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="lazro-lagman" data-name="Lazro Lagman" data-price="2890" type="button">+ Add</button></td></tr>
+            <!-- Salads -->
+            <tr>
+                <th class="category-header" colspan="5" id="salads"><i>Salads</i></th>
+            </tr>
+            <tr>
+                <td><img alt="Oriental Bazaar Salad" src="images/salats/vostochnyi_bazar.jpeg" width="100"/></td>
+                <th scope="row">Oriental Bazaar Salad<br/><small>Fried champignons, eggplants, tomatoes, and feta
+                    cheese</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="oriental-bazaar-salad" data-name="Oriental Bazaar Salad" data-price="2990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Pharaoh Salad" src="images/salats/faraon.jpeg" width="100"/></td>
+                <th scope="row">Pharaoh Salad<br/><small>Beef tongue, fried mushrooms, lettuce, pickles</small>
+                </th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 390</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="pharaoh-salad" data-name="Pharaoh Salad" data-price="2390" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Olivier Salad" src="images/salats/olivie.jpeg" width="100"/></td>
+                <th scope="row">Olivier Salad<br/><small>Potatoes, carrots, boiled beef, pickles, egg, green
+                    peas, mayonnaise</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="olivier-salad" data-name="Olivier Salad" data-price="1890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Greek Salad" src="images/salats/grecheskii.jpeg" width="100"/></td>
+                <th scope="row">Greek Salad<br/><small>Cucumbers, tomatoes, olives, feta cheese, lettuce,
+                    lemon</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>1 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="greek-salad" data-name="Greek Salad" data-price="1990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Capercaillie's Nest Salad" src="images/salats/gnezdo_gluharya.jpeg" width="100"/>
+                </td>
+                <th scope="row">Capercaillie's Nest Salad<br/><small>Pie potatoes, boiled chicken, eggs, pickles,
+                    mayonnaise</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="capercaillie-s-nest-salad" data-name="Capercaillie's Nest Salad" data-price="2190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Caesar Salad" src="images/salats/cezar.jpeg" width="100"/></td>
+                <th scope="row">Caesar Salad<br/><small>Napa cabbage, turkey, cherry tomatoes, croutons,
+                    mayonnaise, cheese</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 390</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="caesar-salad" data-name="Caesar Salad" data-price="2390" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Chinese Salad" src="images/salats/kitaiskii.jpeg" width="100"/></td>
+                <th scope="row">Chinese Salad<br/><small>Cucumbers, bell peppers, carrots, beef, soy
+                    sauce</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="chinese-salad" data-name="Chinese Salad" data-price="2190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Light Salad" src="images/salats/legkii.jpeg" width="100"/></td>
+                <th scope="row">Light Salad<br/><small>Broccoli, red onion, tomato, feta cheese, lettuce, bell
+                    pepper</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 390</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="light-salad" data-name="Light Salad" data-price="2390" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Hunter's Salad" src="images/salats/ohatnichii.jpeg" width="100"/></td>
+                <th scope="row">Hunter's Salad<br/><small>Chicken fillet, smoked turkey, boiled beef,
+                    vegetables</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 290</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="hunter-s-salad" data-name="Hunter's Salad" data-price="2290" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Fresh Salad" src="images/salats/svezhii.jpeg" width="100"/></td>
+                <th scope="row">Fresh Salad<br/><small>Cucumbers, tomatoes, dill, onion (choice of
+                    dressing)</small></th>
+                <td>200<abbr title="grams">g</abbr></td>
+                <td><strong>1 790</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="fresh-salad" data-name="Fresh Salad" data-price="1790" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Scheherazade Salad" src="images/salats/sharizada.jpeg" width="100"/></td>
+                <th scope="row">Scheherazade Salad<br/><small>Turkey, cherry tomatoes, red beans, bell pepper,
+                    lettuce, balsamic vinegar</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 590</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="scheherazade-salad" data-name="Scheherazade Salad" data-price="2590" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Malibu Salad" src="images/salats/malibu.jpeg" width="100"/></td>
+                <th scope="row">Malibu Salad<br/><small>Smoked turkey, tomatoes, lettuce, mayonnaise,
+                    croutons</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>2 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="malibu-salad" data-name="Malibu Salad" data-price="2190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Achichuk" src="images/salats/achichuk.jpeg" width="100"/></td>
+                <th scope="row">Achichuk<br/><small>Tomatoes, onions, chili pepper</small></th>
+                <td>200<abbr title="grams">g</abbr></td>
+                <td><strong>1 690</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="achichuk" data-name="Achichuk" data-price="1690" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Ezme" src="images/turkich/iezme.jpeg" width="100"/></td>
+                <th scope="row">Ezme<br/><small>Tomatoes, cucumbers, onion, parsley, hot pepper, pomegranate
+                    sauce</small></th>
+                <td>150<abbr title="grams">g</abbr></td>
+                <td><strong>1 590</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="ezme" data-name="Ezme" data-price="1590" type="button">+ Add</button></td></tr>
+            <!-- Missing image for Oriental Salad: vostoshniy.jpeg -->
+            <!-- Turkish Cuisine & Kebabs -->
+            <tr>
+                <th class="category-header" colspan="5" id="turkish"><i>Turkish Cuisine &amp; Kebabs</i></th>
+            </tr>
+            <tr>
+                <td><img alt="Beyti Sarma" src="images/turkich/turkich_beitu_sorma.jpeg" width="100"/></td>
+                <th scope="row">Beyti Sarma<br/><small>Minced beef stuffed in eggplant and lavash with onion,
+                    tomatoes, topped with cheese and Turkish yogurt</small></th>
+                <td>380<abbr title="grams">g</abbr></td>
+                <td><strong>3 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="beyti-sarma" data-name="Beyti Sarma" data-price="3990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Guvec Sebzelik" src="images/turkich/sebzelik.jpeg" width="100"/></td>
+                <th scope="row">Guvec Sebzelik<br/><small>Pan-fried vegetables covered with cheese</small></th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>3 590</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="guvec-sebzelik" data-name="Guvec Sebzelik" data-price="3590" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Guvec Et" src="images/turkich/et_gubiash.jpeg" width="100"/></td>
+                <th scope="row">Guvec Et<br/><small>Beef fried with vegetables in a pan, covered with
+                    cheese</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="guvec-et" data-name="Guvec Et" data-price="3990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Guvec Tavuk" src="images/turkich/tavuk_gubiash.jpeg" width="100"/></td>
+                <th scope="row">Guvec Tavuk<br/><small>Chicken fillet fried with vegetables in a pan, covered
+                    with cheese</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="guvec-tavuk" data-name="Guvec Tavuk" data-price="3990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Pirzola" src="images/turkich/pirzolla.jpeg" width="100"/></td>
+                <th scope="row">Pirzola<br/><small>Lamb entrecote, garnish, tomatoes, cucumbers, lavash,
+                    onion</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>4 690</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="pirzola" data-name="Pirzola" data-price="4690" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Izgara Kofte" src="images/shashlyk/izgora_kofta.jpeg" width="100"/></td>
+                <th scope="row">Izgara Kofte<br/><small>Beef, mutton, and tail fat patties. Garnish, lavash,
+                    vegetables</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 800</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="izgara-kofte" data-name="Izgara Kofte" data-price="3800" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Ali Nazik Kebab" src="images/shashlyk/ali_nazik_kebab.jpeg" width="100"/></td>
+                <th scope="row">Ali Nazik Kebab<br/><small>Fried beef, yogurt with stewed eggplant, garnish,
+                    greens</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>4 500</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="ali-nazik-kebab" data-name="Ali Nazik Kebab" data-price="4500" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Adana Kebab" src="images/shashlyk/adana_kebab.jpeg" width="100"/></td>
+                <th scope="row">Adana Kebab<br/><small>Minced beef, tail fat, pepper, garnish, tomatoes,
+                    cucumbers, greens, onion</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 800</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="adana-kebab" data-name="Adana Kebab" data-price="3800" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Assorted Sausages" src="images/shashlyk/assorti_kolbasok.jpeg" width="100"/></td>
+                <th scope="row">Assorted Sausages<br/><small>Mutton, beef, horse meat, chicken, sauce</small>
+                </th>
+                <td>500<abbr title="grams">g</abbr></td>
+                <td><strong>6 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="assorted-sausages" data-name="Assorted Sausages" data-price="6990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Lyulya Kebab" src="images/shashlyk/lyula_kebab.jpeg" width="100"/></td>
+                <th scope="row">Lyulya Kebab<br/><small>Minced beef with tail fat, lavash, vegetables</small>
+                </th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>3 100</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="lyulya-kebab" data-name="Lyulya Kebab" data-price="3100" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Veal Shashlik" src="images/shashlyk/shashlyk_telyatina.jpeg" width="100"/></td>
+                <th scope="row">Veal Shashlik<br/><small>Veal meat, lavash, tomatoes, cucumbers, onion</small>
+                </th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>4 690</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="veal-shashlik" data-name="Veal Shashlik" data-price="4690" type="button">+ Add</button></td></tr>
+            <!-- Oriental & Main Dishes -->
+            <tr>
+                <th class="category-header" colspan="5" id="oriental"><i>Oriental &amp; Main Dishes</i></th>
+            </tr>
+            <tr>
+                <td><img alt="Basyay Funturu" src="images/vostoshniy/basyai_funturu.jpeg" width="100"/></td>
+                <th scope="row">Basyay Funturu<br/><small>Mutton, glass noodles, napa cabbage, bell
+                    pepper</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 490</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="basyay-funturu" data-name="Basyay Funturu" data-price="3490" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Bobbin Yanru" src="images/vostoshniy/bobbin_yanru.jpeg" width="100"/></td>
+                <th scope="row">Bobbin Yanru<br/><small>Finely chopped mutton with thin flatbreads</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 490</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="bobbin-yanru" data-name="Bobbin Yanru" data-price="3490" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Ganza Yu" src="images/vostoshniy/ganza_yu.jpeg" width="100"/></td>
+                <th scope="row">Ganza Yu<br/><small>Fried crucian carp (whole fish) with spices</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>3 790</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="ganza-yu" data-name="Ganza Yu" data-price="3790" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Dapanji with Dough" src="images/vostoshniy/dapanpshi.jpeg" width="100"/></td>
+                <th scope="row">Dapanji with Dough<br/><small>Chicken stewed with vegetables. Served with pieces
+                    of dough</small></th>
+                <td>1000<abbr title="grams">g</abbr></td>
+                <td><strong>9 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="dapanji-with-dough" data-name="Dapanji with Dough" data-price="9190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Jigyar" src="images/vostoshniy/diygar.jpeg" width="100"/></td>
+                <th scope="row">Jigyar<br/><small>Pan-fried lamb liver with tail fat and vegetables</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>2 690</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="jigyar" data-name="Jigyar" data-price="2690" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Naryn" src="images/vostoshniy/naryn.jpeg" width="100"/></td>
+                <th scope="row">Naryn<br/><small>Finely chopped dough with horse meat and broth (served
+                    separately)</small></th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>3 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="naryn" data-name="Naryn" data-price="3190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Authentic Uzbek Pilaf" src="images/vostoshniy/plov_prasdnishy.jpeg" width="100"/>
+                </td>
+                <th scope="row">Authentic Uzbek Pilaf<br/><small>Beef, chickpeas, raisins, yellow and red
+                    carrots, lazer rice</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>2 990</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="authentic-uzbek-pilaf" data-name="Authentic Uzbek Pilaf" data-price="2990" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Fries with Meat" src="images/vostoshniy/fri_s_miasom.jpeg" width="100"/></td>
+                <th scope="row">Fries with Meat<br/><small>Fried beef with french fries and vegetables</small>
+                </th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 590</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="fries-with-meat" data-name="Fries with Meat" data-price="3590" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Guiru Syay" src="images/vostoshniy/guiru_say.jpeg" width="100"/></td>
+                <th scope="row">Guiru Syay<br/><small>Beef, bell pepper, napa cabbage, onion</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>4 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="guiru-syay" data-name="Guiru Syay" data-price="4190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Pan-fried Mutton" src="images/vostoshniy/jarenny_barabina_na_skobarade.jpeg" width="100"/></td>
+                <th scope="row">Pan-fried Mutton<br/><small>Pan-fried mutton seasoned with fresh onions</small>
+                </th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>7 590</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="pan-fried-mutton" data-name="Pan-fried Mutton" data-price="7590" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Lamb Kazan Kebab" src="images/vostoshniy/kazan_kebab_barabiba.jpeg" width="100"/>
+                </td>
+                <th scope="row">Lamb Kazan Kebab<br/><small>Mutton roasted with onions over high heat (with
+                    potatoes)</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>4 390</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="lamb-kazan-kebab" data-name="Lamb Kazan Kebab" data-price="4390" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Beef Kazan Kebab" src="images/vostoshniy/kazan_kebab_gobiadina.jpeg" width="100"/>
+                </td>
+                <th scope="row">Beef Kazan Kebab<br/><small>Tender beef roasted with onions over high
+                    heat</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>4 390</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="beef-kazan-kebab" data-name="Beef Kazan Kebab" data-price="4390" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Kok Syay" src="images/vostoshniy/kok_siay.jpeg" width="100"/></td>
+                <th scope="row">Kok Syay<br/><small>Fried broccoli with vegetables</small></th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>2 290</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="kok-syay" data-name="Kok Syay" data-price="2290" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Lazzhi" src="images/vostoshniy/lazzhi.jpeg" width="100"/></td>
+                <th scope="row">Lazzhi<br/><small>Chicken fillet, bell pepper, spices</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 490</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="lazzhi" data-name="Lazzhi" data-price="3490" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Manpar Tsomyan" src="images/vostoshniy/manpar_somian.jpeg" width="100"/></td>
+                <th scope="row">Manpar Tsomyan<br/><small>Finely chopped dough fried with meat and
+                    vegetables</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>2 890</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="manpar-tsomyan" data-name="Manpar Tsomyan" data-price="2890" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Moguru Syay" src="images/vostoshniy/moguru_siay.jpeg" width="100"/></td>
+                <th scope="row">Moguru Syay<br/><small>Fried mutton, wood ear mushrooms, cucumbers, and
+                    spices</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 390</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="moguru-syay" data-name="Moguru Syay" data-price="3390" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Myn Zhyn Yanru" src="images/vostoshniy/myn_zhyn_yianry.jpeg" width="100"/></td>
+                <th scope="row">Myn Zhyn Yanru<br/><small>Fried mutton with vegetables</small></th>
+                <td>350<abbr title="grams">g</abbr></td>
+                <td><strong>3 190</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="myn-zhyn-yanru" data-name="Myn Zhyn Yanru" data-price="3190" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Bash Manpar" src="images/vostoshniy/bash_manpar.jpeg" width="100"/></td>
+                <th scope="row">Bash Manpar<br/><small>Traditional soup with small dumplings, meat, and
+                    vegetables</small></th>
+                <td>400<abbr title="grams">g</abbr></td>
+                <td><strong>2 500</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="bash-manpar" data-name="Bash Manpar" data-price="2500" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Beshbarmak" src="images/vostoshniy/besh.jpeg" width="100"/></td>
+                <th scope="row">Beshbarmak<br/><small>Boiled meat, dough, rich meat broth with onions</small>
+                </th>
+                <td>450<abbr title="grams">g</abbr></td>
+                <td><strong>3 800</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="beshbarmak" data-name="Beshbarmak" data-price="3800" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Grilled Salmon" src="images/vostoshniy/siomga.jpeg" width="100"/></td>
+                <th scope="row">Grilled Salmon<br/><small>Salmon fillet with spices and lemon</small></th>
+                <td>250<abbr title="grams">g</abbr></td>
+                <td><strong>4 900</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="grilled-salmon" data-name="Grilled Salmon" data-price="4900" type="button">+ Add</button></td></tr>
+            <tr>
+                <td><img alt="Grilled Trout" src="images/vostoshniy/forel_gril.jpeg" width="100"/></td>
+                <th scope="row">Grilled Trout<br/><small>Tender grilled trout with lemon</small></th>
+                <td>300<abbr title="grams">g</abbr></td>
+                <td><strong>4 200</strong> <span>₸</span></td>
+                <td class="order-cell"><button class="btn-cart" data-id="grilled-trout" data-name="Grilled Trout" data-price="4200" type="button">+ Add</button></td></tr>
+            </tbody>
+        </table></div>
+        <br/>
+        <div class="allergen-warning"><small>
+            <strong>Allergen Warning:</strong> Please be advised that our food may contain or come into contact with
+            common allergens, such as <em>dairy, eggs, wheat, soybeans, tree nuts, peanuts, fish, shellfish, or
+            wheat</em>. Always inform your server of any severe allergies before ordering.
+        </small></div>
+    </section>
+    <aside class="chef-note">
+        <em>Chef's Note:</em> <q>If you are looking for an authentic flavor explosion, I highly recommend trying our
+        <mark>Tandoor Lagman</mark>. It is a perfectly balanced, <strong>aromatic</strong> dish that truly
+        represents our traditions!</q>
+    </aside>
+    <hr/>
+    <article>
+        <h2 class="section-heading">Top 5 Dastarkhan Dishes</h2>
+        <ol class="top-list" start="1">
+            <li><strong>Special Lagman</strong><br/> Handmade pulled noodles, beef, fresh peppers, garlic, and house
+                broth.</li>
+            <li><strong><mark>Festive Tashkent Plov</mark></strong><br/> Our <em>most beloved</em> classic! Devzira
+                rice, tender lamb, yellow carrots, chickpeas, and raisins.</li>
+            <li><strong>Assorted Shashlik Set</strong><br/> A massive platter featuring lamb chops, beef tikka,
+                chicken kebab, and grilled vegetables.</li>
+            <li><strong>Tandoor Lagman</strong><br/> Fried lamb ribs with vegetables and spices, perfectly matched
+                with our lagman dough.</li>
+            <li><strong>Dapanji with Dough</strong><br/> A hearty, spicy chicken stew with vegetables served with
+                fresh pieces of dough.</li>
+        </ol>
+    </article>
+    <section>
+        <h2 class="section-heading">Terminology</h2>
+        <dl class="terms-list">
+            <dt><strong>Lagman</strong></dt>
+            <dd>A traditional Central Asian dish of pulled noodles, meat, and vegetables.</dd>
+            <dt><strong>Plov / Pilaf</strong></dt>
+            <dd>A fragrant rice dish cooked in a seasoned broth with meat and vegetables.</dd>
+            <dt><strong>Shashlik</strong></dt>
+            <dd>Skewered and grilled cubes of meat, similar to shish kebab.</dd>
+            <dt><strong>Kazan</strong></dt>
+            <dd>A traditional cast-iron cooking pot used throughout Central Asia, akin to a Dutch oven or cauldron.
+            </dd>
+        </dl>
+    </section>
+    <figure class="interior-figure">
+        <img alt="Interior of the main dining hall and traditional oriental decoration at Dastarkhan" src="images/interior/IMG_1162.jpg"/>
+        <figcaption>Our beautifully decorated Dastarkhan dining hall</figcaption>
+    </figure>
+    <p><a class="back-to-top" href="#top">Back to top ↑</a></p>
+</div></main>
+<footer class="site-footer">
+    <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" rel="noopener" target="_blank">Instagram</a> or find us on <a href="https://2gis.kz/astana" rel="noopener" target="_blank">2GIS</a>.</p>
+    <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
+    <p>© 2026 Dastarkhan Restaurant</p>
+</footer>
+<div class="cart-overlay" id="cartOverlay"></div>
 
-    <main>
-        <h1 id="top">Dastarkhan Menu</h1>
+<aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-panel__header">
+        <h2>Your Order</h2>
+        <button class="cart-close" id="cartClose" type="button" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <p class="cart-empty">Your cart is empty. Add dishes from the menu to get started!</p>
+    </div>
+    <div class="cart-panel__footer">
+        <div class="cart-total">Total: <span id="cartTotal">0 ₸</span></div>
+        <div class="btn-group">
+            <a class="btn btn--primary" href="tel:+77172319595">Order by Phone</a>
+            <a class="btn btn--secondary" href="delivery.html">Go to Delivery Form</a>
+        </div>
+        <p class="cart-note">Prices are approximate; final delivery cost depends on your district. Or <button type="button" id="cartClear" style="background:none;border:none;padding:0;color:var(--color-primary);text-decoration:underline;cursor:pointer;font:inherit;">clear cart</button>.</p>
+    </div>
+</aside>
 
-        <section>
-            <h2>Menu Categories</h2>
-            <ul>
-                <li><a href="#lagmans">Lagmans &amp; Ganfan</a></li>
-                <li><a href="#salads">Salads</a></li>
-                <li><a href="#turkish">Turkish Cuisine &amp; Kebabs</a></li>
-                <li><a href="#oriental">Oriental &amp; Main Dishes</a></li>
-            </ul>
-        </section>
+<script>
+    (function () {
+        const STORAGE_KEY = 'dastarkhanCart';
+        const cartToggle = document.getElementById('cartToggle');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartPanel = document.getElementById('cartPanel');
+        const cartClose = document.getElementById('cartClose');
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const cartClear = document.getElementById('cartClear');
 
-        <hr>
+        function loadCart() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
 
-        <section>
-            <table border="1">
-                <caption>Menu as of September 2026</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Photo</th>
-                        <th scope="col">Name &amp; Ingredients</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Lagmans & Ganfan -->
-                    <tr>
-                        <th colspan="4" id="lagmans"><i>Lagmans &amp; Ganfan</i></th>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/zhar_lagman_boso_tomat.jpeg" alt="Fried Boso Lagman with Tomato"
-                                width="100"></td>
-                        <th scope="row">Fried Boso Lagman with Tomato<br><small>Beef, vegetables, and noodles quickly
-                                stir-fried with tomato paste</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/zhar_lagman_boso_coya.jpeg" alt="Fried Boso Lagman with Soy Sauce"
-                                width="100"></td>
-                        <th scope="row">Fried Boso Lagman with Soy Sauce<br><small>Beef, vegetables, and noodles quickly
-                                stir-fried with soy sauce</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_kuldzhinskii.jpeg" alt="Kuldzha Lagman" width="100"></td>
-                        <th scope="row">Kuldzha Lagman<br><small>Mutton lagman with two types of gravy (egg and wild
-                                leek/jusai)</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/guiru_lagman.jpeg" alt="Guiru Lagman" width="100"></td>
-                        <th scope="row">Guiru Lagman<br><small>Beef, noodles, and coarsely chopped vegetables served
-                                separately</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/guiru_ganfan.jpeg" alt="Guiru Ganfan" width="100"></td>
-                        <th scope="row">Guiru Ganfan<br><small>Beef, rice, and coarsely chopped vegetables served
-                                separately</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_gaifan_domashnii.jpeg" alt="Home-style Lagman / Ganfan"
-                                width="100"></td>
-                        <th scope="row">Home-style Lagman / Ganfan<br><small>Beef, home-style lagman/rice in beef
-                                broth</small></th>
-                        <td>500<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_lopeiza.jpeg" alt="Lopeiza Lagman" width="100"></td>
-                        <th scope="row">Lopeiza Lagman<br><small>Ancient Uyghur recipe (mutton, glass noodles,
-                                vegetables, egg, spices)</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_4_sezona.jpeg" alt="4 Seasons Lagman" width="100"></td>
-                        <th scope="row">4 Seasons Lagman<br><small>Fried eggplants, fried chicken fillet, beef, mutton,
-                                vegetables</small></th>
-                        <td>500<abbr title="grams">g</abbr></td>
-                        <td><strong>3 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/moguru_lagman.jpeg" alt="Moguru Lagman" width="100"></td>
-                        <th scope="row">Moguru Lagman<br><small>Beef with mushrooms, lagman dough</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_dastarkhan.jpeg" alt="Dastarkhan Lagman" width="100"></td>
-                        <th scope="row">Dastarkhan Lagman<br><small>Beef, noodles, coarsely chopped vegetables, wood ear
-                                mushrooms</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_ganbyan_comyan.jpeg" alt="Ganbyan-Tsomyan Lagman"
-                                width="100"></td>
-                        <th scope="row">Ganbyan-Tsomyan Lagman<br><small>Fried lagman with beef, sesame, wild leek
-                                (jusai), coarsely chopped</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/adzhaiyp_guiru_lagman.jpeg" alt="Adzhaiyp Guiru Lagman" width="100">
-                        </td>
-                        <th scope="row">Adzhaiyp Guiru Lagman<br><small>Fried beef, green onions, spices, hot
-                                pepper</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>3 490</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lagman_din_din_comyan.jpeg" alt="Din-Din Tsomyan Lagman"
-                                width="100"></td>
-                        <th scope="row">Din-Din Tsomyan Lagman<br><small>Fried lagman with mutton, finely chopped
-                                ingredients</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/tandyr_lagman.jpeg" alt="Tandoor Lagman" width="100"></td>
-                        <th scope="row">Tandoor Lagman<br><small>Fried lamb ribs with vegetables and spices, lagman
-                                dough</small></th>
-                        <td>500<abbr title="grams">g</abbr></td>
-                        <td><strong>4 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/lagman/lazro_lagman.jpeg" alt="Lazro Lagman" width="100"></td>
-                        <th scope="row">Lazro Lagman<br><small>Fried mutton with vegetables and spices, lagman
-                                dough</small></th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
+        function saveCart(cart) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+            } catch (e) { /* storage unavailable — cart still works for this view */ }
+        }
 
-                    <!-- Salads -->
-                    <tr>
-                        <th colspan="4" id="salads"><i>Salads</i></th>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/vostochnyi_bazar.jpeg" alt="Oriental Bazaar Salad" width="100"></td>
-                        <th scope="row">Oriental Bazaar Salad<br><small>Fried champignons, eggplants, tomatoes, and feta
-                                cheese</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/faraon.jpeg" alt="Pharaoh Salad" width="100"></td>
-                        <th scope="row">Pharaoh Salad<br><small>Beef tongue, fried mushrooms, lettuce, pickles</small>
-                        </th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 390</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/olivie.jpeg" alt="Olivier Salad" width="100"></td>
-                        <th scope="row">Olivier Salad<br><small>Potatoes, carrots, boiled beef, pickles, egg, green
-                                peas, mayonnaise</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>1 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/grecheskii.jpeg" alt="Greek Salad" width="100"></td>
-                        <th scope="row">Greek Salad<br><small>Cucumbers, tomatoes, olives, feta cheese, lettuce,
-                                lemon</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>1 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/gnezdo_gluharya.jpeg" alt="Capercaillie's Nest Salad" width="100">
-                        </td>
-                        <th scope="row">Capercaillie's Nest Salad<br><small>Pie potatoes, boiled chicken, eggs, pickles,
-                                mayonnaise</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/cezar.jpeg" alt="Caesar Salad" width="100"></td>
-                        <th scope="row">Caesar Salad<br><small>Napa cabbage, turkey, cherry tomatoes, croutons,
-                                mayonnaise, cheese</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 390</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/kitaiskii.jpeg" alt="Chinese Salad" width="100"></td>
-                        <th scope="row">Chinese Salad<br><small>Cucumbers, bell peppers, carrots, beef, soy
-                                sauce</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/legkii.jpeg" alt="Light Salad" width="100"></td>
-                        <th scope="row">Light Salad<br><small>Broccoli, red onion, tomato, feta cheese, lettuce, bell
-                                pepper</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 390</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/ohatnichii.jpeg" alt="Hunter's Salad" width="100"></td>
-                        <th scope="row">Hunter's Salad<br><small>Chicken fillet, smoked turkey, boiled beef,
-                                vegetables</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 290</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/svezhii.jpeg" alt="Fresh Salad" width="100"></td>
-                        <th scope="row">Fresh Salad<br><small>Cucumbers, tomatoes, dill, onion (choice of
-                                dressing)</small></th>
-                        <td>200<abbr title="grams">g</abbr></td>
-                        <td><strong>1 790</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/sharizada.jpeg" alt="Scheherazade Salad" width="100"></td>
-                        <th scope="row">Scheherazade Salad<br><small>Turkey, cherry tomatoes, red beans, bell pepper,
-                                lettuce, balsamic vinegar</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 590</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/malibu.jpeg" alt="Malibu Salad" width="100"></td>
-                        <th scope="row">Malibu Salad<br><small>Smoked turkey, tomatoes, lettuce, mayonnaise,
-                                croutons</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>2 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/salats/achichuk.jpeg" alt="Achichuk" width="100"></td>
-                        <th scope="row">Achichuk<br><small>Tomatoes, onions, chili pepper</small></th>
-                        <td>200<abbr title="grams">g</abbr></td>
-                        <td><strong>1 690</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/turkich/iezme.jpeg" alt="Ezme" width="100"></td>
-                        <th scope="row">Ezme<br><small>Tomatoes, cucumbers, onion, parsley, hot pepper, pomegranate
-                                sauce</small></th>
-                        <td>150<abbr title="grams">g</abbr></td>
-                        <td><strong>1 590</strong> <span>₸</span></td>
-                    </tr>
-                    <!-- Missing image for Oriental Salad: vostoshniy.jpeg -->
+        function formatPrice(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₸';
+        }
 
-                    <!-- Turkish Cuisine & Kebabs -->
-                    <tr>
-                        <th colspan="4" id="turkish"><i>Turkish Cuisine &amp; Kebabs</i></th>
-                    </tr>
-                    <tr>
-                        <td><img src="images/turkich/turkich_beitu_sorma.jpeg" alt="Beyti Sarma" width="100"></td>
-                        <th scope="row">Beyti Sarma<br><small>Minced beef stuffed in eggplant and lavash with onion,
-                                tomatoes, topped with cheese and Turkish yogurt</small></th>
-                        <td>380<abbr title="grams">g</abbr></td>
-                        <td><strong>3 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/turkich/sebzelik.jpeg" alt="Guvec Sebzelik" width="100"></td>
-                        <th scope="row">Guvec Sebzelik<br><small>Pan-fried vegetables covered with cheese</small></th>
-                        <td>300<abbr title="grams">g</abbr></td>
-                        <td><strong>3 590</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/turkich/et_gubiash.jpeg" alt="Guvec Et" width="100"></td>
-                        <th scope="row">Guvec Et<br><small>Beef fried with vegetables in a pan, covered with
-                                cheese</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/turkich/tavuk_gubiash.jpeg" alt="Guvec Tavuk" width="100"></td>
-                        <th scope="row">Guvec Tavuk<br><small>Chicken fillet fried with vegetables in a pan, covered
-                                with cheese</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/turkich/pirzolla.jpeg" alt="Pirzola" width="100"></td>
-                        <th scope="row">Pirzola<br><small>Lamb entrecote, garnish, tomatoes, cucumbers, lavash,
-                                onion</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>4 690</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/shashlyk/izgora_kofta.jpeg" alt="Izgara Kofte" width="100"></td>
-                        <th scope="row">Izgara Kofte<br><small>Beef, mutton, and tail fat patties. Garnish, lavash,
-                                vegetables</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 800</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/shashlyk/ali_nazik_kebab.jpeg" alt="Ali Nazik Kebab" width="100"></td>
-                        <th scope="row">Ali Nazik Kebab<br><small>Fried beef, yogurt with stewed eggplant, garnish,
-                                greens</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>4 500</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/shashlyk/adana_kebab.jpeg" alt="Adana Kebab" width="100"></td>
-                        <th scope="row">Adana Kebab<br><small>Minced beef, tail fat, pepper, garnish, tomatoes,
-                                cucumbers, greens, onion</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 800</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/shashlyk/assorti_kolbasok.jpeg" alt="Assorted Sausages" width="100"></td>
-                        <th scope="row">Assorted Sausages<br><small>Mutton, beef, horse meat, chicken, sauce</small>
-                        </th>
-                        <td>500<abbr title="grams">g</abbr></td>
-                        <td><strong>6 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/shashlyk/lyula_kebab.jpeg" alt="Lyulya Kebab" width="100"></td>
-                        <th scope="row">Lyulya Kebab<br><small>Minced beef with tail fat, lavash, vegetables</small>
-                        </th>
-                        <td>300<abbr title="grams">g</abbr></td>
-                        <td><strong>3 100</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/shashlyk/shashlyk_telyatina.jpeg" alt="Veal Shashlik" width="100"></td>
-                        <th scope="row">Veal Shashlik<br><small>Veal meat, lavash, tomatoes, cucumbers, onion</small>
-                        </th>
-                        <td>300<abbr title="grams">g</abbr></td>
-                        <td><strong>4 690</strong> <span>₸</span></td>
-                    </tr>
+        let cart = loadCart();
 
-                    <!-- Oriental & Main Dishes -->
-                    <tr>
-                        <th colspan="4" id="oriental"><i>Oriental &amp; Main Dishes</i></th>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/basyai_funturu.jpeg" alt="Basyay Funturu" width="100"></td>
-                        <th scope="row">Basyay Funturu<br><small>Mutton, glass noodles, napa cabbage, bell
-                                pepper</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 490</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/bobbin_yanru.jpeg" alt="Bobbin Yanru" width="100"></td>
-                        <th scope="row">Bobbin Yanru<br><small>Finely chopped mutton with thin flatbreads</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 490</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/ganza_yu.jpeg" alt="Ganza Yu" width="100"></td>
-                        <th scope="row">Ganza Yu<br><small>Fried crucian carp (whole fish) with spices</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>3 790</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/dapanpshi.jpeg" alt="Dapanji with Dough" width="100"></td>
-                        <th scope="row">Dapanji with Dough<br><small>Chicken stewed with vegetables. Served with pieces
-                                of dough</small></th>
-                        <td>1000<abbr title="grams">g</abbr></td>
-                        <td><strong>9 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/diygar.jpeg" alt="Jigyar" width="100"></td>
-                        <th scope="row">Jigyar<br><small>Pan-fried lamb liver with tail fat and vegetables</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>2 690</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/naryn.jpeg" alt="Naryn" width="100"></td>
-                        <th scope="row">Naryn<br><small>Finely chopped dough with horse meat and broth (served
-                                separately)</small></th>
-                        <td>300<abbr title="grams">g</abbr></td>
-                        <td><strong>3 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/plov_prasdnishy.jpeg" alt="Authentic Uzbek Pilaf" width="100">
-                        </td>
-                        <th scope="row">Authentic Uzbek Pilaf<br><small>Beef, chickpeas, raisins, yellow and red
-                                carrots, lazer rice</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>2 990</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/fri_s_miasom.jpeg" alt="Fries with Meat" width="100"></td>
-                        <th scope="row">Fries with Meat<br><small>Fried beef with french fries and vegetables</small>
-                        </th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 590</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/guiru_say.jpeg" alt="Guiru Syay" width="100"></td>
-                        <th scope="row">Guiru Syay<br><small>Beef, bell pepper, napa cabbage, onion</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>4 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/jarenny_barabina_na_skobarade.jpeg" alt="Pan-fried Mutton"
-                                width="100"></td>
-                        <th scope="row">Pan-fried Mutton<br><small>Pan-fried mutton seasoned with fresh onions</small>
-                        </th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>7 590</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/kazan_kebab_barabiba.jpeg" alt="Lamb Kazan Kebab" width="100">
-                        </td>
-                        <th scope="row">Lamb Kazan Kebab<br><small>Mutton roasted with onions over high heat (with
-                                potatoes)</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>4 390</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/kazan_kebab_gobiadina.jpeg" alt="Beef Kazan Kebab" width="100">
-                        </td>
-                        <th scope="row">Beef Kazan Kebab<br><small>Tender beef roasted with onions over high
-                                heat</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>4 390</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/kok_siay.jpeg" alt="Kok Syay" width="100"></td>
-                        <th scope="row">Kok Syay<br><small>Fried broccoli with vegetables</small></th>
-                        <td>300<abbr title="grams">g</abbr></td>
-                        <td><strong>2 290</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/lazzhi.jpeg" alt="Lazzhi" width="100"></td>
-                        <th scope="row">Lazzhi<br><small>Chicken fillet, bell pepper, spices</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 490</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/manpar_somian.jpeg" alt="Manpar Tsomyan" width="100"></td>
-                        <th scope="row">Manpar Tsomyan<br><small>Finely chopped dough fried with meat and
-                                vegetables</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>2 890</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/moguru_siay.jpeg" alt="Moguru Syay" width="100"></td>
-                        <th scope="row">Moguru Syay<br><small>Fried mutton, wood ear mushrooms, cucumbers, and
-                                spices</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 390</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/myn_zhyn_yianry.jpeg" alt="Myn Zhyn Yanru" width="100"></td>
-                        <th scope="row">Myn Zhyn Yanru<br><small>Fried mutton with vegetables</small></th>
-                        <td>350<abbr title="grams">g</abbr></td>
-                        <td><strong>3 190</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/bash_manpar.jpeg" alt="Bash Manpar" width="100"></td>
-                        <th scope="row">Bash Manpar<br><small>Traditional soup with small dumplings, meat, and
-                                vegetables</small></th>
-                        <td>400<abbr title="grams">g</abbr></td>
-                        <td><strong>2 500</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/besh.jpeg" alt="Beshbarmak" width="100"></td>
-                        <th scope="row">Beshbarmak<br><small>Boiled meat, dough, rich meat broth with onions</small>
-                        </th>
-                        <td>450<abbr title="grams">g</abbr></td>
-                        <td><strong>3 800</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/siomga.jpeg" alt="Grilled Salmon" width="100"></td>
-                        <th scope="row">Grilled Salmon<br><small>Salmon fillet with spices and lemon</small></th>
-                        <td>250<abbr title="grams">g</abbr></td>
-                        <td><strong>4 900</strong> <span>₸</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="images/vostoshniy/forel_gril.jpeg" alt="Grilled Trout" width="100"></td>
-                        <th scope="row">Grilled Trout<br><small>Tender grilled trout with lemon</small></th>
-                        <td>300<abbr title="grams">g</abbr></td>
-                        <td><strong>4 200</strong> <span>₸</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        function render() {
+            const count = cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+            cartBadge.textContent = count;
+            cartBadge.style.display = count > 0 ? 'inline-flex' : 'none';
 
-            <br>
-            <small>
-                <strong>Allergen Warning:</strong> Please be advised that our food may contain or come into contact with
-                common allergens, such as <em>dairy, eggs, wheat, soybeans, tree nuts, peanuts, fish, shellfish, or
-                    wheat</em>. Always inform your server of any severe allergies before ordering.
-            </small>
-        </section>
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty. Add dishes from the menu to get started!</p>';
+            } else {
+                cartItemsEl.innerHTML = cart.map(function (item) {
+                    return '<div class="cart-item" data-id="' + item.id + '">' +
+                        '<div class="cart-item__info">' +
+                        '<span class="cart-item__name">' + item.name + '</span>' +
+                        '<span class="cart-item__price">' + formatPrice(item.price) + '</span>' +
+                        '</div>' +
+                        '<div class="cart-item__controls">' +
+                        '<button type="button" class="qty-btn" data-action="dec" data-id="' + item.id + '" aria-label="Decrease quantity">&minus;</button>' +
+                        '<span class="cart-item__qty">' + item.qty + '</span>' +
+                        '<button type="button" class="qty-btn" data-action="inc" data-id="' + item.id + '" aria-label="Increase quantity">&plus;</button>' +
+                        '<button type="button" class="cart-item__remove" data-action="remove" data-id="' + item.id + '" aria-label="Remove item">&times;</button>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+            }
 
-        <aside>
-            <em>Chef's Note:</em> <q>If you are looking for an authentic flavor explosion, I highly recommend trying our
-                <mark>Tandoor Lagman</mark>. It is a perfectly balanced, <strong>aromatic</strong> dish that truly
-                represents our traditions!</q>
-        </aside>
+            const total = cart.reduce(function (sum, item) { return sum + item.price * item.qty; }, 0);
+            cartTotalEl.textContent = formatPrice(total);
+            saveCart(cart);
+        }
 
-        <hr>
+        function addToCart(id, name, price, btn) {
+            const existing = cart.find(function (item) { return item.id === id; });
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: id, name: name, price: price, qty: 1 });
+            }
+            render();
+            openCart();
+            if (btn) {
+                const original = btn.textContent;
+                btn.textContent = 'Added';
+                btn.classList.add('btn-cart--added');
+                setTimeout(function () {
+                    btn.textContent = original;
+                    btn.classList.remove('btn-cart--added');
+                }, 900);
+            }
+        }
 
-        <article>
-            <h2>Top 5 Dastarkhan Dishes</h2>
-            <ol start="1">
-                <li><strong>Special Lagman</strong><br> Handmade pulled noodles, beef, fresh peppers, garlic, and house
-                    broth.</li>
-                <li><strong><mark>Festive Tashkent Plov</mark></strong><br> Our <em>most beloved</em> classic! Devzira
-                    rice, tender lamb, yellow carrots, chickpeas, and raisins.</li>
-                <li><strong>Assorted Shashlik Set</strong><br> A massive platter featuring lamb chops, beef tikka,
-                    chicken kebab, and grilled vegetables.</li>
-                <li><strong>Tandoor Lagman</strong><br> Fried lamb ribs with vegetables and spices, perfectly matched
-                    with our lagman dough.</li>
-                <li><strong>Dapanji with Dough</strong><br> A hearty, spicy chicken stew with vegetables served with
-                    fresh pieces of dough.</li>
-            </ol>
-        </article>
+        function changeQty(id, delta) {
+            const item = cart.find(function (i) { return i.id === id; });
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(function (i) { return i.id !== id; });
+            }
+            render();
+        }
 
-        <section>
-            <h2>Terminology</h2>
-            <dl>
-                <dt><strong>Lagman</strong></dt>
-                <dd>A traditional Central Asian dish of pulled noodles, meat, and vegetables.</dd>
-                <dt><strong>Plov / Pilaf</strong></dt>
-                <dd>A fragrant rice dish cooked in a seasoned broth with meat and vegetables.</dd>
-                <dt><strong>Shashlik</strong></dt>
-                <dd>Skewered and grilled cubes of meat, similar to shish kebab.</dd>
-                <dt><strong>Kazan</strong></dt>
-                <dd>A traditional cast-iron cooking pot used throughout Central Asia, akin to a Dutch oven or cauldron.
-                </dd>
-            </dl>
-        </section>
+        function removeItem(id) {
+            cart = cart.filter(function (i) { return i.id !== id; });
+            render();
+        }
 
-        <figure>
-            <img src="images/interior/IMG_1162.jpg"
-                alt="Interior of the main dining hall and traditional oriental decoration at Dastarkhan" width="400">
-            <figcaption>Our beautifully decorated Dastarkhan dining hall</figcaption>
-        </figure>
+        function openCart() {
+            cartPanel.classList.add('open');
+            cartOverlay.classList.add('open');
+            cartPanel.setAttribute('aria-hidden', 'false');
+        }
 
-        <p><a href="#top">Back to top &uarr;</a></p>
+        function closeCart() {
+            cartPanel.classList.remove('open');
+            cartOverlay.classList.remove('open');
+            cartPanel.setAttribute('aria-hidden', 'true');
+        }
 
-    </main>
+        document.querySelectorAll('.btn-cart').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                addToCart(btn.dataset.id, btn.dataset.name, parseInt(btn.dataset.price, 10), btn);
+            });
+        });
 
-    <footer>
-        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
-                rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-                rel="noopener">2GIS</a>.</p>
-        <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
-        <p>&copy; 2026 Dastarkhan Restaurant</p>
-    </footer>
+        cartItemsEl.addEventListener('click', function (e) {
+            const target = e.target.closest('button[data-action]');
+            if (!target) return;
+            const id = target.dataset.id;
+            if (target.dataset.action === 'inc') changeQty(id, 1);
+            if (target.dataset.action === 'dec') changeQty(id, -1);
+            if (target.dataset.action === 'remove') removeItem(id);
+        });
+
+        cartToggle.addEventListener('click', openCart);
+        cartClose.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+        cartClear.addEventListener('click', function () {
+            cart = [];
+            render();
+        });
+
+        render();
+    })();
+</script>
+
 </body>
-
 </html>
