@@ -2,127 +2,156 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Dastarkhan - Authentic Eastern and Kazakh national cuisine in Astana. Find our locations and opening hours.">
-    <meta name="author" content="Ruslan Absamat">
-    <title>Dastarkhan - Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Dastarkhan - Authentic Eastern and Kazakh national cuisine in Astana. Find our locations and opening hours.">
+  <meta name="author" content="Ruslan Absamat">
+  <link rel="stylesheet" href="css/azamat.css">
+  <title>Dastarkhan - Home</title>
 </head>
 
 <body>
-    <header>
-        <b>Dastarkhan</b>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="careers.html">Careers</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="site-header">
+    <b class="logo">Dastarkhan</b>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <h1>Welcome to Dastarkhan</h1>
+  <main>
+    <!-- Hero section — Flexbox layout -->
+    <section class="hero">
+      <h1>Welcome to Dastarkhan</h1>
+      <!-- The slogan is placed right under the h1 so it is the very first message a visitor reads, reinforcing the brand identity immediately -->
+      <p class="hero-subtitle"><em><strong>Experience the true taste of the East!</strong></em></p>
+    </section>
 
-        <!-- The slogan is placed right under the h1 so it is the very first message a visitor reads, reinforcing the brand identity immediately -->
-        <p><em><strong>Experience the true taste of the East!</strong></em></p>
+    <!-- Advantages section — Flexbox with flex-wrap + gap -->
+    <section class="advantages">
+      <div class="advantage-card">
+        <h3>Fresh Ingredients</h3>
+        <p>Only fresh halal meat delivered daily from local farms and traditional spice blends.</p>
+      </div>
+      <div class="advantage-card">
+        <h3>Original Recipes</h3>
+        <p>Every dish is prepared according to authentic traditions handed down through generations.</p>
+      </div>
+      <div class="advantage-card">
+        <h3>Fast Delivery</h3>
+        <p>We deliver to all districts of Astana in 45–60 minutes with eco-friendly thermal containers.</p>
+      </div>
+    </section>
 
-        <section>
-            <h2>Authentic Flavors and Traditions</h2>
-            <p>Welcome to Dastarkhan, your ultimate destination for fresh, high-quality Eastern and Kazakh national
-                cuisine in Astana. Whether you are craving our signature handmade lagman or a hearty, festive plov, our
-                chefs prepare every dish with passion and top-tier halal ingredients according to original traditions.
-            </p>
+    <div class="content-wrapper">
+      <section>
+        <h2 class="section-heading">Authentic Flavors and Traditions</h2>
+        <p>Welcome to Dastarkhan, your ultimate destination for fresh, high-quality Eastern and Kazakh national
+          cuisine in Astana. Whether you are craving our signature handmade lagman or a hearty, festive plov, our
+          chefs prepare every dish with passion and top-tier halal ingredients according to original traditions.
+        </p>
+      </section>
 
-            <figure>
-                <!-- The outside/interior photo is placed here to show the restaurant atmosphere -->
-                <img src="images/interior/IMG_1167.jpg" alt="Interior decoration of Dastarkhan restaurant in Astana"
-                    width="400">
-                <figcaption>Our beautifully decorated Dastarkhan &mdash; find us and step in!</figcaption>
-            </figure>
-        </section>
+      <hr>
 
-        <hr>
+      <!-- About-Us section with FLOAT (image floated left, text wrapping around it) -->
+      <section class="about-section clearfix">
+        <h2 class="section-heading">Inside Our Restaurant</h2>
+        <figure>
+          <!-- Float the image left so text wraps around it -->
+          <img src="images/interior/IMG_1167.jpg" alt="Interior decoration of Dastarkhan restaurant in Astana"
+            width="320" class="float-left">
+        </figure>
+        <p>Step inside and enjoy a warm, welcoming atmosphere. Our interiors are designed in a classic oriental
+          style to give you a comfortable dining experience whether you are celebrating in our VIP room, having a
+          family dinner on a tapchan, or grabbing a quick lunch.</p>
+        <p>At Dastarkhan, our journey began with a simple but strict idea: to serve authentic dishes using
+          traditional recipes and local fresh meat. We believe that great food starts with great ingredients. That
+          is why we purchase only fresh halal meat delivered daily from local farms, use traditional spice blends
+          like Zira and Star Anise, and cook our meals in classic cast-iron kazans. Whether you are craving a
+          sizzling shashlyk, freshly pulled noodles, or our rich broths, we promise an unforgettable flavor
+          experience every time you dine with us.</p>
+      </section>
 
-        <section>
-            <h2>Our Dedication to Quality</h2>
-            <p>At Dastarkhan, our journey began with a simple but strict idea: to serve authentic dishes using
-                traditional recipes and local fresh meat. We believe that great food starts with great ingredients. That
-                is why we purchase only fresh halal meat delivered daily from local farms, use traditional spice blends
-                like Zira and Star Anise, and cook our meals in classic cast-iron kazans. Whether you are craving a
-                sizzling shashlyk, freshly pulled noodles, or our rich broths, we promise an unforgettable flavor
-                experience every time you dine with us.</p>
+      <hr>
 
-            <p>Our commitment to excellence has earned us a loyal following across the city. Do not just take our word
-                for it—our customers say it best:</p>
-            <blockquote>
-                <p>"Dastarkhan has completely set a new standard for Eastern cuisine. Their lagman is always hot, the
-                    meat is incredibly fresh, and their festive plov is a game-changer for family dinners!" <br>
-                    &mdash; <cite>Aigerim N., Astana</cite>, October 2025</p>
-            </blockquote>
-        </section>
+      <section>
+        <h2 class="section-heading">Our Dedication to Quality</h2>
+        <p>Our commitment to excellence has earned us a loyal following across the city. Do not just take our word
+          for it—our customers say it best:</p>
+        <blockquote class="testimonial">
+          <p>"Dastarkhan has completely set a new standard for Eastern cuisine. Their lagman is always hot, the
+            meat is incredibly fresh, and their festive plov is a game-changer for family dinners!" <br>
+            &mdash; <cite>Aigerim N., Astana</cite>, October 2025</p>
+        </blockquote>
+      </section>
 
-        <hr>
+      <hr>
 
-        <section>
-            <h2>Opening Hours</h2>
-            <p>We are open every day to serve you the best Eastern cuisine in town:</p>
-            <p><strong>Monday &ndash; Sunday: 11:00 to 23:00</strong></p>
-        </section>
+      <section>
+        <h2 class="section-heading">Opening Hours</h2>
+        <p>We are open every day to serve you the best Eastern cuisine in town:</p>
+        <p><strong>Monday &ndash; Sunday: 11:00 to 23:00</strong></p>
+      </section>
 
-        <section>
-            <h2>Our Locations in Astana</h2>
-            <p>Find your nearest Dastarkhan branch for takeout or dine-in:</p>
-            <ul>
-                <li>Mukhtar Auezov Street, 33</li>
-                <li>Dostyk Street, 1</li>
-            </ul>
-        </section>
+      <section>
+        <h2 class="section-heading">Our Locations in Astana</h2>
+        <p>Find your nearest Dastarkhan branch for takeout or dine-in:</p>
+        <ul>
+          <li>Mukhtar Auezov Street, 33</li>
+          <li>Dostyk Street, 1</li>
+        </ul>
+      </section>
 
-        <section>
-            <h2>Restaurant Features &amp; Amenities</h2>
-            <p><strong>Cuisine:</strong> Eastern, Uyghur. <em>Average bill: 4000 ₸</em></p>
-            <p><strong>Menu Highlights:</strong> Shashlik, Chebureki, Pelmeni, Manti, Samsa, Lagman, Salads, Plov.</p>
-            <p><strong>Services:</strong> Takeaway, Delivery, Banquet Hosting.</p>
-            <p><strong>Amenities:</strong> Up to 120 seats, Private booths, Laptop friendly.</p>
-            <p><strong>Payment Methods:</strong> Card payment, Cash, QR-code payment.</p>
-            <p><strong>Accessibility:</strong> Ramp, Wheelchair accessible entrance.</p>
-        </section>
+      <section>
+        <h2 class="section-heading">Restaurant Features &amp; Amenities</h2>
+        <p><strong>Cuisine:</strong> Eastern, Uyghur. <em>Average bill: 4000 ₸</em></p>
+        <p><strong>Menu Highlights:</strong> Shashlik, Chebureki, Pelmeni, Manti, Samsa, Lagman, Salads, Plov.</p>
+        <p><strong>Services:</strong> Takeaway, Delivery, Banquet Hosting.</p>
+        <p><strong>Amenities:</strong> Up to 120 seats, Private booths, Laptop friendly.</p>
+        <p><strong>Payment Methods:</strong> Card payment, Cash, QR-code payment.</p>
+        <p><strong>Accessibility:</strong> Ramp, Wheelchair accessible entrance.</p>
+      </section>
 
-        <section>
-            <h2>Inside Our Restaurant</h2>
-            <p>Step inside and enjoy a warm, welcoming atmosphere. Our interiors are designed in a classic oriental
-                style to give you a comfortable dining experience whether you are celebrating in our VIP room, having a
-                family dinner on a tapchan, or grabbing a quick lunch.</p>
+      <section>
+        <h2 class="section-heading">Dining Gallery</h2>
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/interior/IMG_1170.jpg"
+              alt="Dining area inside Dastarkhan restaurant showing tables and warm lighting">
+            <figcaption>A warm and welcoming dining space at Dastarkhan</figcaption>
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1157.jpg"
+              alt="Interior of Dastarkhan showing traditional tapchan seating arrangement and decor">
+            <figcaption>Comfortable oriental tapchan seating for family and friends</figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+  </main>
 
-            <figure>
-                <img src="images/interior/IMG_1170.jpg"
-                    alt="Dining area inside Dastarkhan restaurant showing tables and warm lighting" width="400">
-                <figcaption>A warm and welcoming dining space at Dastarkhan</figcaption>
-            </figure>
+  <!-- Quick Order button — position: fixed -->
+  <a href="delivery.html" id="quickOrder">Quick Order</a>
 
-            <figure>
-                <img src="images/interior/IMG_1157.jpg"
-                    alt="Interior of Dastarkhan showing traditional tapchan seating arrangement and decor" width="400">
-                <figcaption>Comfortable oriental tapchan seating for family and friends</figcaption>
-            </figure>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
-                rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-                rel="noopener">2GIS</a>.</p>
-        <p>Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a href="tel:+77788710792">+7-778-871-07-92</a></p>
-        <p>&copy; 2026 Dastarkhan Restaurant</p>
-    </footer>
+  <footer class="site-footer">
+    <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
+        rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
+        rel="noopener">2GIS</a>.</p>
+    <p>Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
+        href="tel:+77788710792">+7-778-871-07-92</a></p>
+    <p>&copy; 2026 Dastarkhan Restaurant</p>
+  </footer>
 
 </body>
+
 </html>

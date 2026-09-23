@@ -6,17 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Order and Delivery for Dastarkhan across Astana">
   <meta name="author" content="Ruslan Absamat">
+  <link rel="stylesheet" href="css/azamat.css">
   <title>Delivery - Dastarkhan</title>
 </head>
 
 <body>
-  <header>
-    <b>Dastarkhan</b>
+  <header class="site-header">
+    <b class="logo">Dastarkhan</b>
     <nav>
-      <ul>
+      <ul class="nav-list">
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
-        <li><a href="delivery.html">Delivery</a></li>
+        <li><a href="delivery.html" class="active">Delivery</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="booking.html">Booking</a></li>
         <li><a href="gallery.html">Gallery</a></li>
@@ -27,180 +28,203 @@
   </header>
 
   <main>
-    <h1>Delivery &amp; Ordering</h1>
-
-    <article>
-      <h2>Delivery Zones and Times</h2>
-      <!-- The slogan appears here because the delivery page is a key entry point for customers placing orders - reinforcing the brand before they fill the form -->
-      <p><em><strong>Experience the true taste of the East!</strong></em> We bring the feast to your door.</p>
-      <p>Great news! We deliver to <strong>all districts</strong> of Astana. Your meals arrive fresh, carefully packed
-        in our eco-friendly thermal containers.</p>
-      <p>We guarantee 100% quality from our kazans directly to your home.</p>
-    </article>
-
-    <hr>
-
-    <section>
-      <h2>Our Reliable Delivery Process</h2>
-      <p>We know that when you order authentic hot dishes, you expect them to be steaming, delicious, and on time. That
-        is why we have built
-        an in-house fleet of dedicated couriers who understand the importance of careful handling. We do not use
-        third-party delivery apps because we want to maintain strict quality control over every order.</p>
-      <p>Once you submit your order, our kitchen receives it instantly. The chefs prepare your lagman and shashlyk
-        precisely when the
-        courier is ready to depart. This synchronization ensures that hot items stay warm in
-        thermal bags, while fresh salads remain perfectly chilled. On average, our delivery takes between 45 to 60
-        minutes
-        depending on your district, but we always strive to beat the clock without sacrificing quality.</p>
+    <!-- Hero section — Flexbox layout -->
+    <section class="hero">
+      <h1>Delivery &amp; Ordering</h1>
+      <p class="hero-subtitle"><em><strong>Experience the true taste of the East!</strong></em> We bring the feast to
+        your door.</p>
     </section>
 
-    <section>
-      <h2>How to Make an Order</h2>
-      <p>You can fill out the form below, or reach us through our direct contacts:</p>
-      <ul>
-        <li>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></li>
-        <li>Email: <a href="mailto:info@dastarkhan.kz">info@dastarkhan.kz</a></li>
-      </ul>
-      <p>Check our location and reviews on <a href="https://2gis.kz/astana" target="_blank" rel="noopener">2GIS Astana
-          portal</a>.
-      </p>
+    <!-- Advantages section — Flexbox with flex-wrap + gap -->
+    <section class="advantages">
+      <div class="advantage-card">
+        <h3>All Districts</h3>
+        <p>We deliver to <strong>all districts</strong> of Astana. Your meals arrive fresh and carefully packed.</p>
+      </div>
+      <div class="advantage-card">
+        <h3>Eco Packaging</h3>
+        <p>Eco-friendly thermal containers that keep your food piping hot from our kazans to your home.</p>
+      </div>
+      <div class="advantage-card">
+        <h3>100% Quality</h3>
+        <p>We guarantee 100% quality directly from our kitchen. In-house fleet of dedicated couriers.</p>
+      </div>
     </section>
 
-    <hr>
+    <div class="content-wrapper">
+      <article>
+        <h2 class="section-heading">Delivery Zones and Times</h2>
+        <p>Great news! We deliver to <strong>all districts</strong> of Astana. Your meals arrive fresh, carefully packed
+          in our eco-friendly thermal containers.</p>
+        <p>We guarantee 100% quality from our kazans directly to your home.</p>
+      </article>
 
-    <section>
-      <h2>Order Form</h2>
-      <form method="get" action="#">
-        <!-- This form does not send anything yet - there is no server behind it -->
+      <hr>
 
-        <fieldset>
-          <legend>Contact Information</legend>
+      <section>
+        <h2 class="section-heading">Our Reliable Delivery Process</h2>
+        <p>We know that when you order authentic hot dishes, you expect them to be steaming, delicious, and on time.
+          That
+          is why we have built
+          an in-house fleet of dedicated couriers who understand the importance of careful handling. We do not use
+          third-party delivery apps because we want to maintain strict quality control over every order.</p>
+        <p>Once you submit your order, our kitchen receives it instantly. The chefs prepare your lagman and shashlyk
+          precisely when the
+          courier is ready to depart. This synchronization ensures that hot items stay warm in
+          thermal bags, while fresh salads remain perfectly chilled. On average, our delivery takes between 45 to 60
+          minutes
+          depending on your district, but we always strive to beat the clock without sacrificing quality.</p>
+      </section>
 
-          <!-- Using div here as a generic block container to group label and input visually, since HTML5 does not have a specific semantic tag for form rows -->
-          <div>
-            <label for="userName">Full Name:</label>
-            <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+      <section>
+        <h2 class="section-heading">How to Make an Order</h2>
+        <p>You can fill out the form below, or reach us through our direct contacts:</p>
+        <ul>
+          <li>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></li>
+          <li>Email: <a href="mailto:info@dastarkhan.kz">info@dastarkhan.kz</a></li>
+        </ul>
+        <p>Check our location and reviews on <a href="https://2gis.kz/astana" target="_blank" rel="noopener">2GIS Astana
+            portal</a>.
+        </p>
+      </section>
+
+      <hr>
+
+      <section>
+        <h2 class="section-heading">Order Form</h2>
+        <form method="get" action="#">
+          <!-- This form does not send anything yet - there is no server behind it -->
+
+          <fieldset>
+            <legend>Contact Information</legend>
+
+            <div class="form-row">
+              <label for="userName">Full Name:</label>
+              <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+            </div>
+            <div class="form-row">
+              <label for="userPhone">Phone Number:</label>
+              <input type="tel" id="userPhone" name="userPhone" placeholder="+7 700 000 00 00" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Order Details</legend>
+
+            <div class="form-row">
+              <label for="portionCount">Number of People:</label>
+              <input type="number" id="portionCount" name="portionCount" min="1" max="20" required>
+            </div>
+            <div class="form-row">
+              <label for="deliveryDate">Requested Delivery Date:</label>
+              <input type="date" id="deliveryDate" name="deliveryDate" required>
+            </div>
+            <div class="form-row">
+              <label for="deliveryTime">Requested Delivery Time:</label>
+              <input type="time" id="deliveryTime" name="deliveryTime" required>
+            </div>
+            <div class="form-row">
+              <label for="districtSelect">Delivery District:</label>
+              <select id="districtSelect" name="districtSelect">
+                <option value="" disabled selected>Select your district...</option>
+                <option value="yesil">Yesil District</option>
+                <option value="almaty">Almaty District</option>
+                <option value="saryarka">Saryarka District</option>
+                <option value="nura">Nura District</option>
+                <option value="baikonyr">Baikonyr District</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="deliveryAddress">Your Address:</label>
+              <input type="text" id="deliveryAddress" name="deliveryAddress" required>
+            </div>
+            <div class="form-row">
+              <label for="entranceNumber">Entrance number:</label>
+              <input type="number" id="entranceNumber" name="entranceNumber" min="1" required>
+            </div>
+            <div class="form-row">
+              <label for="apartmentNumber">Apartment number:</label>
+              <input type="number" id="apartmentNumber" name="apartmentNumber" min="1" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment and Preferences</legend>
+
+            <p>Select Payment Method:</p>
+            <div class="radio-group">
+              <label>
+                <input type="radio" id="payOnline" name="paymentMethod" value="online" checked>
+                Online via Card
+              </label>
+              <label>
+                <input type="radio" id="payKaspi" name="paymentMethod" value="kaspi">
+                Kaspi.kz app
+              </label>
+              <label>
+                <input type="radio" id="payHalyk" name="paymentMethod" value="halyk">
+                Halyk bank app
+              </label>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem;">
+              <label>
+                <input type="checkbox" id="needUtensils" name="needUtensils" value="yes">
+                I need disposable utensils and napkins
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label for="orderComments">Additional Comments:</label>
+              <textarea id="orderComments" name="orderComments" rows="4"
+                placeholder="Any special requests for the chef or courier?"></textarea>
+            </div>
+          </fieldset>
+
+          <div class="btn-group">
+            <!-- Using span here to isolate the button text for potential microdata or script targeting -->
+            <button type="submit" class="btn btn--primary"><span>Submit Order</span></button>
+            <button type="reset" class="btn btn--secondary">Reset Form</button>
           </div>
-          <br>
-          <div>
-            <label for="userPhone">Phone Number:</label>
-            <input type="tel" id="userPhone" name="userPhone" placeholder="+7 700 000 00 00" required>
-          </div>
-        </fieldset>
+        </form>
+      </section>
 
-        <br>
+      <hr>
 
-        <fieldset>
-          <legend>Order Details</legend>
+      <section>
+        <h2 class="section-heading">Delivery Gallery</h2>
+        <!-- Real food photos taken at Dastarkhan are used here so the visitor sees actual products, not stock imagery -->
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/vostoshniy/plov_prasdnishy.jpeg"
+              alt="Freshly prepared festive plov in a traditional bowl ready for delivery">
+            <figcaption>Every order made fresh before it leaves our kitchen</figcaption>
+          </figure>
 
-          <div>
-            <label for="portionCount">Number of People:</label>
-            <input type="number" id="portionCount" name="portionCount" min="1" max="20" required>
-          </div>
-          <br>
-          <div>
-            <label for="deliveryDate">Requested Delivery Date:</label>
-            <input type="date" id="deliveryDate" name="deliveryDate" required>
-          </div>
-          <br>
-          <div>
-            <label for="deliveryTime">Requested Delivery Time:</label>
-            <input type="time" id="deliveryTime" name="deliveryTime" required>
-          </div>
-          <br>
-          <div>
-            <label for="districtSelect">Delivery District:</label>
-            <select id="districtSelect" name="districtSelect">
-              <option value="" disabled selected>Select your district...</option>
-              <option value="yesil">Yesil District</option>
-              <option value="almaty">Almaty District</option>
-              <option value="saryarka">Saryarka District</option>
-              <option value="nura">Nura District</option>
-              <option value="baikonyr">Baikonyr District</option>
-            </select>
-          </div>
-          <br>
-          <div>
-            <label for="deliveryAddress">Your Address:</label>
-            <input type="text" id="deliveryAddress" name="deliveryAddress" required>
+          <figure>
+            <img src="images/lagman/tandyr_lagman.jpeg" alt="A hot tandoor lagman arranged for a delivery order">
+            <figcaption>Packaged with care to stay piping hot</figcaption>
+          </figure>
 
-            <label for="entranceNumber">Entrance number:</label>
-            <input type="number" id="entranceNumber" name="entranceNumber" min="1" required>
+          <figure>
+            <img src="images/shashlyk/assorti_kolbasok.jpeg"
+              alt="Assorted shashlik ready for takeout on the restaurant counter">
+            <figcaption>Ready for takeout or delivery &mdash; your choice!</figcaption>
+          </figure>
 
-            <label for="apartmentNumber">Apartment number:</label>
-            <input type="number" id="apartmentNumber" name="apartmentNumber" min="1" required>
-          </div>
-
-
-        </fieldset>
-
-        <br>
-
-        <fieldset>
-          <legend>Payment and Preferences</legend>
-
-          <p>Select Payment Method:</p>
-          <input type="radio" id="payOnline" name="paymentMethod" value="online" checked>
-          <label for="payOnline">Online via Card</label><br>
-          <input type="radio" id="payKaspi" name="paymentMethod" value="kaspi">
-          <label for="payKaspi">Kaspi.kz app</label><br>
-          <input type="radio" id="payHalyk" name="paymentMethod" value="halyk">
-          <label for="payHalyk">Halyk bank app</label>
-
-          <br><br>
-
-          <input type="checkbox" id="needUtensils" name="needUtensils" value="yes">
-          <label for="needUtensils">I need disposable utensils and napkins</label>
-
-          <br><br>
-
-          <label for="orderComments">Additional Comments:</label><br>
-          <textarea id="orderComments" name="orderComments" rows="4" cols="40"
-            placeholder="Any special requests for the chef or courier?"></textarea>
-        </fieldset>
-
-        <br>
-
-        <div>
-          <!-- Using span here to isolate the button text for potential microdata or script targeting, as there is no specific semantic inline tag for generic text segments -->
-          <button type="submit"><span>Submit Order</span></button>
-          <button type="reset">Reset Form</button>
+          <figure>
+            <img src="images/interior/IMG_1160.jpg" alt="Inside Dastarkhan showing a cozy room">
+            <figcaption>You can also pick up your order in-person and enjoy our ambiance</figcaption>
+          </figure>
         </div>
-      </form>
-    </section>
-
-    <hr>
-
-    <section>
-      <h2>Delivery Gallery</h2>
-      <!-- Real food photos taken at Dastarkhan are used here so the visitor sees actual products, not stock imagery -->
-      <figure>
-        <img src="images/vostoshniy/plov_prasdnishy.jpeg"
-          alt="Freshly prepared festive plov in a traditional bowl ready for delivery" width="400">
-        <figcaption>Every order made fresh before it leaves our kitchen</figcaption>
-      </figure>
-
-      <figure>
-        <img src="images/lagman/tandyr_lagman.jpeg" alt="A hot tandoor lagman arranged for a delivery order"
-          width="400">
-        <figcaption>Packaged with care to stay piping hot</figcaption>
-      </figure>
-
-      <figure>
-        <img src="images/shashlyk/assorti_kolbasok.jpeg"
-          alt="Assorted shashlik ready for takeout on the restaurant counter" width="400">
-        <figcaption>Ready for takeout or delivery &mdash; your choice!</figcaption>
-      </figure>
-
-      <figure>
-        <img src="images/interior/IMG_1160.jpg" alt="Inside Dastarkhan showing a cozy room" width="400">
-        <figcaption>You can also pick up your order in-person and enjoy our ambiance</figcaption>
-      </figure>
-    </section>
-
+      </section>
+    </div>
   </main>
 
-  <footer>
+  <!-- Quick Order button — position: fixed -->
+  <a href="tel:+77172319595" id="quickOrder">Call Now</a>
+
+  <footer class="site-footer">
     <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
         rel="noopener">Instagram</a> or
       find us on <a href="https://2gis.kz/astana" target="_blank" rel="noopener">2GIS</a>.</p>
