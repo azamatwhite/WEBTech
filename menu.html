@@ -5,12 +5,16 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="Menu of Dastarkhan in Astana - Authentic Eastern and Kazakh national cuisine" name="description"/>
-    <meta content="Ruslan Absamat" name="author"/><link href="css/azamat.css" rel="stylesheet"/>
+    <meta content="Azamat" name="author"/>
+    <link href="css/azamat.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/base.css">
     <title>Menu - Dastarkhan</title>
 </head>
 <body>
 <header class="site-header">
-    <b class="logo">Dastarkhan</b>
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Dastarkhan Logo">
+    </a>
     <nav>
         <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
@@ -536,12 +540,15 @@
     <p><a class="back-to-top" href="#top">Back to top ↑</a></p>
 </div></main>
 <footer class="site-footer">
-    <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" rel="noopener" target="_blank">Instagram</a> or find us on <a href="https://2gis.kz/astana" rel="noopener" target="_blank">2GIS</a>.</p>
-    <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
-    <p>© 2026 Dastarkhan Restaurant</p>
+    <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
+                       rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
+                                                                     rel="noopener">2GIS</a>.</p>
+    <p>Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
+            href="tel:+77788710792">+7-778-871-07-92</a></p>
+    <p>&copy; 2026 Dastarkhan Restaurant</p>
 </footer>
 <div class="cart-overlay" id="cartOverlay"></div>
-
+<!--
 <aside class="cart-panel" id="cartPanel" aria-hidden="true">
     <div class="cart-panel__header">
         <h2>Your Order</h2>
@@ -559,142 +566,6 @@
         <p class="cart-note">Prices are approximate; final delivery cost depends on your district. Or <button type="button" id="cartClear" style="background:none;border:none;padding:0;color:var(--color-primary);text-decoration:underline;cursor:pointer;font:inherit;">clear cart</button>.</p>
     </div>
 </aside>
-
-<script>
-    (function () {
-        const STORAGE_KEY = 'dastarkhanCart';
-        const cartToggle = document.getElementById('cartToggle');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const cartPanel = document.getElementById('cartPanel');
-        const cartClose = document.getElementById('cartClose');
-        const cartItemsEl = document.getElementById('cartItems');
-        const cartBadge = document.getElementById('cartBadge');
-        const cartTotalEl = document.getElementById('cartTotal');
-        const cartClear = document.getElementById('cartClear');
-
-        function loadCart() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                return raw ? JSON.parse(raw) : [];
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function saveCart(cart) {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-            } catch (e) { /* storage unavailable — cart still works for this view */ }
-        }
-
-        function formatPrice(n) {
-            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₸';
-        }
-
-        let cart = loadCart();
-
-        function render() {
-            const count = cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
-            cartBadge.textContent = count;
-            cartBadge.style.display = count > 0 ? 'inline-flex' : 'none';
-
-            if (cart.length === 0) {
-                cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty. Add dishes from the menu to get started!</p>';
-            } else {
-                cartItemsEl.innerHTML = cart.map(function (item) {
-                    return '<div class="cart-item" data-id="' + item.id + '">' +
-                        '<div class="cart-item__info">' +
-                        '<span class="cart-item__name">' + item.name + '</span>' +
-                        '<span class="cart-item__price">' + formatPrice(item.price) + '</span>' +
-                        '</div>' +
-                        '<div class="cart-item__controls">' +
-                        '<button type="button" class="qty-btn" data-action="dec" data-id="' + item.id + '" aria-label="Decrease quantity">&minus;</button>' +
-                        '<span class="cart-item__qty">' + item.qty + '</span>' +
-                        '<button type="button" class="qty-btn" data-action="inc" data-id="' + item.id + '" aria-label="Increase quantity">&plus;</button>' +
-                        '<button type="button" class="cart-item__remove" data-action="remove" data-id="' + item.id + '" aria-label="Remove item">&times;</button>' +
-                        '</div>' +
-                        '</div>';
-                }).join('');
-            }
-
-            const total = cart.reduce(function (sum, item) { return sum + item.price * item.qty; }, 0);
-            cartTotalEl.textContent = formatPrice(total);
-            saveCart(cart);
-        }
-
-        function addToCart(id, name, price, btn) {
-            const existing = cart.find(function (item) { return item.id === id; });
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ id: id, name: name, price: price, qty: 1 });
-            }
-            render();
-            openCart();
-            if (btn) {
-                const original = btn.textContent;
-                btn.textContent = 'Added';
-                btn.classList.add('btn-cart--added');
-                setTimeout(function () {
-                    btn.textContent = original;
-                    btn.classList.remove('btn-cart--added');
-                }, 900);
-            }
-        }
-
-        function changeQty(id, delta) {
-            const item = cart.find(function (i) { return i.id === id; });
-            if (!item) return;
-            item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(function (i) { return i.id !== id; });
-            }
-            render();
-        }
-
-        function removeItem(id) {
-            cart = cart.filter(function (i) { return i.id !== id; });
-            render();
-        }
-
-        function openCart() {
-            cartPanel.classList.add('open');
-            cartOverlay.classList.add('open');
-            cartPanel.setAttribute('aria-hidden', 'false');
-        }
-
-        function closeCart() {
-            cartPanel.classList.remove('open');
-            cartOverlay.classList.remove('open');
-            cartPanel.setAttribute('aria-hidden', 'true');
-        }
-
-        document.querySelectorAll('.btn-cart').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                addToCart(btn.dataset.id, btn.dataset.name, parseInt(btn.dataset.price, 10), btn);
-            });
-        });
-
-        cartItemsEl.addEventListener('click', function (e) {
-            const target = e.target.closest('button[data-action]');
-            if (!target) return;
-            const id = target.dataset.id;
-            if (target.dataset.action === 'inc') changeQty(id, 1);
-            if (target.dataset.action === 'dec') changeQty(id, -1);
-            if (target.dataset.action === 'remove') removeItem(id);
-        });
-
-        cartToggle.addEventListener('click', openCart);
-        cartClose.addEventListener('click', closeCart);
-        cartOverlay.addEventListener('click', closeCart);
-        cartClear.addEventListener('click', function () {
-            cart = [];
-            render();
-        });
-
-        render();
-    })();
-</script>
-
+-->
 </body>
 </html>

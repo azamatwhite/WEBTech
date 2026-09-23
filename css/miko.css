@@ -1,0 +1,149 @@
+/* ==========================================================================
+   css/miko.css — Personal Styles for Miko (gallery.html, feedback.html)
+   Requires css/base.css to be linked BEFORE this file.
+
+   NOTE: none of the classes below (.info-block, .reviews-container,
+   .review-card, .status-badge, .feedback-form, .form-buttons, .btn-submit,
+   .btn-reset) had ANY rules in the old azamat.css — gallery.html's "Hall
+   Zones" boxes and feedback.html's whole review list + review form were
+   rendering completely unstyled. The rules below are new, written to match
+   the site's existing design tokens, so this file actually covers
+   everything gallery.html and feedback.html use.
+   ========================================================================== */
+
+/* ===========================================================================
+   1. INFO BLOCK — class: .info-block
+   Used on: gallery.html (Hall Zones), feedback.html (Feedback Note)
+   =========================================================================== */
+.info-block {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.info-block h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.info-block ul {
+  padding-left: 1.2rem;
+}
+
+.info-block ul ul {
+  margin-top: 0.25rem;
+}
+
+/* ===========================================================================
+   2. GUEST REVIEWS — class: .reviews-container / .review-card
+   feedback.html only. (Avatar/photo/date styling for each review lives in
+   feedback.html's own inline <style> block; this covers the card shell.)
+   =========================================================================== */
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.review-card q {
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* ===========================================================================
+   3. STATUS BADGE — class: .status-badge
+   feedback.html ("Additional Information" section — moderation notice)
+   =========================================================================== */
+.status-badge {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ===========================================================================
+   4. FEEDBACK FORM — class: .feedback-form / .form-buttons / .btn-submit /
+   .btn-reset
+   feedback.html only. This form does not reuse the shared .form-row /
+   .btn markup used elsewhere on the site — it has its own <p>-wrapped
+   fields and its own button classes, so it needs its own rules here.
+   =========================================================================== */
+.feedback-form input[type="text"],
+.feedback-form input[type="tel"],
+.feedback-form input[type="date"],
+.feedback-form input[type="number"],
+.feedback-form textarea {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: var(--color-white);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.12);
+}
+
+.feedback-form p {
+  margin-bottom: 1rem;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-submit,
+.btn-reset {
+  padding: 0.75rem 1.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.btn-submit {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-submit:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-reset {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-reset:hover {
+  background: var(--color-bg);
+}

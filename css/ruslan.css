@@ -1,9 +1,10 @@
 /* ==========================================================================
-   css/ruslan.css — Personal Styles for Ruslan (about, delivery, booking)
+   css/ruslan.css — Personal Styles for Ruslan (about.html, booking.html)
+   Requires css/base.css to be linked BEFORE this file.
    ========================================================================== */
 
 /* ==========================================================================
-   ★★★ SPECIFICITY CONFLICT EXPERIMENT ★★★
+   ★★★ SPECIFICITY CONFLICT EXPERIMENT ★★★  (about.html — .about-card)
    Rule 1 Specificity: 0,0,1,0 (.about-card) -> 10 points
    Rule 2 Specificity: 0,0,1,1 (main .about-card) -> 11 points (WINNER!)
    ========================================================================== */
@@ -11,10 +12,13 @@
 .about-card {
   border: 1px solid var(--color-border);
   background-color: var(--color-white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
 }
 
 main .about-card {
-  border: 2px solid var(--color-primary); /* Каскадты селектордың басымдығы (0,0,1,1) бойынша ұтады */
+  border: 2px solid var(--color-primary); /* Wins by cascade specificity (0,0,1,1) */
 }
 
 /* --------------------------------------------------------------------------
@@ -36,7 +40,7 @@ section > h2 {
   margin-bottom: 1.5rem;
 }
 
-/* Adjacent sibling (+): h2-ден кейін тікелей келетін p элементі */
+/* Adjacent sibling (+): the p immediately after an h2 */
 h2 + p {
   font-weight: 600;
   color: var(--color-text);
@@ -104,7 +108,7 @@ legend::before, fieldset legend::before {
   color: var(--color-accent);
 }
 
-/* ID Selector (booking.html — Онлайн Броньдау Формасы) */
+/* ID Selector (booking.html — Online Booking Form) */
 #booking-form {
   padding: 2rem;
   background: var(--color-white);
@@ -114,38 +118,120 @@ legend::before, fieldset legend::before {
   max-width: 700px;
 }
 
-/* --------------------------------------------------------------------------
-   LAYOUT 1: FLEXBOX (delivery.html — Жеткізу қадамдары / Advantage карточкалар)
-   -------------------------------------------------------------------------- */
-.delivery-steps, .advantages {
+/* ===========================================================================
+   PAGE TITLE — id: #pageTitle / class: .page-title-wrap  (booking.html)
+   Centering method: Flexbox centering
+   NOTE: about.html's hero heading also carries id="pageTitle", but that
+   page fully restyles it inline (.about-hero-banner h1). Because an ID
+   selector always outranks a class selector, these rules will still win
+   on any property they share with that inline block (e.g. color) — see
+   the "duplicate id" note in the inconsistency report.
+   =========================================================================== */
+#pageTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--color-primary);
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  align-items: center;
   justify-content: center;
+  padding: 2rem 0;
+}
+
+.page-title-wrap {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-title-wrap::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 0.75rem auto 0;
+  border-radius: 2px;
+}
+
+/* ===========================================================================
+   CHEF'S NOTE — class: .chef-note  (about.html)
+   =========================================================================== */
+.chef-note {
+  background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.5rem 2rem;
   margin: 2rem 0;
+  font-style: italic;
 }
 
-.step-card, .advantage-card {
-  flex: 1 1 260px;
-  max-width: 350px;
+.chef-note mark {
+  background: rgba(212, 160, 23, 0.3);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+}
+
+/* ===========================================================================
+   TOP LIST — class: .top-list  (about.html — "Key Stages of Development")
+   =========================================================================== */
+.top-list {
+  counter-reset: top-counter;
+  list-style: none;
+  padding: 0;
+}
+
+.top-list li {
+  counter-increment: top-counter;
+  padding: 1rem 1rem 1rem 3.5rem;
+  margin-bottom: 0.75rem;
   background: var(--color-white);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 2rem 1.5rem;
+  border: 1px solid var(--color-border);
+  position: relative;
+  transition: box-shadow var(--transition);
+}
+
+.top-list li:hover {
   box-shadow: var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.step-card:hover, .advantage-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+.top-list li::before {
+  content: counter(top-counter);
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
-/* --------------------------------------------------------------------------
-   LAYOUT 2: CSS GRID (about.html — Асхана артықшылықтары)
-   -------------------------------------------------------------------------- */
-/* Grid таңдау себебі: Екі өлшемді торды (2 бағанды) тең біркелкі басқару үшін Grid ыңғайлы */
+/* ===========================================================================
+   TERMINOLOGY DL — class: .terms-list  (about.html — Eastern Cuisine Glossary)
+   =========================================================================== */
+.terms-list dt {
+  font-size: 1.05rem;
+  margin-top: 1rem;
+}
+
+.terms-list dd {
+  margin-left: 1.5rem;
+  color: var(--color-text-light);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ===========================================================================
+   ABOUT GRID — Grid Layout (about.html — Team Structure / Glossary columns)
+   Chosen over Flexbox because it manages a 2-column grid evenly.
+   class: .about-grid / .featured-about-item
+   =========================================================================== */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -154,7 +240,7 @@ legend::before, fieldset legend::before {
 }
 
 .featured-about-item {
-  grid-column: span 2; /* Басты блок екі бағанды қатарынан алып тұрады */
+  grid-column: span 2;
   background: var(--color-white);
   padding: 1.5rem;
   border-radius: var(--radius);
@@ -163,20 +249,20 @@ legend::before, fieldset legend::before {
 }
 
 /* --------------------------------------------------------------------------
-   POSITIONING (4 МӘНІ ДЕ ҚАМТЫЛҒАН)
+   POSITIONING (4 values demonstrated)
    -------------------------------------------------------------------------- */
 
 /* 1. Static positioning */
 .static-info {
-  position: static; /* Элемент браузердің табиғи ағынында орналасады */
+  position: static;
 }
 
-/* 2. Relative positioning (Абсолют элемент үшін контейнер) */
+/* 2. Relative positioning (container for an absolute-positioned child) */
 .card-relative {
   position: relative;
 }
 
-/* 3. Absolute positioning (Карточка бұрышындағы бейдж) */
+/* 3. Absolute positioning (corner badge on a card) */
 .card-badge, .badge {
   position: absolute;
   top: 12px;
@@ -198,63 +284,25 @@ legend::before, fieldset legend::before {
   color: var(--color-bg-dark);
 }
 
-/* 4. Fixed positioning (Жоғарыға көтерілу / Жылдам тапсырыс түймесі) */
-.back-to-top, #quickOrder {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 999;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  color: var(--color-white);
-  border: none;
-  padding: 0.8rem 1.4rem;
-  border-radius: 50px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 6px 24px rgba(200, 16, 46, 0.4);
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.back-to-top:hover, #quickOrder:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 32px rgba(200, 16, 46, 0.55);
-}
+/* 4. Fixed positioning — see #quickOrder / .back-to-top in base.css */
 
 /* --------------------------------------------------------------------------
-   FLOAT AND CLEAR
-   -------------------------------------------------------------------------- */
-.float-left {
-  float: left;
-  margin: 0 1.5rem 1rem 0;
-  border-radius: var(--radius);
-  max-width: 320px;
-  box-shadow: var(--shadow);
-}
-
-.clearfix::after {
-  content: '';
-  display: table;
-  clear: both; /* Clear қолданылмаса, астындағы мәтін суреттің астына кіріп, макет бұзылады */
-}
-
-/* --------------------------------------------------------------------------
-   CENTERING (3 ТҮРЛІ ТӘСІЛ)
+   CENTERING (3 different approaches)
    -------------------------------------------------------------------------- */
 
-/* Тәсіл 1: margin: 0 auto (base.css ішінде main-де және форма контейнерінде) */
+/* Method 1: margin: 0 auto */
 .form-centered-container {
   margin: 0 auto;
 }
 
-/* Тәсіл 2: Flexbox centering */
+/* Method 2: Flexbox centering */
 .flex-center-box {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Тәсіл 3: Absolute + Transform centering */
+/* Method 3: Absolute + Transform centering */
 .center-absolute {
   position: absolute;
   top: 50%;
