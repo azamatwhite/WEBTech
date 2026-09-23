@@ -5,193 +5,249 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guest Feedback — Dastarkhan</title>
-    <meta name="description" content="Leave a review or read customer experiences about Dastarkhan6 restaurant.">
+    <meta name="description" content="Leave a review or read customer experiences about Dastarkhan restaurant.">
     <meta name="author" content="Miko">
-    <!-- Page author: Miko. Contains an interactive HTML form for Assignment 1. -->
+
+    <!-- Подключение внешнего файла стилей -->
+    <link rel="stylesheet" href="css/azamat.css">
+    
+    <style>
+        /* Стили для аватарок, прикрепленных фото и мелкой даты */
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d4a359;
+        }
+
+        .review-header h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .review-attached-photo {
+            margin: 10px 0;
+        }
+
+        .review-attached-photo img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #333333;
+            display: block;
+        }
+
+        .review-date {
+            font-size: 11px;
+            color: #888888;
+            margin-top: 6px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- The header groups the site brand and navigation together so that screen readers can identify the top-level site chrome as a single landmark -->
-    <header>
-        <b>Dastarkhan</b>
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <b class="logo">Dastarkhan</b>
         <nav>
-            <ul>
+            <ul class="nav-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="delivery.html">Delivery</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="booking.html">Booking</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
                 <li><a href="careers.html">Careers</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- Anchor links -->
-        <p>Quick navigation:</p>
-        <ul>
-            <li><a href="#reviews-list">Guest Reviews</a></li>
-            <li><a href="#feedback-form-section">Leave a Review</a></li>
-        </ul>
-
-        <h1>Guest Feedback and Reviews</h1>
-
-        <section id="reviews-list">
-            <h2>What Guests Say</h2>
-
-            <!-- Review 1 -->
-            <article>
-                <h3>Tolqyn</h3>
-                <figure>
-                    <img src="images/fb/fb_ima2.jpg" alt="Tolqyn's photo" width="80" height="80">
-                    <figcaption><small>Guest photo</small></figcaption>
-                </figure>
-                <p>
-                    <q>Polished it off all by myself. Not bad, right?</q>
-                </p>
-                <p><time datetime="2026-09-01">September 1, 2026</time></p>
-            </article>
-
-            <hr>
-
-            <!-- Review 2 -->
-            <article>
-                <h3>Dana</h3>
-                <figure>
-                    <img src="images/fb/fb_ima4.jpg" alt="Dana's photo" width="80" height="80">
-                    <figcaption><small>Guest photo</small></figcaption>
-                </figure>
-                <p>
-                    <q>I kissed the hands of the chef who prepared this—tears even welled up in my eyes.</q>
-                </p>
-                <p><time datetime="2026-09-04">September 4, 2026</time></p>
-            </article>
-
-            <hr>
-
-            <!-- Review 3 -->
-            <article>
-                <h3>Toty</h3>
-                <figure>
-                    <img src="images/interior/IMG_1164.JPG" alt="Toty's photo" width="80" height="80">
-                    <figcaption><small>Guest photo</small></figcaption>
-                </figure>
-                <p>
-                    <q>That lamp is flickering in a strange way. I hope it’s not what I think it is—cause, THE FOOD HERE IS SO DELICIOUS.</q>
-                </p>
-                <p><time datetime="2026-09-07">September 7, 2026</time></p>
-            </article>
-
-            <hr>
-
-            <!-- Review 4 -->
-            <article>
-                <h3>Arman</h3>
-                <figure>
-                    <img src="images/fb/fb_ima3.jpg" alt="Arman's photo" width="80" height="80">
-                    <figcaption><small>Guest photo</small></figcaption>
-                </figure>
-                <p>
-                    <q>I went on a date with a girl—AND THE LAGMAN WAS SO DELICIOUS, I WAS ABSOLUTELY BLOWN AWAY BY THE FLAVOR—but otherwise, it was just a standard date.</q>
-                </p>
-                <p><time datetime="2026-09-10">September 10, 2026</time></p>
-            </article>
-
-            <hr>
-
-            <!-- Review 5 -->
-            <article>
-                <h3>Alikhan</h3>
-                <figure>
-                    <img src="images/fb/fb_ima1.jpg" alt="Alikhan's photo" width="80" height="80">
-                    <figcaption><small>Guest photo</small></figcaption>
-                </figure>
-                <p>
-                    <q>Came for a date, left with a wife.</q>
-                </p>
-                <p><time datetime="2026-09-12">September 12, 2026</time></p>
-            </article>
-
-            <br>
-            <aside>
-                <h3>Feedback Note</h3>
-                <p>We read every review to continuously improve our food quality and service.</p>
-            </aside>
+        <!-- Баннер -->
+        <section class="hero">
+            <h1>Guest Feedback and Reviews</h1>
+            <p class="hero-subtitle"><em><strong>We value every guest experience!</strong></em> Read reviews or share your thoughts with us.</p>
         </section>
 
-        <hr>
+        <div class="content-wrapper">
 
-        <section id="feedback-form-section">
-            <h2>Feedback Form</h2>
-            <p>Please complete the form below to share your dining experience with us.</p>
+            <!-- Список отзывов -->
+            <section id="reviews-list">
+                <h2 class="section-heading">What Guests Say</h2>
 
-            <form action="#" method="post">
-                <fieldset>
-                    <legend>Your Review for Dastarkhan</legend>
+                <div class="reviews-container">
+                    <!-- Отзыв 1 -->
+                    <article class="review-card">
+                        <div class="review-header">
+                            <img src="images/fb/ass1.jpeg" alt="Tolqyn avatar" class="review-avatar">
+                            <h3>Tolqyn</h3>
+                        </div>
+                        <div class="review-attached-photo">
+                            <img src="images/fb/fb_ima2.jpg" alt="Review photo by Tolqyn">
+                        </div>
+                        <p>
+                            <q>Polished it off all by myself. Not bad, right?</q>
+                        </p>
+                        <p class="review-date"><time datetime="2026-09-01"><small>September 1, 2026</small></time></p>
+                    </article>
 
-                    <p>
-                        <label for="user-name">Your Full Name *:</label><br>
-                        <input type="text" id="user-name" name="userName" placeholder="Nursultan Nazarbayev" required>
-                    </p>
+                    <hr>
 
-                    <p>
-                        <label for="user-phone">Phone Number:</label><br>
-                        <input type="tel" id="user-phone" name="userPhone" placeholder="+7 (700) 000-00-00">
-                    </p>
+                    <!-- Отзыв 2 -->
+                    <article class="review-card">
+                        <div class="review-header">
+                            <img src="images/fb/ass2.jpeg" alt="Dana avatar" class="review-avatar">
+                            <h3>Dana</h3>
+                        </div>
+                        <div class="review-attached-photo">
+                            <img src="images/fb/fb_ima4.jpg" alt="Review photo by Dana">
+                        </div>
+                        <p>
+                            <q>I kissed the hands of the chef who prepared this—tears even welled up in my eyes.</q>
+                        </p>
+                        <p class="review-date"><time datetime="2026-09-04"><small>September 4, 2026</small></time></p>
+                    </article>
 
-                    <p>
-                        <label for="visit-date">Date of Visit *:</label><br>
-                        <input type="date" id="visit-date" name="visitDate" required>
-                    </p>
+                    <hr>
 
-                    <p>
-                        <label for="service-rating">Service Rating (1 to 5) *:</label><br>
-                        <input type="number" id="service-rating" name="serviceRating" min="1" max="5" value="5"
-                            required>
-                    </p>
+                    <!-- Отзыв 3 -->
+                    <article class="review-card">
+                        <div class="review-header">
+                            <img src="images/fb/ass3.jpeg" alt="Toty avatar" class="review-avatar">
+                            <h3>Toty</h3>
+                        </div>
+                        <div class="review-attached-photo">
+                            <img src="images/interior/IMG_1164.JPG" alt="Review photo by Toty">
+                        </div>
+                        <p>
+                            <q>That lamp is flickering in a strange way. I hope it’s not what I think it is—cause, THE FOOD HERE IS SO DELICIOUS.</q>
+                        </p>
+                        <p class="review-date"><time datetime="2026-09-07"><small>September 7, 2026</small></time></p>
+                    </article>
 
-                    <p>
-                        <label for="review-text">Your Review / Comments *:</label><br>
-                        <textarea id="review-text" name="reviewText" rows="5" cols="40"
-                            placeholder="Write your thoughts about our food and service..." required></textarea>
-                    </p>
+                    <hr>
 
-                    <p>
-                        <label for="consent">
-                            <input type="checkbox" id="consent" name="consent" required>
-                            I consent to publishing this review on the website *
-                        </label>
-                    </p>
+                    <!-- Отзыв 4 -->
+                    <article class="review-card">
+                        <div class="review-header">
+                            <img src="images/fb/ass4.jpeg" alt="Arman avatar" class="review-avatar">
+                            <h3>Arman</h3>
+                        </div>
+                        <div class="review-attached-photo">
+                            <img src="images/fb/fb_ima3.jpg" alt="Review photo by Arman">
+                        </div>
+                        <p>
+                            <q>I went on a date with a girl—AND THE LAGMAN WAS SO DELICIOUS, I WAS ABSOLUTELY BLOWN AWAY BY THE FLAVOR—but otherwise, it was just a standard date.</q>
+                        </p>
+                        <p class="review-date"><time datetime="2026-09-10"><small>September 10, 2026</small></time></p>
+                    </article>
 
-                    <p>
-                        <button type="submit">Submit Review</button>
-                        <button type="reset">Reset Form</button>
-                    </p>
-                </fieldset>
-            </form>
-        </section>
+                    <hr>
 
-        <!-- Additional semantic sections -->
-        <section>
-            <h2>Additional Information</h2>
+                    <!-- Отзыв 5 -->
+                    <article class="review-card">
+                        <div class="review-header">
+                            <img src="images/fb/ass5.jpeg" alt="Alikhan avatar" class="review-avatar">
+                            <h3>Alikhan</h3>
+                        </div>
+                        <div class="review-attached-photo">
+                            <img src="images/fb/fb_ima1.jpg" alt="Review photo by Alikhan">
+                        </div>
+                        <p>
+                            <q>Came for a date, left with a wife.</q>
+                        </p>
+                        <p class="review-date"><time datetime="2026-09-12"><small>September 12, 2026</small></time></p>
+                    </article>
+                </div>
 
-            <!-- Comment for span: Used strictly to highlight the moderation badge without introducing a non-semantic layout wrapper -->
-            <p>All reviews undergo moderation <span class="status-badge">status: pending</span> within 24 hours.</p>
-            
-            <p>Contact Quality Department: <a href="mailto:quality@dastarkhan.kz">quality@dastarkhan.kz</a> or phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
-            <p>Read more reviews on <a href="https://go.2gis.com/qV7JX" target="_blank" rel="noopener noreferrer">2GIS Astana Dastarkhan</a>.</p>
-            <p>All submitted reviews undergo
-                <!-- span used for inline highlighting without adding a new structural section --> <span
-                    class="status-badge">moderation</span> within 24 hours.
-            </p>
-        </section>
+                <br>
+                <aside class="info-block">
+                    <h3>Feedback Note</h3>
+                    <p>We read every review to continuously improve our food quality and service.</p>
+                </aside>
+            </section>
+
+            <hr>
+
+            <!-- Форма обратной связи -->
+            <section id="feedback-form-section">
+                <h2 class="section-heading">Feedback Form</h2>
+                <p>Please complete the form below to share your dining experience with us.</p>
+
+                <form action="#" method="post" class="feedback-form">
+                    <fieldset>
+                        <legend>Your Review for Dastarkhan</legend>
+
+                        <p>
+                            <label for="user-name">Your Full Name *:</label><br>
+                            <input type="text" id="user-name" name="userName" placeholder="Nursultan Nazarbayev" required>
+                        </p>
+
+                        <p>
+                            <label for="user-phone">Phone Number:</label><br>
+                            <input type="tel" id="user-phone" name="userPhone" placeholder="+7 (700) 000-00-00">
+                        </p>
+
+                        <p>
+                            <label for="visit-date">Date of Visit *:</label><br>
+                            <input type="date" id="visit-date" name="visitDate" required>
+                        </p>
+
+                        <p>
+                            <label for="service-rating">Service Rating (1 to 5) *:</label><br>
+                            <input type="number" id="service-rating" name="serviceRating" min="1" max="5" value="5" required>
+                        </p>
+
+                        <p>
+                            <label for="review-text">Your Review / Comments *:</label><br>
+                            <textarea id="review-text" name="reviewText" rows="5" cols="40" placeholder="Write your thoughts about our food and service..." required></textarea>
+                        </p>
+
+                        <p>
+                            <label for="consent">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                I consent to publishing this review on the website *
+                            </label>
+                        </p>
+
+                        <p class="form-buttons">
+                            <button type="submit" class="btn-submit">Submit Review</button>
+                            <button type="reset" class="btn-reset">Reset Form</button>
+                        </p>
+                    </fieldset>
+                </form>
+            </section>
+
+            <hr>
+
+            <!-- Дополнительная информация -->
+            <section>
+                <h2 class="section-heading">Additional Information</h2>
+
+                <p>All submitted reviews undergo <span class="status-badge">moderation</span> within 24 hours.</p>
+                <p>Contact Quality Department: <a href="mailto:quality@dastarkhan.kz">quality@dastarkhan.kz</a> or phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
+                <p>Read more reviews on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener noreferrer">2GIS Astana Dastarkhan</a>.</p>
+            </section>
+        </div>
     </main>
 
-    <footer>
-        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://go.2gis.com/qV7JX" target="_blank" rel="noopener">2GIS</a>.</p>
+    <!-- Плавающая кнопка вызова -->
+    <a href="tel:+77172319595" id="quickOrder">Call Now</a>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener">2GIS</a>.</p>
         <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
         <p>&copy; 2026 Dastarkhan Restaurant.</p>
     </footer>

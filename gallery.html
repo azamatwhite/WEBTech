@@ -2,203 +2,151 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interior gallery, traditional oriental atmosphere, composition, and allergens of dishes at Dastarkhan restaurant in Astana.">
-    <meta name="author" content="Miko">
-    <title>Gallery &amp; Allergen Guide — Dastarkhan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo Gallery for Dastarkhan Restaurant in Astana">
+  <meta name="author" content="Miko">
+  
+  <!-- Подключение внешнего CSS-файла -->
+  <link rel="stylesheet" href="css/azamat.css">
+  
+  <title>Gallery - Dastarkhan</title>
 </head>
 
 <body>
+  <!-- Шапка сайта -->
+  <header class="site-header">
+    <b class="logo">Dastarkhan</b>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header>
-        <b>Dastarkhan</b>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="careers.html">Careers</a></li>
-            </ul>
-        </nav>
-    </header>
+  <main>
+    <!-- Hero section -->
+    <section class="hero">
+      <h1>Photo Gallery</h1>
+      <p class="hero-subtitle"><em><strong>Experience the true taste of the East!</strong></em> We bring the feast to your door.</p>
+    </section>
 
-    <main>
-        <!-- Internal quick navigation links -->
-        <p>Quick navigation: 
-            <a href="#interior-section">Go to Interior Gallery</a> | 
-            <a href="#allergens-section">Go to Composition &amp; Allergens</a>
-        </p>
-
-        <h1>Restaurant Interior &amp; Dish Composition</h1>
-
-        <section id="interior-section">
-            <h2>Atmosphere &amp; Traditional Interior</h2>
-            
-            <article>
-                <h3>Authentic Oriental Design in Astana</h3>
-                <p>
-                    The interior of <strong>Dastarkhan</strong> is designed in a warm, traditional Kazakh and Oriental style. 
-                    Featuring rich wood, handmade tapestries, and comfortable seating, we created an atmosphere where family feasts and business meetings feel equally welcoming.
-                </p>
-                <p>
-                    Our spacious dining halls include private VIP rooms for special occasions and main halls decorated with authentic Kazakh motifs.
-                </p>
-            </article>
-
-            <aside>
-                <h4>Atmosphere Note</h4>
-                <p>
-                    Guests enjoy traditional background instrumental music while dining, and our halls are illuminated with warm ambient lighting during evening hours.
-                </p>
-            </aside>
-
-            <!-- 4 photos arranged in a 2x2 grid using pure HTML table -->
-            <table border="0">
-                <caption>Interior and Exterior Photo Gallery</caption>
-                <tr>
-                    <td>
-                        <figure>
-                            <img src="images/interior/IMG_1167.jpg" width="350" height="250" alt="Main dining area at Dastarkhan with oriental decor">
-                            <figcaption>Entrance to our restaurant</figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure>
-                            <img src="images/interior/IMG_1163.jpg" width="350" height="250" alt="Cozy VIP room seating with traditional carpets">
-                            <figcaption>Main hall in an Oriental style</figcaption>
-                        </figure>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <figure>
-                            <img src="images/interior/IMG_1160.jpg" width="350" height="250" alt="Dastarkhan restaurant exterior and main entrance on Dostyk Street">
-                            <figcaption>VIP private lounge</figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure>
-                            <img src="images/interior/IMG_1171.jpg" width="350" height="250" alt="Open kitchen view where chefs prepare plov and lagman">
-                            <figcaption>Other locations of our restaurant</figcaption>
-                        </figure>
-                    </td>
-                </tr>
-            </table>
-        </section>
-
-        <hr>
-
-        <section id="allergens-section">
-            <h2>Dish Composition &amp; Allergen Guide</h2>
-            
-            <p>
-                We value our guests' health and safety. Below is a detailed breakdown of ingredients and potential allergens for our most popular traditional dishes.
-            </p>
-
-            <!-- Mandatory table with caption, thead, tbody, and th scope -->
-            <table border="1">
-                <caption>Composition and Allergen Analysis of Traditional Dishes</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Dish Name</th>
-                        <th scope="col">Main Ingredients</th>
-                        <th scope="col">Potential Allergens</th>
-                        <th scope="col">Calories (per 100<abbr title="grams">g</abbr>)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Special Lagman</th>
-                        <td>Handmade wheat noodles, beef, bell peppers, garlic, house broth</td>
-                        <td>Gluten, garlic</td>
-                        <td>190 <abbr title="kilocalories">kcal</abbr></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Festive Tashkent Plov</th>
-                        <td>Devzira rice, tender lamb, yellow carrots, chickpeas, raisins, zira</td>
-                        <td>Sesame (oil), raisins</td>
-                        <td>240 <abbr title="kilocalories">kcal</abbr></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Traditional Manty</th>
-                        <td>Minced beef and lamb, thin dough, onion, black pepper</td>
-                        <td>Gluten, onion</td>
-                        <td>210 <abbr title="kilocalories">kcal</abbr></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p><small>* If you have severe food allergies, please inform your waiter before placing an order.</small></p>
-
-            <h3>Hall Zones</h3>
-            <ul>
-                <li>Main Dining Hall
-                    <ul>
-                        <li>Tables near panoramic windows</li>
-                        <li>Central booths for 4–6 guests</li>
-                    </ul>
-                </li>
-                <li>VIP Halls
-                    <ul>
-                        <li>East Hall (up to 12 guests)</li>
-                        <li>Khan Room (up to 20 guests)</li>
-                    </ul>
-                </li>
-                <li>Tea Lounge</li>
-            </ul>
-
-            <h3>Directions to Our Restaurant</h3>
-            <ol start="1">
-                <li>Arrive at Dostyk Street near the central park area.</li>
-                <li>Look for the traditional illuminated Dastarkhan sign.</li>
-                <li>Free guest parking is available behind the main building.</li>
-            </ol>
-
-            <h3>Eastern Culinary Terms</h3>
-            <dl>
-                <dt><strong>Kazan</strong></dt>
-                <dd>A large cast-iron cooking pot traditionally used across Central Asia to prepare plov and meat dishes.</dd>
-                <dt><strong>Shero</strong></dt>
-                <dd>A rich, highly seasoned noodle broth infused with garlic and fresh green herbs.</dd>
-            </dl>
-        </section>
-
-        <section>
-            <h2>Quotes &amp; Quality Notes</h2>
-            <p>
-                Our Administrator <b>Erlan</b> highlights: <i>“True Kazakh hospitality starts with a hot pot of tea and fresh baursaks.”</i> 
-                Our team brews mineral H<sub>2</sub>O tea at temperatures over 100<sup>o</sup>C for maximum flavor.
-            </p>
-
-            <blockquote cite="https://dastarkhan.kz">
-                <p>“We designed Dastarkhan so that every visitor feels like a honored guest in a traditional Kazakh home.”</p>
-            </blockquote>
-            <p>— Interview with the venue founder (date: February 12, 2026).</p>
-
-            <p>Chef's note: <q>Traditional taste requires patience and zero shortcuts.</q></p>
-        </section>
-
-        <!-- Comment explaining span/div usage -->
-        <!-- The div tag is used here strictly to wrap contact details as no specific semantic layout wrapper exists -->
-        <div class="contacts-block">
-            <p>For banquet reservations email us at: <a href="mailto:info@dastarkhan.kz">info@dastarkhan.kz</a> or call: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
-            <p>View location and directions on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener noreferrer">2GIS Astana Dastarkhan</a>.</p>
+    <div class="content-wrapper">
+      
+      <!-- Секция 1: Ресторан и Интерьер -->
+      <section>
+        <h2 class="section-heading">Restaurant &amp; Atmosphere</h2>
+        
+        <!-- Вложенный список (Nested List) из изображения -->
+        <div class="info-block">
+          <h3>Hall Zones</h3>
+          <ul>
+            <li>Main Dining Hall
+              <ul>
+                <li>Tables near panoramic windows</li>
+                <li>Central booths for 4–6 guests</li>
+              </ul>
+            </li>
+            <li>VIP Halls
+              <ul>
+                <li>East Hall (up to 12 guests)</li>
+                <li>Khan Room (up to 20 guests)</li>
+              </ul>
+            </li>
+            <li>Tea Lounge</li>
+          </ul>
         </div>
 
-        <p>HTML Entities used on this page: &copy; (copyright), &trade; (trademark), &amp; (ampersand), &infin; (infinity).</p>
-    </main>
+        <!-- 4 Фотографии -->
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/interior/IMG_1160.jpg" alt="Dastarkhan Interior 1">
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1161.jpg" alt="Dastarkhan Interior 2">
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1162.jpg" alt="Dastarkhan Interior 3">
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1163.jpg" alt="Dastarkhan Interior 4">
+          </figure>
+        </div>
+      </section>
 
-    <footer>
-        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener">2GIS</a>.</p>
-        <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
-        <p>&copy; 2026 Dastarkhan Restaurant.</p>
-    </footer>
+      <hr>
 
+      <!-- Секция 2: Кухня и Фирменные Блюда -->
+      <section>
+        <h2 class="section-heading">Main Dishes &amp; Eastern Cuisine</h2>
+        
+        <div class="info-block">
+          <h3>Hall Zones</h3>
+          <ul>
+            <li>Main Dining Hall
+              <ul>
+                <li>Tables near panoramic windows</li>
+                <li>Central booths for 4–6 guests</li>
+              </ul>
+            </li>
+            <li>VIP Halls
+              <ul>
+                <li>East Hall (up to 12 guests)</li>
+                <li>Khan Room (up to 20 guests)</li>
+              </ul>
+            </li>
+            <li>Tea Lounge</li>
+          </ul>
+        </div>
+
+        <!-- 4 Фотографии -->
+        <div class="gallery-grid">
+          <figure>
+            <img src="images/interior/IMG_1170.jpg" alt="Festive Plov">
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1171.jpg" alt="Chayhana Plov">
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1172.jpg" alt="Traditional Beshbarmak">
+          </figure>
+          <figure>
+            <img src="images/interior/IMG_1173.jpg" alt="Steamed Manti">
+          </figure>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Нумерованный список из изображения: Как добраться -->
+      <section>
+        <h2 class="section-heading">Directions to Our Restaurant</h2>
+        <ol start="1">
+          <li>Arrive at Dostyk Street near the central park area.</li>
+          <li>Look for the traditional illuminated Dastarkhan sign.</li>
+          <li>Free guest parking is available behind the main building.</li>
+        </ol>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Кнопка вызова -->
+  <a href="tel:+77172319595" id="quickOrder">Call Now</a>
+
+  <!-- Подвал сайта -->
+  <footer class="site-footer">
+    <p>Follow us on <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank" rel="noopener">2GIS</a>.</p>
+    <p>Phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a></p>
+    <p>&copy; 2026 Dastarkhan Restaurant</p>
+  </footer>
 </body>
 
 </html>
