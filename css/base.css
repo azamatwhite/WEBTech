@@ -48,7 +48,12 @@ body {
   font-size: 16px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
   color: var(--color-primary);
@@ -168,6 +173,12 @@ main {
    Used by: index, careers, delivery, gallery, feedback
    =========================================================================== */
 .hero {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   background: linear-gradient(135deg, var(--color-bg-dark) 0%, #2c1a10 100%);
   color: var(--color-white);
   padding: 4rem 2rem;
@@ -198,7 +209,8 @@ main {
   justify-content: center;
   padding: 3rem 2rem;
   max-width: 1200px;
-  margin: 0 auto; /* Centering method: margin auto */
+  margin: 0 auto;
+  /* Centering method: margin auto */
 }
 
 .advantage-card {
@@ -367,7 +379,9 @@ textarea {
 .form-row input:focus,
 .form-row select:focus,
 .form-row textarea:focus,
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.12);
