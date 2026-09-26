@@ -109,14 +109,7 @@ legend::before, fieldset legend::before {
 }
 
 /* ID Selector (booking.html — Online Booking Form) */
-#booking-form {
-  padding: 2rem;
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  max-width: 700px;
-}
+
 
 /* ===========================================================================
    PAGE TITLE — id: #pageTitle / class: .page-title-wrap  (booking.html)
@@ -127,20 +120,6 @@ legend::before, fieldset legend::before {
    on any property they share with that inline block (e.g. color) — see
    the "duplicate id" note in the inconsistency report.
    =========================================================================== */
-#pageTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 0;
-}
-
-.page-title-wrap {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
 
 .page-title-wrap::after {
   content: '';
@@ -308,4 +287,39 @@ legend::before, fieldset legend::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.data-table caption {
+  padding: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: left;
+}
+
+.data-table thead tr {
+  background: var(--color-bg-dark);
+  color: var(--color-white);
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
 }
