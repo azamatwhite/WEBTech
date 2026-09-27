@@ -2,171 +2,219 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Careers at Dastarkhan - Join our team and build a career in authentic Eastern hospitality.">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/azamat.css">
-    <link rel="icon" href="images/favicon.png" type="image/png">
-    <title>Careers — Dastarkhan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Careers at Dastarkhan - Join our team and build a career in authentic Eastern hospitality.">
+  <meta name="author" content="Azamat">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/azamat.css">
+  <!-- Bootstrap v5.3.3 CSS loaded first, followed by custom base.css and azamat.css for brand overrides -->
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <title>Careers — Dastarkhan</title>
 </head>
 
 <body>
-    <header class="site-header">
-        <a href="index.html" class="logo">
-            <img src="images/logo.png" alt="Dastarkhan Logo">
-        </a>
-        <nav>
-            <ul class="nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="delivery.html">Delivery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="careers.html" class="active">Careers</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
+      <a href="index.html" class="navbar-brand logo">
+        <img src="images/logo.png" alt="Dastarkhan Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-    <main>
-        <!-- Hero section — reuses the same .hero treatment as delivery.html -->
-        <section class="hero">
-            <h1>Join Our Team</h1>
-            <p class="hero-subtitle"><em><strong>Build a career in authentic Eastern hospitality.</strong></em></p>
-        </section>
+  <main>
+    <!-- Hero section — container-fluid for full-width banner -->
+    <div class="container-fluid p-0">
+      <section class="hero">
+        <h1 class="display-4">Join Our Team</h1>
+        <p class="lead hero-subtitle"><em><strong>Build a career in authentic Eastern hospitality.</strong></em></p>
+      </section>
+    </div>
 
-        <div class="content-wrapper">
+    <div class="container my-5">
+      <section class="my-5">
+        <h2 class="section-heading">Build a Career in Eastern Hospitality</h2>
+        <p class="lead">Dastarkhan is growing! We are always looking for passionate, hardworking individuals who love
+          authentic Eastern and Kazakh national cuisine to join our family. Whether you are an experienced
+          chef or looking for your first job in the restaurant industry, we have a place for you.</p>
 
-            <section>
-                <h2 class="section-heading">Build a Career in Eastern Hospitality</h2>
-                <p>Dastarkhan is growing! We are always looking for passionate, hardworking individuals who love
-                    authentic Eastern and Kazakh national cuisine to join our family. Whether you are an experienced
-                    chef or looking for your first job in the restaurant industry, we have a place for you.</p>
+        <h3 class="h4 mt-5 mb-4">Why Work With Us?</h3>
 
-                <h3
-                    style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; color: var(--color-primary);">
-                    Why Work With Us?</h3>
-
-                <!-- Reuses the .advantages / .advantage-card component from delivery.html -->
-                <div class="advantages"
-                    style="padding: 1.5rem 0; justify-content: flex-start; max-width: none; margin: 0;">
-                    <div class="advantage-card">
-                        <h3>Competitive Salary</h3>
-                        <p>We offer great pay and fair compensation for all our staff.</p>
-                    </div>
-                    <div class="advantage-card">
-                        <h3>Free Staff Meals</h3>
-                        <p>Enjoy our delicious lagman, plov, and more during your shifts.</p>
-                    </div>
-                    <div class="advantage-card">
-                        <h3>Career Growth</h3>
-                        <p>We believe in promoting from within and training our team.</p>
-                    </div>
-                    <div class="advantage-card">
-                        <h3>Friendly Atmosphere</h3>
-                        <p>Work in a supportive, respectful, and fast-paced environment.</p>
-                    </div>
-                </div>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2 class="section-heading">Open Positions</h2>
-
-                <!-- New page-specific component: .positions-grid / .position-card (see azamat.css §27) -->
-                <div class="positions-grid">
-                    <article class="position-card">
-                        <h3>Line Cooks / Chefs</h3>
-                        <p>Prepare our authentic dishes! Experience with kazans, pulling lagman dough, or grilling
-                            shashlyk is a big plus.</p>
-                    </article>
-
-                    <article class="position-card">
-                        <h3>Waitstaff / Servers</h3>
-                        <p>Provide excellent customer service, guide guests through our menu, and ensure they experience
-                            true Eastern hospitality.</p>
-                    </article>
-
-                    <article class="position-card">
-                        <h3>Host / Hostess</h3>
-                        <p>Be the welcoming face of Dastarkhan! Greet guests, manage reservations, and seat them
-                            comfortably.</p>
-                    </article>
-
-                    <article class="position-card">
-                        <h3>Cleaning Staff / Dishwashers</h3>
-                        <p>Keep our restaurant sparkling clean. Responsible for doing the dishes, cleaning the kitchen,
-                            and maintaining a hygienic dining hall.</p>
-                    </article>
-
-                    <article class="position-card">
-                        <h3>Delivery Couriers</h3>
-                        <p>Deliver our hot food safely and on time to our customers across Astana.</p>
-                    </article>
-                </div>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2 class="section-heading">Apply Now</h2>
-                <p>Fill out the form below to apply for a position. We will get back to you soon!</p>
-
-                <form method="get" action="#">
-                    <fieldset>
-                        <legend>Applicant Information</legend>
-                        <div class="form-row">
-                            <label for="appName">Full Name:</label>
-                            <input type="text" id="appName" name="appName" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="appPhone">Phone Number:</label>
-                            <input type="tel" id="appPhone" name="appPhone" placeholder="+7 700 000 00 00" required>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Position Details</legend>
-                        <div class="form-row">
-                            <label for="positionSelect">Position of Interest:</label>
-                            <select id="positionSelect" name="positionSelect" required>
-                                <option value="" disabled selected>Select a position...</option>
-                                <option value="chef">Line Cook / Chef</option>
-                                <option value="waiter">Waitstaff / Server</option>
-                                <option value="host">Host / Hostess</option>
-                                <option value="cleaner">Cleaning Staff / Dishwasher</option>
-                                <option value="courier">Delivery Courier</option>
-                            </select>
-                        </div>
-                        <div class="form-row">
-                            <label for="appExperience">Brief Experience / Cover Letter:</label>
-                            <textarea id="appExperience" name="appExperience" rows="5"
-                                placeholder="Tell us a bit about your experience..."></textarea>
-                        </div>
-                    </fieldset>
-
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn--primary"><span>Submit Application</span></button>
-                    </div>
-                </form>
-            </section>
-
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 my-3">
+          <div class="col">
+            <div class="card advantage-card text-center p-4 shadow-sm h-100 border-0">
+              <div class="card-body p-0">
+                <h3 class="h5">Competitive Salary</h3>
+                <p class="card-text text-muted">We offer great pay and fair compensation for all our staff.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card advantage-card text-center p-4 shadow-sm h-100 border-0">
+              <div class="card-body p-0">
+                <h3 class="h5">Free Staff Meals</h3>
+                <p class="card-text text-muted">Enjoy our delicious lagman, plov, and more during your shifts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card advantage-card text-center p-4 shadow-sm h-100 border-0">
+              <div class="card-body p-0">
+                <h3 class="h5">Career Growth</h3>
+                <p class="card-text text-muted">We believe in promoting from within and training our team.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card advantage-card text-center p-4 shadow-sm h-100 border-0">
+              <div class="card-body p-0">
+                <h3 class="h5">Friendly Atmosphere</h3>
+                <p class="card-text text-muted">Work in a supportive, respectful, and fast-paced environment.</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </main>
+      </section>
 
-    <footer class="site-footer">
-        <p>Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5" target="_blank"
-                rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-                rel="noopener">2GIS</a>.</p>
-        <p>Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
-                href="tel:+77788710792">+7-778-871-07-92</a></p>
-        <p>&copy; 2026 Dastarkhan Restaurant</p>
-    </footer>
+      <hr class="my-5">
 
+      <section class="my-5">
+        <h2 class="section-heading">Open Positions</h2>
+
+        <!-- Responsive cards grid for positions -->
+        <div class="row row-cols-1 row-cols-md-2 g-4 my-3">
+          <div class="col">
+            <article class="card p-4 shadow-sm h-100 border-0">
+              <h3 class="h4 text-primary mb-2">Line Cooks / Chefs</h3>
+              <p class="text-muted mb-0">Prepare our authentic dishes! Experience with kazans, pulling lagman dough, or
+                grilling
+                shashlyk is a big plus.</p>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card p-4 shadow-sm h-100 border-0">
+              <h3 class="h4 text-primary mb-2">Waitstaff / Servers</h3>
+              <p class="text-muted mb-0">Provide excellent customer service, guide guests through our menu, and ensure
+                they experience
+                true Eastern hospitality.</p>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card p-4 shadow-sm h-100 border-0">
+              <h3 class="h4 text-primary mb-2">Host / Hostess</h3>
+              <p class="text-muted mb-0">Be the welcoming face of Dastarkhan! Greet guests, manage reservations, and
+                seat them
+                comfortably.</p>
+            </article>
+          </div>
+
+          <div class="col">
+            <article class="card p-4 shadow-sm h-100 border-0">
+              <h3 class="h4 text-primary mb-2">Cleaning Staff / Dishwashers</h3>
+              <p class="text-muted mb-0">Keep our restaurant sparkling clean. Responsible for doing the dishes, cleaning
+                the kitchen,
+                and maintaining a hygienic dining hall.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-12">
+            <article class="card p-4 shadow-sm h-100 border-0">
+              <h3 class="h4 text-primary mb-2">Delivery Couriers</h3>
+              <p class="text-muted mb-0">Deliver our hot food safely and on time to our customers across Astana.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-5">
+
+      <section class="my-5">
+        <h2 class="section-heading">Apply Now</h2>
+        <p>Fill out the form below to apply for a position. We will get back to you soon!</p>
+
+        <div class="card p-4 shadow-sm border-0">
+          <form method="get" action="#">
+            <fieldset class="mb-4">
+              <legend class="h4 mb-3">Applicant Information</legend>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="appName" class="form-label fw-medium">Full Name:</label>
+                  <input type="text" id="appName" name="appName" placeholder="Your Name" required class="form-control">
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="appPhone" class="form-label fw-medium">Phone Number:</label>
+                  <input type="tel" id="appPhone" name="appPhone" placeholder="+7 700 000 00 00" required
+                    class="form-control">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="mb-4">
+              <legend class="h4 mb-3">Position Details</legend>
+              <div class="mb-3">
+                <label for="positionSelect" class="form-label fw-medium">Position of Interest:</label>
+                <select id="positionSelect" name="positionSelect" required class="form-select">
+                  <option value="" disabled selected>Select a position...</option>
+                  <option value="chef">Line Cook / Chef</option>
+                  <option value="waiter">Waitstaff / Server</option>
+                  <option value="host">Host / Hostess</option>
+                  <option value="cleaner">Cleaning Staff / Dishwasher</option>
+                  <option value="courier">Delivery Courier</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="appExperience" class="form-label fw-medium">Brief Experience / Cover Letter:</label>
+                <textarea id="appExperience" name="appExperience" rows="5"
+                  placeholder="Tell us a bit about your experience..." class="form-control"></textarea>
+              </div>
+            </fieldset>
+
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <button type="submit" class="btn btn-primary btn-lg px-4">Submit Application</button>
+              <button type="button" class="btn btn-secondary btn-lg px-4" disabled>Save Draft</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Quick Order button — position: fixed -->
+  <a href="tel:+77172319595" id="quickOrder"
+    class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow">Call Now</a>
+
+  <footer class="site-footer">
+    <div class="container text-center text-md-start">
+      <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
+          target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
+          rel="noopener">2GIS</a>.</p>
+      <p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
+          href="tel:+77788710792">+7-778-871-07-92</a></p>
+      <p class="mb-0">&copy; 2026 Dastarkhan Restaurant</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
