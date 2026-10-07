@@ -1,206 +1,179 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Table reservation form for Dastarkhan restaurant in Astana. Book your table online easily.">
-  <meta name="author" content="Ruslan">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <!-- Bootstrap v5.3.3 CSS loaded first, followed by custom base.css and ruslan.css for brand overrides -->
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <title>Booking — Dastarkhan</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Dastarkhan - Authentic Eastern and Kazakh national cuisine in Astana. Find our locations and opening hours." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Bootstrap 5.3.3 CSS first, then base.css (brand overrides) -->
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="images/favicon.png" rel="icon" type="image/png"/>
+<title>Booking — Dastarkhan</title>
 </head>
-
 <body class="d-flex flex-column min-vh-100">
-  <!-- Header & Navigation -->
-  <header class="sticky-top shadow bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand d-inline-flex align-items-center">
-        <img src="images/logo.png" alt="Dastarkhan Logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="booking.html">Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main class="flex-grow-1">
-    <!-- Hero Banner — container-fluid for viewport-wide banner -->
-    <div class="container-fluid p-0">
-      <section class="hero text-center py-5 px-4">
-        <h1 class="display-4 text-white">Table Reservation</h1>
-        <p class="lead text-warning mb-3">Book your cozy dining experience with authentic Eastern hospitality</p>
-      </section>
-    </div>
-
-    <!-- Booking Content Container -->
-    <div class="container my-5">
-      <div class="row g-4">
-        <!-- LEFT COLUMN: Info Card with Nested Row for Mini Gallery -->
-        <div class="col-12 col-lg-6">
-          <div class="card p-4 shadow-sm h-100 border-0">
-            <h2 class="h3 mb-3">Our Dining Zones</h2>
-            <p class="text-muted">
+<!-- Header & Navigation -->
+<header class="sticky-top shadow bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+<a class="navbar-brand d-inline-flex align-items-center" href="index.html">
+<img alt="Dastarkhan Logo" class="w-auto" height="48" src="images/logo.png" width="44"/>
+</a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+<li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+<li class="nav-item"><a aria-current="page" class="nav-link active" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+<li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+<li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow-1">
+<!-- Hero Banner — container-fluid for viewport-wide banner -->
+<div class="container-fluid p-0">
+<section class="hero text-center py-5 px-4">
+<h1 class="display-4 text-white">Table Reservation</h1>
+<p class="lead text-warning mb-3">Book your cozy dining experience with authentic Eastern hospitality</p>
+</section>
+</div>
+<!-- Booking Content Container -->
+<div class="container my-5">
+<div class="row g-4">
+<!-- LEFT COLUMN: Info Card with Nested Row for Mini Gallery -->
+<div class="col-12 col-lg-6">
+<div class="card p-4 shadow-sm h-100 border-0">
+<h2 class="h3 mb-3">Our Dining Zones</h2>
+<p class="text-muted">
               Reserve a table in advance to enjoy authentic national and oriental cuisine in our comfortable main
               hall, oriental tapchan zone, or private VIP room.
             </p>
-
-            <!-- Nested row inside column for mini gallery thumbnails -->
-            <div class="row row-cols-3 g-2 mb-4">
-              <div class="col text-center">
-                <img src="images/interior/IMG_1170.jpg" alt="Main Hall" class="img-fluid rounded shadow-sm mb-1">
-                <span class="d-block small fw-bold text-primary mt-1">Main Hall</span>
-              </div>
-              <div class="col text-center">
-                <img src="images/interior/IMG_1157.jpg" alt="Tapchan Area" class="img-fluid rounded shadow-sm mb-1">
-                <span class="d-block small fw-bold text-primary mt-1">Tapchan</span>
-              </div>
-              <div class="col text-center">
-                <img src="images/interior/IMG_1160.jpg" alt="VIP Room" class="img-fluid rounded shadow-sm mb-1">
-                <span class="d-block small fw-bold text-primary mt-1">VIP Room</span>
-              </div>
-            </div>
-
-            <h3 class="h5">Reservation Policy:</h3>
-            <ul class="text-muted mb-4 ps-4 lh-lg">
-              <li>Table retention time is <strong>20 minutes</strong> from the reserved hour.</li>
-              <li>For groups over 10 guests, an advance deposit may be requested.</li>
-              <li>VIP rooms require a minimum order limit per person.</li>
-              <li>No outside food or beverages are permitted.</li>
-            </ul>
-
-            <hr class="my-4">
-
-            <h3 class="h5">Instant Assistance:</h3>
-            <p class="mb-0">
-              <strong>Hostess Desk:</strong> <a href="tel:+77172319595">+7 (7172) 31-95-95</a><br>
-              <strong>Working Hours:</strong> Mon-Sun, 11:00 – 23:00
+<!-- Nested row inside column for mini gallery thumbnails -->
+<div class="row row-cols-3 g-2 mb-4">
+<div class="col text-center">
+<img alt="Main Hall" class="img-fluid rounded shadow-sm mb-1" height="1280" loading="lazy" src="images/interior/IMG_1170.jpg" width="860"/>
+<span class="d-block small fw-bold text-primary mt-1">Main Hall</span>
+</div>
+<div class="col text-center">
+<img alt="Tapchan Area" class="img-fluid rounded shadow-sm mb-1" height="1280" loading="lazy" src="images/interior/IMG_1157.jpg" width="901"/>
+<span class="d-block small fw-bold text-primary mt-1">Tapchan</span>
+</div>
+<div class="col text-center">
+<img alt="VIP Room" class="img-fluid rounded shadow-sm mb-1" height="850" loading="lazy" src="images/interior/IMG_1160.jpg" width="1280"/>
+<span class="d-block small fw-bold text-primary mt-1">VIP Room</span>
+</div>
+</div>
+<h3 class="h5">Reservation Policy:</h3>
+<ul class="text-muted mb-4 ps-4 lh-lg">
+<li>Table retention time is <strong>20 minutes</strong> from the reserved hour.</li>
+<li>For groups over 10 guests, an advance deposit may be requested.</li>
+<li>VIP rooms require a minimum order limit per person.</li>
+<li>No outside food or beverages are permitted.</li>
+</ul>
+<hr class="my-4"/>
+<h3 class="h5">Instant Assistance:</h3>
+<p class="mb-0">
+<strong>Hostess Desk:</strong> <a href="tel:+77172319595">+7 (7172) 31-95-95</a><br/>
+<strong>Working Hours:</strong> Mon-Sun, 11:00 – 23:00
             </p>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: Booking Form -->
-        <div class="col-12 col-lg-6">
-          <div class="card p-4 shadow-sm border-0">
-            <form id="booking-form" method="post" action="#">
-              <fieldset>
-                <legend class="h4 mb-4">Booking Details</legend>
-
-                <div class="mb-3">
-                  <label for="guest-name" class="form-label fw-medium">Full Name:</label>
-                  <input type="text" id="guest-name" name="name" placeholder="John Doe" required class="form-control">
-                </div>
-
-                <div class="mb-3">
-                  <label for="guest-email" class="form-label fw-medium">Email Address:</label>
-                  <input type="email" id="guest-email" name="email" placeholder="example@gmail.com" required
-                    class="form-control">
-                </div>
-
-                <div class="mb-3">
-                  <label for="guest-phone" class="form-label fw-medium">Phone Number:</label>
-                  <input type="tel" id="guest-phone" name="phone" placeholder="+7 (7172) 31-95-95" required
-                    class="form-control">
-                </div>
-
-                <div class="mb-3">
-                  <label for="guest-count" class="form-label fw-medium">Number of Guests:</label>
-                  <input type="number" id="guest-count" name="guests" min="1" max="20" placeholder="4" required
-                    class="form-control">
-                </div>
-
-                <div class="mb-3">
-                  <label for="booking-date" class="form-label fw-medium">Visit Date:</label>
-                  <input type="date" id="booking-date" name="date" required class="form-control">
-                </div>
-
-                <div class="mb-3">
-                  <label class="form-label fw-medium d-block">Preferred Zone:</label>
-                  <div class="d-flex flex-wrap gap-3">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="zone" id="zoneHall" value="hall" checked>
-                      <label class="form-check-label" for="zoneHall">Main Hall</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="zone" id="zoneTapchan" value="tapchan">
-                      <label class="form-check-label" for="zoneTapchan">Tapchan Area</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="zone" id="zoneVIP" value="vip">
-                      <label class="form-check-label" for="zoneVIP">VIP Room</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" name="high_chair" id="highChair">
-                  <label class="form-check-label" for="highChair">Require a child high chair</label>
-                </div>
-
-                <div class="mb-3">
-                  <label for="booking-time" class="form-label fw-medium">Time Slot:</label>
-                  <select id="booking-time" name="time" required class="form-select">
-                    <option value="">Select time slot</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                  <label for="special-wishes" class="form-label fw-medium">Special Requests:</label>
-                  <textarea id="special-wishes" name="wishes" rows="3"
-                    placeholder="Specify any dietary requirements, anniversary celebration, or guest preferences..."
-                    class="form-control"></textarea>
-                </div>
-
-                <div class="d-flex gap-2 mt-4">
-                  <button type="submit" class="btn btn-primary px-4">Submit Booking</button>
-                  <button type="reset" class="btn btn-outline-secondary px-4">Reset</button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Floating Top Button -->
-  <a href="#" class="btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow"
-    id="backToTop">Top ↑</a>
-
-  <!-- Footer -->
-  <footer class="site-footer bg-dark py-5 mt-5">
-    <div class="container text-center text-md-start">
-      <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
-          target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-          rel="noopener">2GIS</a>.</p>
-      <p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
-          href="tel:+77788710792">+7-778-871-07-92</a></p>
-      <p class="mb-0">&copy; 2026 Dastarkhan Restaurant</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</div>
+<!-- RIGHT COLUMN: Booking Form -->
+<div class="col-12 col-lg-6">
+<div class="card p-4 shadow-sm border-0">
+&lt;!-- TODO: connect to backend when available --&gt;
+<form action="#" id="booking-form" method="post">
+<fieldset>
+<legend class="h4 mb-4">Booking Details</legend>
+<div class="mb-3">
+<label class="form-label fw-medium" for="guest-name">Full Name:</label>
+<input class="form-control" id="guest-name" name="name" placeholder="John Doe" required="" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="guest-email">Email Address:</label>
+<input class="form-control" id="guest-email" name="email" placeholder="example@gmail.com" required="" type="email"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="guest-phone">Phone Number:</label>
+<input class="form-control" id="guest-phone" name="phone" placeholder="+7 (7172) 31-95-95" required="" type="tel"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="guest-count">Number of Guests:</label>
+<input class="form-control" id="guest-count" max="20" min="1" name="guests" placeholder="4" required="" type="number"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="booking-date">Visit Date:</label>
+<input class="form-control" id="booking-date" name="date" required="" type="date"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium d-block">Preferred Zone:</label>
+<div class="d-flex flex-wrap gap-3">
+<div class="form-check">
+<input checked="" class="form-check-input" id="zoneHall" name="zone" type="radio" value="hall"/>
+<label class="form-check-label" for="zoneHall">Main Hall</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" id="zoneTapchan" name="zone" type="radio" value="tapchan"/>
+<label class="form-check-label" for="zoneTapchan">Tapchan Area</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" id="zoneVIP" name="zone" type="radio" value="vip"/>
+<label class="form-check-label" for="zoneVIP">VIP Room</label>
+</div>
+</div>
+</div>
+<div class="form-check mb-3">
+<input class="form-check-input" id="highChair" name="high_chair" type="checkbox"/>
+<label class="form-check-label" for="highChair">Require a child high chair</label>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="booking-time">Time Slot:</label>
+<select class="form-select" id="booking-time" name="time" required="">
+<option value="">Select time slot</option>
+<option value="12:00">12:00</option>
+<option value="14:00">14:00</option>
+<option value="16:00">16:00</option>
+<option value="18:00">18:00</option>
+<option value="20:00">20:00</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="special-wishes">Special Requests:</label>
+<textarea class="form-control" id="special-wishes" name="wishes" placeholder="Specify any dietary requirements, anniversary celebration, or guest preferences..." rows="3"></textarea>
+</div>
+<div class="d-flex gap-2 mt-4">
+<button class="btn btn-primary px-4" type="submit">Submit Booking</button>
+<button class="btn btn-outline-secondary px-4" type="reset">Reset</button>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Top Button -->
+<a class="btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow" href="#" id="backToTop">Top ↑</a>
+<!-- Footer -->
+<footer class="site-footer bg-dark py-5 mt-5">
+<div class="container text-center text-md-start">
+<p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki" rel="noopener" target="_blank">Instagram</a>
+      or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" rel="noopener" target="_blank">2GIS</a>.</p>
+<p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a href="tel:+77788710792">+7-778-871-07-92</a></p>
+<p class="mb-0">© 2026 Dastarkhan Restaurant</p>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

@@ -1,240 +1,215 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Photo Gallery for Dastarkhan Restaurant in Astana">
-  <meta name="author" content="Miko">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/miko.css">
-  <!-- Bootstrap v5.3.3 CSS loaded first, followed by custom base.css and miko.css for brand overrides -->
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <title>Gallery — Dastarkhan</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Dastarkhan - Authentic Eastern and Kazakh national cuisine in Astana. Find our locations and opening hours." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Bootstrap 5.3.3 CSS first, then base.css (brand overrides) -->
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="images/favicon.png" rel="icon" type="image/png"/>
+<title>Gallery — Dastarkhan</title>
 </head>
-
-<body>
-  <header class="site-header">
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand logo">
-        <img src="images/logo.png" alt="Dastarkhan Logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero section — container-fluid for viewport-wide banner -->
-    <div class="container-fluid p-0">
-      <section class="hero">
-        <h1 class="display-4">Photo Gallery</h1>
-        <p class="lead hero-subtitle"><em><strong>Experience the true taste of the East!</strong></em> We bring the
+<body class="d-flex flex-column min-vh-100">
+<header class="sticky-top shadow bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+<a class="navbar-brand d-inline-flex align-items-center" href="index.html">
+<img alt="Dastarkhan Logo" class="w-auto" height="48" src="images/logo.png" width="44"/>
+</a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+<li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a aria-current="page" class="nav-link active" href="gallery.html">Gallery</a></li>
+<li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+<li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow-1">
+<!-- Hero section — container-fluid for viewport-wide banner -->
+<div class="container-fluid p-0">
+<section class="hero">
+<h1 class="display-4">Photo Gallery</h1>
+<p class="lead hero-subtitle"><em><strong>Experience the true taste of the East!</strong></em> We bring the
           feast to your door.</p>
-      </section>
-    </div>
-
-    <div class="container my-5">
-      <!-- Bootstrap Documentation Component: Carousel with controls and indicators (adapted from Bootstrap 5.3 docs Carousel component, customized with Dastarkhan interior & signature food photography and captions) -->
-      <div id="galleryCarousel" class="carousel slide my-4 shadow rounded overflow-hidden" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="images/interior/IMG_1160.jpg" class="d-block w-100 gallery-carousel-img"
-              alt="VIP Hall and Dining at Dastarkhan">
-            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
-              <h5 class="text-white">VIP Hall &amp; Private Dining</h5>
-              <p class="mb-0 text-light">Exquisite eastern decor with private amenities for banquets and celebrations.
+</section>
+</div>
+<div class="container my-5">
+<!-- Bootstrap Documentation Component: Carousel with controls and indicators (adapted from Bootstrap 5.3 docs Carousel component, customized with Dastarkhan interior & signature food photography and captions) -->
+<div class="carousel slide my-4 shadow rounded overflow-hidden" data-bs-ride="carousel" id="galleryCarousel">
+<div class="carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="active" data-bs-slide-to="0" data-bs-target="#galleryCarousel" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#galleryCarousel" type="button"></button>
+<button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#galleryCarousel" type="button"></button>
+<button aria-label="Slide 4" data-bs-slide-to="3" data-bs-target="#galleryCarousel" type="button"></button>
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img alt="VIP Hall and Dining at Dastarkhan" class="d-block w-100 gallery-carousel-img object-fit-cover" src="images/interior/IMG_1160.jpg"/>
+<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
+<p class="h5 text-white mb-1">VIP Hall &amp; Private Dining</p>
+<p class="mb-0 text-light">Exquisite eastern decor with private amenities for banquets and celebrations.
               </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="images/vostoshniy/plov_prasdnishy.jpeg" class="d-block w-100 gallery-carousel-img"
-              alt="Festive Tashkent Plov">
-            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
-              <h5 class="text-white">Authentic Festive Plov</h5>
-              <p class="mb-0 text-light">Prepared in traditional cast-iron kazans with tender lamb and aromatic spices.
+</div>
+</div>
+<div class="carousel-item">
+<img alt="Festive Tashkent Plov" class="d-block w-100 gallery-carousel-img object-fit-cover" src="images/vostoshniy/plov_prasdnishy.jpeg"/>
+<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
+<p class="h5 text-white mb-1">Authentic Festive Plov</p>
+<p class="mb-0 text-light">Prepared in traditional cast-iron kazans with tender lamb and aromatic spices.
               </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="images/interior/IMG_1170.jpg" class="d-block w-100 gallery-carousel-img" alt="Main Dining Hall">
-            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
-              <h5 class="text-white">Main Dining Atmosphere</h5>
-              <p class="mb-0 text-light">Spacious oriental seating with panoramic windows and comfortable tapchans.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="images/lagman/tandyr_lagman.jpeg" class="d-block w-100 gallery-carousel-img"
-              alt="Signature Tandoor Lagman">
-            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
-              <h5 class="text-white">Signature Tandoor Lagman</h5>
-              <p class="mb-0 text-light">Handmade pulled noodles stir-fried with juicy lamb ribs and garden vegetables.
+</div>
+</div>
+<div class="carousel-item">
+<img alt="Main Dining Hall" class="d-block w-100 gallery-carousel-img object-fit-cover" src="images/interior/IMG_1170.jpg"/>
+<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
+<p class="h5 text-white mb-1">Main Dining Atmosphere</p>
+<p class="mb-0 text-light">Spacious oriental seating with panoramic windows and comfortable tapchans.</p>
+</div>
+</div>
+<div class="carousel-item">
+<img alt="Signature Tandoor Lagman" class="d-block w-100 gallery-carousel-img object-fit-cover" src="images/lagman/tandyr_lagman.jpeg"/>
+<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3 mb-3">
+<p class="h5 text-white mb-1">Signature Tandoor Lagman</p>
+<p class="mb-0 text-light">Handmade pulled noodles stir-fried with juicy lamb ribs and garden vegetables.
               </p>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
-      <hr class="my-5">
-
-      <!-- Section 1: Restaurant & Atmosphere -->
-      <section class="my-5">
-        <h2 class="section-heading">Restaurant &amp; Atmosphere</h2>
-
-        <div class="info-block bg-white border-start border-4 border-accent rounded shadow-sm p-3 mb-4">
-          <h3 class="h5">Hall Zones</h3>
-          <ul class="ps-3 mb-0">
-            <li>Main Dining Hall
+</div>
+</div>
+</div>
+<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#galleryCarousel" type="button">
+<span aria-hidden="true" class="carousel-control-prev-icon"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#galleryCarousel" type="button">
+<span aria-hidden="true" class="carousel-control-next-icon"></span>
+<span class="visually-hidden">Next</span>
+</button>
+</div>
+<hr class="my-5"/>
+<!-- Section 1: Restaurant & Atmosphere -->
+<section class="my-5">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Restaurant &amp; Atmosphere</h2>
+<div class="bg-white border-start border-4 border-warning rounded shadow-sm p-3">
+<h3 class="h5">Hall Zones</h3>
+<ul class="ps-3 mb-0">
+<li>Main Dining Hall
               <ul class="ps-3 mt-1 mb-0">
-                <li>Tables near panoramic windows</li>
-                <li>Central booths for 4–6 guests</li>
-              </ul>
-            </li>
-            <li class="mt-2">VIP Halls
+<li>Tables near panoramic windows</li>
+<li>Central booths for 4–6 guests</li>
+</ul>
+</li>
+<li class="mt-2">VIP Halls
               <ul class="ps-3 mt-1 mb-0">
-                <li>East Hall (up to 12 guests)</li>
-                <li>Khan Room (up to 20 guests)</li>
-              </ul>
-            </li>
-            <li class="mt-2">Tea Lounge</li>
-          </ul>
-        </div>
-
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 my-3">
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/interior/IMG_1160.jpg" alt="Dastarkhan Interior VIP Hall" class="card-img-top img-fluid">
-            </figure>
-          </div>
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/interior/IMG_1161.jpg" alt="Dastarkhan Interior Dining Room"
-                class="card-img-top img-fluid">
-            </figure>
-          </div>
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/interior/IMG_1162.jpg" alt="Dastarkhan Interior Tapchan" class="card-img-top img-fluid">
-            </figure>
-          </div>
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/interior/IMG_1163.jpg" alt="Dastarkhan Interior Banquet Hall"
-                class="card-img-top img-fluid">
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <hr class="my-5">
-
-      <!-- Section 2: Main Dishes & Eastern Cuisine -->
-      <section class="my-5">
-        <h2 class="section-heading">Main Dishes &amp; Eastern Cuisine</h2>
-
-        <div class="info-block bg-white border-start border-4 border-accent rounded shadow-sm p-3 mb-4">
-          <h3 class="h5">Our Dishes</h3>
-          <ul class="ps-3 mb-0">
-            <li>Traditional Plov
+<li>East Hall (up to 12 guests)</li>
+<li>Khan Room (up to 20 guests)</li>
+</ul>
+</li>
+<li class="mt-2">Tea Lounge</li>
+</ul>
+</div>
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 my-3">
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Dastarkhan Interior VIP Hall" class="card-img-top img-fluid h-auto" height="850" loading="lazy" src="images/interior/IMG_1160.jpg" width="1280"/>
+</figure>
+</div>
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Dastarkhan Interior Dining Room" class="card-img-top img-fluid h-auto" height="1280" loading="lazy" src="images/interior/IMG_1161.jpg" width="859"/>
+</figure>
+</div>
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Dastarkhan Interior Tapchan" class="card-img-top img-fluid h-auto" height="1280" loading="lazy" src="images/interior/IMG_1162.jpg" width="854"/>
+</figure>
+</div>
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Dastarkhan Interior Banquet Hall" class="card-img-top img-fluid h-auto" height="863" loading="lazy" src="images/interior/IMG_1163.jpg" width="1280"/>
+</figure>
+</div>
+</div>
+</section>
+<hr class="my-5"/>
+<!-- Section 2: Main Dishes & Eastern Cuisine -->
+<section class="my-5">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Main Dishes &amp; Eastern Cuisine</h2>
+<div class="bg-white border-start border-4 border-warning rounded shadow-sm p-3">
+<h3 class="h5">Our Dishes</h3>
+<ul class="ps-3 mb-0">
+<li>Traditional Plov
               <ul class="ps-3 mt-1 mb-0">
-                <li>Festive Plov</li>
-                <li>Lamb Kazan Kebab</li>
-              </ul>
-            </li>
-            <li class="mt-2">National Delicacies
+<li>Festive Plov</li>
+<li>Lamb Kazan Kebab</li>
+</ul>
+</li>
+<li class="mt-2">National Delicacies
               <ul class="ps-3 mt-1 mb-0">
-                <li>Traditional Beshbarmak</li>
-                <li>Dapanji with Dough</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 my-3">
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/vostoshniy/plov_prasdnishy.jpeg" alt="Festive Plov" class="card-img-top img-fluid">
-            </figure>
-          </div>
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/vostoshniy/kazan_kebab_barabiba.jpeg" alt="Lamb Kazan Kebab"
-                class="card-img-top img-fluid">
-            </figure>
-          </div>
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/vostoshniy/besh.jpeg" alt="Traditional Beshbarmak" class="card-img-top img-fluid">
-            </figure>
-          </div>
-          <div class="col">
-            <figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
-              <img src="images/vostoshniy/dapanpshi.jpeg" alt="Dapanji with Dough" class="card-img-top img-fluid">
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <hr class="my-5">
-
-      <!-- Directions section with Bootstrap list group -->
-      <section class="my-5">
-        <h2 class="section-heading">Directions to Our Restaurant</h2>
-        <ol class="list-group list-group-numbered shadow-sm mb-4">
-          <li class="list-group-item">Arrive at Dostyk Street near the central park area.</li>
-          <li class="list-group-item">Look for the traditional illuminated Dastarkhan sign.</li>
-          <li class="list-group-item">Free guest parking is available behind the main building.</li>
-        </ol>
-      </section>
-    </div>
-  </main>
-
-  <!-- Quick Order button — position: fixed -->
-  <a href="tel:+77172319595" id="quickOrder"
-    class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow">Call Now</a>
-
-  <footer class="site-footer">
-    <div class="container text-center text-md-start">
-      <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
-          target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-          rel="noopener">2GIS</a>.</p>
-      <p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
-          href="tel:+77788710792">+7-778-871-07-92</a></p>
-      <p class="mb-0">&copy; 2026 Dastarkhan Restaurant</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<li>Traditional Beshbarmak</li>
+<li>Dapanji with Dough</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 my-3">
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Festive Plov" class="card-img-top img-fluid h-auto" height="200" loading="lazy" src="images/vostoshniy/plov_prasdnishy.jpeg" width="200"/>
+</figure>
+</div>
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Lamb Kazan Kebab" class="card-img-top img-fluid h-auto" height="200" loading="lazy" src="images/vostoshniy/kazan_kebab_barabiba.jpeg" width="200"/>
+</figure>
+</div>
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Traditional Beshbarmak" class="card-img-top img-fluid h-auto" height="200" loading="lazy" src="images/vostoshniy/besh.jpeg" width="200"/>
+</figure>
+</div>
+<div class="col">
+<figure class="card h-100 shadow-sm overflow-hidden mb-0 border-0">
+<img alt="Dapanji with Dough" class="card-img-top img-fluid h-auto" height="200" loading="lazy" src="images/vostoshniy/dapanpshi.jpeg" width="200"/>
+</figure>
+</div>
+</div>
+</section>
+<hr class="my-5"/>
+<!-- Directions section with Bootstrap list group -->
+<section class="my-5">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Directions to Our Restaurant</h2>
+<ol class="list-group list-group-numbered shadow-sm mb-4">
+<li class="list-group-item">Arrive at Dostyk Street near the central park area.</li>
+<li class="list-group-item">Look for the traditional illuminated Dastarkhan sign.</li>
+<li class="list-group-item">Free guest parking is available behind the main building.</li>
+</ol>
+</section>
+</div>
+</main>
+<!-- Quick Order button — position: fixed -->
+<a class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow" href="tel:+77172319595" id="quickOrder">Call Now</a>
+<footer class="site-footer bg-dark py-5 mt-5">
+<div class="container text-center text-md-start">
+<p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki" rel="noopener" target="_blank">Instagram</a>
+      or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" rel="noopener" target="_blank">2GIS</a>.</p>
+<p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a href="tel:+77788710792">+7-778-871-07-92</a></p>
+<p class="mb-0">© 2026 Dastarkhan Restaurant</p>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
