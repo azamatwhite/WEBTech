@@ -13,10 +13,10 @@
   <title>Home — Dastarkhan</title>
 </head>
 
-<body>
-  <header class="site-header">
+<body class="d-flex flex-column min-vh-100">
+  <header class="sticky-top shadow bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand logo">
+      <a href="index.html" class="navbar-brand d-inline-flex align-items-center">
         <img src="images/logo.png" alt="Dastarkhan Logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -38,14 +38,14 @@
     </nav>
   </header>
 
-  <main>
+  <main class="flex-grow-1">
     <!-- Hero section — container-fluid chosen over container to allow full-width hero banner spanning the entire viewport width -->
     <div class="container-fluid p-0">
-      <section class="hero">
-        <h1 class="display-3">Welcome to Dastarkhan</h1>
+      <section class="hero text-center py-5 px-4">
+        <h1 class="display-3 text-white">Welcome to Dastarkhan</h1>
         <!-- The slogan is placed right under the h1 so it is the very first message a visitor reads, reinforcing the brand identity immediately -->
-        <p class="lead hero-subtitle"><em><strong>Experience the true taste of the East!</strong></em></p>
-        <div class="mt-4 d-flex justify-content-center gap-3">
+        <p class="lead text-warning mb-3"><em><strong>Experience the true taste of the East!</strong></em></p>
+        <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
           <a href="menu.html" class="btn btn-primary btn-lg">Explore Menu</a>
           <a href="booking.html" class="btn btn-outline-light btn-lg">Book a Table</a>
         </div>
@@ -57,7 +57,7 @@
       <section class="advantages">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           <div class="col">
-            <div class="card advantage-card text-center p-4 shadow-sm h-100">
+            <div class="card text-center p-4 shadow-sm h-100">
               <div class="card-body p-0">
                 <h3 class="h4">Fresh Ingredients</h3>
                 <p class="card-text text-muted">Only fresh halal meat delivered daily from local farms and traditional
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="card advantage-card text-center p-4 shadow-sm h-100">
+            <div class="card text-center p-4 shadow-sm h-100">
               <div class="card-body p-0">
                 <h3 class="h4">Original Recipes</h3>
                 <p class="card-text text-muted">Every dish is prepared according to authentic traditions handed down
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="card advantage-card text-center p-4 shadow-sm h-100">
+            <div class="card text-center p-4 shadow-sm h-100">
               <div class="card-body p-0">
                 <h3 class="h4">Fast Delivery</h3>
                 <p class="card-text text-muted">We deliver to all districts of Astana in 45–60 minutes with eco-friendly
@@ -89,7 +89,7 @@
 
     <div class="container my-5">
       <section>
-        <h2 class="section-heading">Authentic Flavors and Traditions</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Authentic Flavors and Traditions</h2>
         <p class="lead">Welcome to Dastarkhan, your ultimate destination for fresh, high-quality Eastern and Kazakh
           national
           cuisine in Astana. Whether you are craving our signature handmade lagman or a hearty, festive plov, our
@@ -100,8 +100,8 @@
       <hr class="my-5">
 
       <!-- About-Us section with FLOAT (image floated left, text wrapping around it) -->
-      <section class="about-section clearfix my-4">
-        <h2 class="section-heading">Inside Our Restaurant</h2>
+      <section class="clearfix my-4">
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Inside Our Restaurant</h2>
         <figure>
           <!-- Float the image left using Bootstrap float-start so text wraps around it -->
           <img src="images/interior/IMG_1161.jpg" alt="Interior decoration of Dastarkhan restaurant in Astana"
@@ -121,15 +121,15 @@
       <hr class="my-5">
 
       <section>
-        <h2 class="section-heading">Our Dedication to Quality</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Our Dedication to Quality</h2>
         <p>Our commitment to excellence has earned us a loyal following across the city. Do not just take our word
           for it—our customers say it best:</p>
         <div class="card p-4 my-4 shadow-sm border-start border-primary border-4">
-          <blockquote class="blockquote mb-0 testimonial">
+          <blockquote class="blockquote mb-0 fst-italic">
             <p class="mb-2">"Dastarkhan has completely set a new standard for Eastern cuisine. Their lagman is always
               hot, the
               meat is incredibly fresh, and their festive plov is a game-changer for family dinners!"</p>
-            <footer class="blockquote-footer mt-1">&mdash; <cite title="Aigerim N.">Aigerim N., Astana</cite>, October
+            <footer class="blockquote-footer mt-1">&mdash; <cite class="text-primary fw-semibold fst-normal" title="Aigerim N.">Aigerim N., Astana</cite>, October
               2025</footer>
           </blockquote>
         </div>
@@ -138,13 +138,13 @@
       <hr class="my-5">
 
       <section>
-        <h2 class="section-heading">Opening Hours</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Opening Hours</h2>
         <p>We are open every day to serve you the best Eastern cuisine in town:</p>
         <p class="fw-bold fs-5">Monday &ndash; Sunday: 11:00 to 23:00</p>
       </section>
 
       <section class="my-4">
-        <h2 class="section-heading">Our Locations in Astana</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Our Locations in Astana</h2>
         <p>Find your nearest Dastarkhan branch for takeout or dine-in:</p>
         <ul class="list-group list-group-flush shadow-sm rounded mb-4">
           <li class="list-group-item">Mukhtar Auezov Street, 33</li>
@@ -153,7 +153,7 @@
       </section>
 
       <section class="my-4">
-        <h2 class="section-heading">Restaurant Features &amp; Amenities</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Restaurant Features &amp; Amenities</h2>
         <div class="row row-cols-1 row-cols-md-2 g-3">
           <div class="col">
             <p class="mb-1"><strong>Cuisine:</strong> Eastern, Uyghur. <em class="text-muted">Average bill: 4000 ₸</em>
@@ -181,7 +181,7 @@
       <hr class="my-5">
 
       <section>
-        <h2 class="section-heading">Dining Gallery</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Dining Gallery</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4">
           <div class="col">
             <figure class="card h-100 shadow-sm overflow-hidden mb-0">
@@ -210,7 +210,7 @@
   <a href="delivery.html" id="quickOrder"
     class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow">Quick Order</a>
 
-  <footer class="site-footer">
+  <footer class="site-footer bg-dark py-5 mt-5">
     <div class="container text-center text-md-start">
       <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
           target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"

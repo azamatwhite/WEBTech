@@ -8,20 +8,19 @@
   <meta name="author" content="Azamat" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/azamat.css">
   <!-- Bootstrap v5.3.3 CSS loaded first, followed by custom base.css and azamat.css for brand overrides -->
   <link rel="icon" href="images/favicon.png" type="image/png">
   <title>Menu — Dastarkhan</title>
 </head>
 
-<body>
-  <header class="site-header">
+<body class="d-flex flex-column min-vh-100">
+  <header class="sticky-top shadow bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand logo">
+      <a href="index.html" class="navbar-brand d-inline-flex align-items-center">
         <img src="images/logo.png" alt="Dastarkhan Logo">
       </a>
       <div class="d-flex align-items-center gap-2 order-lg-last">
-        <button aria-label="Open cart" class="cart-toggle" id="cartToggle" type="button">🛒<span class="cart-badge"
+        <button aria-label="Open cart" class="btn btn-outline-light position-relative" id="cartToggle" type="button">🛒<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark"
             id="cartBadge">0</span></button>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,19 +42,19 @@
     </nav>
   </header>
 
-  <main>
+  <main class="flex-grow-1">
     <div class="container my-5" id="top">
       <h1 class="display-4 text-center mb-4">Dastarkhan Menu</h1>
       <p class="lead text-center text-muted mb-5">Explore our wide selection of authentic Central Asian specialties,
         hearty lagmans, and Turkish grill dishes.</p>
 
       <section class="mb-4">
-        <h2 class="section-heading">Menu Categories</h2>
-        <ul class="menu-categories justify-content-center">
-          <li><a href="#lagmans">Lagmans &amp; Ganfan</a></li>
-          <li><a href="#salads">Salads</a></li>
-          <li><a href="#turkish">Turkish Cuisine &amp; Kebabs</a></li>
-          <li><a href="#oriental">Oriental &amp; Main Dishes</a></li>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Menu Categories</h2>
+        <ul class="list-unstyled d-flex flex-wrap gap-2 justify-content-center mb-4">
+          <li><a class="btn btn-outline-primary rounded-pill" href="#lagmans">Lagmans &amp; Ganfan</a></li>
+          <li><a class="btn btn-outline-primary rounded-pill" href="#salads">Salads</a></li>
+          <li><a class="btn btn-outline-primary rounded-pill" href="#turkish">Turkish Cuisine &amp; Kebabs</a></li>
+          <li><a class="btn btn-outline-primary rounded-pill" href="#oriental">Oriental &amp; Main Dishes</a></li>
         </ul>
       </section>
 
@@ -77,12 +76,12 @@
             <tbody>
               <!-- Lagmans & Ganfan -->
               <tr class="table-dark">
-                <th class="category-header p-3 text-warning bg-dark" colspan="5" id="lagmans"><i>Lagmans &amp;
+                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="lagmans"><i>Lagmans &amp;
                     Ganfan</i></th>
               </tr>
               <tr>
                 <td><img alt="Fried Boso Lagman with Tomato" src="images/lagman/zhar_lagman_boso_tomat.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Fried Boso Lagman with Tomato<br /><small class="text-muted fw-normal">Beef, vegetables,
                     and noodles quickly stir-fried with tomato paste</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -94,7 +93,7 @@
               </tr>
               <tr>
                 <td><img alt="Fried Boso Lagman with Soy Sauce" src="images/lagman/zhar_lagman_boso_coya.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Fried Boso Lagman with Soy Sauce<br /><small class="text-muted fw-normal">Beef,
                     vegetables, and noodles quickly stir-fried with soy sauce</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -106,7 +105,7 @@
               </tr>
               <tr>
                 <td><img alt="Kuldzha Lagman" src="images/lagman/lagman_kuldzhinskii.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Kuldzha Lagman<br /><small class="text-muted fw-normal">Mutton lagman with two types of
                     gravy (egg and wild leek/jusai)</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -118,7 +117,7 @@
               </tr>
               <tr>
                 <td><img alt="Guiru Lagman" src="images/lagman/guiru_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Guiru Lagman<br /><small class="text-muted fw-normal">Beef, noodles, and coarsely
                     chopped vegetables served separately</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -129,7 +128,7 @@
               </tr>
               <tr>
                 <td><img alt="Guiru Ganfan" src="images/lagman/guiru_ganfan.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Guiru Ganfan<br /><small class="text-muted fw-normal">Beef, rice, and coarsely chopped
                     vegetables served separately</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -140,7 +139,7 @@
               </tr>
               <tr>
                 <td><img alt="Home-style Lagman / Ganfan" src="images/lagman/lagman_gaifan_domashnii.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Home-style Lagman / Ganfan<br /><small class="text-muted fw-normal">Beef, home-style
                     lagman/rice in beef broth</small></th>
                 <td>500<abbr title="grams">g</abbr></td>
@@ -152,7 +151,7 @@
               </tr>
               <tr>
                 <td><img alt="Lopeiza Lagman" src="images/lagman/lagman_lopeiza.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Lopeiza Lagman<br /><small class="text-muted fw-normal">Ancient Uyghur recipe (mutton,
                     glass noodles, vegetables, egg, spices)</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -164,7 +163,7 @@
               </tr>
               <tr>
                 <td><img alt="4 Seasons Lagman" src="images/lagman/lagman_4_sezona.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">4 Seasons Lagman<br /><small class="text-muted fw-normal">Fried eggplants, fried chicken
                     fillet, beef, mutton, vegetables</small></th>
                 <td>500<abbr title="grams">g</abbr></td>
@@ -176,7 +175,7 @@
               </tr>
               <tr>
                 <td><img alt="Moguru Lagman" src="images/lagman/moguru_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Moguru Lagman<br /><small class="text-muted fw-normal">Beef with mushrooms, lagman
                     dough</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -188,7 +187,7 @@
               </tr>
               <tr>
                 <td><img alt="Dastarkhan Lagman" src="images/lagman/lagman_dastarkhan.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Dastarkhan Lagman<br /><small class="text-muted fw-normal">Beef, noodles, coarsely
                     chopped vegetables, wood ear mushrooms</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -200,7 +199,7 @@
               </tr>
               <tr>
                 <td><img alt="Ganbyan-Tsomyan Lagman" src="images/lagman/lagman_ganbyan_comyan.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Ganbyan-Tsomyan Lagman<br /><small class="text-muted fw-normal">Fried lagman with beef,
                     sesame, wild leek (jusai), coarsely chopped</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -212,7 +211,7 @@
               </tr>
               <tr>
                 <td><img alt="Adzhaiyp Guiru Lagman" src="images/lagman/adzhaiyp_guiru_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Adzhaiyp Guiru Lagman<br /><small class="text-muted fw-normal">Fried beef, green onions,
                     spices, hot pepper</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -224,7 +223,7 @@
               </tr>
               <tr>
                 <td><img alt="Din-Din Tsomyan Lagman" src="images/lagman/lagman_din_din_comyan.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Din-Din Tsomyan Lagman<br /><small class="text-muted fw-normal">Fried lagman with
                     mutton, finely chopped ingredients</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -236,7 +235,7 @@
               </tr>
               <tr>
                 <td><img alt="Tandoor Lagman" src="images/lagman/tandyr_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Tandoor Lagman<br /><small class="text-muted fw-normal">Fried lamb ribs with vegetables
                     and spices, lagman dough</small></th>
                 <td>500<abbr title="grams">g</abbr></td>
@@ -248,7 +247,7 @@
               </tr>
               <tr>
                 <td><img alt="Lazro Lagman" src="images/lagman/lazro_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Lazro Lagman<br /><small class="text-muted fw-normal">Fried mutton with vegetables and
                     spices, lagman dough</small></th>
                 <td>450<abbr title="grams">g</abbr></td>
@@ -260,11 +259,11 @@
 
               <!-- Salads -->
               <tr class="table-dark">
-                <th class="category-header p-3 text-warning bg-dark" colspan="5" id="salads"><i>Salads</i></th>
+                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="salads"><i>Salads</i></th>
               </tr>
               <tr>
                 <td><img alt="Oriental Bazaar Salad" src="images/salats/vostochnyi_bazar.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Oriental Bazaar Salad<br /><small class="text-muted fw-normal">Fried champignons,
                     eggplants, tomatoes, and feta cheese</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -275,7 +274,7 @@
                     Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Pharaoh Salad" src="images/salats/faraon.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Pharaoh Salad" src="images/salats/faraon.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Pharaoh Salad<br /><small class="text-muted fw-normal">Beef tongue, fried mushrooms,
                     lettuce, pickles</small></th>
@@ -287,7 +286,7 @@
                 </td>
               </tr>
               <tr>
-                <td><img alt="Olivier Salad" src="images/salats/olivie.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Olivier Salad" src="images/salats/olivie.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Olivier Salad<br /><small class="text-muted fw-normal">Potatoes, carrots, boiled beef,
                     pickles, egg, green peas, mayonnaise</small></th>
@@ -300,7 +299,7 @@
               </tr>
               <tr>
                 <td><img alt="Greek Salad" src="images/salats/grecheskii.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Greek Salad<br /><small class="text-muted fw-normal">Cucumbers, tomatoes, olives, feta
                     cheese, lettuce, lemon</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -311,7 +310,7 @@
               </tr>
               <tr>
                 <td><img alt="Capercaillie's Nest Salad" src="images/salats/gnezdo_gluharya.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Capercaillie's Nest Salad<br /><small class="text-muted fw-normal">Pie potatoes, boiled
                     chicken, eggs, pickles, mayonnaise</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -322,7 +321,7 @@
                     type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Caesar Salad" src="images/salats/cezar.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Caesar Salad" src="images/salats/cezar.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Caesar Salad<br /><small class="text-muted fw-normal">Napa cabbage, turkey, cherry
                     tomatoes, croutons, mayonnaise, cheese</small></th>
@@ -334,7 +333,7 @@
               </tr>
               <tr>
                 <td><img alt="Chinese Salad" src="images/salats/kitaiskii.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Chinese Salad<br /><small class="text-muted fw-normal">Cucumbers, bell peppers, carrots,
                     beef, soy sauce</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -345,7 +344,7 @@
                 </td>
               </tr>
               <tr>
-                <td><img alt="Light Salad" src="images/salats/legkii.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Light Salad" src="images/salats/legkii.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Light Salad<br /><small class="text-muted fw-normal">Broccoli, red onion, tomato, feta
                     cheese, lettuce, bell pepper</small></th>
@@ -357,7 +356,7 @@
               </tr>
               <tr>
                 <td><img alt="Hunter's Salad" src="images/salats/ohatnichii.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Hunter's Salad<br /><small class="text-muted fw-normal">Chicken fillet, smoked turkey,
                     boiled beef, vegetables</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -368,7 +367,7 @@
                 </td>
               </tr>
               <tr>
-                <td><img alt="Fresh Salad" src="images/salats/svezhii.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Fresh Salad" src="images/salats/svezhii.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Fresh Salad<br /><small class="text-muted fw-normal">Cucumbers, tomatoes, dill, onion
                     (choice of dressing)</small></th>
@@ -380,7 +379,7 @@
               </tr>
               <tr>
                 <td><img alt="Scheherazade Salad" src="images/salats/sharizada.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Scheherazade Salad<br /><small class="text-muted fw-normal">Turkey, cherry tomatoes, red
                     beans, bell pepper, lettuce, balsamic vinegar</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -391,7 +390,7 @@
                     Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Malibu Salad" src="images/salats/malibu.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Malibu Salad" src="images/salats/malibu.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Malibu Salad<br /><small class="text-muted fw-normal">Smoked turkey, tomatoes, lettuce,
                     mayonnaise, croutons</small></th>
@@ -402,7 +401,7 @@
                     data-id="malibu-salad" data-name="Malibu Salad" data-price="2190" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Achichuk" src="images/salats/achichuk.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Achichuk" src="images/salats/achichuk.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Achichuk<br /><small class="text-muted fw-normal">Tomatoes, onions, chili pepper</small>
                 </th>
@@ -413,7 +412,7 @@
                     data-id="achichuk" data-name="Achichuk" data-price="1690" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Ezme" src="images/turkich/iezme.jpeg" class="menu-dish-img rounded shadow-sm" /></td>
+                <td><img alt="Ezme" src="images/turkich/iezme.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Ezme<br /><small class="text-muted fw-normal">Tomatoes, cucumbers, onion, parsley, hot
                     pepper, pomegranate sauce</small></th>
                 <td>150<abbr title="grams">g</abbr></td>
@@ -425,12 +424,12 @@
 
               <!-- Turkish Cuisine & Kebabs -->
               <tr class="table-dark">
-                <th class="category-header p-3 text-warning bg-dark" colspan="5" id="turkish"><i>Turkish Cuisine &amp;
+                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="turkish"><i>Turkish Cuisine &amp;
                     Kebabs</i></th>
               </tr>
               <tr>
                 <td><img alt="Beyti Sarma" src="images/turkich/turkich_beitu_sorma.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Beyti Sarma<br /><small class="text-muted fw-normal">Minced beef stuffed in eggplant and
                     lavash with onion, tomatoes, topped with cheese and Turkish yogurt</small></th>
                 <td>380<abbr title="grams">g</abbr></td>
@@ -441,7 +440,7 @@
               </tr>
               <tr>
                 <td><img alt="Guvec Sebzelik" src="images/turkich/sebzelik.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Guvec Sebzelik<br /><small class="text-muted fw-normal">Pan-fried vegetables covered
                     with cheese</small></th>
                 <td>300<abbr title="grams">g</abbr></td>
@@ -452,7 +451,7 @@
                 </td>
               </tr>
               <tr>
-                <td><img alt="Guvec Et" src="images/turkich/et_gubiash.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Guvec Et" src="images/turkich/et_gubiash.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Guvec Et<br /><small class="text-muted fw-normal">Beef fried with vegetables in a pan,
                     covered with cheese</small></th>
@@ -464,7 +463,7 @@
               </tr>
               <tr>
                 <td><img alt="Guvec Tavuk" src="images/turkich/tavuk_gubiash.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Guvec Tavuk<br /><small class="text-muted fw-normal">Chicken fillet fried with
                     vegetables in a pan, covered with cheese</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -474,7 +473,7 @@
                     data-id="guvec-tavuk" data-name="Guvec Tavuk" data-price="3990" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Pirzola" src="images/turkich/pirzolla.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Pirzola" src="images/turkich/pirzolla.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Pirzola<br /><small class="text-muted fw-normal">Lamb entrecote, garnish, tomatoes,
                     cucumbers, lavash, onion</small></th>
@@ -486,7 +485,7 @@
               </tr>
               <tr>
                 <td><img alt="Izgara Kofte" src="images/shashlyk/izgora_kofta.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Izgara Kofte<br /><small class="text-muted fw-normal">Beef, mutton, and tail fat
                     patties. Garnish, lavash, vegetables</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -497,7 +496,7 @@
               </tr>
               <tr>
                 <td><img alt="Ali Nazik Kebab" src="images/shashlyk/ali_nazik_kebab.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Ali Nazik Kebab<br /><small class="text-muted fw-normal">Fried beef, yogurt with stewed
                     eggplant, garnish, greens</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -509,7 +508,7 @@
               </tr>
               <tr>
                 <td><img alt="Adana Kebab" src="images/shashlyk/adana_kebab.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Adana Kebab<br /><small class="text-muted fw-normal">Minced beef, tail fat, pepper,
                     garnish, tomatoes, cucumbers, greens, onion</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -520,7 +519,7 @@
               </tr>
               <tr>
                 <td><img alt="Assorted Sausages" src="images/shashlyk/assorti_kolbasok.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Assorted Sausages<br /><small class="text-muted fw-normal">Mutton, beef, horse meat,
                     chicken, sauce</small></th>
                 <td>500<abbr title="grams">g</abbr></td>
@@ -532,7 +531,7 @@
               </tr>
               <tr>
                 <td><img alt="Lyulya Kebab" src="images/shashlyk/lyula_kebab.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Lyulya Kebab<br /><small class="text-muted fw-normal">Minced beef with tail fat, lavash,
                     vegetables</small></th>
                 <td>300<abbr title="grams">g</abbr></td>
@@ -543,7 +542,7 @@
               </tr>
               <tr>
                 <td><img alt="Veal Shashlik" src="images/shashlyk/shashlyk_telyatina.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Veal Shashlik<br /><small class="text-muted fw-normal">Veal meat, lavash, tomatoes,
                     cucumbers, onion</small></th>
                 <td>300<abbr title="grams">g</abbr></td>
@@ -556,12 +555,12 @@
 
               <!-- Oriental & Main Dishes -->
               <tr class="table-dark">
-                <th class="category-header p-3 text-warning bg-dark" colspan="5" id="oriental"><i>Oriental &amp; Main
+                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="oriental"><i>Oriental &amp; Main
                     Dishes</i></th>
               </tr>
               <tr>
                 <td><img alt="Basyay Funturu" src="images/vostoshniy/basyai_funturu.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Basyay Funturu<br /><small class="text-muted fw-normal">Mutton, glass noodles, napa
                     cabbage, bell pepper</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -573,7 +572,7 @@
               </tr>
               <tr>
                 <td><img alt="Bobbin Yanru" src="images/vostoshniy/bobbin_yanru.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Bobbin Yanru<br /><small class="text-muted fw-normal">Finely chopped mutton with thin
                     flatbreads</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -583,7 +582,7 @@
                     data-id="bobbin-yanru" data-name="Bobbin Yanru" data-price="3490" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Ganza Yu" src="images/vostoshniy/ganza_yu.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Ganza Yu" src="images/vostoshniy/ganza_yu.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Ganza Yu<br /><small class="text-muted fw-normal">Fried crucian carp (whole fish) with
                     spices</small></th>
@@ -595,7 +594,7 @@
               </tr>
               <tr>
                 <td><img alt="Dapanji with Dough" src="images/vostoshniy/dapanpshi.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Dapanji with Dough<br /><small class="text-muted fw-normal">Chicken stewed with
                     vegetables. Served with pieces of dough</small></th>
                 <td>1000<abbr title="grams">g</abbr></td>
@@ -606,7 +605,7 @@
                     Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Jigyar" src="images/vostoshniy/diygar.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Jigyar" src="images/vostoshniy/diygar.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Jigyar<br /><small class="text-muted fw-normal">Pan-fried lamb liver with tail fat and
                     vegetables</small></th>
@@ -617,7 +616,7 @@
                     data-id="jigyar" data-name="Jigyar" data-price="2690" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Naryn" src="images/vostoshniy/naryn.jpeg" class="menu-dish-img rounded shadow-sm" /></td>
+                <td><img alt="Naryn" src="images/vostoshniy/naryn.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Naryn<br /><small class="text-muted fw-normal">Finely chopped dough with horse meat and
                     broth (served separately)</small></th>
                 <td>300<abbr title="grams">g</abbr></td>
@@ -628,7 +627,7 @@
               </tr>
               <tr>
                 <td><img alt="Authentic Uzbek Pilaf" src="images/vostoshniy/plov_prasdnishy.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Authentic Uzbek Pilaf<br /><small class="text-muted fw-normal">Beef, chickpeas, raisins,
                     yellow and red carrots, lazer rice</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -640,7 +639,7 @@
               </tr>
               <tr>
                 <td><img alt="Fries with Meat" src="images/vostoshniy/fri_s_miasom.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Fries with Meat<br /><small class="text-muted fw-normal">Fried beef with french fries
                     and vegetables</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -652,7 +651,7 @@
               </tr>
               <tr>
                 <td><img alt="Guiru Syay" src="images/vostoshniy/guiru_say.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Guiru Syay<br /><small class="text-muted fw-normal">Beef, bell pepper, napa cabbage,
                     onion</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -663,7 +662,7 @@
               </tr>
               <tr>
                 <td><img alt="Pan-fried Mutton" src="images/vostoshniy/jarenny_barabina_na_skobarade.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Pan-fried Mutton<br /><small class="text-muted fw-normal">Pan-fried mutton seasoned with
                     fresh onions</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -675,7 +674,7 @@
               </tr>
               <tr>
                 <td><img alt="Lamb Kazan Kebab" src="images/vostoshniy/kazan_kebab_barabiba.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Lamb Kazan Kebab<br /><small class="text-muted fw-normal">Mutton roasted with onions
                     over high heat (with potatoes)</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -687,7 +686,7 @@
               </tr>
               <tr>
                 <td><img alt="Beef Kazan Kebab" src="images/vostoshniy/kazan_kebab_gobiadina.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Beef Kazan Kebab<br /><small class="text-muted fw-normal">Tender beef roasted with
                     onions over high heat</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -698,7 +697,7 @@
                     Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Kok Syay" src="images/vostoshniy/kok_siay.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Kok Syay" src="images/vostoshniy/kok_siay.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Kok Syay<br /><small class="text-muted fw-normal">Fried broccoli with vegetables</small>
                 </th>
@@ -709,7 +708,7 @@
                     data-id="kok-syay" data-name="Kok Syay" data-price="2290" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Lazzhi" src="images/vostoshniy/lazzhi.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Lazzhi" src="images/vostoshniy/lazzhi.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Lazzhi<br /><small class="text-muted fw-normal">Chicken fillet, bell pepper,
                     spices</small></th>
@@ -721,7 +720,7 @@
               </tr>
               <tr>
                 <td><img alt="Manpar Tsomyan" src="images/vostoshniy/manpar_somian.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Manpar Tsomyan<br /><small class="text-muted fw-normal">Finely chopped dough fried with
                     meat and vegetables</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -733,7 +732,7 @@
               </tr>
               <tr>
                 <td><img alt="Moguru Syay" src="images/vostoshniy/moguru_siay.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Moguru Syay<br /><small class="text-muted fw-normal">Fried mutton, wood ear mushrooms,
                     cucumbers, and spices</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -744,7 +743,7 @@
               </tr>
               <tr>
                 <td><img alt="Myn Zhyn Yanru" src="images/vostoshniy/myn_zhyn_yianry.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Myn Zhyn Yanru<br /><small class="text-muted fw-normal">Fried mutton with
                     vegetables</small></th>
                 <td>350<abbr title="grams">g</abbr></td>
@@ -756,7 +755,7 @@
               </tr>
               <tr>
                 <td><img alt="Bash Manpar" src="images/vostoshniy/bash_manpar.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Bash Manpar<br /><small class="text-muted fw-normal">Traditional soup with small
                     dumplings, meat, and vegetables</small></th>
                 <td>400<abbr title="grams">g</abbr></td>
@@ -766,7 +765,7 @@
                     data-id="bash-manpar" data-name="Bash Manpar" data-price="2500" type="button">+ Add</button></td>
               </tr>
               <tr>
-                <td><img alt="Beshbarmak" src="images/vostoshniy/besh.jpeg" class="menu-dish-img rounded shadow-sm" />
+                <td><img alt="Beshbarmak" src="images/vostoshniy/besh.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
                 </td>
                 <th scope="row">Beshbarmak<br /><small class="text-muted fw-normal">Boiled meat, dough, rich meat broth
                     with onions</small></th>
@@ -778,7 +777,7 @@
               </tr>
               <tr>
                 <td><img alt="Grilled Salmon" src="images/vostoshniy/siomga.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Grilled Salmon<br /><small class="text-muted fw-normal">Salmon fillet with spices and
                     lemon</small></th>
                 <td>250<abbr title="grams">g</abbr></td>
@@ -790,7 +789,7 @@
               </tr>
               <tr>
                 <td><img alt="Grilled Trout" src="images/vostoshniy/forel_gril.jpeg"
-                    class="menu-dish-img rounded shadow-sm" /></td>
+                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
                 <th scope="row">Grilled Trout<br /><small class="text-muted fw-normal">Tender grilled trout with
                     lemon</small></th>
                 <td>300<abbr title="grams">g</abbr></td>
@@ -813,7 +812,7 @@
         </div>
       </section>
 
-      <aside class="chef-note my-4">
+    <aside class="alert alert-warning my-4 py-4 px-4 fst-italic border-0 border-start border-4 border-warning rounded-start-0">
         <em>Chef's Note:</em> <q>If you are looking for an authentic flavor explosion, I highly recommend trying our
           <mark>Tandoor Lagman</mark>. It is a perfectly balanced, <strong>aromatic</strong> dish that truly
           represents our traditions!</q>
@@ -822,8 +821,8 @@
       <hr class="my-5" />
 
       <article class="my-5">
-        <h2 class="section-heading">Top 5 Dastarkhan Dishes</h2>
-        <ol class="top-list shadow-sm" start="1">
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Top 5 Dastarkhan Dishes</h2>
+        <ol class="list-group list-group-numbered gap-3 shadow-sm" start="1">
           <li><strong>Special Lagman</strong><br /> Handmade pulled noodles, beef, fresh peppers, garlic, and house
             broth.</li>
           <li><strong><mark>Festive Tashkent Plov</mark></strong><br /> Our <em>most beloved</em> classic! Devzira rice,
@@ -838,16 +837,16 @@
       </article>
 
       <section class="my-5">
-        <h2 class="section-heading">Terminology</h2>
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Terminology</h2>
         <dl class="terms-list">
-          <dt><strong>Lagman</strong></dt>
-          <dd>A traditional Central Asian dish of pulled noodles, meat, and vegetables.</dd>
-          <dt><strong>Plov / Pilaf</strong></dt>
-          <dd>A fragrant rice dish cooked in a seasoned broth with meat and vegetables.</dd>
-          <dt><strong>Shashlik</strong></dt>
-          <dd>Skewered and grilled cubes of meat, similar to shish kebab.</dd>
-          <dt><strong>Kazan</strong></dt>
-          <dd>A traditional cast-iron cooking pot used throughout Central Asia, akin to a Dutch oven or cauldron.</dd>
+          <dt class="text-primary mt-3"><strong>Lagman</strong></dt>
+          <dd class="ms-4 text-muted pb-2 border-bottom">A traditional Central Asian dish of pulled noodles, meat, and vegetables.</dd>
+          <dt class="text-primary mt-3"><strong>Plov / Pilaf</strong></dt>
+          <dd class="ms-4 text-muted pb-2 border-bottom">A fragrant rice dish cooked in a seasoned broth with meat and vegetables.</dd>
+          <dt class="text-primary mt-3"><strong>Shashlik</strong></dt>
+          <dd class="ms-4 text-muted pb-2 border-bottom">Skewered and grilled cubes of meat, similar to shish kebab.</dd>
+          <dt class="text-primary mt-3"><strong>Kazan</strong></dt>
+          <dd class="ms-4 text-muted pb-2 border-bottom">A traditional cast-iron cooking pot used throughout Central Asia, akin to a Dutch oven or cauldron.</dd>
         </dl>
       </section>
 
@@ -858,13 +857,13 @@
       </figure>
 
       <p class="text-center mt-4">
-        <a class="back-to-top btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow" id="backToTop"
+        <a class="btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow" id="backToTop"
           href="#top">Top ↑</a>
       </p>
     </div>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer bg-dark py-5 mt-5">
     <div class="container text-center text-md-start">
       <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
           target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"

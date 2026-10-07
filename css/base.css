@@ -1,103 +1,38 @@
-/* ==========================================================================
-   css/base.css — Base Brand Styles & Bootstrap Correction Layer
-   Project: Dastarkhan / WEBTech
-   ========================================================================== */
-
-/* ---- Google Fonts ---- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
-/* ---- CSS Custom Properties & Bootstrap Variable Mappings ---- */
 :root {
-  --color-primary: #c8102e;
-  --color-primary-dark: #9a0c22;
-  --color-accent: #d4a017;
-  --color-bg: #faf7f2;
-  --color-bg-dark: #1a1a1a;
-  --color-text: #2c2c2c;
-  --color-text-light: #666666;
-  --color-white: #ffffff;
-  --color-border: #e0d6c8;
-  --radius: 12px;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.14);
-  --transition: 0.3s ease;
-
-  /* Bootstrap 5 Theme Overrides */
   --bs-primary: #c8102e;
   --bs-primary-rgb: 200, 16, 46;
+  --bs-warning: #d4a017;
+  --bs-warning-rgb: 212, 160, 23;
+  --bs-dark: #1a1a1a;
+  --bs-dark-rgb: 26, 26, 26;
   --bs-body-bg: #faf7f2;
   --bs-body-color: #2c2c2c;
   --bs-body-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --bs-border-color: #e0d6c8;
   --bs-border-radius: 12px;
+  --bs-link-color: #c8102e;
+  --bs-link-hover-color: #9a0c22;
 }
 
-/* ---- Base Document Defaults ---- */
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  line-height: 1.7;
-  font-size: 16px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-/* ---- Typography ---- */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-.section-heading {
+th[id] {
+  color: var(--bs-primary);
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
-  color: var(--color-primary);
 }
 
-.section-heading {
-  font-size: 1.8rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-border);
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-a:hover {
-  color: var(--color-primary-dark);
-}
-
-/* ---- Site Header & Navbar Brand Adjustments ---- */
-.site-header {
-  background: var(--color-bg-dark);
-  position: sticky;
-  top: 0;
-  z-index: 1030;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.navbar-brand.logo {
-  line-height: 0;
-  display: inline-flex;
-  align-items: center;
-}
-
-.navbar-brand.logo img {
+.navbar-brand img {
   max-height: 3rem;
   width: auto;
 }
@@ -105,244 +40,102 @@ a:hover {
 .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
-  padding: 0.5rem 0.85rem;
   border-radius: 6px;
-  transition: background var(--transition), color var(--transition);
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-  background: var(--color-primary);
-  color: var(--color-white);
+  background: var(--bs-primary);
+  color: #fff;
 }
 
 .navbar-nav .nav-link:focus {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--bs-warning);
 }
 
-/* ---- Hero Section (Correction Layer on top of Bootstrap) ---- */
 .hero {
-  background: linear-gradient(135deg, var(--color-bg-dark) 0%, #2c1a10 100%);
-  color: var(--color-white);
-  padding: 4rem 2rem;
-  text-align: center;
-  border-radius: 0;
+  background: linear-gradient(135deg, var(--bs-dark) 0%, #2c1a10 100%);
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  color: var(--color-white);
-  margin-bottom: 0.75rem;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--color-accent);
-  margin-bottom: 1.25rem;
-}
-
-/* ---- Buttons (Brand Aesthetic Correction Layer) ---- */
 .btn-primary {
-  --bs-btn-color: #ffffff;
-  --bs-btn-bg: var(--color-primary);
-  --bs-btn-border-color: var(--color-primary);
-  --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: var(--color-primary-dark);
-  --bs-btn-hover-border-color: var(--color-primary-dark);
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #9a0c22;
+  --bs-btn-hover-border-color: #9a0c22;
   --bs-btn-focus-shadow-rgb: 200, 16, 46;
-  --bs-btn-active-color: #ffffff;
-  --bs-btn-active-bg: var(--color-primary-dark);
-  --bs-btn-active-border-color: var(--color-primary-dark);
-  --bs-btn-disabled-color: #ffffff;
-  --bs-btn-disabled-bg: var(--color-primary);
-  --bs-btn-disabled-border-color: var(--color-primary);
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-white);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #9a0c22;
+  --bs-btn-active-border-color: #9a0c22;
   font-weight: 600;
-  transition: all var(--transition);
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-  color: var(--color-white);
 }
 
 .btn-outline-primary {
-  --bs-btn-color: var(--color-primary);
-  --bs-btn-border-color: var(--color-primary);
-  --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: var(--color-primary);
-  --bs-btn-hover-border-color: var(--color-primary);
+  --bs-btn-color: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--bs-primary);
+  --bs-btn-hover-border-color: var(--bs-primary);
   --bs-btn-focus-shadow-rgb: 200, 16, 46;
-  --bs-btn-active-color: #ffffff;
-  --bs-btn-active-bg: var(--color-primary);
-  --bs-btn-active-border-color: var(--color-primary);
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--bs-primary);
+  --bs-btn-active-border-color: var(--bs-primary);
   font-weight: 600;
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-white);
 }
 
 .btn-secondary {
-  --bs-btn-color: #ffffff;
+  --bs-btn-color: #fff;
   --bs-btn-bg: #4a3b32;
   --bs-btn-border-color: #4a3b32;
-  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #362a23;
   --bs-btn-hover-border-color: #362a23;
-  background-color: #4a3b32;
-  border-color: #4a3b32;
-  color: var(--color-white);
   font-weight: 600;
-}
-
-.btn-secondary:hover {
-  background-color: #362a23;
-  border-color: #362a23;
-  color: var(--color-white);
 }
 
 .btn-outline-secondary {
   --bs-btn-color: #4a3b32;
   --bs-btn-border-color: #e0d6c8;
-  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #4a3b32;
   --bs-btn-hover-border-color: #4a3b32;
-  color: #4a3b32;
-  border-color: #e0d6c8;
-}
-
-/* ---- Floating Action Buttons (Quick Order & Back to Top) ---- */
-#quickOrder,
-#backToTop,
-.back-to-top {
-  z-index: 1020;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 #quickOrder:hover,
-#backToTop:hover,
-.back-to-top:hover {
+#backToTop:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
 }
 
-
-/* ---- Testimonial Card Correction ---- */
-.testimonial {
-  font-style: italic;
+.menu-dish-img {
+  width: 64px;
+  height: 64px;
 }
 
-.testimonial cite {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--color-primary);
-}
-
-/* ---- Chef's Note & Callouts ---- */
-.chef-note {
-  background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
-  border-left: 4px solid var(--color-accent);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 1.5rem 2rem;
-  margin: 2rem 0;
-  font-style: italic;
-}
-
-.chef-note mark {
-  background: rgba(212, 160, 23, 0.3);
-  padding: 0.1rem 0.3rem;
-  border-radius: 4px;
-}
-
-/* ---- Top List Numbering ---- */
-.top-list {
-  counter-reset: top-counter;
-  list-style: none;
-  padding: 0;
-}
-
-.top-list li {
-  counter-increment: top-counter;
-  padding: 1rem 1rem 1rem 3.5rem;
-  margin-bottom: 0.75rem;
-  background: var(--color-white);
-  border-radius: var(--radius);
-  border: 1px solid var(--color-border);
-  position: relative;
-  transition: box-shadow var(--transition);
-}
-
-.top-list li:hover {
-  box-shadow: var(--shadow);
-}
-
-.top-list li::before {
-  content: counter(top-counter);
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  background: var(--color-primary);
-  color: var(--color-white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-/* ---- Terms & Definition Lists ---- */
-.terms-list dt {
-  font-size: 1.05rem;
-  margin-top: 1rem;
-  color: var(--color-primary);
-}
-
-.terms-list dd {
-  margin-left: 1.5rem;
-  color: var(--color-text-light);
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-/* ---- Carousel Image Sizing ---- */
 .gallery-carousel-img {
   height: 460px;
-  object-fit: cover;
 }
 
-@media (max-width: 768px) {
-  .gallery-carousel-img {
-    height: 280px;
-  }
-}
-
-/* ---- Site Footer ---- */
 .site-footer {
-  background: var(--color-bg-dark);
-  color: #bbbbbb;
-  padding: 2.5rem 0;
-  margin-top: 4rem;
+  color: #bbb;
 }
 
 .site-footer a {
-  color: var(--color-accent);
+  color: var(--bs-warning);
 }
 
 .site-footer a:hover {
-  color: var(--color-white);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .menu-dish-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .gallery-carousel-img {
+    height: 280px;
+  }
 }

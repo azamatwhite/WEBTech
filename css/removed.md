@@ -1,45 +1,46 @@
-# CSS Refactor & Migration Log — Bootstrap 5.3 Migration
+# Bootstrap 5 CSS Migration
 
-This document details all hand-crafted CSS rules, layout declarations, and redundant overrides removed from the custom stylesheet layer (`base.css`, `ruslan.css`, `azamat.css`, `miko.css`), along with the corresponding Bootstrap 5.3 utility classes and components that replaced them.
-
-## Summary of Removed CSS Rules
+This table records the custom selectors removed or simplified across the original `base.css`, `azamat.css`, `miko.css`, and `ruslan.css` stylesheets. It maps each change to the Bootstrap 5 classes now present in the HTML. Brand colors, typography, interaction accents, and fixed responsive image dimensions that Bootstrap cannot reproduce remain in `base.css`.
 
 | Removed rule / selector | Source File | Replaced by / Reason |
-|---|---|---|
-| `.site-header`, `header` (flexbox/padding/gap layout) | `base.css` | Bootstrap `.navbar`, `.navbar-expand-lg`, `.container-fluid` |
-| `.nav-list`, `header nav ul` (custom flex list & gap) | `base.css` | Bootstrap `.navbar-nav`, `.ms-auto` |
-| `.nav-list li a`, `header nav a` (manual link box/padding) | `base.css` | Bootstrap `.nav-item`, `.nav-link`, `.active`, `aria-current="page"` |
-| `.hero` (`width: 100vw`, `left: 50%`, `margin-left: -50vw` hack) | `base.css` | Bootstrap `.container-fluid` wrapper |
-| `.hero h1` (manual `font-size: 2.8rem`) | `base.css` | Bootstrap typography utility `.display-3` / `.display-4` |
-| `.hero-subtitle` (manual `font-size`) | `base.css` | Bootstrap `.lead` utility class |
-| `.advantages` (manual flexbox layout, centering, wrap & gap) | `base.css` | Bootstrap `.container`, `.row`, `.row-cols-1`, `.row-cols-md-2`, `.row-cols-lg-3`, `.g-4` |
-| `.advantage-card` (border, radius, box-shadow, padding) | `base.css` | Bootstrap `.card`, `.card-body`, `.shadow-sm`, `.h-100`, `.border-0` |
-| `.gallery-grid`, `figure`, `img`, `figcaption` | `base.css` | Bootstrap `.row`, `.row-cols-*`, `.col`, `.card`, `.img-fluid`, `.shadow-sm` |
-| `.float-left` (custom CSS float rule) | `base.css` | Bootstrap utility `.float-start`, `.me-4`, `.mb-3`, `.img-fluid` |
-| `.clearfix::after` | `base.css` | Bootstrap `.clearfix` utility |
-| `.form-row`, input/select/textarea manual width/padding/radius | `base.css` | Bootstrap `.row`, `.g-3`, `.col-md-*`, `.form-control`, `.form-select`, `.mb-3` |
-| `.radio-group`, manual flex layout and label borders | `base.css` | Bootstrap `.form-check`, `.form-check-input`, `.form-check-label`, `.d-flex`, `.gap-3` |
-| `.btn`, `.btn--primary`, `.btn--secondary` box/padding rules | `base.css` | Bootstrap `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-outline-*`, `.btn-lg`, `.btn-sm` |
-| `.btn-group` flex layout | `base.css` | Bootstrap `.d-flex`, `.gap-2` / `.gap-3` |
-| `#quickOrder` fixed positioning, gradients, shadow, padding | `base.css` | Bootstrap `.btn`, `.btn-primary`, `.position-fixed`, `.bottom-0`, `.end-0`, `.m-4`, `.rounded-pill`, `.shadow` |
-| `.back-to-top` fixed positioning, borders, padding | `base.css` | Bootstrap `.btn`, `.btn-primary`, `.position-fixed`, `.bottom-0`, `.end-0`, `.m-4`, `.rounded-pill`, `.shadow` |
-| `.site-footer` manual text-align and paragraph margins | `base.css` | Bootstrap `.container`, `.text-center`, `.text-md-start`, `.mb-2`, `.mb-0` |
-| `.about-card`, `main .about-card` (specificity demo) | `ruslan.css` | Bootstrap `.card`, `.p-4`, `.shadow-sm`, `.border-0` |
-| `#pageTitle`, `.page-title-wrap` (dead specificity override) | `ruslan.css` | Bootstrap `.display-3` / `.display-4` |
-| `#booking-form` (double-box container styling) | `ruslan.css` | Bootstrap `.card` on form container (no extra form wrapper styling needed) |
-| `.booking-grid-container` (2-column CSS grid) | `ruslan.css` | Bootstrap `.container`, `.row`, `.g-4`, `.col-12`, `.col-lg-6` |
-| `.booking-info-card`, `.booking-form-card` box styles | `ruslan.css` | Bootstrap `.card`, `.p-4`, `.shadow-sm`, `.border-0` |
-| `.halls-mini-gallery` (CSS grid layout) | `ruslan.css` | Nested Bootstrap `.row`, `.row-cols-3`, `.g-2` inside column |
-| `.hall-thumb img` (manual height & object-fit) | `ruslan.css` | Bootstrap `.img-fluid`, `.rounded`, `.shadow-sm` |
-| `.table-wrap`, `.data-table` (manual table styling) | `ruslan.css` | Bootstrap `.table-responsive`, `.table`, `.table-striped`, `.table-hover`, `.align-middle` |
-| `.positions-grid`, `.position-card` (CSS grid layout) | `azamat.css` | Bootstrap `.row`, `.row-cols-1`, `.row-cols-md-2`, `.g-4`, `.card`, `.p-4`, `.shadow-sm` |
-| `.table-wrap`, `.menu-table` (manual table styling) | `azamat.css` | Bootstrap `.table-responsive`, `.table`, `.table-striped`, `.table-hover`, `.table-dark`, `.align-middle` |
-| `.reviews-container`, `.review-card` (flex column layout) | `miko.css` | Bootstrap `.row`, `.row-cols-1`, `.row-cols-md-2`, `.g-4`, `.card`, `.p-4`, `.shadow-sm` |
-| `.feedback-form input...`, `.form-buttons`, `.btn-submit`, `.btn-reset` | `miko.css` | Bootstrap `.form-control`, `.mb-3`, `.btn`, `.btn-primary`, `.btn-outline-secondary` |
-| `.status-badge` (manual pill badge styling) | `miko.css` | Bootstrap `.badge`, `.bg-warning`, `.text-dark` |
+| :--- | :--- | :--- |
+| `:root` (`--color-*`, `--radius`, `--shadow*`, `--transition`) | `base.css` | Brand colors and body values now use Bootstrap `--bs-*` theme variables; layout, shadows, and spacing use Bootstrap utilities. |
+| `body`, `main` (font, background, line height, flex layout) | `base.css` | Bootstrap body variables and default line height plus `.d-flex.flex-column.min-vh-100` on `<body>` and `.flex-grow-1` on `<main>`. |
+| `.section-heading` (font size, border, spacing) | `base.css` | `.fs-3.fw-bold.text-primary.border-bottom.pb-2.mb-4`. |
+| `a`, `a:hover` (global link color and transition) | `base.css` | Bootstrap `--bs-link-color` and `--bs-link-hover-color` theme variables. |
+| `.site-header` (sticky positioning, stacking, background, shadow) | `base.css` | `.sticky-top.shadow.bg-dark`; navbar structure uses `.navbar`, `.navbar-expand-lg`, and `.container-fluid`. |
+| `.navbar-brand.logo` (line height, flex alignment) | `base.css` | `.navbar-brand.d-inline-flex.align-items-center`. |
+| `.navbar-brand.logo img` (logo sizing selector) | `base.css` | Simplified to `.navbar-brand img`; the `max-height` correction remains because Bootstrap has no equivalent fixed maximum. |
+| `.navbar-nav .nav-link` (custom padding and transition) | `base.css` | Bootstrap `.navbar-nav` and `.nav-link` provide link layout and interaction defaults; brand colors and active/focus accents remain in `base.css`. |
+| `.hero` (padding, alignment, text color, radius) | `base.css` | `.text-center.py-5.px-4.text-white`; the brand gradient remains in `base.css`. |
+| `.hero h1` (font, color, margin) | `base.css` | `.display-3` or `.display-4` and `.text-white`; shared heading typography remains in `base.css`. |
+| `.hero-subtitle` (font size, color, spacing) | `base.css` | `.lead.text-warning.mb-3`. |
+| `.btn-primary`, `.btn-primary:focus`, `.btn-outline-primary`, `.btn-outline-primary:hover`, `.btn-secondary`, `.btn-secondary:hover`, `.btn-outline-secondary` (duplicated button styling) | `base.css` | Bootstrap `.btn` variants handle component states; brand button colors are supplied through the variants' `--bs-btn-*` variables. |
+| `.back-to-top` (z-index, weight, letter spacing, transition) | `base.css` | `.btn`, `.btn-primary`, `.position-fixed`, `.bottom-0`, `.end-0`, `.m-4`, `.rounded-pill`, and `.shadow`; the hover lift remains separately defined for the preserved `#quickOrder` and `#backToTop` IDs. |
+| `.testimonial`, `.testimonial cite` (quote and attribution styling) | `base.css` | `.fst-italic` on blockquotes and `.text-primary.fw-semibold.fst-normal` on citations. |
+| `.chef-note`, `.chef-note mark` (callout background, border, spacing) | `base.css` | `.alert.alert-warning`, border, spacing, and radius utilities; `<mark>` uses Bootstrap's default mark styling. |
+| `.top-list`, `.top-list li`, `.top-list li:hover`, `.top-list li::before` (custom counter badges and item cards) | `base.css` | Ordered lists use `.list-group.list-group-numbered.gap-3.shadow-sm`; custom counter and hover rules were removed. |
+| `.terms-list dt`, `.terms-list dd` (definition-list typography, spacing, border) | `base.css` | `dt` uses `.text-primary.mt-3`; `dd` uses `.ms-4.text-muted.pb-2.border-bottom` or `.border-0`. |
+| `.gallery-carousel-img` `object-fit` declaration | `base.css` | Bootstrap `.object-fit-cover`; the custom class remains only for the 460px/280px responsive heights. |
+| `.site-footer` background, padding, and top margin | `base.css` | `.bg-dark.py-5.mt-5`; footer text and link colors remain in `base.css`. |
+| `.menu-categories`, `.menu-categories li a`, `.menu-categories li a:hover` (pill navigation layout and hover) | `azamat.css` | `.list-unstyled.d-flex.flex-wrap.gap-2.justify-content-center`, with `.btn.btn-outline-primary.rounded-pill` links. |
+| `.menu-dish-img` `object-fit` and radius declarations | `azamat.css` | `.object-fit-cover.rounded.shadow-sm`; fixed dimensions remain as a responsive rule in `base.css`. |
+| `.table th`, `.table td` mobile overrides | `azamat.css` | `.table-responsive`, `.table-sm`, and `.text-nowrap` handle compact responsive tables. |
+| `.btn.btn-sm` mobile override | `azamat.css` | `.btn-sm.px-2.py-1` on menu action buttons. |
+| `.category-header` (font size and accent color) | `azamat.css` | `.p-3.fs-5.text-warning.bg-dark`; shared display typography for table headings remains in `base.css`. |
+| `.btn-cart`, `.btn-cart:hover` (custom cart-action button) | `azamat.css` | `.btn.btn-primary.btn-sm.rounded-pill.px-2.py-1`. |
+| `.cart-toggle`, `.cart-toggle:hover` (cart button layout and hover) | `azamat.css` | `.btn.btn-outline-light.position-relative`. |
+| `.cart-badge` (manual badge positioning and shape) | `azamat.css` | `.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-warning.text-dark`. |
+| `.info-block`, `.info-block h3`, `.info-block ul`, `.info-block ul ul` (callout card and list spacing) | `miko.css` | `.card.border-start.border-4.border-warning.p-4.shadow-sm`, heading utilities, and list spacing utilities. |
+| `.review-header` (avatar row alignment and spacing) | `miko.css` | `.d-flex.align-items-center.gap-3.mb-3`. |
+| `.review-avatar` (size, crop, circle, border) | `miko.css` | `width="50" height="50"` with `.object-fit-cover.rounded-circle.border.border-2.border-warning`. |
+| `.review-attached-photo img` (size, crop, radius, border) | `miko.css` | `width="120" height="120"` with `.object-fit-cover.rounded.shadow-sm.border`. |
+| `.review-date` (font size, color, margins) | `miko.css` | `.small.text-muted.mt-auto.mb-0`. |
+| `.stat-card` (bottom accent border) | `ruslan.css` | `.card.border-0.border-bottom.border-4.border-primary`. |
+| `.stat-number` (size, weight, color, line height) | `ruslan.css` | `.fs-2.lh-sm.fw-bold.text-primary`. |
+| `.stat-label` (size, color, top spacing) | `ruslan.css` | `.small.text-muted.mt-1`. |
+| `.hall-thumb span` (caption display, typography, spacing, color) | `ruslan.css` | `.d-block.small.fw-bold.text-primary.mt-1`; the thumbnail grid uses `.row.row-cols-3.g-2`. |
+| `.rules-list`, `.rules-list li::marker` (list spacing, line height, marker color) | `ruslan.css` | `.text-muted.mb-4.ps-4.lh-lg`; the browser's native list marker replaces the custom marker color. |
+| `.card-badge` (absolute promotional badge styling) | `ruslan.css` | Removed as unused; no `.card-badge` element exists in the migrated pages. |
 
-## Preserved Styles in Brand Correction Layer
-The following styles have been retained and adapted into custom property bindings and brand-specific accent touches:
-- `:root` brand variables mapped directly to Bootstrap 5.3 CSS variables (`--bs-primary`, `--bs-primary-rgb`, `--bs-body-bg`, `--bs-body-color`, `--bs-body-font-family`).
-- Brand decorative elements: `.top-list` numbering counter discs, `.chef-note` callouts, `.terms-list` definition markers.
-- Interactive media controls: `.cart-toggle`, `.cart-badge`, `.menu-dish-img`, `.gallery-carousel-img`, and review media avatars (`.review-avatar`, `.review-attached-photo img`).
+The deleted page-specific stylesheets had no remaining rules after these changes. The shared stylesheet retains only Bootstrap theme-variable overrides, brand typography and interaction colors, the hero gradient, footer colors, and responsive image dimensions.
