@@ -1,880 +1,610 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Menu of Dastarkhan in Astana - Authentic Eastern and Kazakh national cuisine" />
-  <meta name="author" content="Azamat" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <!-- Bootstrap v5.3.3 CSS loaded first, followed by custom base.css and azamat.css for brand overrides -->
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <title>Menu — Dastarkhan</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Dastarkhan - Authentic Eastern and Kazakh national cuisine in Astana. Find our locations and opening hours." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Bootstrap 5.3.3 CSS first, then base.css (brand overrides) -->
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="images/favicon.png" rel="icon" type="image/png"/>
+<title>Menu — Dastarkhan</title>
 </head>
-
 <body class="d-flex flex-column min-vh-100">
-  <header class="sticky-top shadow bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand d-inline-flex align-items-center">
-        <img src="images/logo.png" alt="Dastarkhan Logo">
-      </a>
-      <div class="d-flex align-items-center gap-2 order-lg-last">
-        <button aria-label="Open cart" class="btn btn-outline-light position-relative" id="cartToggle" type="button">🛒<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark"
-            id="cartBadge">0</span></button>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="menu.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main class="flex-grow-1">
-    <div class="container my-5" id="top">
-      <h1 class="display-4 text-center mb-4">Dastarkhan Menu</h1>
-      <p class="lead text-center text-muted mb-5">Explore our wide selection of authentic Central Asian specialties,
+<header class="sticky-top shadow bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+<a class="navbar-brand d-inline-flex align-items-center" href="index.html">
+<img alt="Dastarkhan Logo" class="w-auto" height="48" src="images/logo.png" width="44"/>
+</a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a aria-current="page" class="nav-link active" href="menu.html">Menu</a></li>
+<li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+<li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+<li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow-1">
+<div class="container my-5" id="top">
+<h1 class="display-4 text-center mb-4">Dastarkhan Menu</h1>
+<p class="lead text-center text-muted mb-5">Explore our wide selection of authentic Central Asian specialties,
         hearty lagmans, and Turkish grill dishes.</p>
-
-      <section class="mb-4">
-        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Menu Categories</h2>
-        <ul class="list-unstyled d-flex flex-wrap gap-2 justify-content-center mb-4">
-          <li><a class="btn btn-outline-primary rounded-pill" href="#lagmans">Lagmans &amp; Ganfan</a></li>
-          <li><a class="btn btn-outline-primary rounded-pill" href="#salads">Salads</a></li>
-          <li><a class="btn btn-outline-primary rounded-pill" href="#turkish">Turkish Cuisine &amp; Kebabs</a></li>
-          <li><a class="btn btn-outline-primary rounded-pill" href="#oriental">Oriental &amp; Main Dishes</a></li>
-        </ul>
-      </section>
-
-      <hr class="my-4" />
-
-      <section>
-        <div class="table-responsive shadow-sm rounded mb-4">
-          <table class="table table-striped table-hover table-sm align-middle mb-0">
-            <caption class="p-3 text-muted">Menu as of September 2026 — All prices in KZT including service</caption>
-            <thead class="table-dark">
-              <tr>
-                <th scope="col" class="py-2">Photo</th>
-                <th scope="col" class="py-2">Name &amp; Ingredients</th>
-                <th scope="col" class="py-2">Weight</th>
-                <th scope="col" class="py-2 text-nowrap">Price</th>
-                <th scope="col" class="py-2 text-center text-nowrap">Order</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Lagmans & Ganfan -->
-              <tr class="table-dark">
-                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="lagmans"><i>Lagmans &amp;
+<section class="mb-4">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Menu Categories</h2>
+<ul class="list-unstyled d-flex flex-wrap gap-2 justify-content-center mb-4">
+<li><a class="btn btn-outline-primary rounded-pill" href="#lagmans">Lagmans &amp; Ganfan</a></li>
+<li><a class="btn btn-outline-primary rounded-pill" href="#salads">Salads</a></li>
+<li><a class="btn btn-outline-primary rounded-pill" href="#turkish">Turkish Cuisine &amp; Kebabs</a></li>
+<li><a class="btn btn-outline-primary rounded-pill" href="#oriental">Oriental &amp; Main Dishes</a></li>
+</ul>
+</section>
+<hr class="my-4"/>
+<section>
+<div class="table-responsive shadow-sm rounded mb-4">
+<!-- TODO: ordering/cart returns together with JS (Add buttons with data-id/data-name/data-price were removed; restore from git history) -->
+<table class="table table-striped table-hover table-sm align-middle mb-0">
+<caption class="p-3 text-muted">Menu as of September 2026 — All prices in KZT including service</caption>
+<thead class="table-dark">
+<tr>
+<th class="py-2 d-none d-sm-table-cell" scope="col">Photo</th>
+<th class="py-2" scope="col">Name &amp; Ingredients</th>
+<th class="py-2 d-none d-sm-table-cell" scope="col">Weight</th>
+<th class="py-2 text-nowrap" scope="col">Price</th>
+<th class="py-2 text-center text-nowrap" scope="col">Order</th></tr>
+</thead>
+<tbody>
+<!-- Lagmans & Ganfan -->
+<tr class="table-dark">
+<th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="lagmans" scope="colgroup"><i>Lagmans &amp;
                     Ganfan</i></th>
-              </tr>
-              <tr>
-                <td><img alt="Fried Boso Lagman with Tomato" src="images/lagman/zhar_lagman_boso_tomat.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Fried Boso Lagman with Tomato<br /><small class="text-muted fw-normal">Beef, vegetables,
+</tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Fried Boso Lagman with Tomato" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/zhar_lagman_boso_tomat.jpeg" width="64"/></td>
+<th scope="row">Fried Boso Lagman with Tomato<br/><small class="text-muted fw-normal">Beef, vegetables,
                     and noodles quickly stir-fried with tomato paste</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="fried-boso-lagman-with-tomato" data-name="Fried Boso Lagman with Tomato" data-price="2890"
-                    type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Fried Boso Lagman with Soy Sauce" src="images/lagman/zhar_lagman_boso_coya.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Fried Boso Lagman with Soy Sauce<br /><small class="text-muted fw-normal">Beef,
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="fried-boso-lagman-with-tomato" data-name="Fried Boso Lagman with Tomato" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Fried Boso Lagman with Soy Sauce" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/zhar_lagman_boso_coya.jpeg" width="64"/></td>
+<th scope="row">Fried Boso Lagman with Soy Sauce<br/><small class="text-muted fw-normal">Beef,
                     vegetables, and noodles quickly stir-fried with soy sauce</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="fried-boso-lagman-with-soy-sauce" data-name="Fried Boso Lagman with Soy Sauce"
-                    data-price="2890" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Kuldzha Lagman" src="images/lagman/lagman_kuldzhinskii.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Kuldzha Lagman<br /><small class="text-muted fw-normal">Mutton lagman with two types of
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="fried-boso-lagman-with-soy-sauce" data-name="Fried Boso Lagman with Soy Sauce" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Kuldzha Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_kuldzhinskii.jpeg" width="64"/></td>
+<th scope="row">Kuldzha Lagman<br/><small class="text-muted fw-normal">Mutton lagman with two types of
                     gravy (egg and wild leek/jusai)</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="kuldzha-lagman" data-name="Kuldzha Lagman" data-price="2990" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Guiru Lagman" src="images/lagman/guiru_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Guiru Lagman<br /><small class="text-muted fw-normal">Beef, noodles, and coarsely
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="kuldzha-lagman" data-name="Kuldzha Lagman" data-price="2990" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Guiru Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/guiru_lagman.jpeg" width="64"/></td>
+<th scope="row">Guiru Lagman<br/><small class="text-muted fw-normal">Beef, noodles, and coarsely
                     chopped vegetables served separately</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="guiru-lagman" data-name="Guiru Lagman" data-price="2890" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Guiru Ganfan" src="images/lagman/guiru_ganfan.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Guiru Ganfan<br /><small class="text-muted fw-normal">Beef, rice, and coarsely chopped
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="guiru-lagman" data-name="Guiru Lagman" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Guiru Ganfan" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/guiru_ganfan.jpeg" width="64"/></td>
+<th scope="row">Guiru Ganfan<br/><small class="text-muted fw-normal">Beef, rice, and coarsely chopped
                     vegetables served separately</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="guiru-ganfan" data-name="Guiru Ganfan" data-price="2890" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Home-style Lagman / Ganfan" src="images/lagman/lagman_gaifan_domashnii.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Home-style Lagman / Ganfan<br /><small class="text-muted fw-normal">Beef, home-style
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="guiru-ganfan" data-name="Guiru Ganfan" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Home-style Lagman / Ganfan" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_gaifan_domashnii.jpeg" width="64"/></td>
+<th scope="row">Home-style Lagman / Ganfan<br/><small class="text-muted fw-normal">Beef, home-style
                     lagman/rice in beef broth</small></th>
-                <td>500<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="home-style-lagman-ganfan" data-name="Home-style Lagman / Ganfan" data-price="2890"
-                    type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Lopeiza Lagman" src="images/lagman/lagman_lopeiza.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Lopeiza Lagman<br /><small class="text-muted fw-normal">Ancient Uyghur recipe (mutton,
+<td>500<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="home-style-lagman-ganfan" data-name="Home-style Lagman / Ganfan" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Lopeiza Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_lopeiza.jpeg" width="64"/></td>
+<th scope="row">Lopeiza Lagman<br/><small class="text-muted fw-normal">Ancient Uyghur recipe (mutton,
                     glass noodles, vegetables, egg, spices)</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="lopeiza-lagman" data-name="Lopeiza Lagman" data-price="2990" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="4 Seasons Lagman" src="images/lagman/lagman_4_sezona.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">4 Seasons Lagman<br /><small class="text-muted fw-normal">Fried eggplants, fried chicken
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="lopeiza-lagman" data-name="Lopeiza Lagman" data-price="2990" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="4 Seasons Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_4_sezona.jpeg" width="64"/></td>
+<th scope="row">4 Seasons Lagman<br/><small class="text-muted fw-normal">Fried eggplants, fried chicken
                     fillet, beef, mutton, vegetables</small></th>
-                <td>500<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="4-seasons-lagman" data-name="4 Seasons Lagman" data-price="3190" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Moguru Lagman" src="images/lagman/moguru_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Moguru Lagman<br /><small class="text-muted fw-normal">Beef with mushrooms, lagman
+<td>500<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="4-seasons-lagman" data-name="4 Seasons Lagman" data-price="3190" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Moguru Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/moguru_lagman.jpeg" width="64"/></td>
+<th scope="row">Moguru Lagman<br/><small class="text-muted fw-normal">Beef with mushrooms, lagman
                     dough</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="moguru-lagman" data-name="Moguru Lagman" data-price="2890" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Dastarkhan Lagman" src="images/lagman/lagman_dastarkhan.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Dastarkhan Lagman<br /><small class="text-muted fw-normal">Beef, noodles, coarsely
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="moguru-lagman" data-name="Moguru Lagman" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Dastarkhan Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_dastarkhan.jpeg" width="64"/></td>
+<th scope="row">Dastarkhan Lagman<br/><small class="text-muted fw-normal">Beef, noodles, coarsely
                     chopped vegetables, wood ear mushrooms</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="dastarkhan-lagman" data-name="Dastarkhan Lagman" data-price="2890" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Ganbyan-Tsomyan Lagman" src="images/lagman/lagman_ganbyan_comyan.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Ganbyan-Tsomyan Lagman<br /><small class="text-muted fw-normal">Fried lagman with beef,
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="dastarkhan-lagman" data-name="Dastarkhan Lagman" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Ganbyan-Tsomyan Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_ganbyan_comyan.jpeg" width="64"/></td>
+<th scope="row">Ganbyan-Tsomyan Lagman<br/><small class="text-muted fw-normal">Fried lagman with beef,
                     sesame, wild leek (jusai), coarsely chopped</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="ganbyan-tsomyan-lagman" data-name="Ganbyan-Tsomyan Lagman" data-price="2890"
-                    type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Adzhaiyp Guiru Lagman" src="images/lagman/adzhaiyp_guiru_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Adzhaiyp Guiru Lagman<br /><small class="text-muted fw-normal">Fried beef, green onions,
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="ganbyan-tsomyan-lagman" data-name="Ganbyan-Tsomyan Lagman" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Adzhaiyp Guiru Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/adzhaiyp_guiru_lagman.jpeg" width="64"/></td>
+<th scope="row">Adzhaiyp Guiru Lagman<br/><small class="text-muted fw-normal">Fried beef, green onions,
                     spices, hot pepper</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="adzhaiyp-guiru-lagman" data-name="Adzhaiyp Guiru Lagman" data-price="3490" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Din-Din Tsomyan Lagman" src="images/lagman/lagman_din_din_comyan.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Din-Din Tsomyan Lagman<br /><small class="text-muted fw-normal">Fried lagman with
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="adzhaiyp-guiru-lagman" data-name="Adzhaiyp Guiru Lagman" data-price="3490" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Din-Din Tsomyan Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lagman_din_din_comyan.jpeg" width="64"/></td>
+<th scope="row">Din-Din Tsomyan Lagman<br/><small class="text-muted fw-normal">Fried lagman with
                     mutton, finely chopped ingredients</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="din-din-tsomyan-lagman" data-name="Din-Din Tsomyan Lagman" data-price="2890"
-                    type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Tandoor Lagman" src="images/lagman/tandyr_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Tandoor Lagman<br /><small class="text-muted fw-normal">Fried lamb ribs with vegetables
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="din-din-tsomyan-lagman" data-name="Din-Din Tsomyan Lagman" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Tandoor Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/tandyr_lagman.jpeg" width="64"/></td>
+<th scope="row">Tandoor Lagman<br/><small class="text-muted fw-normal">Fried lamb ribs with vegetables
                     and spices, lagman dough</small></th>
-                <td>500<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="tandoor-lagman" data-name="Tandoor Lagman" data-price="4190" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Lazro Lagman" src="images/lagman/lazro_lagman.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Lazro Lagman<br /><small class="text-muted fw-normal">Fried mutton with vegetables and
+<td>500<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="tandoor-lagman" data-name="Tandoor Lagman" data-price="4190" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Lazro Lagman" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/lagman/lazro_lagman.jpeg" width="64"/></td>
+<th scope="row">Lazro Lagman<br/><small class="text-muted fw-normal">Fried mutton with vegetables and
                     spices, lagman dough</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="lazro-lagman" data-name="Lazro Lagman" data-price="2890" type="button">+ Add</button></td>
-              </tr>
-
-              <!-- Salads -->
-              <tr class="table-dark">
-                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="salads"><i>Salads</i></th>
-              </tr>
-              <tr>
-                <td><img alt="Oriental Bazaar Salad" src="images/salats/vostochnyi_bazar.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Oriental Bazaar Salad<br /><small class="text-muted fw-normal">Fried champignons,
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="lazro-lagman" data-name="Lazro Lagman" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<!-- Salads -->
+<tr class="table-dark">
+<th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="salads" scope="colgroup"><i>Salads</i></th>
+</tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Oriental Bazaar Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/vostochnyi_bazar.jpeg" width="64"/></td>
+<th scope="row">Oriental Bazaar Salad<br/><small class="text-muted fw-normal">Fried champignons,
                     eggplants, tomatoes, and feta cheese</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="oriental-bazaar-salad" data-name="Oriental Bazaar Salad" data-price="2990" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Pharaoh Salad" src="images/salats/faraon.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Pharaoh Salad<br /><small class="text-muted fw-normal">Beef tongue, fried mushrooms,
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="oriental-bazaar-salad" data-name="Oriental Bazaar Salad" data-price="2990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Pharaoh Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/faraon.jpeg" width="64"/>
+</td>
+<th scope="row">Pharaoh Salad<br/><small class="text-muted fw-normal">Beef tongue, fried mushrooms,
                     lettuce, pickles</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 390</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="pharaoh-salad" data-name="Pharaoh Salad" data-price="2390" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Olivier Salad" src="images/salats/olivie.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Olivier Salad<br /><small class="text-muted fw-normal">Potatoes, carrots, boiled beef,
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 390</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="pharaoh-salad" data-name="Pharaoh Salad" data-price="2390" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Olivier Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/olivie.jpeg" width="64"/>
+</td>
+<th scope="row">Olivier Salad<br/><small class="text-muted fw-normal">Potatoes, carrots, boiled beef,
                     pickles, egg, green peas, mayonnaise</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">1 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="olivier-salad" data-name="Olivier Salad" data-price="1890" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Greek Salad" src="images/salats/grecheskii.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Greek Salad<br /><small class="text-muted fw-normal">Cucumbers, tomatoes, olives, feta
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">1 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="olivier-salad" data-name="Olivier Salad" data-price="1890" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Greek Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/grecheskii.jpeg" width="64"/></td>
+<th scope="row">Greek Salad<br/><small class="text-muted fw-normal">Cucumbers, tomatoes, olives, feta
                     cheese, lettuce, lemon</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">1 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="greek-salad" data-name="Greek Salad" data-price="1990" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Capercaillie's Nest Salad" src="images/salats/gnezdo_gluharya.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Capercaillie's Nest Salad<br /><small class="text-muted fw-normal">Pie potatoes, boiled
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">1 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="greek-salad" data-name="Greek Salad" data-price="1990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Capercaillie's Nest Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/gnezdo_gluharya.jpeg" width="64"/></td>
+<th scope="row">Capercaillie's Nest Salad<br/><small class="text-muted fw-normal">Pie potatoes, boiled
                     chicken, eggs, pickles, mayonnaise</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="capercaillie-s-nest-salad" data-name="Capercaillie's Nest Salad" data-price="2190"
-                    type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Caesar Salad" src="images/salats/cezar.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Caesar Salad<br /><small class="text-muted fw-normal">Napa cabbage, turkey, cherry
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="capercaillie-s-nest-salad" data-name="Capercaillie's Nest Salad" data-price="2190" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Caesar Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/cezar.jpeg" width="64"/>
+</td>
+<th scope="row">Caesar Salad<br/><small class="text-muted fw-normal">Napa cabbage, turkey, cherry
                     tomatoes, croutons, mayonnaise, cheese</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 390</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="caesar-salad" data-name="Caesar Salad" data-price="2390" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Chinese Salad" src="images/salats/kitaiskii.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Chinese Salad<br /><small class="text-muted fw-normal">Cucumbers, bell peppers, carrots,
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 390</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="caesar-salad" data-name="Caesar Salad" data-price="2390" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Chinese Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/kitaiskii.jpeg" width="64"/></td>
+<th scope="row">Chinese Salad<br/><small class="text-muted fw-normal">Cucumbers, bell peppers, carrots,
                     beef, soy sauce</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="chinese-salad" data-name="Chinese Salad" data-price="2190" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Light Salad" src="images/salats/legkii.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Light Salad<br /><small class="text-muted fw-normal">Broccoli, red onion, tomato, feta
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="chinese-salad" data-name="Chinese Salad" data-price="2190" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Light Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/legkii.jpeg" width="64"/>
+</td>
+<th scope="row">Light Salad<br/><small class="text-muted fw-normal">Broccoli, red onion, tomato, feta
                     cheese, lettuce, bell pepper</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 390</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="light-salad" data-name="Light Salad" data-price="2390" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Hunter's Salad" src="images/salats/ohatnichii.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Hunter's Salad<br /><small class="text-muted fw-normal">Chicken fillet, smoked turkey,
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 390</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="light-salad" data-name="Light Salad" data-price="2390" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Hunter's Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/ohatnichii.jpeg" width="64"/></td>
+<th scope="row">Hunter's Salad<br/><small class="text-muted fw-normal">Chicken fillet, smoked turkey,
                     boiled beef, vegetables</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 290</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="hunter-s-salad" data-name="Hunter's Salad" data-price="2290" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Fresh Salad" src="images/salats/svezhii.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Fresh Salad<br /><small class="text-muted fw-normal">Cucumbers, tomatoes, dill, onion
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 290</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="hunter-s-salad" data-name="Hunter's Salad" data-price="2290" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Fresh Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/svezhii.jpeg" width="64"/>
+</td>
+<th scope="row">Fresh Salad<br/><small class="text-muted fw-normal">Cucumbers, tomatoes, dill, onion
                     (choice of dressing)</small></th>
-                <td>200<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">1 790</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="fresh-salad" data-name="Fresh Salad" data-price="1790" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Scheherazade Salad" src="images/salats/sharizada.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Scheherazade Salad<br /><small class="text-muted fw-normal">Turkey, cherry tomatoes, red
+<td>200<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">1 790</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="fresh-salad" data-name="Fresh Salad" data-price="1790" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Scheherazade Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/sharizada.jpeg" width="64"/></td>
+<th scope="row">Scheherazade Salad<br/><small class="text-muted fw-normal">Turkey, cherry tomatoes, red
                     beans, bell pepper, lettuce, balsamic vinegar</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 590</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="scheherazade-salad" data-name="Scheherazade Salad" data-price="2590" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Malibu Salad" src="images/salats/malibu.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Malibu Salad<br /><small class="text-muted fw-normal">Smoked turkey, tomatoes, lettuce,
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 590</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="scheherazade-salad" data-name="Scheherazade Salad" data-price="2590" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Malibu Salad" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/malibu.jpeg" width="64"/>
+</td>
+<th scope="row">Malibu Salad<br/><small class="text-muted fw-normal">Smoked turkey, tomatoes, lettuce,
                     mayonnaise, croutons</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="malibu-salad" data-name="Malibu Salad" data-price="2190" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Achichuk" src="images/salats/achichuk.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Achichuk<br /><small class="text-muted fw-normal">Tomatoes, onions, chili pepper</small>
-                </th>
-                <td>200<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">1 690</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="achichuk" data-name="Achichuk" data-price="1690" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Ezme" src="images/turkich/iezme.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Ezme<br /><small class="text-muted fw-normal">Tomatoes, cucumbers, onion, parsley, hot
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="malibu-salad" data-name="Malibu Salad" data-price="2190" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Achichuk" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/salats/achichuk.jpeg" width="64"/>
+</td>
+<th scope="row">Achichuk<br/><small class="text-muted fw-normal">Tomatoes, onions, chili pepper</small>
+</th>
+<td>200<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">1 690</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="achichuk" data-name="Achichuk" data-price="1690" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Ezme" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/turkich/iezme.jpeg" width="64"/></td>
+<th scope="row">Ezme<br/><small class="text-muted fw-normal">Tomatoes, cucumbers, onion, parsley, hot
                     pepper, pomegranate sauce</small></th>
-                <td>150<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">1 590</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="ezme" data-name="Ezme" data-price="1590" type="button">+ Add</button></td>
-              </tr>
-
-              <!-- Turkish Cuisine & Kebabs -->
-              <tr class="table-dark">
-                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="turkish"><i>Turkish Cuisine &amp;
+<td>150<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">1 590</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="ezme" data-name="Ezme" data-price="1590" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<!-- Turkish Cuisine & Kebabs -->
+<tr class="table-dark">
+<th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="turkish" scope="colgroup"><i>Turkish Cuisine &amp;
                     Kebabs</i></th>
-              </tr>
-              <tr>
-                <td><img alt="Beyti Sarma" src="images/turkich/turkich_beitu_sorma.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Beyti Sarma<br /><small class="text-muted fw-normal">Minced beef stuffed in eggplant and
+</tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Beyti Sarma" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/turkich/turkich_beitu_sorma.jpeg" width="64"/></td>
+<th scope="row">Beyti Sarma<br/><small class="text-muted fw-normal">Minced beef stuffed in eggplant and
                     lavash with onion, tomatoes, topped with cheese and Turkish yogurt</small></th>
-                <td>380<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="beyti-sarma" data-name="Beyti Sarma" data-price="3990" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Guvec Sebzelik" src="images/turkich/sebzelik.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Guvec Sebzelik<br /><small class="text-muted fw-normal">Pan-fried vegetables covered
+<td>380<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="beyti-sarma" data-name="Beyti Sarma" data-price="3990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Guvec Sebzelik" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/turkich/sebzelik.jpeg" width="64"/></td>
+<th scope="row">Guvec Sebzelik<br/><small class="text-muted fw-normal">Pan-fried vegetables covered
                     with cheese</small></th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 590</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="guvec-sebzelik" data-name="Guvec Sebzelik" data-price="3590" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Guvec Et" src="images/turkich/et_gubiash.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Guvec Et<br /><small class="text-muted fw-normal">Beef fried with vegetables in a pan,
+<td>300<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 590</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="guvec-sebzelik" data-name="Guvec Sebzelik" data-price="3590" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Guvec Et" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/turkich/et_gubiash.jpeg" width="64"/>
+</td>
+<th scope="row">Guvec Et<br/><small class="text-muted fw-normal">Beef fried with vegetables in a pan,
                     covered with cheese</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="guvec-et" data-name="Guvec Et" data-price="3990" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Guvec Tavuk" src="images/turkich/tavuk_gubiash.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Guvec Tavuk<br /><small class="text-muted fw-normal">Chicken fillet fried with
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="guvec-et" data-name="Guvec Et" data-price="3990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Guvec Tavuk" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/turkich/tavuk_gubiash.jpeg" width="64"/></td>
+<th scope="row">Guvec Tavuk<br/><small class="text-muted fw-normal">Chicken fillet fried with
                     vegetables in a pan, covered with cheese</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="guvec-tavuk" data-name="Guvec Tavuk" data-price="3990" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Pirzola" src="images/turkich/pirzolla.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Pirzola<br /><small class="text-muted fw-normal">Lamb entrecote, garnish, tomatoes,
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="guvec-tavuk" data-name="Guvec Tavuk" data-price="3990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Pirzola" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/turkich/pirzolla.jpeg" width="64"/>
+</td>
+<th scope="row">Pirzola<br/><small class="text-muted fw-normal">Lamb entrecote, garnish, tomatoes,
                     cucumbers, lavash, onion</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 690</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="pirzola" data-name="Pirzola" data-price="4690" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Izgara Kofte" src="images/shashlyk/izgora_kofta.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Izgara Kofte<br /><small class="text-muted fw-normal">Beef, mutton, and tail fat
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 690</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="pirzola" data-name="Pirzola" data-price="4690" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Izgara Kofte" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/shashlyk/izgora_kofta.jpeg" width="64"/></td>
+<th scope="row">Izgara Kofte<br/><small class="text-muted fw-normal">Beef, mutton, and tail fat
                     patties. Garnish, lavash, vegetables</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 800</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="izgara-kofte" data-name="Izgara Kofte" data-price="3800" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Ali Nazik Kebab" src="images/shashlyk/ali_nazik_kebab.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Ali Nazik Kebab<br /><small class="text-muted fw-normal">Fried beef, yogurt with stewed
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 800</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="izgara-kofte" data-name="Izgara Kofte" data-price="3800" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Ali Nazik Kebab" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/shashlyk/ali_nazik_kebab.jpeg" width="64"/></td>
+<th scope="row">Ali Nazik Kebab<br/><small class="text-muted fw-normal">Fried beef, yogurt with stewed
                     eggplant, garnish, greens</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 500</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="ali-nazik-kebab" data-name="Ali Nazik Kebab" data-price="4500" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Adana Kebab" src="images/shashlyk/adana_kebab.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Adana Kebab<br /><small class="text-muted fw-normal">Minced beef, tail fat, pepper,
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 500</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="ali-nazik-kebab" data-name="Ali Nazik Kebab" data-price="4500" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Adana Kebab" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/shashlyk/adana_kebab.jpeg" width="64"/></td>
+<th scope="row">Adana Kebab<br/><small class="text-muted fw-normal">Minced beef, tail fat, pepper,
                     garnish, tomatoes, cucumbers, greens, onion</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 800</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="adana-kebab" data-name="Adana Kebab" data-price="3800" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Assorted Sausages" src="images/shashlyk/assorti_kolbasok.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Assorted Sausages<br /><small class="text-muted fw-normal">Mutton, beef, horse meat,
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 800</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="adana-kebab" data-name="Adana Kebab" data-price="3800" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Assorted Sausages" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/shashlyk/assorti_kolbasok.jpeg" width="64"/></td>
+<th scope="row">Assorted Sausages<br/><small class="text-muted fw-normal">Mutton, beef, horse meat,
                     chicken, sauce</small></th>
-                <td>500<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">6 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="assorted-sausages" data-name="Assorted Sausages" data-price="6990" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Lyulya Kebab" src="images/shashlyk/lyula_kebab.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Lyulya Kebab<br /><small class="text-muted fw-normal">Minced beef with tail fat, lavash,
+<td>500<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">6 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="assorted-sausages" data-name="Assorted Sausages" data-price="6990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Lyulya Kebab" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/shashlyk/lyula_kebab.jpeg" width="64"/></td>
+<th scope="row">Lyulya Kebab<br/><small class="text-muted fw-normal">Minced beef with tail fat, lavash,
                     vegetables</small></th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 100</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="lyulya-kebab" data-name="Lyulya Kebab" data-price="3100" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Veal Shashlik" src="images/shashlyk/shashlyk_telyatina.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Veal Shashlik<br /><small class="text-muted fw-normal">Veal meat, lavash, tomatoes,
+<td>300<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 100</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="lyulya-kebab" data-name="Lyulya Kebab" data-price="3100" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Veal Shashlik" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/shashlyk/shashlyk_telyatina.jpeg" width="64"/></td>
+<th scope="row">Veal Shashlik<br/><small class="text-muted fw-normal">Veal meat, lavash, tomatoes,
                     cucumbers, onion</small></th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 690</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="veal-shashlik" data-name="Veal Shashlik" data-price="4690" type="button">+ Add</button>
-                </td>
-              </tr>
-
-              <!-- Oriental & Main Dishes -->
-              <tr class="table-dark">
-                <th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="oriental"><i>Oriental &amp; Main
+<td>300<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 690</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="veal-shashlik" data-name="Veal Shashlik" data-price="4690" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<!-- Oriental & Main Dishes -->
+<tr class="table-dark">
+<th class="p-3 fs-5 text-warning bg-dark" colspan="5" id="oriental" scope="colgroup"><i>Oriental &amp; Main
                     Dishes</i></th>
-              </tr>
-              <tr>
-                <td><img alt="Basyay Funturu" src="images/vostoshniy/basyai_funturu.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Basyay Funturu<br /><small class="text-muted fw-normal">Mutton, glass noodles, napa
+</tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Basyay Funturu" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/basyai_funturu.jpeg" width="64"/></td>
+<th scope="row">Basyay Funturu<br/><small class="text-muted fw-normal">Mutton, glass noodles, napa
                     cabbage, bell pepper</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="basyay-funturu" data-name="Basyay Funturu" data-price="3490" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Bobbin Yanru" src="images/vostoshniy/bobbin_yanru.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Bobbin Yanru<br /><small class="text-muted fw-normal">Finely chopped mutton with thin
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="basyay-funturu" data-name="Basyay Funturu" data-price="3490" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Bobbin Yanru" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/bobbin_yanru.jpeg" width="64"/></td>
+<th scope="row">Bobbin Yanru<br/><small class="text-muted fw-normal">Finely chopped mutton with thin
                     flatbreads</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="bobbin-yanru" data-name="Bobbin Yanru" data-price="3490" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Ganza Yu" src="images/vostoshniy/ganza_yu.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Ganza Yu<br /><small class="text-muted fw-normal">Fried crucian carp (whole fish) with
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="bobbin-yanru" data-name="Bobbin Yanru" data-price="3490" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Ganza Yu" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/ganza_yu.jpeg" width="64"/>
+</td>
+<th scope="row">Ganza Yu<br/><small class="text-muted fw-normal">Fried crucian carp (whole fish) with
                     spices</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 790</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="ganza-yu" data-name="Ganza Yu" data-price="3790" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Dapanji with Dough" src="images/vostoshniy/dapanpshi.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Dapanji with Dough<br /><small class="text-muted fw-normal">Chicken stewed with
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 790</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="ganza-yu" data-name="Ganza Yu" data-price="3790" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Dapanji with Dough" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/dapanpshi.jpeg" width="64"/></td>
+<th scope="row">Dapanji with Dough<br/><small class="text-muted fw-normal">Chicken stewed with
                     vegetables. Served with pieces of dough</small></th>
-                <td>1000<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">9 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="dapanji-with-dough" data-name="Dapanji with Dough" data-price="9190" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Jigyar" src="images/vostoshniy/diygar.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Jigyar<br /><small class="text-muted fw-normal">Pan-fried lamb liver with tail fat and
+<td>1000<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">9 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="dapanji-with-dough" data-name="Dapanji with Dough" data-price="9190" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Jigyar" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/diygar.jpeg" width="64"/>
+</td>
+<th scope="row">Jigyar<br/><small class="text-muted fw-normal">Pan-fried lamb liver with tail fat and
                     vegetables</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 690</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="jigyar" data-name="Jigyar" data-price="2690" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Naryn" src="images/vostoshniy/naryn.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Naryn<br /><small class="text-muted fw-normal">Finely chopped dough with horse meat and
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 690</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="jigyar" data-name="Jigyar" data-price="2690" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Naryn" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/naryn.jpeg" width="64"/></td>
+<th scope="row">Naryn<br/><small class="text-muted fw-normal">Finely chopped dough with horse meat and
                     broth (served separately)</small></th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="naryn" data-name="Naryn" data-price="3190" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Authentic Uzbek Pilaf" src="images/vostoshniy/plov_prasdnishy.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Authentic Uzbek Pilaf<br /><small class="text-muted fw-normal">Beef, chickpeas, raisins,
+<td>300<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="naryn" data-name="Naryn" data-price="3190" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Authentic Uzbek Pilaf" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/plov_prasdnishy.jpeg" width="64"/></td>
+<th scope="row">Authentic Uzbek Pilaf<br/><small class="text-muted fw-normal">Beef, chickpeas, raisins,
                     yellow and red carrots, lazer rice</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="authentic-uzbek-pilaf" data-name="Authentic Uzbek Pilaf" data-price="2990" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Fries with Meat" src="images/vostoshniy/fri_s_miasom.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Fries with Meat<br /><small class="text-muted fw-normal">Fried beef with french fries
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 990</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="authentic-uzbek-pilaf" data-name="Authentic Uzbek Pilaf" data-price="2990" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Fries with Meat" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/fri_s_miasom.jpeg" width="64"/></td>
+<th scope="row">Fries with Meat<br/><small class="text-muted fw-normal">Fried beef with french fries
                     and vegetables</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 590</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="fries-with-meat" data-name="Fries with Meat" data-price="3590" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Guiru Syay" src="images/vostoshniy/guiru_say.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Guiru Syay<br /><small class="text-muted fw-normal">Beef, bell pepper, napa cabbage,
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 590</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="fries-with-meat" data-name="Fries with Meat" data-price="3590" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Guiru Syay" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/guiru_say.jpeg" width="64"/></td>
+<th scope="row">Guiru Syay<br/><small class="text-muted fw-normal">Beef, bell pepper, napa cabbage,
                     onion</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="guiru-syay" data-name="Guiru Syay" data-price="4190" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Pan-fried Mutton" src="images/vostoshniy/jarenny_barabina_na_skobarade.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Pan-fried Mutton<br /><small class="text-muted fw-normal">Pan-fried mutton seasoned with
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="guiru-syay" data-name="Guiru Syay" data-price="4190" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Pan-fried Mutton" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/jarenny_barabina_na_skobarade.jpeg" width="64"/></td>
+<th scope="row">Pan-fried Mutton<br/><small class="text-muted fw-normal">Pan-fried mutton seasoned with
                     fresh onions</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">7 590</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="pan-fried-mutton" data-name="Pan-fried Mutton" data-price="7590" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Lamb Kazan Kebab" src="images/vostoshniy/kazan_kebab_barabiba.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Lamb Kazan Kebab<br /><small class="text-muted fw-normal">Mutton roasted with onions
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">7 590</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="pan-fried-mutton" data-name="Pan-fried Mutton" data-price="7590" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Lamb Kazan Kebab" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/kazan_kebab_barabiba.jpeg" width="64"/></td>
+<th scope="row">Lamb Kazan Kebab<br/><small class="text-muted fw-normal">Mutton roasted with onions
                     over high heat (with potatoes)</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 390</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="lamb-kazan-kebab" data-name="Lamb Kazan Kebab" data-price="4390" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Beef Kazan Kebab" src="images/vostoshniy/kazan_kebab_gobiadina.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Beef Kazan Kebab<br /><small class="text-muted fw-normal">Tender beef roasted with
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 390</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="lamb-kazan-kebab" data-name="Lamb Kazan Kebab" data-price="4390" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Beef Kazan Kebab" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/kazan_kebab_gobiadina.jpeg" width="64"/></td>
+<th scope="row">Beef Kazan Kebab<br/><small class="text-muted fw-normal">Tender beef roasted with
                     onions over high heat</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 390</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="beef-kazan-kebab" data-name="Beef Kazan Kebab" data-price="4390" type="button">+
-                    Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Kok Syay" src="images/vostoshniy/kok_siay.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Kok Syay<br /><small class="text-muted fw-normal">Fried broccoli with vegetables</small>
-                </th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 290</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="kok-syay" data-name="Kok Syay" data-price="2290" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Lazzhi" src="images/vostoshniy/lazzhi.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Lazzhi<br /><small class="text-muted fw-normal">Chicken fillet, bell pepper,
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 390</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="beef-kazan-kebab" data-name="Beef Kazan Kebab" data-price="4390" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Kok Syay" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/kok_siay.jpeg" width="64"/>
+</td>
+<th scope="row">Kok Syay<br/><small class="text-muted fw-normal">Fried broccoli with vegetables</small>
+</th>
+<td>300<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 290</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="kok-syay" data-name="Kok Syay" data-price="2290" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Lazzhi" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/lazzhi.jpeg" width="64"/>
+</td>
+<th scope="row">Lazzhi<br/><small class="text-muted fw-normal">Chicken fillet, bell pepper,
                     spices</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="lazzhi" data-name="Lazzhi" data-price="3490" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Manpar Tsomyan" src="images/vostoshniy/manpar_somian.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Manpar Tsomyan<br /><small class="text-muted fw-normal">Finely chopped dough fried with
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 490</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="lazzhi" data-name="Lazzhi" data-price="3490" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Manpar Tsomyan" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/manpar_somian.jpeg" width="64"/></td>
+<th scope="row">Manpar Tsomyan<br/><small class="text-muted fw-normal">Finely chopped dough fried with
                     meat and vegetables</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="manpar-tsomyan" data-name="Manpar Tsomyan" data-price="2890" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Moguru Syay" src="images/vostoshniy/moguru_siay.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Moguru Syay<br /><small class="text-muted fw-normal">Fried mutton, wood ear mushrooms,
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 890</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="manpar-tsomyan" data-name="Manpar Tsomyan" data-price="2890" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Moguru Syay" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/moguru_siay.jpeg" width="64"/></td>
+<th scope="row">Moguru Syay<br/><small class="text-muted fw-normal">Fried mutton, wood ear mushrooms,
                     cucumbers, and spices</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 390</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="moguru-syay" data-name="Moguru Syay" data-price="3390" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Myn Zhyn Yanru" src="images/vostoshniy/myn_zhyn_yianry.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Myn Zhyn Yanru<br /><small class="text-muted fw-normal">Fried mutton with
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 390</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="moguru-syay" data-name="Moguru Syay" data-price="3390" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Myn Zhyn Yanru" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/myn_zhyn_yianry.jpeg" width="64"/></td>
+<th scope="row">Myn Zhyn Yanru<br/><small class="text-muted fw-normal">Fried mutton with
                     vegetables</small></th>
-                <td>350<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 190</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="myn-zhyn-yanru" data-name="Myn Zhyn Yanru" data-price="3190" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Bash Manpar" src="images/vostoshniy/bash_manpar.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Bash Manpar<br /><small class="text-muted fw-normal">Traditional soup with small
+<td>350<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 190</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="myn-zhyn-yanru" data-name="Myn Zhyn Yanru" data-price="3190" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Bash Manpar" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/bash_manpar.jpeg" width="64"/></td>
+<th scope="row">Bash Manpar<br/><small class="text-muted fw-normal">Traditional soup with small
                     dumplings, meat, and vegetables</small></th>
-                <td>400<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">2 500</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="bash-manpar" data-name="Bash Manpar" data-price="2500" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Beshbarmak" src="images/vostoshniy/besh.jpeg" class="menu-dish-img rounded shadow-sm object-fit-cover" />
-                </td>
-                <th scope="row">Beshbarmak<br /><small class="text-muted fw-normal">Boiled meat, dough, rich meat broth
+<td>400<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">2 500</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="bash-manpar" data-name="Bash Manpar" data-price="2500" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Beshbarmak" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/besh.jpeg" width="64"/>
+</td>
+<th scope="row">Beshbarmak<br/><small class="text-muted fw-normal">Boiled meat, dough, rich meat broth
                     with onions</small></th>
-                <td>450<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">3 800</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="beshbarmak" data-name="Beshbarmak" data-price="3800" type="button">+ Add</button></td>
-              </tr>
-              <tr>
-                <td><img alt="Grilled Salmon" src="images/vostoshniy/siomga.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Grilled Salmon<br /><small class="text-muted fw-normal">Salmon fillet with spices and
+<td>450<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">3 800</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="beshbarmak" data-name="Beshbarmak" data-price="3800" type="button">+ <span class="d-none d-sm-inline">Add</span></button></td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Grilled Salmon" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/siomga.jpeg" width="64"/></td>
+<th scope="row">Grilled Salmon<br/><small class="text-muted fw-normal">Salmon fillet with spices and
                     lemon</small></th>
-                <td>250<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 900</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="grilled-salmon" data-name="Grilled Salmon" data-price="4900" type="button">+ Add</button>
-                </td>
-              </tr>
-              <tr>
-                <td><img alt="Grilled Trout" src="images/vostoshniy/forel_gril.jpeg"
-                    class="menu-dish-img rounded shadow-sm object-fit-cover" /></td>
-                <th scope="row">Grilled Trout<br /><small class="text-muted fw-normal">Tender grilled trout with
+<td>250<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 900</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="grilled-salmon" data-name="Grilled Salmon" data-price="4900" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+<tr>
+<td class="d-none d-sm-table-cell"><img alt="Grilled Trout" class="rounded shadow-sm object-fit-cover" height="64" loading="lazy" src="images/vostoshniy/forel_gril.jpeg" width="64"/></td>
+<th scope="row">Grilled Trout<br/><small class="text-muted fw-normal">Tender grilled trout with
                     lemon</small></th>
-                <td>300<abbr title="grams">g</abbr></td>
-                <td class="text-nowrap"><strong class="text-primary fw-bold">4 200</strong> <span
-                    class="currency">₸</span></td>
-                <td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1"
-                    data-id="grilled-trout" data-name="Grilled Trout" data-price="4200" type="button">+ Add</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="alert alert-warning shadow-sm my-4" role="alert">
-          <small>
-            <strong>Allergen Warning:</strong> Please be advised that our food may contain or come into contact with
+<td>300<abbr title="grams">g</abbr></td>
+<td class="text-nowrap"><strong class="text-primary fw-bold">4 200</strong> <span class="currency">₸</span></td>
+<td class="text-center text-nowrap"><button class="btn btn-primary btn-sm rounded-pill px-2 py-1" data-id="grilled-trout" data-name="Grilled Trout" data-price="4200" type="button">+ <span class="d-none d-sm-inline">Add</span></button>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="alert alert-warning shadow-sm my-4" role="alert">
+<small>
+<strong>Allergen Warning:</strong> Please be advised that our food may contain or come into contact with
             common allergens, such as <em>dairy, eggs, wheat, soybeans, tree nuts, peanuts, fish, shellfish, or
               wheat</em>. Always inform your server of any severe allergies before ordering.
           </small>
-        </div>
-      </section>
-
-    <aside class="alert alert-warning my-4 py-4 px-4 fst-italic border-0 border-start border-4 border-warning rounded-start-0">
-        <em>Chef's Note:</em> <q>If you are looking for an authentic flavor explosion, I highly recommend trying our
+</div>
+</section>
+<aside class="alert alert-warning my-4 py-4 px-4 fst-italic border-0 border-start border-4 border-warning rounded-start-0">
+Chef's Note: <q>If you are looking for an authentic flavor explosion, I highly recommend trying our
           <mark>Tandoor Lagman</mark>. It is a perfectly balanced, <strong>aromatic</strong> dish that truly
           represents our traditions!</q>
-      </aside>
-
-      <hr class="my-5" />
-
-      <article class="my-5">
-        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Top 5 Dastarkhan Dishes</h2>
-        <ol class="list-group list-group-numbered gap-3 shadow-sm" start="1">
-          <li><strong>Special Lagman</strong><br /> Handmade pulled noodles, beef, fresh peppers, garlic, and house
+</aside>
+<hr class="my-5"/>
+<article class="my-5">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Top 5 Dastarkhan Dishes</h2>
+<ul class="list-group list-group-numbered gap-3 shadow-sm list-group">
+<li class="list-group-item"><strong>Special Lagman</strong><br/> Handmade pulled noodles, beef, fresh peppers, garlic, and house
             broth.</li>
-          <li><strong><mark>Festive Tashkent Plov</mark></strong><br /> Our <em>most beloved</em> classic! Devzira rice,
+<li class="list-group-item"><strong><mark>Festive Tashkent Plov</mark></strong><br/> Our <em>most beloved</em> classic! Devzira rice,
             tender lamb, yellow carrots, chickpeas, and raisins.</li>
-          <li><strong>Assorted Shashlik Set</strong><br /> A massive platter featuring lamb chops, beef tikka, chicken
+<li class="list-group-item"><strong>Assorted Shashlik Set</strong><br/> A massive platter featuring lamb chops, beef tikka, chicken
             kebab, and grilled vegetables.</li>
-          <li><strong>Tandoor Lagman</strong><br /> Fried lamb ribs with vegetables and spices, perfectly matched with
+<li class="list-group-item"><strong>Tandoor Lagman</strong><br/> Fried lamb ribs with vegetables and spices, perfectly matched with
             our lagman dough.</li>
-          <li><strong>Dapanji with Dough</strong><br /> A hearty, spicy chicken stew with vegetables served with fresh
+<li class="list-group-item"><strong>Dapanji with Dough</strong><br/> A hearty, spicy chicken stew with vegetables served with fresh
             pieces of dough.</li>
-        </ol>
-      </article>
-
-      <section class="my-5">
-        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Terminology</h2>
-        <dl class="terms-list">
-          <dt class="text-primary mt-3"><strong>Lagman</strong></dt>
-          <dd class="ms-4 text-muted pb-2 border-bottom">A traditional Central Asian dish of pulled noodles, meat, and vegetables.</dd>
-          <dt class="text-primary mt-3"><strong>Plov / Pilaf</strong></dt>
-          <dd class="ms-4 text-muted pb-2 border-bottom">A fragrant rice dish cooked in a seasoned broth with meat and vegetables.</dd>
-          <dt class="text-primary mt-3"><strong>Shashlik</strong></dt>
-          <dd class="ms-4 text-muted pb-2 border-bottom">Skewered and grilled cubes of meat, similar to shish kebab.</dd>
-          <dt class="text-primary mt-3"><strong>Kazan</strong></dt>
-          <dd class="ms-4 text-muted pb-2 border-bottom">A traditional cast-iron cooking pot used throughout Central Asia, akin to a Dutch oven or cauldron.</dd>
-        </dl>
-      </section>
-
-      <figure class="figure text-center my-4 d-block">
-        <img alt="Interior of the main dining hall and traditional oriental decoration at Dastarkhan"
-          src="images/interior/IMG_1162.jpg" class="figure-img img-fluid rounded shadow-sm" />
-        <figcaption class="figure-caption text-center">Our beautifully decorated Dastarkhan dining hall</figcaption>
-      </figure>
-
-      <p class="text-center mt-4">
-        <a class="btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow" id="backToTop"
-          href="#top">Top ↑</a>
-      </p>
-    </div>
-  </main>
-
-  <footer class="site-footer bg-dark py-5 mt-5">
-    <div class="container text-center text-md-start">
-      <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
-          target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-          rel="noopener">2GIS</a>.</p>
-      <p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
-          href="tel:+77788710792">+7-778-871-07-92</a></p>
-      <p class="mb-0">&copy; 2026 Dastarkhan Restaurant</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</ul>
+</article>
+<section class="my-5">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Terminology</h2>
+<dl class="terms-list">
+<dt class="text-primary mt-3"><strong>Lagman</strong></dt>
+<dd class="ms-4 text-muted pb-2 border-bottom">A traditional Central Asian dish of pulled noodles, meat, and vegetables.</dd>
+<dt class="text-primary mt-3"><strong>Plov / Pilaf</strong></dt>
+<dd class="ms-4 text-muted pb-2 border-bottom">A fragrant rice dish cooked in a seasoned broth with meat and vegetables.</dd>
+<dt class="text-primary mt-3"><strong>Shashlik</strong></dt>
+<dd class="ms-4 text-muted pb-2 border-bottom">Skewered and grilled cubes of meat, similar to shish kebab.</dd>
+<dt class="text-primary mt-3"><strong>Kazan</strong></dt>
+<dd class="ms-4 text-muted pb-2 border-bottom">A traditional cast-iron cooking pot used throughout Central Asia, akin to a Dutch oven or cauldron.</dd>
+</dl>
+</section>
+<figure class="figure text-center my-4 d-block">
+<img alt="Interior of the main dining hall and traditional oriental decoration at Dastarkhan" class="figure-img img-fluid rounded shadow-sm" height="1280" loading="lazy" src="images/interior/IMG_1162.jpg" width="854"/>
+<figcaption class="figure-caption text-center">Our beautifully decorated Dastarkhan dining hall</figcaption>
+</figure>
+<a class="btn btn-primary btn-float position-fixed bottom-0 end-0 m-4 rounded-pill shadow" href="#top">Top ↑</a>
+</div>
+</main>
+<footer class="site-footer bg-dark py-5 mt-5">
+<div class="container text-center text-md-start">
+<p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki" rel="noopener" target="_blank">Instagram</a>
+      or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" rel="noopener" target="_blank">2GIS</a>.</p>
+<p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a href="tel:+77788710792">+7-778-871-07-92</a></p>
+<p class="mb-0">© 2026 Dastarkhan Restaurant</p>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

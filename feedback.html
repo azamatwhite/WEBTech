@@ -1,243 +1,211 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback — Dastarkhan</title>
-  <meta name="description" content="Leave a review or read customer experiences about Dastarkhan restaurant.">
-  <meta name="author" content="Miko">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/miko.css">
-  <!-- Bootstrap v5.3.3 CSS loaded first, followed by custom base.css and miko.css for brand overrides -->
-  <link rel="icon" href="images/favicon.png" type="image/png">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Dastarkhan - Authentic Eastern and Kazakh national cuisine in Astana. Find our locations and opening hours." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Bootstrap 5.3.3 CSS first, then base.css (brand overrides) -->
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="images/favicon.png" rel="icon" type="image/png"/>
+<title>Feedback — Dastarkhan</title>
 </head>
-
-<body>
-  <header class="site-header">
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand logo">
-        <img src="images/logo.png" alt="Dastarkhan Logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="feedback.html">Feedback</a></li>
-          <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero Banner — container-fluid for full-width layout -->
-    <div class="container-fluid p-0">
-      <section class="hero">
-        <h1 class="display-4">Guest Feedback and Reviews</h1>
-        <p class="lead hero-subtitle"><em><strong>We value every guest experience!</strong></em> Read reviews or share
-          your thoughts with us.</p>
-      </section>
-    </div>
-
-    <div class="container my-5">
-      <!-- Reviews List Section -->
-      <section id="reviews-list" class="my-5">
-        <h2 class="section-heading">What Guests Say</h2>
-
-        <div class="row row-cols-1 row-cols-md-2 g-4 my-3">
-          <!-- Review 1 -->
-          <div class="col">
-            <article class="card p-4 shadow-sm h-100 border-0">
-              <div class="d-flex align-items-center gap-3 mb-3">
-                <img src="images/fb/ass1.jpeg" alt="Tolqyn avatar" width="50" height="50" class="rounded-circle border border-2 border-accent object-fit-cover">
-                <h3 class="h5 mb-0">Tolqyn</h3>
-              </div>
-              <div class="mb-3">
-                <img src="images/fb/fb_ima2.jpg" alt="Review photo by Tolqyn" width="120" height="120" class="rounded border object-fit-cover shadow-sm">
-              </div>
-              <p class="card-text">
-                <q class="fst-italic text-muted">Polished it off all by myself. Not bad, right?</q>
-              </p>
-              <p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-01">September 1, 2026</time></p>
-            </article>
-          </div>
-
-          <!-- Review 2 -->
-          <div class="col">
-            <article class="card p-4 shadow-sm h-100 border-0">
-              <div class="d-flex align-items-center gap-3 mb-3">
-                <img src="images/fb/ass2.jpeg" alt="Dana avatar" width="50" height="50" class="rounded-circle border border-2 border-accent object-fit-cover">
-                <h3 class="h5 mb-0">Dana</h3>
-              </div>
-              <div class="mb-3">
-                <img src="images/fb/fb_ima4.jpg" alt="Review photo by Dana" width="120" height="120" class="rounded border object-fit-cover shadow-sm">
-              </div>
-              <p class="card-text">
-                <q class="fst-italic text-muted">I kissed the hands of the chef who prepared this—tears even welled up
+<body class="d-flex flex-column min-vh-100">
+<header class="sticky-top shadow bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container-fluid">
+<a class="navbar-brand d-inline-flex align-items-center" href="index.html">
+<img alt="Dastarkhan Logo" class="w-auto" height="48" src="images/logo.png" width="44"/>
+</a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+<li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+<li class="nav-item"><a aria-current="page" class="nav-link active" href="feedback.html">Feedback</a></li>
+<li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow-1">
+<!-- Hero Banner — container-fluid for full-width layout -->
+<div class="container-fluid p-0">
+<section class="hero text-center py-5 px-4">
+<h1 class="display-4 text-white">Guest Feedback and Reviews</h1>
+<p class="lead text-warning mb-3"><span class="fw-bold fst-italic">We value every guest experience! Read reviews or share
+          your thoughts with us.</span></p>
+</section>
+</div>
+<div class="container my-5">
+<!-- Reviews List Section -->
+<section class="my-5" id="reviews-list">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">What Guests Say</h2>
+<div class="row row-cols-1 row-cols-md-2 g-4 my-3">
+<!-- Review 1 -->
+<div class="col">
+<article class="card p-4 shadow-sm h-100 border-0">
+<div class="d-flex align-items-center gap-3 mb-3">
+<img alt="Tolqyn avatar" class="rounded-circle border border-2 border-warning object-fit-cover" height="50" loading="lazy" src="images/fb/ass1.jpeg" width="50"/>
+<h3 class="h5 mb-0">Tolqyn</h3>
+</div>
+<div class="mb-3">
+<img alt="Review photo by Tolqyn" class="rounded border object-fit-cover shadow-sm" height="120" loading="lazy" src="images/fb/fb_ima2.jpg" width="120"/>
+</div>
+<p class="card-text">
+<q class="fst-italic text-muted">Polished it off all by myself. Not bad, right?</q>
+</p>
+<p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-01">September 1, 2026</time></p>
+</article>
+</div>
+<!-- Review 2 -->
+<div class="col">
+<article class="card p-4 shadow-sm h-100 border-0">
+<div class="d-flex align-items-center gap-3 mb-3">
+<img alt="Dana avatar" class="rounded-circle border border-2 border-warning object-fit-cover" height="50" loading="lazy" src="images/fb/ass2.jpeg" width="50"/>
+<h3 class="h5 mb-0">Dana</h3>
+</div>
+<div class="mb-3">
+<img alt="Review photo by Dana" class="rounded border object-fit-cover shadow-sm" height="120" loading="lazy" src="images/fb/fb_ima4.jpg" width="120"/>
+</div>
+<p class="card-text">
+<q class="fst-italic text-muted">I kissed the hands of the chef who prepared this—tears even welled up
                   in my eyes.</q>
-              </p>
-              <p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-04">September 4, 2026</time></p>
-            </article>
-          </div>
-
-          <!-- Review 3 -->
-          <div class="col">
-            <article class="card p-4 shadow-sm h-100 border-0">
-              <div class="d-flex align-items-center gap-3 mb-3">
-                <img src="images/fb/ass3.jpeg" alt="Toty avatar" width="50" height="50" class="rounded-circle border border-2 border-accent object-fit-cover">
-                <h3 class="h5 mb-0">Toty</h3>
-              </div>
-              <div class="mb-3">
-                <img src="images/interior/IMG_1164.JPG" alt="Review photo by Toty" width="120" height="120" class="rounded border object-fit-cover shadow-sm">
-              </div>
-              <p class="card-text">
-                <q class="fst-italic text-muted">That lamp is flickering in a strange way. I hope it’s not what I think
+</p>
+<p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-04">September 4, 2026</time></p>
+</article>
+</div>
+<!-- Review 3 -->
+<div class="col">
+<article class="card p-4 shadow-sm h-100 border-0">
+<div class="d-flex align-items-center gap-3 mb-3">
+<img alt="Toty avatar" class="rounded-circle border border-2 border-warning object-fit-cover" height="50" loading="lazy" src="images/fb/ass3.jpeg" width="50"/>
+<h3 class="h5 mb-0">Toty</h3>
+</div>
+<div class="mb-3">
+<img alt="Review photo by Toty" class="rounded border object-fit-cover shadow-sm" height="120" loading="lazy" src="images/interior/IMG_1164.JPG" width="120"/>
+</div>
+<p class="card-text">
+<q class="fst-italic text-muted">That lamp is flickering in a strange way. I hope it’s not what I think
                   it is—cause, <strong>the food here is truly delicious!</strong></q>
-              </p>
-              <p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-07">September 7, 2026</time></p>
-            </article>
-          </div>
-
-          <!-- Review 4 -->
-          <div class="col">
-            <article class="card p-4 shadow-sm h-100 border-0">
-              <div class="d-flex align-items-center gap-3 mb-3">
-                <img src="images/fb/ass4.jpeg" alt="Arman avatar" width="50" height="50" class="rounded-circle border border-2 border-accent object-fit-cover">
-                <h3 class="h5 mb-0">Arman</h3>
-              </div>
-              <div class="mb-3">
-                <img src="images/fb/fb_ima3.jpg" alt="Review photo by Arman" width="120" height="120" class="rounded border object-fit-cover shadow-sm">
-              </div>
-              <p class="card-text">
-                <q class="fst-italic text-muted">I went on a date with a girl—<strong>and the lagman was so delicious, I
+</p>
+<p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-07">September 7, 2026</time></p>
+</article>
+</div>
+<!-- Review 4 -->
+<div class="col">
+<article class="card p-4 shadow-sm h-100 border-0">
+<div class="d-flex align-items-center gap-3 mb-3">
+<img alt="Arman avatar" class="rounded-circle border border-2 border-warning object-fit-cover" height="50" loading="lazy" src="images/fb/ass4.jpeg" width="50"/>
+<h3 class="h5 mb-0">Arman</h3>
+</div>
+<div class="mb-3">
+<img alt="Review photo by Arman" class="rounded border object-fit-cover shadow-sm" height="120" loading="lazy" src="images/fb/fb_ima3.jpg" width="120"/>
+</div>
+<p class="card-text">
+<q class="fst-italic text-muted">I went on a date with a girl—<strong>and the lagman was so delicious, I
                     was absolutely blown away by the flavor</strong>—but otherwise, it was just a standard date.</q>
-              </p>
-              <p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-10">September 10, 2026</time></p>
-            </article>
-          </div>
-
-          <!-- Review 5 -->
-          <div class="col-12 col-md-12">
-            <article class="card p-4 shadow-sm h-100 border-0">
-              <div class="d-flex align-items-center gap-3 mb-3">
-                <img src="images/fb/ass5.jpeg" alt="Alikhan avatar" width="50" height="50" class="rounded-circle border border-2 border-accent object-fit-cover">
-                <h3 class="h5 mb-0">Alikhan</h3>
-              </div>
-              <div class="mb-3">
-                <img src="images/fb/fb_ima1.jpg" alt="Review photo by Alikhan" width="120" height="120" class="rounded border object-fit-cover shadow-sm">
-              </div>
-              <p class="card-text">
-                <q class="fst-italic text-muted">Came for a date, left with a wife.</q>
-              </p>
-              <p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-12">September 12, 2026</time></p>
-            </article>
-          </div>
-        </div>
-
-        <aside class="info-block bg-white border-start border-4 border-accent rounded shadow-sm p-3 my-4">
-          <h3 class="h5">Feedback Note</h3>
-          <p class="mb-0">We read every review to continuously improve our food quality and service.</p>
-        </aside>
-      </section>
-
-      <hr class="my-5">
-
-      <!-- Feedback Form Section -->
-      <section id="feedback-form-section" class="my-5">
-        <h2 class="section-heading">Feedback Form</h2>
-        <p>Please complete the form below to share your dining experience with us.</p>
-
-        <div class="card p-4 shadow-sm border-0">
-          <form action="#" method="post">
-            <fieldset>
-              <legend class="h4 mb-3">Your Review for Dastarkhan</legend>
-
-              <div class="mb-3">
-                <label for="user-name" class="form-label fw-medium">Your Full Name *:</label>
-                <input type="text" id="user-name" name="userName" placeholder="Nursultan Nazarbayev" required
-                  class="form-control">
-              </div>
-
-              <div class="mb-3">
-                <label for="user-phone" class="form-label fw-medium">Phone Number:</label>
-                <input type="tel" id="user-phone" name="userPhone" placeholder="+7 (700) 000-00-00"
-                  class="form-control">
-              </div>
-
-              <div class="mb-3">
-                <label for="visit-date" class="form-label fw-medium">Date of Visit *:</label>
-                <input type="date" id="visit-date" name="visitDate" required class="form-control">
-              </div>
-
-              <div class="mb-3">
-                <label for="service-rating" class="form-label fw-medium">Service Rating (1 to 5) *:</label>
-                <input type="number" id="service-rating" name="serviceRating" min="1" max="5" value="5" required
-                  class="form-control">
-              </div>
-
-              <div class="mb-3">
-                <label for="review-text" class="form-label fw-medium">Your Review / Comments *:</label>
-                <textarea id="review-text" name="reviewText" rows="5"
-                  placeholder="Write your thoughts about our food and service..." required
-                  class="form-control"></textarea>
-              </div>
-
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent" name="consent" required>
-                <label class="form-check-label" for="consent">
+</p>
+<p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-10">September 10, 2026</time></p>
+</article>
+</div>
+<!-- Review 5 -->
+<div class="col-12 col-md-12">
+<article class="card p-4 shadow-sm h-100 border-0">
+<div class="d-flex align-items-center gap-3 mb-3">
+<img alt="Alikhan avatar" class="rounded-circle border border-2 border-warning object-fit-cover" height="50" loading="lazy" src="images/fb/ass5.jpeg" width="50"/>
+<h3 class="h5 mb-0">Alikhan</h3>
+</div>
+<div class="mb-3">
+<img alt="Review photo by Alikhan" class="rounded border object-fit-cover shadow-sm" height="120" loading="lazy" src="images/fb/fb_ima1.jpg" width="120"/>
+</div>
+<p class="card-text">
+<q class="fst-italic text-muted">Came for a date, left with a wife.</q>
+</p>
+<p class="small text-body-secondary mt-auto mb-0"><time datetime="2026-09-12">September 12, 2026</time></p>
+</article>
+</div>
+</div>
+<aside class="bg-white border-start border-4 border-warning rounded shadow-sm p-3 my-4">
+<h3 class="h5">Feedback Note</h3>
+<p class="mb-0">We read every review to continuously improve our food quality and service.</p>
+</aside>
+</section>
+<hr class="my-5"/>
+<!-- Feedback Form Section -->
+<section class="my-5" id="feedback-form-section">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Feedback Form</h2>
+<p>Please complete the form below to share your dining experience with us.</p>
+<div class="card p-4 shadow-sm border-0">
+&lt;!-- TODO: connect to backend when available --&gt;
+<form action="#" method="post">
+<fieldset>
+<legend class="h4 mb-3">Your Review for Dastarkhan</legend>
+<div class="mb-3">
+<label class="form-label fw-medium" for="user-name">Your Full Name *:</label>
+<input class="form-control" id="user-name" name="userName" placeholder="Nursultan Nazarbayev" required="" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="user-phone">Phone Number:</label>
+<input class="form-control" id="user-phone" name="userPhone" placeholder="+7 (700) 000-00-00" type="tel"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="visit-date">Date of Visit *:</label>
+<input class="form-control" id="visit-date" name="visitDate" required="" type="date"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="service-rating">Service Rating (1 to 5) *:</label>
+<input class="form-control" id="service-rating" max="5" min="1" name="serviceRating" required="" type="number" value="5"/>
+</div>
+<div class="mb-3">
+<label class="form-label fw-medium" for="review-text">Your Review / Comments *:</label>
+<textarea class="form-control" id="review-text" name="reviewText" placeholder="Write your thoughts about our food and service..." required="" rows="5"></textarea>
+</div>
+<div class="form-check mb-3">
+<input class="form-check-input" id="consent" name="consent" required="" type="checkbox"/>
+<label class="form-check-label" for="consent">
                   I consent to publishing this review on the website *
                 </label>
-              </div>
-
-              <div class="d-flex gap-2 mt-4">
-                <button type="submit" class="btn btn-primary px-4">Submit Review</button>
-                <button type="reset" class="btn btn-outline-secondary px-4">Reset Form</button>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      </section>
-
-      <hr class="my-5">
-
-      <!-- Additional Info -->
-      <section class="my-5">
-        <h2 class="section-heading">Additional Information</h2>
-        <p>All submitted reviews undergo <span class="badge bg-warning text-dark">moderation</span> within 24 hours.</p>
-        <p>Contact Quality Department: <a href="mailto:quality@dastarkhan.kz">quality@dastarkhan.kz</a> or phone: <a
-            href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
-        <p>Read more reviews on <a href="https://2gis.kz/astana/geo/70000001018131952" target="_blank"
-            rel="noopener noreferrer">2GIS Astana Dastarkhan</a>.</p>
-      </section>
-    </div>
-  </main>
-
-  <!-- Quick Order button — position: fixed -->
-  <a href="tel:+77172319595" id="quickOrder"
-    class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow">Call Now</a>
-
-  <footer class="site-footer">
-    <div class="container text-center text-md-start">
-      <p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki?stkn=cWlkejF5NHFubGV5"
-          target="_blank" rel="noopener">Instagram</a> or find us on <a href="https://2gis.kz/astana" target="_blank"
-          rel="noopener">2GIS</a>.</p>
-      <p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a
-          href="tel:+77788710792">+7-778-871-07-92</a></p>
-      <p class="mb-0">&copy; 2026 Dastarkhan Restaurant</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+<div class="d-flex gap-2 mt-4">
+<button class="btn btn-primary px-4" type="submit">Submit Review</button>
+<button class="btn btn-outline-secondary px-4" type="reset">Reset Form</button>
+</div>
+</fieldset>
+</form>
+</div>
+</section>
+<hr class="my-5"/>
+<!-- Additional Info -->
+<section class="my-5">
+<h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Additional Information</h2>
+<p>All submitted reviews undergo <span class="badge bg-warning text-dark">moderation</span> within 24 hours.</p>
+<p>Contact Quality Department: <a href="mailto:quality@dastarkhan.kz">quality@dastarkhan.kz</a> or phone: <a href="tel:+77172319595">+7 (7172) 31-95-95</a>.</p>
+<p>Read more reviews on <a href="https://2gis.kz/astana/geo/70000001018131952" rel="noopener noreferrer" target="_blank">2GIS Astana Dastarkhan</a>.</p>
+</section>
+</div>
+</main>
+<!-- Quick Order button — position: fixed -->
+<a class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow" href="tel:+77172319595" id="quickOrder">Call Now</a>
+<footer class="site-footer bg-dark py-5 mt-5">
+<div class="container text-center text-md-start">
+<p class="mb-2">Follow us on <a href="https://www.instagram.com/md.group_vostochki" rel="noopener" target="_blank">Instagram</a>
+      or find us on <a href="https://2gis.kz/astana/geo/70000001018131952" rel="noopener" target="_blank">2GIS</a>.</p>
+<p class="mb-2">Reservations: <a href="tel:+77172319595">+7 (7172) 31-95-95</a> | Delivery: <a href="tel:+77788710792">+7-778-871-07-92</a></p>
+<p class="mb-0">© 2026 Dastarkhan Restaurant</p>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

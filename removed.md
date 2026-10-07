@@ -1,0 +1,7 @@
+- miko.css удалён и его правила заменены
+- scroll-behavior убран, так как Bootstrap включает его сам (prefers-reduced-motion)
+- .nav-link:focus удалён, так как есть :focus-visible
+- .navbar-brand img стили перенесены в HTML атрибуты
+- .menu-dish-img стили перенесены в HTML атрибуты
+- @import шрифтов убран, они загружаются в head
+- #quickOrder и #backToTop заменены на класс .btn-float
