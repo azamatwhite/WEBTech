@@ -14,6 +14,15 @@ The project consists of HTML files for different pages of the website:
 - `feedback.html` - Customer feedback
 - `careers.html` - To start career with us
 
+## Constraints
+- Bootstrap 5.3.3 + `css/base.css`
+- **пока без собственного JS** (no custom JS)
+
+## TODO
+- корзина в меню (menu cart)
+- обработка форм (form processing)
+- бэкенд (backend integration)
+
 ## Getting Started
 
 Since this is a static website, you can simply open `index.html` in your web browser to view the site. No build process or server is strictly required, though a local development server can be used for a better development experience.
