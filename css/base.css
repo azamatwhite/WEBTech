@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+/* Brand overrides on top of Bootstrap 5.3.3 */
 
 :root {
   --bs-primary: #c8102e;
@@ -9,36 +9,27 @@
   --bs-dark-rgb: 26, 26, 26;
   --bs-body-bg: #faf7f2;
   --bs-body-color: #2c2c2c;
-  --bs-body-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bs-body-color-rgb: 44, 44, 44;
+  --bs-body-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --bs-border-color: #e0d6c8;
   --bs-border-radius: 12px;
-  --bs-link-color: #c8102e;
-  --bs-link-hover-color: #9a0c22;
+  --bs-heading-color: var(--bs-primary);
+  /* Bootstrap 5.3 reads links from the -rgb variables */
+  --bs-link-color-rgb: 200, 16, 46;
+  --bs-link-hover-color-rgb: 154, 12, 34;
 }
 
+/* Sticky header must not cover anchor targets */
 html {
-  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-th[id] {
-  color: var(--bs-primary);
+h1, h2, h3, h4, h5, h6, th[id] {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
 }
 
-.navbar-brand img {
-  max-height: 3rem;
-  width: auto;
-}
-
 .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
   border-radius: 6px;
 }
@@ -49,14 +40,11 @@ th[id] {
   color: #fff;
 }
 
-.navbar-nav .nav-link:focus {
-  outline: 2px solid var(--bs-warning);
-}
-
 .hero {
   background: linear-gradient(135deg, var(--bs-dark) 0%, #2c1a10 100%);
 }
 
+/* Buttons: Bootstrap hardcodes blue, so brand colors go through --bs-btn-* */
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: var(--bs-primary);
@@ -102,19 +90,27 @@ th[id] {
   --bs-btn-hover-border-color: #4a3b32;
 }
 
-#quickOrder:hover,
-#backToTop:hover {
+/* Floating buttons (Call Now / Quick Order / Top) */
+@media (prefers-reduced-motion: no-preference) {
+  .btn-float {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+}
+
+.btn-float:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
 }
 
-.menu-dish-img {
-  width: 64px;
-  height: 64px;
-}
-
+/* Carousel image height (Bootstrap has no equivalent) */
 .gallery-carousel-img {
   height: 460px;
+}
+
+@media (max-width: 768px) {
+  .gallery-carousel-img {
+    height: 280px;
+  }
 }
 
 .site-footer {
@@ -127,15 +123,4 @@ th[id] {
 
 .site-footer a:hover {
   color: #fff;
-}
-
-@media (max-width: 768px) {
-  .menu-dish-img {
-    width: 38px;
-    height: 38px;
-  }
-
-  .gallery-carousel-img {
-    height: 280px;
-  }
 }
