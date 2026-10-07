@@ -1,0 +1,7 @@
+/* css/miko.css — minimal brand additions on top of Bootstrap + base.css */
+.border-accent { border-color: var(--color-accent) !important; }
+
+.info-block h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-primary);
+}
