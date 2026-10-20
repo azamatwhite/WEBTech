@@ -26,6 +26,8 @@ function initDeliveryPage() {
     halyk: 'Halyk bank app'
   });
 
+  const FALLBACK_DISH_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Crect width='100' height='100' rx='12' fill='%23f5ede0'/%3E%3Ccircle cx='50' cy='50' r='32' fill='%23e8ded0' stroke='%23d4a017' stroke-width='2' stroke-dasharray='3 2'/%3E%3Cpath d='M38 48 Q50 32 62 48 Z' fill='%23c8102e'/%3E%3Cpath d='M34 52 H66 Q64 66 50 66 Q36 66 34 52 Z' fill='%23d4a017'/%3E%3Ccircle cx='50' cy='36' r='3' fill='%23c8102e'/%3E%3C/svg%3E";
+
   function createEl(tag, classes = [], text = '', attrs = {}) {
     const el = document.createElement(tag);
     if (classes.length > 0) el.classList.add(...classes);
@@ -142,7 +144,7 @@ function initDeliveryPage() {
     if (!formCard) return;
 
     if (!block) {
-      block = createEl('section', ['card', 'p-4', 'shadow-sm', 'border-0', 'mb-4'], '', { id: 'deliveryOrderSummaryBlock' });
+      block = createEl('section', ['card', 'p-3', 'p-sm-4', 'shadow-sm', 'border-0', 'mb-4'], '', { id: 'deliveryOrderSummaryBlock', style: 'overflow-x: hidden;' });
       formCard.before(block);
     }
 
@@ -163,7 +165,8 @@ function initDeliveryPage() {
       return;
     }
 
-    const tableWrap = createEl('div', ['table-responsive', 'mb-3']);
+    // 1. Desktop Table View (>= 576px)
+    const tableWrap = createEl('div', ['d-none', 'd-sm-block', 'table-responsive', 'mb-3']);
     const table = createEl('table', ['table', 'align-middle', 'table-hover', 'mb-0']);
     const thead = createEl('thead', ['table-light']);
     const trH = createEl('tr');
@@ -182,22 +185,32 @@ function initDeliveryPage() {
 
       const tdDish = createEl('td');
       const flex = createEl('div', ['d-flex', 'align-items-center', 'gap-2']);
-      if (item.image) {
-        flex.append(createEl('img', ['rounded', 'object-fit-cover', 'd-none', 'd-sm-block'], '', {
-          src: item.image, alt: item.name, width: '48', height: '48'
-        }));
-      }
-      const info = createEl('div');
-      info.append(createEl('div', ['fw-semibold'], item.name), createEl('small', ['text-muted'], `${item.weight} g`));
-      flex.append(info);
+      const img = createEl('img', ['rounded', 'object-fit-cover', 'border', 'flex-shrink-0'], '', {
+        src: item.image || FALLBACK_DISH_SVG,
+        alt: item.name,
+        width: '48',
+        height: '48',
+        loading: 'lazy',
+        style: 'background-color: #f7f3ec;'
+      });
+      img.onerror = function() {
+        this.onerror = null;
+        this.src = FALLBACK_DISH_SVG;
+      };
+      const info = createEl('div', ['overflow-hidden']);
+      info.append(
+        createEl('div', ['fw-semibold', 'text-break'], item.name),
+        createEl('small', ['text-muted'], `${item.weight} g`)
+      );
+      flex.append(img, info);
       tdDish.append(flex);
 
       const tdPrice = createEl('td', ['text-nowrap'], formatPrice(item.price));
 
       const tdQty = createEl('td', ['text-center']);
-      const grp = createEl('div', ['btn-group', 'btn-group-sm'], '', { role: 'group' });
-      const minus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2'], '−', { type: 'button' });
-      const plus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2'], '+', { type: 'button' });
+      const grp = createEl('div', ['btn-group', 'btn-group-sm'], '', { role: 'group', 'aria-label': `Change quantity for ${item.name}` });
+      const minus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2'], '−', { type: 'button', 'aria-label': 'Decrease' });
+      const plus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2'], '+', { type: 'button', 'aria-label': 'Increase' });
       minus.addEventListener('click', () => changeQty(item.id, -1));
       plus.addEventListener('click', () => changeQty(item.id, 1));
       grp.append(minus, createEl('span', ['btn', 'btn-light', 'disabled', 'px-3', 'text-dark', 'fw-bold'], String(item.qty)), plus);
@@ -206,7 +219,12 @@ function initDeliveryPage() {
       const tdSub = createEl('td', ['text-end', 'fw-bold', 'text-primary', 'text-nowrap'], formatPrice(item.lineTotal));
 
       const tdDel = createEl('td', ['text-center']);
-      const delBtn = createEl('button', ['btn', 'btn-outline-danger', 'btn-sm'], '✕', { type: 'button' });
+      const delBtn = createEl('button', ['btn', 'btn-outline-danger', 'btn-sm', 'rounded-circle', 'p-0', 'd-inline-flex', 'align-items-center', 'justify-content-center'], '✕', {
+        type: 'button',
+        'aria-label': `Remove ${item.name} from order`,
+        title: 'Remove',
+        style: 'width: 26px; height: 26px; min-width: 26px; line-height: 1;'
+      });
       delBtn.addEventListener('click', () => removeFromCart(item.id));
       tdDel.append(delBtn);
 
@@ -216,6 +234,69 @@ function initDeliveryPage() {
     table.append(thead, tbody);
     tableWrap.append(table);
 
+    // 2. Mobile Card List View (< 576px down to 320px) — Zero horizontal scroll!
+    const mobileList = createEl('div', ['d-block', 'd-sm-none', 'mb-3', 'w-100'], '', { style: 'overflow-x: hidden;' });
+    for (const item of totals.items) {
+      const card = createEl('div', ['card', 'mb-2', 'p-2', 'rounded-3', 'border', 'bg-white', 'shadow-sm', 'w-100', 'overflow-hidden']);
+      const cardRow = createEl('div', ['d-flex', 'align-items-start', 'gap-2']);
+
+      const mImg = createEl('img', ['rounded', 'object-fit-cover', 'border', 'flex-shrink-0'], '', {
+        src: item.image || FALLBACK_DISH_SVG,
+        alt: item.name,
+        width: '48',
+        height: '48',
+        loading: 'lazy',
+        style: 'background-color: #f7f3ec;'
+      });
+      mImg.onerror = function() {
+        this.onerror = null;
+        this.src = FALLBACK_DISH_SVG;
+      };
+
+      const mInfo = createEl('div', ['flex-grow-1', 'overflow-hidden'], '', { style: 'min-width: 0;' });
+
+      // Dish name + Delete button in top row
+      const topRow = createEl('div', ['d-flex', 'justify-content-between', 'align-items-start', 'gap-1', 'mb-1']);
+      topRow.append(
+        createEl('div', ['fw-semibold', 'text-break', 'lh-sm'], item.name),
+        (() => {
+          const btn = createEl('button', ['btn', 'btn-outline-danger', 'btn-sm', 'rounded-circle', 'p-0', 'd-inline-flex', 'align-items-center', 'justify-content-center', 'flex-shrink-0'], '✕', {
+            type: 'button',
+            'aria-label': `Remove ${item.name}`,
+            title: 'Remove',
+            style: 'width: 26px; height: 26px; min-width: 26px; line-height: 1;'
+          });
+          btn.addEventListener('click', () => removeFromCart(item.id));
+          return btn;
+        })()
+      );
+
+      // Weight & unit price
+      const weightPrice = createEl('div', ['small', 'text-muted', 'mb-2']);
+      weightPrice.append(
+        document.createTextNode(`${item.weight} g · `),
+        createEl('span', ['fw-medium', 'text-dark'], formatPrice(item.price))
+      );
+
+      // Quantity Stepper + Line Subtotal
+      const bottomRow = createEl('div', ['d-flex', 'justify-content-between', 'align-items-center', 'flex-wrap', 'gap-2', 'pt-1', 'border-top', 'border-light-subtle']);
+      const mGrp = createEl('div', ['btn-group', 'btn-group-sm'], '', { role: 'group', 'aria-label': `Quantity for ${item.name}` });
+      const mMinus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2', 'py-0'], '−', { type: 'button', 'aria-label': 'Decrease' });
+      const mPlus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2', 'py-0'], '+', { type: 'button', 'aria-label': 'Increase' });
+      mMinus.addEventListener('click', () => changeQty(item.id, -1));
+      mPlus.addEventListener('click', () => changeQty(item.id, 1));
+      mGrp.append(mMinus, createEl('span', ['btn', 'btn-light', 'disabled', 'px-2', 'py-0', 'text-dark', 'fw-bold'], String(item.qty)), mPlus);
+
+      const mSubtotal = createEl('div', ['fw-bold', 'text-primary', 'text-nowrap'], formatPrice(item.lineTotal));
+      bottomRow.append(mGrp, mSubtotal);
+
+      mInfo.append(topRow, weightPrice, bottomRow);
+      cardRow.append(mImg, mInfo);
+      card.append(cardRow);
+      mobileList.append(card);
+    }
+
+    // 3. Totals Summary Block
     const summary = createEl('div', ['card', 'bg-light', 'border-0', 'p-3', 'rounded-3']);
     const delText = totals.deliveryFee === 0 ? `Free (order over ${formatPrice(SITE.freeDeliveryThreshold)})` : formatPrice(totals.deliveryFee);
 
@@ -245,7 +326,7 @@ function initDeliveryPage() {
     totRow.append(createEl('strong', [], 'Order Total:'), createEl('strong', ['text-primary'], formatPrice(totals.total)));
     summary.append(totRow);
 
-    block.append(tableWrap, summary);
+    block.append(tableWrap, mobileList, summary);
   }
 
   function validateForm() {
@@ -353,7 +434,10 @@ function initDeliveryPage() {
 
     for (const d of data.totals.items) {
       const li = createEl('li', ['list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', 'px-0']);
-      li.append(createEl('span', [], `${d.name} × ${d.qty}`), createEl('strong', ['text-primary'], formatPrice(d.lineTotal)));
+      li.append(
+        createEl('span', ['text-break', 'me-2'], `${d.name} × ${d.qty}`),
+        createEl('strong', ['text-primary', 'text-nowrap'], formatPrice(d.lineTotal))
+      );
       ul.append(li);
     }
 
