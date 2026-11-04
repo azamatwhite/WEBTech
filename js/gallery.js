@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyState.className = 'col-12 text-center py-5 text-muted';
 
             const emptyP = document.createElement('p');
-            emptyP.className = 'fs-5 mb-2';
+            emptyP.className = 'fs-5 mb-2 text-center';
             emptyP.textContent = 'No photos matched your criteria.';
 
             const resetBtn = document.createElement('button');

@@ -251,11 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!firstInvalidField) firstInvalidField = field;
             };
 
-            if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+            if (!nameInput.value.trim() || nameInput.value.trim().length < 1) {
                 showError(nameInput, 'Please enter a valid full name (at least 2 characters).');
             }
 
-            const phoneRegEx = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+            const phoneRegEx = /^\+7\d{10}$/;
             if (phoneInput.value.trim() && !phoneRegEx.test(phoneInput.value.trim())) {
                 showError(phoneInput, 'Format must be +7 (700) 000-00-00.');
             }
