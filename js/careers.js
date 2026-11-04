@@ -1,209 +1,209 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
-    // 1. HTML элементтерін табу
-    const form = document.getElementById('careers-form');
+// Используется jQuery 3.7.1. Весь код обернут в $(function () { ... })
+$(function () {
+    const $form = $('#careers-form');
+    if (!$form.length) return;
 
-    if (!form) {
-        return;
-    }
-
-    const nameInput = document.getElementById('appName');
-    const phoneInput = document.getElementById('appPhone');
-    const positionSelect = document.getElementById('positionSelect');
-    const experienceInput = document.getElementById('appExperience');
+    const $nameInput = $('#appName');
+    const $phoneInput = $('#appPhone');
+    const $positionSelect = $('#positionSelect');
+    const $experienceInput = $('#appExperience');
 
     const MAX_LENGTH = 500;
     const STORAGE_KEY = 'careersApplications';
 
-    // Браузердің өз тексеруін өшіреміз, өз хабарламаларымыз шығады
-    form.noValidate = true;
+    // Отключаем стандартную валидацию браузера через .prop()
+    $form.prop('noValidate', true);
 
-    // 2. Қате көрсету / өшіру (booking.js сияқты)
-    function showError(input, message) {
-        let error = input.parentNode.querySelector('.error-message');
-
-        if (!error) {
-            error = document.createElement('small');
-            error.className = 'error-message text-danger d-block';
-            input.parentNode.appendChild(error);
+    // 1. Показ и очистка ошибок
+    function showError($input, message) {
+        if ($input.siblings('.error-message').length === 0) {
+            $input.parent().append('<small class="error-message text-danger d-block mt-1"></small>');
         }
-
-        error.textContent = message;
-        input.classList.add('is-invalid');
+        // ЦЕПОЧКА (Chaining из 4 методов): 1) .addClass() добавляет красную рамку, 2) .attr() ставит ARIA-атрибут,
+        // 3) .siblings() находит соседний блок ошибки, 4) .text() записывает текст ошибки.
+        $input.addClass('is-invalid').attr('aria-invalid', 'true').siblings('.error-message').text(message);
     }
 
-    function clearError(input) {
-        const error = input.parentNode.querySelector('.error-message');
-
-        if (error) {
-            error.textContent = '';
-        }
-
-        input.classList.remove('is-invalid');
+    function clearError($input) {
+        $input.removeClass('is-invalid').attr('aria-invalid', 'false').siblings('.error-message').text('');
     }
 
-    // 3. Әр өрісті тексеру (дұрыс болса true қайтарады)
-    function validateName() {
-        const value = nameInput.value.trim();
+    // 2. Счетчик символов и подсказка по вакансии (Эффект №3: .slideDown / .slideUp)
+    const $counter = $('<small class="text-muted d-block text-end mt-1"></small>');
+    $experienceInput.parent().append($counter);
 
-        if (value.length < 2) {
-            showError(nameInput, 'Please enter your full name (at least 2 characters).');
-            return false;
-        }
-
-        if (/\d/.test(value)) {
-            showError(nameInput, 'Name should not contain numbers.');
-            return false;
-        }
-
-        clearError(nameInput);
-        return true;
-    }
-
-    function validatePhone() {
-        // Тек цифрларды қалдырамыз: +7 700 000 00 00 -> 77000000000
-        const digits = phoneInput.value.replace(/\D/g, '');
-
-        if (digits.length !== 11 || (digits[0] !== '7' && digits[0] !== '8')) {
-            showError(phoneInput, 'Enter a valid phone number, e.g. +7 700 000 00 00.');
-            return false;
-        }
-
-        clearError(phoneInput);
-        return true;
-    }
-
-    function validatePosition() {
-        if (!positionSelect.value) {
-            showError(positionSelect, 'Please select a position.');
-            return false;
-        }
-
-        clearError(positionSelect);
-        return true;
-    }
-
-    function validateExperience() {
-        if (experienceInput.value.length > MAX_LENGTH) {
-            showError(experienceInput, 'Maximum ' + MAX_LENGTH + ' characters allowed.');
-            return false;
-        }
-
-        clearError(experienceInput);
-        return true;
-    }
-
-    // 4. Textarea астына символ санағышын қосу
-    const counter = document.createElement('small');
-    counter.className = 'text-muted d-block text-end';
-    experienceInput.parentNode.appendChild(counter);
+    const $posNotice = $('<div class="alert alert-info py-2 mt-2 mb-0 small"></div>').hide();
+    $positionSelect.parent().append($posNotice);
 
     function updateCounter() {
-        counter.textContent = experienceInput.value.length + ' / ' + MAX_LENGTH;
+        const len = $experienceInput.val().length;
+        $counter.text(`${len} / ${MAX_LENGTH}`).toggleClass('text-danger fw-bold', len > MAX_LENGTH);
     }
-
     updateCounter();
 
-    // 5. Сәтті жіберілгенде шығатын хабарлама
-    const success = document.createElement('div');
-    success.className = 'alert alert-success d-none';
-    success.setAttribute('role', 'alert');
-    form.parentNode.insertBefore(success, form);
+    // 3. Сообщение об успехе и блок истории откликов (без класса d-none, так как !important ломает анимации jQuery)
+    const $success = $('<div class="alert alert-success mb-3" role="alert"></div>').hide();
+    $form.before($success);
 
-    // 6. Open Positions карточкаларына "Apply" батырмасын қосу
-    // Карточкалар мен select-тегі опциялар бірдей ретпен тұр,
-    // сондықтан N-ші карточка = (N+1)-ші опция (0-ші опция "Select a position...")
-    const cards = document.querySelectorAll('article.card');
+    const $card = $form.closest('.card');
+    const $history = $('<div class="card p-4 shadow-sm border-0 mt-4"></div>').html(`
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="h5 mb-0">Submitted Applications</h3>
+            <button type="button" id="toggle-apps" class="btn btn-outline-dark btn-sm">Show / Hide History</button>
+        </div>
+        <div id="apps-box" class="mt-3">
+            <ul id="apps-list" class="list-group"></ul>
+        </div>
+    `);
+    $card.after($history);
 
-    cards.forEach(function (card, index) {
-        const option = positionSelect.options[index + 1];
+    const $appsBox = $history.find('#apps-box').hide();
+    const $appsList = $history.find('#apps-list');
 
-        if (!option) {
+    // 4. Кнопки "Apply" в карточках вакансий (.each(), фильтр :not(:disabled))
+    const $validOptions = $positionSelect.find('option:not(:disabled)');
+    $('article.card').each(function (index) {
+        const $option = $validOptions.eq(index);
+        if (!$option.length) return;
+
+        const $btn = $('<button type="button" class="btn btn-outline-primary btn-sm mt-3 align-self-start">Apply for this position</button>')
+            .attr('data-val', $option.val());
+
+        $(this).addClass('d-flex flex-column').append($btn);
+    });
+
+    // Делегирование клика по кнопкам "Apply" в карточках
+    $('main').on('click', 'article.card button[data-val]', function () {
+        const val = $(this).attr('data-val'); // 1-е использование $(this)
+        $positionSelect.val(val).trigger('change');
+        $('html, body').animate({ scrollTop: $form.offset().top - 80 }, 400);
+        $nameInput.trigger('focus');
+    });
+
+    // 5. Список откликов из localStorage (Шаг 1: рендер списка на jQuery)
+    // КОММЕНТАРИЙ: Вместо createElement, className и appendChild использованы $('<li>'), .addClass(),
+    // .text() и .append(). Код создания списка с кнопкой Delete стал компактнее и нагляднее.
+    function renderApplications() {
+        let list = [];
+        try { list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { list = []; }
+
+        $appsList.empty();
+        if (!list.length) {
+            $appsList.html('<li class="list-group-item text-muted">No applications submitted yet.</li>');
             return;
         }
 
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn btn-outline-primary btn-sm mt-3 align-self-start';
-        button.textContent = 'Apply for this position';
-
-        button.addEventListener('click', function () {
-            positionSelect.value = option.value;
-            clearError(positionSelect);
-            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            nameInput.focus({ preventScroll: true });
+        $.each(list, function (i, app) {
+            const info = `${i + 1}. ${app.name} (${app.phone}) — ${app.position} [${app.date}]`;
+            const $delBtn = $('<button type="button" class="btn btn-sm btn-outline-danger delete-btn ms-2">Delete</button>').attr('data-index', i);
+            const $li = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>')
+                .append($('<span></span>').text(info), $delBtn);
+            $appsList.append($li);
         });
-
-        card.classList.add('d-flex', 'flex-column');
-        card.appendChild(button);
-    });
-
-    // 7. localStorage-ға өтінімді сақтау
-    function saveApplication(data) {
-        let list = [];
-
-        try {
-            list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        } catch (e) {
-            list = [];
-        }
-
-        list.push(data);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     }
 
-    // 8. Жазу кезінде қатені бірден өшіру / тексеру
-    nameInput.addEventListener('input', function () {
-        if (nameInput.classList.contains('is-invalid')) {
-            validateName();
-        }
+    // 6. Event Delegation для удаления (Шаг 2)
+    // КОММЕНТАРИЙ: Прямая привязка к .delete-btn не сработает, так как элементы списка создаются динамически
+    // при каждом вызове renderApplications(). Делегирование на #apps-list ловит клики по новым кнопкам.
+    $appsList.on('click', '.delete-btn', function () {
+        const $btn = $(this); // 2-е использование $(this)
+        const idx = Number($btn.attr('data-index'));
+        const list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        list.splice(idx, 1);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        $btn.closest('li').slideUp(200, renderApplications);
     });
 
-    phoneInput.addEventListener('input', function () {
-        if (phoneInput.classList.contains('is-invalid')) {
-            validatePhone();
-        }
+    // 7. Показ/скрытие истории (Шаг 3: Эффект №1 .slideToggle с длительностью 300 мс)
+    $('#toggle-apps').on('click', function () {
+        renderApplications();
+        $appsBox.slideToggle(300);
     });
 
-    positionSelect.addEventListener('change', validatePosition);
+    // 8. Валидация полей с Regex (Шаг 4)
+    // КОММЕНТАРИЙ: Атрибут required в браузере не заменяет серверную проверку, так как пользователь может
+    // удалить его через DevTools или отправить запрос напрямую на сервер в обход формы.
+    function validateForm() {
+        let valid = true;
+        $form.find('.form-control, .form-select').each(function () { clearError($(this)); });
 
-    experienceInput.addEventListener('input', function () {
+        const name = $.trim($nameInput.val());
+        const phone = $.trim($phoneInput.val());
+        const pos = $positionSelect.val();
+        const exp = $.trim($experienceInput.val());
+
+        const nameRegex = /^[a-zA-Zа-яА-ЯёЁәіңғүұқөһӘІҢҒҮҰҚӨҺ\s\-]{2,}$/;
+        const digits = phone.replace(/\D/g, '');
+        const phoneRegex = /^[78]\d{10}$/;
+
+        if (!nameRegex.test(name)) {
+            showError($nameInput, 'Enter a valid full name (at least 2 letters, no digits).');
+            valid = false;
+        }
+        if (!phoneRegex.test(digits)) {
+            showError($phoneInput, 'Enter a valid 11-digit phone number (e.g. +7 700 000 00 00).');
+            valid = false;
+        }
+        if (!pos) {
+            showError($positionSelect, 'Please select a position.');
+            valid = false;
+        }
+        if (exp.length > MAX_LENGTH) {
+            showError($experienceInput, `Maximum ${MAX_LENGTH} characters allowed.`);
+            valid = false;
+        }
+
+        if (!valid) $form.find('.is-invalid:first').trigger('focus');
+        return valid;
+    }
+
+    // 9. События input и change для полей формы
+    $form.find('input[name], select, textarea').on('input change', function () {
+        clearError($(this));
         updateCounter();
-        validateExperience();
     });
 
-    // 9. Форманы жіберу
-    form.addEventListener('submit', function (event) {
+    $positionSelect.on('change', function () {
+        const selectedTitle = $(this).find('option:selected').text();
+        if ($(this).val()) {
+            $posNotice.text(`Selected role: ${selectedTitle}. Tip: Mention relevant experience below!`).slideDown(200);
+        } else {
+            $posNotice.slideUp(200);
+        }
+    });
+
+    // 10. Отправка формы (Submit)
+    // КОММЕНТАРИЙ: Без event.preventDefault() форма отправит GET-запрос и перезагрузит страницу,
+    // сбросив выполнение JS-скрипта, анимации и сохранение в localStorage.
+    $form.on('submit', function (event) {
         event.preventDefault();
+        if (!validateForm()) return;
 
-        // Барлығын тексереміз (& қолданамыз, барлық қате бірден көрінсін)
-        const isValid = validateName() &
-            validatePhone() &
-            validatePosition() &
-            validateExperience();
-
-        if (!isValid) {
-            success.classList.add('d-none');
-            return;
-        }
-
-        const selectedText = positionSelect.options[positionSelect.selectedIndex].text;
-
-        saveApplication({
-            name: nameInput.value.trim(),
-            phone: phoneInput.value.trim(),
+        const selectedText = $positionSelect.find('option:selected').text();
+        const list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        list.push({
+            name: $.trim($nameInput.val()),
+            phone: $.trim($phoneInput.val()),
             position: selectedText,
-            experience: experienceInput.value.trim(),
-            date: new Date().toLocaleString()
+            experience: $.trim($experienceInput.val()),
+            date: new Date().toLocaleDateString()
         });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
 
-        success.textContent = 'Thank you, ' + nameInput.value.trim() +
-            '! Your application for "' + selectedText + '" has been received. We will contact you soon.';
-        success.classList.remove('d-none');
+        // Эффект №2: .fadeIn() и в callback .fadeOut()
+        $success.stop(true, true)
+            .text(`Thank you, ${$.trim($nameInput.val())}! Your application for "${selectedText}" has been received.`)
+            .fadeIn(400, function () {
+                $(this).delay(3500).fadeOut(400);
+            });
 
-        form.reset();
+        $form[0].reset();
+        $posNotice.slideUp(200);
         updateCounter();
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        renderApplications();
     });
+
+    renderApplications();
 });
