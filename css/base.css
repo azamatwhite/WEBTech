@@ -124,3 +124,13 @@ h1, h2, h3, h4, h5, h6, th[id] {
 .site-footer a:hover {
   color: #fff;
 }
+
+/* Toast container styling — position above floating action button and enable clicks */
+#toastNotificationContainer {
+  bottom: 4.5rem !important;
+  z-index: 1090 !important;
+}
+
+#toastNotificationContainer .alert {
+  pointer-events: auto !important;
+}

@@ -1,17 +1,14 @@
 'use strict';
 
 /**
- * js/delivery.js — Delivery page logic for Dastarkhan Restaurant
- * Handles order summary block, live form validation, and confirmation modal.
+ * js/delivery.js — Delivery page logic (jQuery version)
+ * jQuery 3.7.1 must be loaded BEFORE this file (see delivery.html).
+ * Everything is inside $(function () { ... }) = $(document).ready(): runs when the DOM is ready.
  */
+$(function () {
+  // Selector by id: stop if this is not the delivery page
+  if (!$('#userName').length || !$('#districtSelect').length) return;
 
-if (!document.getElementById('userName') || !document.getElementById('districtSelect')) {
-  // Exit early on non-delivery pages
-} else {
-  initDeliveryPage();
-}
-
-function initDeliveryPage() {
   const DISTRICTS = Object.freeze({
     yesil: 'Yesil District',
     almaty: 'Almaty District',
@@ -28,14 +25,23 @@ function initDeliveryPage() {
 
   const FALLBACK_DISH_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Crect width='100' height='100' rx='12' fill='%23f5ede0'/%3E%3Ccircle cx='50' cy='50' r='32' fill='%23e8ded0' stroke='%23d4a017' stroke-width='2' stroke-dasharray='3 2'/%3E%3Cpath d='M38 48 Q50 32 62 48 Z' fill='%23c8102e'/%3E%3Cpath d='M34 52 H66 Q64 66 50 66 Q36 66 34 52 Z' fill='%23d4a017'/%3E%3Ccircle cx='50' cy='36' r='3' fill='%23c8102e'/%3E%3C/svg%3E";
 
-  function createEl(tag, classes = [], text = '', attrs = {}) {
-    const el = document.createElement(tag);
-    if (classes.length > 0) el.classList.add(...classes);
-    if (text !== '') el.textContent = text;
-    for (const [key, val] of Object.entries(attrs)) el.setAttribute(key, val);
-    return el;
+  const FIELD_IDS = ['userName', 'userPhone', 'portionCount', 'deliveryDate', 'deliveryTime', 'districtSelect', 'deliveryAddress'];
+  // Selector list built from the ids: '#userName, #userPhone, ...'
+  const FIELD_SELECTOR = $.map(FIELD_IDS, function (id) { return '#' + id; }).join(', ');
+
+  /* Helper: create an element.
+     Old JS: createElement + classList.add + textContent + setAttribute (7 lines).
+     jQuery: $('<tag>') + .addClass() + .text() + .attr() — same job in one chain,
+     shorter and easier to read. .text() is used (not .html()) so user data can't inject markup. */
+  function $el(tag, classes, text, attrs) {
+    const $n = $('<' + tag + '>');
+    if (classes) $n.addClass(classes);
+    if (text !== undefined && text !== '') $n.text(text);
+    if (attrs) $n.attr(attrs);
+    return $n;
   }
 
+  /* ---------- pure validation logic (no DOM, nothing to rewrite) ---------- */
   function isValidKazakhPhone(phone) {
     if (!phone || typeof phone !== 'string') return false;
     const digits = phone.replace(/\D/g, '');
@@ -53,14 +59,16 @@ function initDeliveryPage() {
     const mins = parseInt(parts[1], 10);
     if (Number.isNaN(hours) || Number.isNaN(mins)) return { isValid: false, message: 'Invalid time value.' };
 
-    const [openH, openM] = (SITE.workHours && SITE.workHours.open ? SITE.workHours.open : '11:00').split(':').map(Number);
-    const [closeH, closeM] = (SITE.workHours && SITE.workHours.close ? SITE.workHours.close : '23:00').split(':').map(Number);
+    const open = (SITE.workHours && SITE.workHours.open) || '11:00';
+    const close = (SITE.workHours && SITE.workHours.close) || '23:00';
+    const [openH, openM] = open.split(':').map(Number);
+    const [closeH, closeM] = close.split(':').map(Number);
     const openTotalMins = openH * 60 + openM;
     const closeTotalMins = closeH * 60 + closeM;
 
     const totalMins = hours * 60 + mins;
     if (totalMins < openTotalMins || totalMins > closeTotalMins) {
-      return { isValid: false, message: `Delivery time must be between ${SITE.workHours.open} and ${SITE.workHours.close}.` };
+      return { isValid: false, message: 'Delivery time must be between ' + open + ' and ' + close + '.' };
     }
 
     if (dateStr) {
@@ -74,10 +82,10 @@ function initDeliveryPage() {
         if (totalMins < minAllowed) {
           const h = Math.floor(minAllowed / 60);
           const mn = minAllowed % 60;
-          const timeFormatted = `${String(h).padStart(2, '0')}:${String(mn).padStart(2, '0')}`;
+          const timeFormatted = String(h).padStart(2, '0') + ':' + String(mn).padStart(2, '0');
           return {
             isValid: false,
-            message: `For orders today, delivery must be at least ${buffer} min from now (earliest: ${timeFormatted}).`
+            message: 'For orders today, delivery must be at least ' + buffer + ' min from now (earliest: ' + timeFormatted + ').'
           };
         }
       }
@@ -85,8 +93,8 @@ function initDeliveryPage() {
     return { isValid: true, message: '' };
   }
 
-  function validateField(fieldId, value, dateVal = '') {
-    const v = typeof value === 'string' ? value.trim() : '';
+  function validateField(fieldId, value, dateVal) {
+    const v = $.trim(value); // trim BEFORE checking (jQuery utility instead of String.trim)
     switch (fieldId) {
       case 'userName':
         if (v.length < 2) return { isValid: false, message: 'Please enter your full name (at least 2 characters).' };
@@ -120,522 +128,678 @@ function initDeliveryPage() {
     }
   }
 
-  function setFieldState(el, isValid, msg = '') {
-    if (!el || !el.parentElement) return;
-    let fb = el.parentElement.querySelector('.invalid-feedback');
-    if (!fb) {
-      fb = createEl('div', ['invalid-feedback']);
-      el.parentElement.append(fb);
+  /* ================================================================== *
+   * FEATURE 1 — showing / clearing the error next to ONE field
+   * Old JS: parentElement.querySelector('.invalid-feedback'), createEl, append,
+   *         classList.remove/add x4, textContent (≈ 15 lines).
+   * jQuery: .siblings(), .toggleClass() and .text() — about 6 lines.
+   *         Clearly shorter, and the if/else on classes disappears.
+   * ================================================================== */
+  function setFieldState($field, isValid, msg) {
+    let $fb = $field.siblings('.invalid-feedback'); // traversal: the message lives next to the field
+    if (!$fb.length) {
+      $fb = $el('div', 'invalid-feedback').insertAfter($field);
     }
-    if (isValid) {
-      el.classList.remove('is-invalid');
-      el.classList.add('is-valid');
-      fb.textContent = '';
-    } else {
-      el.classList.remove('is-valid');
-      el.classList.add('is-invalid');
-      fb.textContent = msg;
-    }
+    // Chain of 3 links: 1) .toggleClass('is-valid') green border if valid,
+    // 2) .toggleClass('is-invalid') red border if not valid, 3) .attr() tells screen readers.
+    $field.toggleClass('is-valid', isValid).toggleClass('is-invalid', !isValid).attr('aria-invalid', String(!isValid));
+    $fb.text(isValid ? '' : msg);
+  }
+
+  function clearStates() {
+    $(FIELD_SELECTOR).removeClass('is-valid is-invalid').removeAttr('aria-invalid');
+  }
+
+  /* ================================================================== *
+   * FEATURE 2 — order summary built from the cart array
+   * Old JS: separate addEventListener for every −, + and ✕ button in the
+   *         desktop table AND in the mobile list (6 listeners per dish).
+   * jQuery: ONE delegated handler on the summary block (see below), so the
+   *         build code only creates elements. Noticeably shorter.
+   * ================================================================== */
+  function dishThumb(item) {
+    return $el('img', 'rounded object-fit-cover border flex-shrink-0 bg-light', '', {
+      src: item.image || FALLBACK_DISH_SVG, alt: item.name, width: 48, height: 48, loading: 'lazy'
+    }).on('error', function () {
+      $(this).off('error').attr('src', FALLBACK_DISH_SVG); // .off() = old "this.onerror = null"
+    });
+  }
+
+  function qtyGroup(item, compact) {
+    const pad = compact ? 'px-2 py-0' : 'px-2';
+    return $el('div', 'btn-group btn-group-sm', '', { role: 'group', 'aria-label': 'Quantity for ' + item.name }).append(
+        $el('button', 'btn btn-outline-secondary ' + pad, '−', { type: 'button', 'data-action': 'dec', 'data-id': item.id, 'aria-label': 'Decrease' }),
+        $el('span', 'btn btn-light disabled text-dark fw-bold ' + (compact ? 'px-2 py-0' : 'px-3'), String(item.qty)),
+        $el('button', 'btn btn-outline-secondary ' + pad, '+', { type: 'button', 'data-action': 'inc', 'data-id': item.id, 'aria-label': 'Increase' })
+    );
+  }
+
+  function removeBtn(item) {
+    return $el('button', 'btn btn-outline-danger btn-sm rounded-circle px-2 py-0 lh-1 flex-shrink-0', '✕', {
+      type: 'button', 'data-action': 'remove', 'data-id': item.id,
+      'aria-label': 'Remove ' + item.name + ' from order', title: 'Remove'
+    });
+  }
+
+  function getOrderBlock() {
+    let $block = $('#deliveryOrderSummaryBlock');
+    if ($block.length) return $block;
+
+    const $formCard = $('form').first().closest('.card'); // traversal: from the form up to its card
+    if (!$formCard.length) return $();
+
+    $block = $el('section', 'card p-3 p-sm-4 shadow-sm border-0 mb-4 overflow-x-hidden', '', { id: 'deliveryOrderSummaryBlock' });
+    $formCard.before($block);
+
+    // DELEGATED handler. The block's content is destroyed and rebuilt on every
+    // cart change, so buttons bound directly ($('button[data-action]').on(...))
+    // would vanish with the old DOM and never exist on the new buttons.
+    // The block itself always exists, so it catches clicks from future buttons.
+    $block.on('click', 'button[data-action]', function () {
+      const $btn = $(this);
+      const id = $btn.attr('data-id');
+      const action = $btn.attr('data-action');
+
+      if (action === 'remove') {
+        // EFFECT 1: the row/card fades out (200 ms); the CALLBACK removes the
+        // dish from the cart only when the animation has finished.
+        $btn.closest('tr, .card').fadeOut(200, function () { removeFromCart(id); });
+      } else {
+        changeQty(id, action === 'inc' ? 1 : -1);
+      }
+    });
+
+    return $block;
   }
 
   function renderOrderBlock() {
-    let block = document.getElementById('deliveryOrderSummaryBlock');
-    const formCard = document.querySelector('form')?.closest('.card');
-    if (!formCard) return;
+    const $block = getOrderBlock();
+    if (!$block.length) return;
 
-    if (!block) {
-      block = createEl('section', ['card', 'p-3', 'p-sm-4', 'shadow-sm', 'border-0', 'mb-4'], '', { id: 'deliveryOrderSummaryBlock', style: 'overflow-x: hidden;' });
-      formCard.before(block);
-    }
-
-    while (block.firstChild) block.removeChild(block.firstChild);
-    block.append(createEl('h3', ['fs-4', 'fw-bold', 'text-primary', 'border-bottom', 'pb-2', 'mb-3'], 'Your Order for Delivery'));
+    $block.empty().append(
+        $el('h3', 'fs-4 fw-bold text-primary border-bottom pb-2 mb-3', 'Your Order for Delivery')
+    );
 
     const totals = getCartTotals();
 
-    if (totals.items.length === 0) {
-      const box = createEl('div', ['alert', 'alert-warning', 'text-center', 'py-4', 'mb-0']);
-      const link = createEl('a', ['btn', 'btn-primary', 'rounded-pill', 'px-4'], 'Browse Dastarkhan Menu →', { href: 'menu.html' });
-      box.append(
-        createEl('h4', ['h5', 'fw-semibold', 'mb-2'], 'Your cart is currently empty'),
-        createEl('p', ['text-muted', 'mb-3'], 'Please choose dishes from our menu before placing a delivery order.'),
-        link
-      );
-      block.append(box);
+    if (!totals.items.length) {
+      $block.append($el('div', 'alert alert-warning text-center py-4 mb-0').append(
+          $el('h4', 'h5 fw-semibold mb-2', 'Your cart is currently empty'),
+          $el('p', 'text-muted mb-3', 'Please choose dishes from our menu before placing a delivery order.'),
+          $el('a', 'btn btn-primary rounded-pill px-4', 'Browse Dastarkhan Menu →', { href: 'menu.html' })
+      ));
       return;
     }
 
-    // 1. Desktop Table View (>= 576px)
-    const tableWrap = createEl('div', ['d-none', 'd-sm-block', 'table-responsive', 'mb-3']);
-    const table = createEl('table', ['table', 'align-middle', 'table-hover', 'mb-0']);
-    const thead = createEl('thead', ['table-light']);
-    const trH = createEl('tr');
-    trH.append(
-      createEl('th', [], 'Dish', { scope: 'col' }),
-      createEl('th', ['text-nowrap'], 'Price', { scope: 'col' }),
-      createEl('th', ['text-center'], 'Qty', { scope: 'col' }),
-      createEl('th', ['text-end', 'text-nowrap'], 'Subtotal', { scope: 'col' }),
-      createEl('th', ['text-center'], '✕', { scope: 'col' })
+    // Desktop table (>= 576px)
+    const $tbody = $('<tbody>');
+    $.each(totals.items, function (_, item) {
+      $tbody.append($el('tr').append(
+          $el('td').append($el('div', 'd-flex align-items-center gap-2').append(
+              dishThumb(item),
+              $el('div', 'overflow-hidden').append(
+                  $el('div', 'fw-semibold text-break', item.name),
+                  $el('small', 'text-muted', item.weight + ' g')
+              )
+          )),
+          $el('td', 'text-nowrap', formatPrice(item.price)),
+          $el('td', 'text-center').append(qtyGroup(item, false)),
+          $el('td', 'text-end fw-bold text-primary text-nowrap', formatPrice(item.lineTotal)),
+          $el('td', 'text-center').append(removeBtn(item))
+      ));
+    });
+    const $thead = $el('thead', 'table-light').append($el('tr').append(
+        $el('th', '', 'Dish', { scope: 'col' }),
+        $el('th', 'text-nowrap', 'Price', { scope: 'col' }),
+        $el('th', 'text-center', 'Qty', { scope: 'col' }),
+        $el('th', 'text-end text-nowrap', 'Subtotal', { scope: 'col' }),
+        $el('th', 'text-center', '✕', { scope: 'col' })
+    ));
+    const $tableWrap = $el('div', 'd-none d-sm-block table-responsive mb-3').append(
+        $el('table', 'table align-middle table-hover mb-0').append($thead, $tbody)
     );
-    thead.append(trH);
 
-    const tbody = createEl('tbody');
-    for (const item of totals.items) {
-      const tr = createEl('tr');
+    // Mobile card list (< 576px)
+    const $mobileList = $el('div', 'd-block d-sm-none mb-3 w-100 overflow-x-hidden');
+    $.each(totals.items, function (_, item) {
+      $mobileList.append($el('div', 'card mb-2 p-2 rounded-3 border bg-white shadow-sm w-100 overflow-hidden').append(
+          $el('div', 'd-flex align-items-start gap-2').append(
+              dishThumb(item),
+              $el('div', 'flex-grow-1 overflow-hidden').append(
+                  $el('div', 'd-flex justify-content-between align-items-start gap-1 mb-1').append(
+                      $el('div', 'fw-semibold text-break lh-sm', item.name),
+                      removeBtn(item)
+                  ),
+                  $el('div', 'small text-muted mb-2').append(
+                      $el('span', '', item.weight + ' g · '),
+                      $el('span', 'fw-medium text-dark', formatPrice(item.price))
+                  ),
+                  $el('div', 'd-flex justify-content-between align-items-center flex-wrap gap-2 pt-1 border-top border-light-subtle').append(
+                      qtyGroup(item, true),
+                      $el('div', 'fw-bold text-primary text-nowrap', formatPrice(item.lineTotal))
+                  )
+              )
+          )
+      ));
+    });
 
-      const tdDish = createEl('td');
-      const flex = createEl('div', ['d-flex', 'align-items-center', 'gap-2']);
-      const img = createEl('img', ['rounded', 'object-fit-cover', 'border', 'flex-shrink-0'], '', {
-        src: item.image || FALLBACK_DISH_SVG,
-        alt: item.name,
-        width: '48',
-        height: '48',
-        loading: 'lazy',
-        style: 'background-color: #f7f3ec;'
-      });
-      img.onerror = function() {
-        this.onerror = null;
-        this.src = FALLBACK_DISH_SVG;
-      };
-      const info = createEl('div', ['overflow-hidden']);
-      info.append(
-        createEl('div', ['fw-semibold', 'text-break'], item.name),
-        createEl('small', ['text-muted'], `${item.weight} g`)
-      );
-      flex.append(img, info);
-      tdDish.append(flex);
-
-      const tdPrice = createEl('td', ['text-nowrap'], formatPrice(item.price));
-
-      const tdQty = createEl('td', ['text-center']);
-      const grp = createEl('div', ['btn-group', 'btn-group-sm'], '', { role: 'group', 'aria-label': `Change quantity for ${item.name}` });
-      const minus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2'], '−', { type: 'button', 'aria-label': 'Decrease' });
-      const plus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2'], '+', { type: 'button', 'aria-label': 'Increase' });
-      minus.addEventListener('click', () => changeQty(item.id, -1));
-      plus.addEventListener('click', () => changeQty(item.id, 1));
-      grp.append(minus, createEl('span', ['btn', 'btn-light', 'disabled', 'px-3', 'text-dark', 'fw-bold'], String(item.qty)), plus);
-      tdQty.append(grp);
-
-      const tdSub = createEl('td', ['text-end', 'fw-bold', 'text-primary', 'text-nowrap'], formatPrice(item.lineTotal));
-
-      const tdDel = createEl('td', ['text-center']);
-      const delBtn = createEl('button', ['btn', 'btn-outline-danger', 'btn-sm', 'rounded-circle', 'p-0', 'd-inline-flex', 'align-items-center', 'justify-content-center'], '✕', {
-        type: 'button',
-        'aria-label': `Remove ${item.name} from order`,
-        title: 'Remove',
-        style: 'width: 26px; height: 26px; min-width: 26px; line-height: 1;'
-      });
-      delBtn.addEventListener('click', () => removeFromCart(item.id));
-      tdDel.append(delBtn);
-
-      tr.append(tdDish, tdPrice, tdQty, tdSub, tdDel);
-      tbody.append(tr);
+    // Totals
+    const $summary = $el('div', 'card bg-light border-0 p-3 rounded-3');
+    function addRow(label, val) {
+      $summary.append($el('div', 'd-flex justify-content-between mb-2').append(
+          $el('span', '', label), $el('strong', '', val)
+      ));
     }
-    table.append(thead, tbody);
-    tableWrap.append(table);
-
-    // 2. Mobile Card List View (< 576px down to 320px) — Zero horizontal scroll!
-    const mobileList = createEl('div', ['d-block', 'd-sm-none', 'mb-3', 'w-100'], '', { style: 'overflow-x: hidden;' });
-    for (const item of totals.items) {
-      const card = createEl('div', ['card', 'mb-2', 'p-2', 'rounded-3', 'border', 'bg-white', 'shadow-sm', 'w-100', 'overflow-hidden']);
-      const cardRow = createEl('div', ['d-flex', 'align-items-start', 'gap-2']);
-
-      const mImg = createEl('img', ['rounded', 'object-fit-cover', 'border', 'flex-shrink-0'], '', {
-        src: item.image || FALLBACK_DISH_SVG,
-        alt: item.name,
-        width: '48',
-        height: '48',
-        loading: 'lazy',
-        style: 'background-color: #f7f3ec;'
-      });
-      mImg.onerror = function() {
-        this.onerror = null;
-        this.src = FALLBACK_DISH_SVG;
-      };
-
-      const mInfo = createEl('div', ['flex-grow-1', 'overflow-hidden'], '', { style: 'min-width: 0;' });
-
-      // Dish name + Delete button in top row
-      const topRow = createEl('div', ['d-flex', 'justify-content-between', 'align-items-start', 'gap-1', 'mb-1']);
-      topRow.append(
-        createEl('div', ['fw-semibold', 'text-break', 'lh-sm'], item.name),
-        (() => {
-          const btn = createEl('button', ['btn', 'btn-outline-danger', 'btn-sm', 'rounded-circle', 'p-0', 'd-inline-flex', 'align-items-center', 'justify-content-center', 'flex-shrink-0'], '✕', {
-            type: 'button',
-            'aria-label': `Remove ${item.name}`,
-            title: 'Remove',
-            style: 'width: 26px; height: 26px; min-width: 26px; line-height: 1;'
-          });
-          btn.addEventListener('click', () => removeFromCart(item.id));
-          return btn;
-        })()
-      );
-
-      // Weight & unit price
-      const weightPrice = createEl('div', ['small', 'text-muted', 'mb-2']);
-      weightPrice.append(
-        document.createTextNode(`${item.weight} g · `),
-        createEl('span', ['fw-medium', 'text-dark'], formatPrice(item.price))
-      );
-
-      // Quantity Stepper + Line Subtotal
-      const bottomRow = createEl('div', ['d-flex', 'justify-content-between', 'align-items-center', 'flex-wrap', 'gap-2', 'pt-1', 'border-top', 'border-light-subtle']);
-      const mGrp = createEl('div', ['btn-group', 'btn-group-sm'], '', { role: 'group', 'aria-label': `Quantity for ${item.name}` });
-      const mMinus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2', 'py-0'], '−', { type: 'button', 'aria-label': 'Decrease' });
-      const mPlus = createEl('button', ['btn', 'btn-outline-secondary', 'px-2', 'py-0'], '+', { type: 'button', 'aria-label': 'Increase' });
-      mMinus.addEventListener('click', () => changeQty(item.id, -1));
-      mPlus.addEventListener('click', () => changeQty(item.id, 1));
-      mGrp.append(mMinus, createEl('span', ['btn', 'btn-light', 'disabled', 'px-2', 'py-0', 'text-dark', 'fw-bold'], String(item.qty)), mPlus);
-
-      const mSubtotal = createEl('div', ['fw-bold', 'text-primary', 'text-nowrap'], formatPrice(item.lineTotal));
-      bottomRow.append(mGrp, mSubtotal);
-
-      mInfo.append(topRow, weightPrice, bottomRow);
-      cardRow.append(mImg, mInfo);
-      card.append(cardRow);
-      mobileList.append(card);
-    }
-
-    // 3. Totals Summary Block
-    const summary = createEl('div', ['card', 'bg-light', 'border-0', 'p-3', 'rounded-3']);
-    const delText = totals.deliveryFee === 0 ? `Free (order over ${formatPrice(SITE.freeDeliveryThreshold)})` : formatPrice(totals.deliveryFee);
-
-    const addRow = (label, val) => {
-      const r = createEl('div', ['d-flex', 'justify-content-between', 'mb-2']);
-      r.append(createEl('span', [], label), createEl('strong', [], val));
-      return r;
-    };
-
-    summary.append(
-      addRow('Dishes Subtotal:', formatPrice(totals.subtotal)),
-      addRow('Delivery (Astana):', delText)
-    );
+    addRow('Dishes Subtotal:', formatPrice(totals.subtotal));
+    addRow('Delivery (Astana):', totals.deliveryFee === 0
+        ? 'Free (order over ' + formatPrice(SITE.freeDeliveryThreshold) + ')'
+        : formatPrice(totals.deliveryFee));
 
     if (totals.subtotal < SITE.minOrder) {
-      summary.append(createEl('div', ['alert', 'alert-warning', 'py-2', 'px-3', 'my-2', 'small'],
-        `Notice: Minimum order for delivery is ${formatPrice(SITE.minOrder)}. Add ${formatPrice(SITE.minOrder - totals.subtotal)} more to submit.`));
+      $summary.append($el('div', 'alert alert-warning py-2 px-3 my-2 small',
+          'Notice: Minimum order for delivery is ' + formatPrice(SITE.minOrder) +
+          '. Add ' + formatPrice(SITE.minOrder - totals.subtotal) + ' more to submit.'));
     }
-
     if (totals.subtotal < SITE.freeDeliveryThreshold) {
-      summary.append(createEl('div', ['small', 'text-muted', 'mb-2'],
-        `Add ${formatPrice(SITE.freeDeliveryThreshold - totals.subtotal)} more for free delivery`));
+      $summary.append($el('div', 'small text-muted mb-2',
+          'Add ' + formatPrice(SITE.freeDeliveryThreshold - totals.subtotal) + ' more for free delivery'));
     }
 
-    summary.append(createEl('hr', ['my-2']));
-    const totRow = createEl('div', ['d-flex', 'justify-content-between', 'fs-5']);
-    totRow.append(createEl('strong', [], 'Order Total:'), createEl('strong', ['text-primary'], formatPrice(totals.total)));
-    summary.append(totRow);
+    $summary.append(
+        $el('hr', 'my-2'),
+        $el('div', 'd-flex justify-content-between fs-5').append(
+            $el('strong', '', 'Order Total:'),
+            $el('strong', 'text-primary', formatPrice(totals.total))
+        )
+    );
 
-    block.append(tableWrap, mobileList, summary);
+    $block.append($tableWrap, $mobileList, $summary);
   }
 
+  /* ================================================================== *
+   * FEATURE 3 — form validation on submit
+   * Old JS: for-loop + getElementById + manual first-invalid tracking.
+   * jQuery: $.each over the ids + $(FIELD_SELECTOR) helpers. A bit shorter;
+   *         the real gain is the one-line .toggleClass() in setFieldState.
+   * ================================================================== */
   function validateForm() {
     const totals = getCartTotals();
+    const $block = $('#deliveryOrderSummaryBlock');
 
-    if (totals.items.length === 0) {
+    if (!totals.items.length) {
       showToast('Your cart is empty. Please add dishes from the menu before ordering.', 'danger');
-      document.getElementById('deliveryOrderSummaryBlock')?.scrollIntoView({ behavior: 'smooth' });
-      return { isValid: false, firstInvalid: null };
+      $('html, body').animate({ scrollTop: $block.offset().top - 80 }, 400);
+      return { isValid: false, $firstInvalid: $() };
     }
 
     if (totals.subtotal < SITE.minOrder) {
-      showToast(`Minimum order amount is ${formatPrice(SITE.minOrder)}. Please add more dishes.`, 'warning');
-      document.getElementById('deliveryOrderSummaryBlock')?.scrollIntoView({ behavior: 'smooth' });
-      return { isValid: false, firstInvalid: null };
+      showToast('Minimum order amount is ' + formatPrice(SITE.minOrder) + '. Please add more dishes.', 'warning');
+      $('html, body').animate({ scrollTop: $block.offset().top - 80 }, 400);
+      return { isValid: false, $firstInvalid: $() };
     }
 
-    const fields = ['userName', 'userPhone', 'portionCount', 'deliveryDate', 'deliveryTime', 'districtSelect', 'deliveryAddress'];
-    const curDate = document.getElementById('deliveryDate')?.value || '';
+    const curDate = $('#deliveryDate').val() || '';
     let formIsValid = true;
-    let firstInvalid = null;
+    let $firstInvalid = $();
 
-    for (const fId of fields) {
-      const el = document.getElementById(fId);
-      if (!el) continue;
-      const res = validateField(fId, el.value, curDate);
-      setFieldState(el, res.isValid, res.message);
+    $.each(FIELD_IDS, function (_, fId) {
+      const $f = $('#' + fId);
+      const res = validateField(fId, $f.val(), curDate);
+      setFieldState($f, res.isValid, res.message);
       if (!res.isValid) {
         formIsValid = false;
-        if (!firstInvalid) firstInvalid = el;
+        if (!$firstInvalid.length) $firstInvalid = $f;
       }
-    }
+    });
 
-    const portionEl = document.getElementById('portionCount');
-    if (portionEl && !portionEl.classList.contains('is-invalid')) {
-      const guests = parseInt(portionEl.value, 10) || 1;
+    const $portion = $('#portionCount');
+    if (!$portion.hasClass('is-invalid')) {
+      const guests = parseInt($portion.val(), 10) || 1;
       if (guests > totals.totalQty * 3) {
         formIsValid = false;
-        const msg = `You specified ${guests} guests, but only ${totals.totalQty} dish(es) are in your cart. Please add more dishes or adjust guest count.`;
-        setFieldState(portionEl, false, msg);
-        if (!firstInvalid) firstInvalid = portionEl;
+        setFieldState($portion, false, 'You specified ' + guests + ' guests, but only ' + totals.totalQty +
+            ' dish(es) are in your cart. Please add more dishes or adjust guest count.');
+        if (!$firstInvalid.length) $firstInvalid = $portion;
       }
     }
 
-    return { isValid: formIsValid, firstInvalid };
+    return { isValid: formIsValid, $firstInvalid: $firstInvalid };
   }
 
   function showSummaryModal(data) {
-    let modalEl = document.getElementById('orderSummaryModal');
-    if (modalEl) modalEl.remove();
+    $('#orderSummaryModal').remove();
 
-    modalEl = createEl('div', ['modal', 'fade'], '', {
-      id: 'orderSummaryModal',
-      tabindex: '-1',
-      role: 'dialog',
-      'aria-labelledby': 'orderSummaryTitle',
-      'aria-hidden': 'true'
+    const $modal = $el('div', 'modal fade', '', {
+      id: 'orderSummaryModal', tabindex: -1, role: 'dialog',
+      'aria-labelledby': 'orderSummaryTitle', 'aria-hidden': 'true'
     });
 
-    const dialog = createEl('div', ['modal-dialog', 'modal-dialog-centered', 'modal-lg']);
-    const content = createEl('div', ['modal-content']);
-
-    const header = createEl('div', ['modal-header', 'bg-dark', 'text-white']);
-    header.append(
-      createEl('h4', ['modal-title', 'text-warning'], 'Demo request received', { id: 'orderSummaryTitle' }),
-      createEl('button', ['btn-close', 'btn-close-white'], '', { type: 'button', 'data-bs-dismiss': 'modal', 'aria-label': 'Close' })
+    const $header = $el('div', 'modal-header bg-dark text-white').append(
+        $el('h4', 'modal-title text-warning', 'Demo request received', { id: 'orderSummaryTitle' }),
+        $el('button', 'btn-close btn-close-white', '', { type: 'button', 'data-bs-dismiss': 'modal', 'aria-label': 'Close' })
     );
 
-    const body = createEl('div', ['modal-body', 'p-4']);
-    body.append(createEl('div', ['alert', 'alert-warning', 'fw-semibold', 'border-2', 'border-warning', 'mb-4'],
-      'This is a demonstration only: no data is sent to a server and no real order or payment is created.'));
-
-    const refCard = createEl('div', ['card', 'bg-light', 'border-0', 'p-3', 'mb-3', 'text-center']);
-    refCard.append(createEl('div', ['fs-5', 'fw-bold', 'text-primary'], `Demo reference: ${data.orderNumber}`));
-    body.append(refCard);
-
-    const infoCard = createEl('div', ['card', 'bg-light', 'border-0', 'p-3', 'mb-3']);
-    infoCard.append(createEl('h5', ['fw-bold', 'text-primary', 'mb-3'], 'Delivery Details:'));
-
-    const dl = createEl('dl', ['row', 'mb-0']);
     const detailRows = [
-      { l: 'Demo reference:', v: data.orderNumber },
+      { l: 'Order number:', v: data.orderNumber },
       { l: 'Recipient:', v: data.userName },
       { l: 'Phone:', v: data.userPhone },
       { l: 'District:', v: data.districtName },
       { l: 'Address:', v: data.fullAddress },
-      { l: 'Time:', v: `${data.deliveryDate} at ${data.deliveryTime}` },
-      { l: 'Guests:', v: `${data.portionCount} person(s)` },
+      { l: 'Time:', v: data.deliveryDate + ' at ' + data.deliveryTime },
+      { l: 'Guests:', v: data.portionCount + ' person(s)' },
       { l: 'Payment:', v: data.paymentMethod },
       { l: 'Utensils:', v: data.needUtensils ? 'Yes, disposable utensils requested' : 'Not required' }
     ];
     if (data.comments) detailRows.push({ l: 'Notes:', v: data.comments });
 
-    for (const r of detailRows) {
-      dl.append(
-        createEl('dt', ['col-sm-4', 'text-muted'], r.l),
-        createEl('dd', ['col-sm-8', 'fw-medium'], r.v)
-      );
-    }
-    infoCard.append(dl);
+    const $dl = $el('dl', 'row mb-0');
+    $.each(detailRows, function (_, r) {
+      $dl.append($el('dt', 'col-sm-4 text-muted', r.l), $el('dd', 'col-sm-8 fw-medium', r.v));
+    });
 
-    const itemsCard = createEl('div', ['card', 'border-0', 'shadow-sm', 'p-3', 'mb-3']);
-    itemsCard.append(createEl('h6', ['fw-bold', 'mb-2'], 'Order Contents:'));
-    const ul = createEl('ul', ['list-group', 'list-group-flush', 'mb-2']);
+    const $ul = $el('ul', 'list-group list-group-flush mb-2');
+    $.each(data.totals.items, function (_, d) {
+      $ul.append($el('li', 'list-group-item d-flex justify-content-between align-items-center px-0').append(
+          $el('span', 'text-break me-2', d.name + ' × ' + d.qty),
+          $el('strong', 'text-primary text-nowrap', formatPrice(d.lineTotal))
+      ));
+    });
 
-    for (const d of data.totals.items) {
-      const li = createEl('li', ['list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', 'px-0']);
-      li.append(
-        createEl('span', ['text-break', 'me-2'], `${d.name} × ${d.qty}`),
-        createEl('strong', ['text-primary', 'text-nowrap'], formatPrice(d.lineTotal))
-      );
-      ul.append(li);
-    }
-
-    const grandRow = createEl('div', ['d-flex', 'justify-content-between', 'fs-5', 'fw-bold', 'pt-2', 'border-top']);
-    grandRow.append(createEl('span', [], 'Total Amount:'), createEl('span', ['text-primary'], formatPrice(data.totals.total)));
-    itemsCard.append(ul, grandRow);
-
-    body.append(infoCard, itemsCard);
-
-    const footer = createEl('div', ['modal-footer', 'd-flex', 'justify-content-between']);
-    footer.append(
-      createEl('button', ['btn', 'btn-outline-secondary'], 'Close', { type: 'button', 'data-bs-dismiss': 'modal' }),
-      createEl('a', ['btn', 'btn-primary'], 'Return to Menu', { href: 'menu.html' })
+    const $body = $el('div', 'modal-body p-4').append(
+        $el('div', 'card bg-light border-0 p-3 mb-3').append(
+            $el('h5', 'fw-bold text-primary mb-3', 'Delivery Details:'), $dl
+        ),
+        $el('div', 'card border-0 shadow-sm p-3 mb-3').append(
+            $el('h6', 'fw-bold mb-2', 'Order Contents:'),
+            $ul,
+            $el('div', 'd-flex justify-content-between fs-5 fw-bold pt-2 border-top').append(
+                $el('span', '', 'Total Amount:'),
+                $el('span', 'text-primary', formatPrice(data.totals.total))
+            )
+        )
     );
 
-    content.append(header, body, footer);
-    dialog.append(content);
-    modalEl.append(dialog);
-    document.body.append(modalEl);
+    const $viewOrdersBtn = $el('button', 'btn btn-outline-primary', 'View My Orders', { type: 'button', id: 'modalViewOrdersBtn' });
+    const $footer = $el('div', 'modal-footer d-flex justify-content-between flex-wrap gap-2').append(
+        $el('button', 'btn btn-outline-secondary', 'Close', { type: 'button', 'data-bs-dismiss': 'modal' }),
+        $el('div', 'd-flex gap-2 flex-wrap').append(
+            $viewOrdersBtn,
+            $el('a', 'btn btn-primary', 'Return to Menu', { href: 'menu.html' })
+        )
+    );
 
-    bootstrap.Modal.getOrCreateInstance(modalEl).show();
+    $modal.append($el('div', 'modal-dialog modal-dialog-centered modal-lg').append(
+        $el('div', 'modal-content').append($header, $body, $footer)
+    ));
+    $('body').append($modal);
+
+    $viewOrdersBtn.on('click', function () {
+      bootstrap.Modal.getInstance($modal[0]).hide();
+      $('#deliveryOrdersBox').slideDown(300);
+      const $ordersCard = $('#deliveryOrdersCard');
+      if ($ordersCard.length) {
+        $('html, body').animate({ scrollTop: $ordersCard.offset().top - 80 }, 400);
+      }
+    });
+
+    bootstrap.Modal.getOrCreateInstance($modal[0]).show();
   }
 
-  const form = document.querySelector('form');
-  if (!form) return;
+  /* ================================================================== *
+   * FEATURE 4 — My Orders (Order history stored in Array / localStorage)
+   * Without a database, orders are stored in a JavaScript array in localStorage.
+   * Built with jQuery: $el(), delegated handlers (.on), effects (.slideToggle, .slideUp).
+   * ================================================================== */
+  const ORDERS_STORAGE_KEY = 'dastarkhan_orders';
 
-  form.setAttribute('novalidate', 'true');
+  function getOrders() {
+    try {
+      const raw = localStorage.getItem(ORDERS_STORAGE_KEY);
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveOrder(order) {
+    const list = getOrders();
+    list.unshift(order); // new orders at the top
+    try {
+      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(list));
+    } catch (e) {
+      console.error('Failed to save order to localStorage:', e);
+    }
+  }
+
+  function deleteOrder(index) {
+    const list = getOrders();
+    list.splice(index, 1);
+    try {
+      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(list));
+    } catch (e) {
+      console.error('Failed to update orders in localStorage:', e);
+    }
+  }
+
+  function clearAllOrders() {
+    localStorage.removeItem(ORDERS_STORAGE_KEY);
+  }
+
+  function getOrdersCard() {
+    let $card = $('#deliveryOrdersCard');
+    if ($card.length) return $card;
+
+    const $formCard = $('form').first().closest('.card');
+    if (!$formCard.length) return $();
+
+    $card = $el('section', 'card p-3 p-sm-4 shadow-sm border-0 rounded-4 bg-white mt-4 overflow-x-hidden', '', {
+      id: 'deliveryOrdersCard'
+    });
+
+    const $header = $el('div', 'd-flex justify-content-between align-items-center flex-wrap gap-2 pb-3 border-bottom mb-3').append(
+      $el('div', 'd-flex align-items-center gap-2').append(
+        $el('h3', 'fs-4 fw-bold text-primary mb-0', '📦 My Orders'),
+        $el('span', 'badge bg-secondary rounded-pill fs-6', '0', { id: 'ordersCountBadge' })
+      ),
+      $el('div', 'd-flex gap-2 flex-wrap').append(
+        $el('button', 'btn btn-outline-dark btn-sm rounded-pill px-3', 'Show / Hide Orders', {
+          type: 'button', id: 'toggleOrdersBtn'
+        }),
+        $el('button', 'btn btn-outline-danger btn-sm rounded-pill px-3', 'Clear History', {
+          type: 'button', id: 'clearOrdersBtn'
+        })
+      )
+    );
+
+    const $ordersBox = $el('div', 'mt-2', '', { id: 'deliveryOrdersBox' });
+    const $ordersList = $el('div', 'd-flex flex-column gap-3', '', { id: 'deliveryOrdersList' });
+
+    $ordersBox.append($ordersList);
+    $card.append($header, $ordersBox);
+    $formCard.after($card);
+
+    // Delegated event: delete single order
+    $ordersList.on('click', '.delete-order-btn', function () {
+      const $btn = $(this);
+      const index = Number($btn.attr('data-index'));
+      const $itemCard = $btn.closest('.order-item-card');
+
+      $itemCard.slideUp(200, function () {
+        deleteOrder(index);
+        renderOrders();
+        showToast('Order removed from history', 'warning');
+      });
+    });
+
+    // jQuery effect .slideToggle() with duration
+    $('#toggleOrdersBtn').on('click', function () {
+      renderOrders();
+      $ordersBox.slideToggle(300);
+    });
+
+    $('#clearOrdersBtn').on('click', function () {
+      const orders = getOrders();
+      if (!orders.length) {
+        showToast('Order history is already empty', 'info');
+        return;
+      }
+      if (window.confirm('Are you sure you want to clear your order history?')) {
+        clearAllOrders();
+        renderOrders();
+        showToast('Order history cleared', 'info');
+      }
+    });
+
+    return $card;
+  }
+
+  function renderOrders() {
+    getOrdersCard();
+    const $list = $('#deliveryOrdersList');
+    const $badge = $('#ordersCountBadge');
+    if (!$list.length) return;
+
+    const orders = getOrders();
+    $badge.text(String(orders.length));
+    $list.empty();
+
+    if (!orders.length) {
+      $list.append($el('div', 'text-center py-4 text-muted').append(
+        $el('div', 'display-6 mb-2', '📋'),
+        $el('p', 'fs-5 fw-semibold mb-1', 'No orders saved yet'),
+        $el('p', 'small text-muted mb-0', 'Confirmed orders will appear here automatically.')
+      ));
+      $('#clearOrdersBtn').prop('disabled', true);
+      return;
+    }
+
+    $('#clearOrdersBtn').prop('disabled', false);
+
+    $.each(orders, function (index, order) {
+      const $orderCard = $el('div', 'card border rounded-3 p-3 bg-light shadow-sm order-item-card');
+
+      const $topRow = $el('div', 'd-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom pb-2 mb-2').append(
+        $el('div', 'd-flex align-items-center gap-2').append(
+          $el('strong', 'text-primary fs-5', order.orderNumber),
+          $el('span', 'badge bg-success-subtle text-success border border-success-subtle', 'Accepted')
+        ),
+        $el('div', 'd-flex align-items-center gap-2').append(
+          $el('small', 'text-muted', order.createdAt || (order.deliveryDate + ' ' + order.deliveryTime)),
+          $el('button', 'btn btn-outline-danger btn-sm rounded-circle px-2 py-0 lh-1 delete-order-btn', '✕', {
+            type: 'button',
+            'data-index': index,
+            'aria-label': 'Delete order ' + order.orderNumber,
+            title: 'Delete this order'
+          })
+        )
+      );
+
+      const $infoRow = $el('div', 'row g-2 small text-muted mb-2').append(
+        $el('div', 'col-12 col-md-6').append(
+          $el('span', 'fw-medium text-dark', '👤 Recipient: '),
+          $el('span', '', order.userName + ' (' + order.userPhone + ')')
+        ),
+        $el('div', 'col-12 col-md-6').append(
+          $el('span', 'fw-medium text-dark', '📍 Delivery: '),
+          $el('span', '', order.districtName + ', ' + order.fullAddress)
+        ),
+        $el('div', 'col-12 col-md-6').append(
+          $el('span', 'fw-medium text-dark', '⏰ Schedule: '),
+          $el('span', '', order.deliveryDate + ' at ' + order.deliveryTime)
+        ),
+        $el('div', 'col-12 col-md-6').append(
+          $el('span', 'fw-medium text-dark', '💳 Payment: '),
+          $el('span', '', order.paymentMethod + (order.needUtensils ? ' · Utensils included' : ''))
+        )
+      );
+
+      const $itemsList = $el('ul', 'list-group list-group-flush mb-2 rounded border bg-white');
+      if (order.totals && Array.isArray(order.totals.items)) {
+        $.each(order.totals.items, function (_, item) {
+          $itemsList.append($el('li', 'list-group-item d-flex justify-content-between align-items-center py-2 px-3').append(
+            $el('span', 'text-break', item.name + ' × ' + item.qty),
+            $el('strong', 'text-primary text-nowrap', formatPrice(item.lineTotal))
+          ));
+        });
+      }
+
+      const orderTotal = (order.totals && order.totals.total) ? formatPrice(order.totals.total) : '0 ₸';
+      const $totalRow = $el('div', 'd-flex justify-content-between align-items-center pt-2 border-top').append(
+        $el('span', 'fw-bold', 'Order Total:'),
+        $el('span', 'fs-5 fw-bold text-primary', orderTotal)
+      );
+
+      $orderCard.append($topRow, $infoRow, $itemsList, $totalRow);
+      $list.append($orderCard);
+    });
+  }
+
+  /* ---------- date / time defaults ---------- */
+  const $form = $('form').first();
+  if (!$form.length) return;
+
+  // The browser attribute "required" stays in the HTML as the FIRST line of defence
+  // (fast feedback), but novalidate lets our own jQuery messages show instead of
+  // the browser bubbles. A check in the browser NEVER replaces a check on the server:
+  // the visitor can remove "required" in DevTools or send the request without the page at all.
+  $form.attr('novalidate', 'novalidate');
 
   function initDateTimeAndDefaults() {
-    const portionInp = document.getElementById('portionCount');
-    if (portionInp && (!portionInp.value || portionInp.value === '')) {
-      portionInp.value = '1';
-    }
+    const $portion = $('#portionCount');
+    if (!$portion.val()) $portion.val(1);
 
-    const dateInp = document.getElementById('deliveryDate');
-    const timeInp = document.getElementById('deliveryTime');
-    const timeHelp = document.getElementById('deliveryTimeHelp');
-    if (!dateInp || !timeInp) return;
+    const $date = $('#deliveryDate');
+    const $time = $('#deliveryTime');
+    const $help = $('#deliveryTimeHelp');
+    if (!$date.length || !$time.length) return;
 
     const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    const todayStr = `${yyyy}-${mm}-${dd}`;
+    const todayStr = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
 
-    dateInp.min = todayStr;
-    if (!dateInp.value) {
-      dateInp.value = todayStr;
-    }
+    $date.attr('min', todayStr);
+    if (!$date.val()) $date.val(todayStr);
+
+    function pad(h, m) { return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0'); }
 
     function syncTimeConstraints() {
-      const isToday = dateInp.value === todayStr;
+      const isToday = $date.val() === todayStr;
       const current = new Date();
-      const [openH, openM] = (SITE.workHours && SITE.workHours.open ? SITE.workHours.open : '11:00').split(':').map(Number);
-      const [closeH, closeM] = (SITE.workHours && SITE.workHours.close ? SITE.workHours.close : '23:00').split(':').map(Number);
+      const open = (SITE.workHours && SITE.workHours.open) || '11:00';
+      const close = (SITE.workHours && SITE.workHours.close) || '23:00';
+      const [openH, openM] = open.split(':').map(Number);
+      const [closeH, closeM] = close.split(':').map(Number);
       const openTotal = openH * 60 + openM;
       const closeTotal = closeH * 60 + closeM;
 
+      $time.attr('max', pad(closeH, closeM));
+
       if (isToday) {
-        const curMins = current.getHours() * 60 + current.getMinutes();
         const buffer = SITE.prepMinutes || 60;
-        const earliestAllowed = Math.max(openTotal, curMins + buffer);
+        const earliest = Math.max(openTotal, current.getHours() * 60 + current.getMinutes() + buffer);
 
-        if (earliestAllowed >= closeTotal) {
-          timeInp.min = `${String(openH).padStart(2, '0')}:${String(openM).padStart(2, '0')}`;
-          timeInp.max = `${String(closeH).padStart(2, '0')}:${String(closeM).padStart(2, '0')}`;
-          if (timeHelp) {
-            timeHelp.textContent = 'Kitchen orders for today are closed (kitchen closes at 23:00). Please select tomorrow.';
-            timeHelp.className = 'form-text text-danger fw-semibold';
-          }
+        if (earliest >= closeTotal) {
+          $time.attr('min', pad(openH, openM));
+          $help.text('Kitchen orders for today are closed (kitchen closes at ' + close + '). Please select tomorrow.')
+              .removeClass('text-muted').addClass('text-danger fw-semibold');
         } else {
-          const eH = Math.floor(earliestAllowed / 60);
-          const eM = earliestAllowed % 60;
-          const minTimeStr = `${String(eH).padStart(2, '0')}:${String(eM).padStart(2, '0')}`;
-          timeInp.min = minTimeStr;
-          timeInp.max = `${String(closeH).padStart(2, '0')}:${String(closeM).padStart(2, '0')}`;
-
-          if (!timeInp.value || timeInp.value < minTimeStr) {
-            timeInp.value = minTimeStr;
-          }
-          if (timeHelp) {
-            timeHelp.textContent = `Earliest delivery today is ${minTimeStr} (includes 60 min prep time). Working hours: 11:00 – 23:00.`;
-            timeHelp.className = 'form-text text-muted';
-          }
+          const minTimeStr = pad(Math.floor(earliest / 60), earliest % 60);
+          $time.attr('min', minTimeStr);
+          if (!$time.val() || $time.val() < minTimeStr) $time.val(minTimeStr);
+          $help.text('Earliest delivery today is ' + minTimeStr + ' (includes ' + buffer + ' min prep time). Working hours: ' + open + ' – ' + close + '.')
+              .removeClass('text-danger fw-semibold').addClass('text-muted');
         }
       } else {
-        const minTimeStr = `${String(openH).padStart(2, '0')}:${String(openM).padStart(2, '0')}`;
-        timeInp.min = minTimeStr;
-        timeInp.max = `${String(closeH).padStart(2, '0')}:${String(closeM).padStart(2, '0')}`;
-        if (!timeInp.value) {
-          timeInp.value = '12:00';
-        }
-        if (timeHelp) {
-          timeHelp.textContent = 'Delivery working hours: 11:00 – 23:00.';
-          timeHelp.className = 'form-text text-muted';
-        }
+        $time.attr('min', pad(openH, openM));
+        if (!$time.val()) $time.val('12:00');
+        $help.text('Delivery working hours: ' + open + ' – ' + close + '.')
+            .removeClass('text-danger fw-semibold').addClass('text-muted');
       }
     }
 
-    dateInp.addEventListener('change', () => {
+    // .off first so calling initDateTimeAndDefaults() again (after reset) doesn't stack handlers
+    $date.off('change.defaults').on('change.defaults', function () {
       syncTimeConstraints();
-      const res = validateField('deliveryTime', timeInp.value, dateInp.value);
-      setFieldState(timeInp, res.isValid, res.message);
+      const res = validateField('deliveryTime', $time.val(), $date.val());
+      setFieldState($time, res.isValid, res.message);
     });
 
     syncTimeConstraints();
   }
 
-  const fields = ['userName', 'userPhone', 'portionCount', 'deliveryDate', 'deliveryTime', 'districtSelect', 'deliveryAddress'];
+  /* ================================================================== *
+   * Events (3 types: focusout, input/change, submit, reset)
+   * Delegated to the form: one handler per event type instead of
+   * 7 fields x 2 listeners in the old version.
+   * ================================================================== */
+  // blur does not bubble, so for delegation jQuery's 'focusout' is used
+  $form.on('focusout', FIELD_SELECTOR, function () {
+    const $f = $(this); // $(this) = the field that lost focus
+    const res = validateField($f.attr('id'), $f.val(), $('#deliveryDate').val() || '');
+    setFieldState($f, res.isValid, res.message);
+  });
 
-  for (const fId of fields) {
-    const el = document.getElementById(fId);
-    if (!el) continue;
+  // Clear the error as soon as the visitor starts fixing the field
+  $form.on('input change', FIELD_SELECTOR, function () {
+    const $f = $(this);
+    if ($f.hasClass('is-invalid')) {
+      const res = validateField($f.attr('id'), $f.val(), $('#deliveryDate').val() || '');
+      setFieldState($f, res.isValid, res.message);
+    }
+  });
 
-    el.addEventListener('blur', () => {
-      const curDate = document.getElementById('deliveryDate')?.value || '';
-      const res = validateField(fId, el.value, curDate);
-      setFieldState(el, res.isValid, res.message);
-    });
-
-    const eventName = el.tagName.toLowerCase() === 'select' ? 'change' : 'input';
-    el.addEventListener(eventName, () => {
-      if (el.classList.contains('is-invalid')) {
-        const curDate = document.getElementById('deliveryDate')?.value || '';
-        const res = validateField(fId, el.value, curDate);
-        setFieldState(el, res.isValid, res.message);
-      }
-    });
-  }
-
-  form.addEventListener('submit', event => {
+  $form.on('submit', function (event) {
+    // Without preventDefault() the browser would send the form (GET with "?...")
+    // and reload the page: our validation, the modal and the cart reset would be lost.
     event.preventDefault();
 
-    const { isValid, firstInvalid } = validateForm();
-    if (!isValid) {
-      if (firstInvalid && typeof firstInvalid.focus === 'function') {
-        firstInvalid.focus();
-      }
+    const result = validateForm();
+    if (!result.isValid) {
+      result.$firstInvalid.trigger('focus');
       return;
     }
 
-    const uName = document.getElementById('userName').value.trim();
-    const uPhone = document.getElementById('userPhone').value.trim();
-    const pCount = parseInt(document.getElementById('portionCount').value, 10);
-    const dDate = document.getElementById('deliveryDate').value;
-    const dTime = document.getElementById('deliveryTime').value;
-    const distKey = document.getElementById('districtSelect').value;
-    const address = document.getElementById('deliveryAddress').value.trim();
-    const entrance = document.getElementById('entranceNumber')?.value.trim() || document.getElementById('deliveryEntrance')?.value.trim() || '';
-    const apt = document.getElementById('apartmentNumber')?.value.trim() || document.getElementById('deliveryApt')?.value.trim() || '';
-    const payKey = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'online';
-    const utensils = Boolean(document.getElementById('needUtensils')?.checked || document.getElementById('utensilsCheck')?.checked);
-    const notes = document.getElementById('orderComments')?.value.trim() || document.getElementById('deliveryNotes')?.value.trim() || '';
+    const entrance = $.trim($('#entranceNumber').val());
+    const apt = $.trim($('#apartmentNumber').val());
+    const distKey = $('#districtSelect').val();
+    const payKey = $('input[name="paymentMethod"]:checked').val() || 'online'; // filter :checked
 
-    let fullAddr = address;
-    if (entrance) fullAddr += `, entrance ${entrance}`;
-    if (apt) fullAddr += `, apt ${apt}`;
+    let fullAddr = $.trim($('#deliveryAddress').val());
+    if (entrance) fullAddr += ', entrance ' + entrance;
+    if (apt) fullAddr += ', apt ' + apt;
 
     const orderData = {
-      orderNumber: `AST-${Math.floor(100000 + Math.random() * 900000)}`,
-      userName: uName,
-      userPhone: uPhone,
-      portionCount: pCount,
-      deliveryDate: dDate,
-      deliveryTime: dTime,
+      orderNumber: 'AST-' + Math.floor(100000 + Math.random() * 900000),
+      userName: $.trim($('#userName').val()),
+      userPhone: $.trim($('#userPhone').val()),
+      portionCount: parseInt($('#portionCount').val(), 10),
+      deliveryDate: $('#deliveryDate').val(),
+      deliveryTime: $('#deliveryTime').val(),
       districtName: DISTRICTS[distKey] || distKey,
       fullAddress: fullAddr,
       paymentMethod: PAYMENTS[payKey] || payKey,
-      needUtensils: utensils,
-      comments: notes,
-      totals: getCartTotals()
+      // .prop('checked') = the CURRENT state of the checkbox (true/false).
+      // .attr('checked') would only read the initial HTML attribute and ignore the user's click.
+      needUtensils: $('#needUtensils').prop('checked'),
+      comments: $.trim($('#orderComments').val()),
+      totals: getCartTotals(),
+      createdAt: new Date().toLocaleDateString('ru-RU') + ' ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
     };
 
-    showSummaryModal(orderData);
-    clearCart(true);
+    saveOrder(orderData); // Store order in the orders array (localStorage)
+    renderOrders();       // Re-render orders list immediately
+    $('#deliveryOrdersBox').slideDown(300);
 
-    form.reset();
-    initDateTimeAndDefaults();
-    for (const fId of fields) {
-      const el = document.getElementById(fId);
-      if (el) el.classList.remove('is-valid', 'is-invalid');
-    }
+    showSummaryModal(orderData);
+    clearCart(true);   // cart.js fires the update event -> the summary block re-renders
+    this.reset();      // success: reset the form (also fires the 'reset' handler below)
   });
 
-  form.addEventListener('reset', () => {
-    setTimeout(() => {
+  $form.on('reset', function () {
+    // The reset event fires BEFORE the fields are cleared, so we wait a tick
+    setTimeout(function () {
       initDateTimeAndDefaults();
-      for (const fId of fields) {
-        const el = document.getElementById(fId);
-        if (el) el.classList.remove('is-valid', 'is-invalid');
-      }
+      clearStates();
     }, 10);
   });
 
-  window.addEventListener('dastarkhan:cart-updated', renderOrderBlock);
+  $(window).on('dastarkhan:cart-updated', renderOrderBlock);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    renderOrderBlock();
-    initDateTimeAndDefaults();
-  });
-}
+  // Initial render (DOM is ready: we are inside $(function () { ... }))
+  renderOrderBlock();
+  renderOrders();
+  initDateTimeAndDefaults();
+
+  // Handle #my-orders deep link
+  if (window.location.hash === '#my-orders') {
+    $('#deliveryOrdersBox').show();
+    setTimeout(function () {
+      const $card = $('#deliveryOrdersCard');
+      if ($card.length) {
+        $('html, body').animate({ scrollTop: $card.offset().top - 80 }, 400);
+      }
+    }, 150);
+  }
+});

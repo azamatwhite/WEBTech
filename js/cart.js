@@ -165,7 +165,10 @@ function showToast(message, variant = 'success') {
   if (!container) {
     container = document.createElement('div');
     container.id = 'toastNotificationContainer';
-    container.classList.add('toast-container', 'position-fixed', 'bottom-0', 'end-0', 'p-3', 'z-3');
+    // Positioned at bottom-0 end-0 with bottom margin so it doesn't overlap the "Top ↑" button
+    container.classList.add('toast-container', 'position-fixed', 'bottom-0', 'end-0', 'p-3');
+    container.style.bottom = '4.5rem';
+    container.style.zIndex = '1090';
     document.body.append(container);
   }
 
@@ -173,6 +176,9 @@ function showToast(message, variant = 'success') {
   alertBox.classList.add('alert', `alert-${variant}`, 'alert-dismissible', 'fade', 'show', 'shadow', 'mb-2');
   alertBox.setAttribute('role', 'status');
   alertBox.setAttribute('aria-live', 'polite');
+  // Crucial: Bootstrap's .toast-container has pointer-events: none;
+  // Without pointer-events: auto on the alert, clicks pass right through to elements behind it!
+  alertBox.style.pointerEvents = 'auto';
 
   const textSpan = document.createElement('span');
   textSpan.textContent = message;
@@ -182,6 +188,15 @@ function showToast(message, variant = 'success') {
   closeBtn.classList.add('btn-close');
   closeBtn.setAttribute('data-bs-dismiss', 'alert');
   closeBtn.setAttribute('aria-label', 'Close notification');
+  closeBtn.style.pointerEvents = 'auto';
+
+  // Explicit click handler with stopPropagation to dismiss immediately without clicking elements underneath
+  closeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    alertBox.classList.remove('show');
+    setTimeout(() => alertBox.remove(), 150);
+  });
 
   alertBox.append(textSpan, closeBtn);
   container.append(alertBox);

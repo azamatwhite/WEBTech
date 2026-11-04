@@ -77,3 +77,50 @@ const menuItems = Object.freeze([
   { id: "grilled-salmon", name: "Grilled Salmon", category: "oriental", meat: "fish", weight: 250, price: 4900, ingredients: "Salmon fillet with spices and lemon", image: "images/vostoshniy/siomga.jpeg" },
   { id: "grilled-trout", name: "Grilled Trout", category: "oriental", meat: "fish", weight: 300, price: 4200, ingredients: "Tender grilled trout with lemon", image: "images/vostoshniy/forel_gril.jpeg" }
 ]);
+
+/**
+ * jQuery catalog utilities for querying menuItems.
+ * Uses jQuery $.grep and $.map to provide search, filtering, and lookup.
+ */
+const MenuCatalog = Object.freeze({
+  /**
+   * Find a dish by ID using jQuery $.grep
+   * @param {string} id
+   * @returns {Object|null}
+   */
+  findDish: function (id) {
+    if (typeof $ !== 'undefined' && $.grep) {
+      return $.grep(menuItems, function (dish) { return dish.id === id; })[0] || null;
+    }
+    return menuItems.find(function (dish) { return dish.id === id; }) || null;
+  },
+
+  /**
+   * Get all dishes belonging to a category using jQuery $.grep
+   * @param {string} categoryId
+   * @returns {Array}
+   */
+  getByCategory: function (categoryId) {
+    if (!categoryId || categoryId === 'all') return menuItems.slice();
+    if (typeof $ !== 'undefined' && $.grep) {
+      return $.grep(menuItems, function (dish) { return dish.category === categoryId; });
+    }
+    return menuItems.filter(function (dish) { return dish.category === categoryId; });
+  },
+
+  /**
+   * Extract list of all unique categories using jQuery $.map
+   * @returns {Array<string>}
+   */
+  getCategories: function () {
+    if (typeof $ !== 'undefined' && $.map) {
+      const cats = $.map(menuItems, function (dish) { return dish.category; });
+      return $.uniqueSort ? $.uniqueSort(cats) : [...new Set(cats)];
+    }
+    return [...new Set(menuItems.map(function (dish) { return dish.category; }))];
+  }
+});
+
+if (typeof window !== 'undefined') {
+  window.MenuCatalog = MenuCatalog;
+}
