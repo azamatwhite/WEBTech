@@ -1,7 +1,6 @@
 'use strict';
 
 $(function () {
-
     const $form = $('#booking-form');
 
     if (!$form.length) {
@@ -11,7 +10,6 @@ $(function () {
     
     $form.attr('novalidate', 'novalidate');
 
- 
     const $nameInput = $('#guest-name');
     const $emailInput = $('#guest-email');
     const $phoneInput = $('#guest-phone');
@@ -21,15 +19,14 @@ $(function () {
     const $highChairInput = $('#highChair');
     const $wishesInput = $('#special-wishes');
 
+   
     const now = new Date();
     const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
         .toISOString().split('T')[0];
-
     $dateInput.attr('min', today);
 
-    
+   
     function showError($input, message) {
-        // Traversal: .siblings() және class селекторы (.error-message) арқылы қате блогын іздеу
         let $error = $input.siblings('.error-message');
 
         if ($error.length === 0) {
@@ -37,7 +34,6 @@ $(function () {
             $input.parent().append($error);
         }
 
-   
         $input
             .addClass('is-invalid')
             .attr('aria-invalid', 'true')
@@ -45,6 +41,7 @@ $(function () {
             .text(message);
     }
 
+    
     function clearError($input) {
         $input
             .removeClass('is-invalid')
@@ -53,66 +50,68 @@ $(function () {
             .text('');
     }
 
-  
+   
     const $card = $form.closest('.card');
 
-    const $summary = $('<div class="card p-3 mt-4 bg-light"></div>').html(`
-        <h3 class="h5">Live Booking Summary</h3>
-        <p class="mb-1">Name: <span id="sum-name">Not provided</span></p>
-        <p class="mb-1">Contact: <span id="sum-contact">Not provided</span></p>
-        <p class="mb-1">Date and time: <span id="sum-date">Not selected</span></p>
-        <p class="mb-1">Guests: <span id="sum-guests">Not specified</span></p>
-        <p class="mb-1">Zone: <span id="sum-zone">Main Hall</span></p>
-        <p class="mb-1">High chair: <span id="sum-chair">No</span></p>
-        <p class="mb-0">Special requests: <span id="sum-wishes">None</span></p>
+    const $summary = $('<div class="card p-3 mt-4 bg-light border-0 shadow-sm"></div>').html(`
+        <h3 class="h5 text-dark mb-3">Live Booking Summary</h3>
+        <p class="mb-1"><strong>Name:</strong> <span id="sum-name">Not provided</span></p>
+        <p class="mb-1"><strong>Contact:</strong> <span id="sum-contact">Not provided</span></p>
+        <p class="mb-1"><strong>Date & Time:</strong> <span id="sum-date">Not selected</span></p>
+        <p class="mb-1"><strong>Guests:</strong> <span id="sum-guests">Not specified</span></p>
+        <p class="mb-1"><strong>Zone:</strong> <span id="sum-zone">Main Hall</span></p>
+        <p class="mb-1"><strong>High Chair:</strong> <span id="sum-chair">No</span></p>
+        <p class="mb-0"><strong>Special Requests:</strong> <span id="sum-wishes">None</span></p>
     `);
 
     $card.append($summary);
 
-   
+
     const $notices = $('<div id="notices-box"></div>');
     const $depositNotice = $(`
-        <p class="alert alert-warning mb-2">
-            Groups over 10 guests may need a deposit.
+        <p class="alert alert-warning mb-2 py-2">
+            ⚠️ <strong>Deposit note:</strong> Groups over 10 guests require an advance deposit of 20,000 KZT.
         </p>
     `).hide();
 
     const $vipNotice = $(`
-        <p class="alert alert-info mb-2">
-            VIP rooms have a minimum order requirement.
+        <p class="alert alert-info mb-2 py-2">
+            ℹ️ <strong>VIP Room:</strong> Minimum order limit is 50,000 KZT.
         </p>
     `).hide();
 
     $notices.append($depositNotice, $vipNotice);
     $form.before($notices);
 
-    const $history = $('<div class="card p-3 mt-4"></div>').html(`
-        <h3 class="h5">Booking History</h3>
-
-        <button type="button" id="toggle-history" class="btn btn-outline-dark">
-            Show / Hide History
-        </button>
-
-        <div id="history-box" class="mt-3">
-            <ul id="history-list" class="list-group"></ul>
-
-            <button type="button" id="clear-history" class="btn btn-outline-danger mt-2">
-                Clear History
+    
+    const $history = $('<div class="card p-3 mt-4 border-0 shadow-sm"></div>').html(`
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="h5 mb-0">Saved Bookings</h3>
+            <button type="button" id="toggle-history" class="btn btn-sm btn-outline-dark">
+                Show / Hide History
             </button>
+        </div>
+        <div id="history-box" class="mt-3">
+            <ul id="history-list" class="list-group list-group-flush mb-2"></ul>
+            <div class="d-flex justify-content-end">
+                <button type="button" id="clear-history" class="btn btn-sm btn-outline-danger">
+                    Clear All Bookings
+                </button>
+            </div>
         </div>
     `);
 
     $card.append($history);
 
-    // Traversal: .find() әдісі арқылы ішкі элементтерді табу
-    const $historyBox = $history.find('#history-box').hide(); // d-none орнына бастапқыда .hide() қолданамыз
+    
+    const $historyBox = $history.find('#history-box').hide();
     const $historyList = $history.find('#history-list');
 
-   
-    const $success = $('<div class="alert alert-success mt-3"></div>').hide();
+    
+    const $success = $('<div class="alert alert-success mt-3" role="alert"></div>').hide();
     $form.before($success);
 
-
+   
     function getZone() {
         const selectedVal = $('input[name="zone"]:checked').val();
         if (selectedVal === 'vip') {
@@ -124,7 +123,6 @@ $(function () {
         return 'Main Hall';
     }
 
-   
     function updateNotices() {
         const guestsCount = Number($guestsInput.val());
         if (guestsCount > 10) {
@@ -141,6 +139,7 @@ $(function () {
         }
     }
 
+    // Деректерді динамикалық жаңарту
     function updateSummary() {
         const nameVal = $.trim($nameInput.val());
         const emailVal = $.trim($emailInput.val());
@@ -153,48 +152,49 @@ $(function () {
         $('#sum-name').text(nameVal || 'Not provided');
         $('#sum-contact').text([emailVal, phoneVal].filter(Boolean).join(', ') || 'Not provided');
         $('#sum-date').text((dateVal || 'Date not set') + ' at ' + (timeVal || 'Time not set'));
-        $('#sum-guests').text(guestsVal || 'Not specified');
+        $('#sum-guests').text(guestsVal ? guestsVal + ' guest(s)' : 'Not specified');
         $('#sum-zone').text(getZone());
-
-        // Чекбокстың күйін .prop('checked') арқылы тексеру
         $('#sum-chair').text($highChairInput.prop('checked') ? 'Yes' : 'No');
         $('#sum-wishes').text(wishesVal || 'None');
 
         updateNotices();
     }
 
+    // Инпуттар өзгерген сайын қатені өшіру және Summary жаңарту
     $form.find('input:not([type="submit"]):not([type="reset"]), select, textarea')
         .on('input change', function () {
             clearError($(this));
             updateSummary();
         });
 
-    
+    // LocalStorage арқылы брондау тарихын құру
     function renderHistory() {
-        const bookings = JSON.parse(localStorage.getItem('dastarkhan_bookings')) || [];
+        let bookings = [];
+        try {
+            bookings = JSON.parse(localStorage.getItem('dastarkhan_bookings')) || [];
+        } catch (e) {
+            bookings = [];
+        }
 
         $historyList.empty();
 
         if (bookings.length === 0) {
-            $historyList.html('<li class="list-group-item text-muted">No bookings saved.</li>');
+            $historyList.html('<li class="list-group-item text-muted px-0">No previous bookings found.</li>');
             return;
         }
 
         $.each(bookings, function (index, booking) {
             const itemText = (index + 1) + '. ' + booking.name +
-                ' — ' + booking.guests + ' guests, ' +
-                booking.zone + ', ' + booking.date +
-                ' at ' + booking.time;
+                ' (' + booking.guests + ' guests) — ' +
+                booking.zone + ' on ' + booking.date + ' at ' + booking.time;
 
-            // Delete батырмасын кодпен жасау (.attr() арқылы индексті сақтау)
             const $deleteBtn = $('<button type="button"></button>')
                 .addClass('btn btn-sm btn-outline-danger delete-btn ms-2')
                 .attr('data-index', index)
                 .text('Delete');
 
-            // <li> элементін жасап, ішіне мәтін мен Delete батырмасын қосу
             const $li = $('<li></li>')
-                .addClass('list-group-item d-flex justify-content-between align-items-center')
+                .addClass('list-group-item d-flex justify-content-between align-items-center px-0')
                 .append($('<span></span>').text(itemText))
                 .append($deleteBtn);
 
@@ -202,41 +202,42 @@ $(function () {
         });
     }
 
- 
+    // Event Delegation: Кейіннен динамикалық пайда болатын Delete батырмаларын ұстау
     $historyList.on('click', '.delete-btn', function () {
-       
         const $btn = $(this);
         const $li = $btn.closest('li');
         const index = Number($btn.attr('data-index'));
 
-        const bookings = JSON.parse(localStorage.getItem('dastarkhan_bookings')) || [];
+        let bookings = JSON.parse(localStorage.getItem('dastarkhan_bookings')) || [];
         bookings.splice(index, 1);
         localStorage.setItem('dastarkhan_bookings', JSON.stringify(bookings));
 
-        // Элементті жою және тізімді жаңарту
         $li.slideUp(200, function () {
             renderHistory();
         });
     });
 
-
+    // Effect 3: slideToggle
     $('#toggle-history').on('click', function () {
-        renderHistory();
-        
         $historyBox.slideToggle(300);
     });
 
-    // Тарихты толық тазалау
+    // Тарихты толық өшіру
     $('#clear-history').on('click', function () {
         localStorage.removeItem('dastarkhan_bookings');
         renderHistory();
     });
 
+    // Dead button болмауы үшін жоғары жылжу
+    $('#backToTop').on('click', function (e) {
+        e.preventDefault();
+        $('html, body').stop().animate({ scrollTop: 0 }, 350);
+    });
 
+    // Форманы толық тексеру
     function validateForm() {
         let valid = true;
 
-        // Барлық өрістерді .each() арқылы аралап, алдыңғы қателерді тазалау
         $form.find('.form-control, .form-select').each(function () {
             clearError($(this));
         });
@@ -248,22 +249,22 @@ $(function () {
         const dateVal = $.trim($dateInput.val());
         const timeVal = $.trim($timeInput.val());
 
-    
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const phoneRegex = /^\+?[\d\s\-()]{10,20}$/;
 
-      
         if (nameVal === '') {
             showError($nameInput, 'Full name is required.');
             valid = false;
+        } else if (nameVal.length < 2) {
+            showError($nameInput, 'Name must be at least 2 characters.');
+            valid = false;
         }
 
-       
         if (emailVal === '') {
             showError($emailInput, 'Email address is required.');
             valid = false;
         } else if (!emailRegex.test(emailVal)) {
-            showError($emailInput, 'Please enter a valid email (e.g., name@domain.com).');
+            showError($emailInput, 'Enter a valid email address (e.g. name@example.com).');
             valid = false;
         }
 
@@ -271,30 +272,26 @@ $(function () {
             showError($phoneInput, 'Phone number is required.');
             valid = false;
         } else if (!phoneRegex.test(phoneVal)) {
-            showError($phoneInput, 'Please enter a valid phone number (at least 10 digits).');
+            showError($phoneInput, 'Enter a valid phone number (at least 10 digits).');
             valid = false;
         }
 
-        
         const guests = Number(guestsVal);
         if (guestsVal === '' || isNaN(guests) || guests < 1 || guests > 20) {
-            showError($guestsInput, 'Guests must be between 1 and 20.');
+            showError($guestsInput, 'Please specify between 1 and 20 guests.');
             valid = false;
         }
 
-   
         if (dateVal === '' || dateVal < today) {
-            showError($dateInput, 'Choose today or a future date.');
+            showError($dateInput, 'Please choose today or an upcoming date.');
             valid = false;
         }
-
 
         if (timeVal === '') {
-            showError($timeInput, 'Please select a time slot.');
+            showError($timeInput, 'Please choose an available time slot.');
             valid = false;
         }
 
-      
         if (!valid) {
             $form.find('.is-invalid:first').trigger('focus');
         }
@@ -302,6 +299,7 @@ $(function () {
         return valid;
     }
 
+    // Submit әрекеті
     $form.on('submit', function (event) {
         event.preventDefault();
 
@@ -318,32 +316,34 @@ $(function () {
             time: $.trim($timeInput.val()),
             zone: getZone(),
             highChair: $highChairInput.prop('checked') ? 'Yes' : 'No',
-            wishes: $.trim($wishesInput.val())
+            wishes: $.trim($wishesInput.val()) || 'None'
         };
 
-        const bookings = JSON.parse(localStorage.getItem('dastarkhan_bookings')) || [];
+        let bookings = [];
+        try {
+            bookings = JSON.parse(localStorage.getItem('dastarkhan_bookings')) || [];
+        } catch (e) {
+            bookings = [];
+        }
         bookings.push(booking);
         localStorage.setItem('dastarkhan_bookings', JSON.stringify(bookings));
 
-      
+        // Effect 4: fadeIn және fadeOut растау хабарламасы
         $success
             .stop(true, true)
-            .text('Booking successful! Thank you, ' + booking.name + '.')
-            .fadeIn(400, function () {
-                
-                $(this).delay(3000).fadeOut(400);
+            .text('Table reserved successfully for ' + booking.name + '! We look forward to seeing you.')
+            .fadeIn(350, function () {
+                $(this).delay(4000).fadeOut(350);
             });
 
-       
         $form[0].reset();
-     
         $('input[name="zone"]:first').prop('checked', true);
 
         updateSummary();
         renderHistory();
     });
 
-  
+    // Reset әрекеті
     $form.on('reset', function () {
         setTimeout(function () {
             $form.find('.form-control, .form-select').each(function () {
@@ -354,7 +354,6 @@ $(function () {
         }, 0);
     });
 
-   
     updateSummary();
     renderHistory();
 });

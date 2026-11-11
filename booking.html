@@ -14,7 +14,7 @@
 <link href="images/favicon.png" rel="icon" type="image/png"/>
 <title>Booking — Dastarkhan</title>
 <!-- jQuery 3.7.1 CDN (booking.js алдында міндетті түрде қосылады) -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
 <script src="js/booking.js" defer></script>
 </head>
 
@@ -102,7 +102,13 @@
 <legend class="h4 mb-4">Booking Details</legend>
 <div class="mb-3">
 <label class="form-label fw-medium" for="guest-name">Full Name:</label>
-<input class="form-control" id="guest-name" name="name" placeholder="John Doe" required="" type="text"/>
+<input 
+class="form-control"
+ id="guest-name"
+  name="name"
+   placeholder="John Doe"
+    required="" type="text"
+    />
 </div>
 <div class="mb-3">
 <label class="form-label fw-medium" for="guest-email">Email Address:</label>
@@ -158,7 +164,7 @@
 </div>
 <div class="d-flex gap-2 mt-4">
 <button class="btn btn-primary px-4" type="submit">Submit Booking</button>
-<button class="btn btn-outline-secondary px-4" type="reset">Reset</button>
+<button class="btn btn-outline-secondary px-4" id="reset" type="reset">Reset</button>
 </div>
 </fieldset>
 </form>
