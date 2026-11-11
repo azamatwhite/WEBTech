@@ -5,13 +5,12 @@
  * Author: Miko
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initFeedback() {
     const reviewsContainer = document.getElementById('reviews-list');
     const feedbackFormSection = document.getElementById('feedback-form-section');
 
-    if (!reviewsContainer || !feedbackFormSection) return;
+    if (!reviewsContainer) return;
 
-    // Initial dataset
     const initialReviews = [
         {
             id: 'REV-101',
@@ -61,11 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let reviewsData = [...initialReviews];
+    let activeRating = 'all';
+    let currentSort = 'newest';
 
-    // Card Renderer
+    const listRow = reviewsContainer.querySelector('.row');
+    if (!listRow) return;
+
+    // Включаем поддержку плавного растворения/проявления
+    listRow.style.transition = 'opacity 0.2s ease-in-out';
+
     function createReviewCard(review) {
         const col = document.createElement('div');
-        col.className = 'col-12 col-md-6';
+        col.className = 'col-12 col-md-6 review-item';
 
         const card = document.createElement('article');
         card.className = 'card p-4 shadow-sm h-100 border-0';
@@ -137,197 +143,252 @@ document.addEventListener('DOMContentLoaded', () => {
         return col;
     }
 
-    // Render List
-    function renderReviews(filterRating = 'all') {
-        const listRow = reviewsContainer.querySelector('.row');
-        if (!listRow) return;
+    // Отрисовка с эффектом Fade
+    function renderReviews(animate = true) {
+        const updateDOM = () => {
+            listRow.innerHTML = '';
 
-        listRow.textContent = '';
+            let filtered = activeRating === 'all'
+                ? [...reviewsData]
+                : reviewsData.filter(r => r.rating === parseInt(activeRating, 10));
 
-        const filtered = filterRating === 'all'
-            ? reviewsData
-            : reviewsData.filter(r => r.rating === parseInt(filterRating, 10));
+            if (currentSort === 'newest') {
+                filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (currentSort === 'oldest') {
+                filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else if (currentSort === 'rating-desc') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            } else if (currentSort === 'rating-asc') {
+                filtered.sort((a, b) => a.rating - b.rating);
+            }
 
-        if (filtered.length === 0) {
-            const emptyDiv = document.createElement('div');
-            emptyDiv.className = 'col-12 text-center py-4 text-muted';
-            emptyDiv.textContent = 'No reviews found for this rating filter.';
-            listRow.appendChild(emptyDiv);
-            return;
+            if (filtered.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'col-12 text-center py-4 text-muted';
+                emptyDiv.textContent = 'No reviews found for this filter.';
+                listRow.appendChild(emptyDiv);
+            } else {
+                filtered.forEach(review => {
+                    listRow.appendChild(createReviewCard(review));
+                });
+            }
+
+            if (animate) {
+                // Плавный Fade In (появление)
+                requestAnimationFrame(() => {
+                    listRow.style.opacity = '1';
+                });
+            } else {
+                listRow.style.opacity = '1';
+            }
+        };
+
+        if (animate) {
+            // Плавный Fade Out (растворение)
+            listRow.style.opacity = '0';
+            setTimeout(updateDOM, 180);
+        } else {
+            updateDOM();
         }
+    }
 
-        filtered.forEach(review => {
-            listRow.appendChild(createReviewCard(review));
+    // Создание панели управления (Фильтры + Сортировка)
+    if (!document.getElementById('reviewsControlsPanel')) {
+        const controlsBar = document.createElement('div');
+        controlsBar.className = 'card p-3 shadow-sm mb-4 border-0';
+        controlsBar.id = 'reviewsControlsPanel';
+        controlsBar.innerHTML = `
+            <div class="d-flex flex-column flex-md-row gap-3 justify-content-between align-items-md-center">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span class="fw-bold me-1">Filter by Rating:</span>
+                    <div class="btn-group btn-group-sm" role="group" id="btnGroupRatings"></div>
+                </div>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span class="fw-bold me-1">Sort:</span>
+                    <div class="btn-group btn-group-sm" role="group" id="btnGroupSorting">
+                        <button type="button" class="btn btn-outline-primary active" data-sort="newest">Newest</button>
+                        <button type="button" class="btn btn-outline-primary" data-sort="oldest">Oldest</button>
+                        <button type="button" class="btn btn-outline-primary" data-sort="rating-desc">Rating High ↑</button>
+                        <button type="button" class="btn btn-outline-primary" data-sort="rating-asc">Rating Low ↓</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        listRow.before(controlsBar);
+
+        // Клик по кнопкам сортировки с запуском Fade
+        controlsBar.querySelector('#btnGroupSorting').addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            controlsBar.querySelectorAll('#btnGroupSorting button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSort = btn.dataset.sort;
+            renderReviews(true);
+        });
+
+        // Клик по кнопкам рейтинга с запуском Fade
+        controlsBar.querySelector('#btnGroupRatings').addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            controlsBar.querySelectorAll('#btnGroupRatings button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeRating = btn.dataset.rating;
+            renderReviews(true);
         });
     }
 
-    // Dynamic Filter Buttons
-    const filterControlsDiv = document.createElement('div');
-    filterControlsDiv.className = 'd-flex gap-2 mb-4 align-items-center flex-wrap';
-
-    function renderFilterButtons() {
-        filterControlsDiv.textContent = '';
-
-        const spanLabel = document.createElement('span');
-        spanLabel.className = 'fw-bold me-2';
-        spanLabel.textContent = 'Filter by Rating:';
-        filterControlsDiv.appendChild(spanLabel);
+    function buildFilterButtons() {
+        const btnGroup = document.getElementById('btnGroupRatings');
+        if (!btnGroup) return;
+        btnGroup.innerHTML = '';
 
         const availableRatings = [...new Set(reviewsData.map(r => r.rating))].sort((a, b) => b - a);
-        const filterOptions = ['all', ...availableRatings];
+        const allOptions = ['all', ...availableRatings];
+        
 
-        filterOptions.forEach(rating => {
+        allOptions.forEach(rating => {
             const btn = document.createElement('button');
-            btn.className = `btn btn-sm btn-outline-primary ${rating === 'all' ? 'active' : ''}`;
+            btn.type = 'button';
+            btn.className = `btn btn-outline-primary ${String(activeRating) === String(rating) ? 'active' : ''}`;
             btn.dataset.rating = rating;
             btn.textContent = rating === 'all' ? 'All' : `${rating} ★`;
-            filterControlsDiv.appendChild(btn);
+            btnGroup.appendChild(btn);
+            if (rating < 5) {
+                showError(btn, 'Only ratings of 5 are currently available for filtering.');
+            }
         });
     }
 
-    renderFilterButtons();
+    buildFilterButtons();
+    renderReviews(false);
 
-    const h2Title = reviewsContainer.querySelector('h2');
-    if (h2Title) {
-        h2Title.after(filterControlsDiv);
-    }
-
-    filterControlsDiv.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            filterControlsDiv.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            renderReviews(e.target.dataset.rating);
-        }
-    });
-
-    renderReviews();
-
-    // Textarea Character Counter
+    // Счётчик символов для textarea
     const reviewTextarea = document.getElementById('review-text');
-    if (reviewTextarea) {
-        const counterSpan = document.createElement('small');
-        counterSpan.className = 'text-muted d-block mt-1';
-        counterSpan.id = 'char-counter';
-        counterSpan.textContent = '0 / 500 characters';
-        reviewTextarea.after(counterSpan);
+    if (reviewTextarea && !document.getElementById('char-counter')) {
+        const counter = document.createElement('small');
+        counter.id = 'char-counter';
+        counter.className = 'text-muted d-block mt-1';
+        counter.textContent = '0 / 500 characters';
+        reviewTextarea.after(counter);
 
         reviewTextarea.addEventListener('input', () => {
             const len = reviewTextarea.value.length;
-            counterSpan.textContent = `${len} / 500 characters`;
+            counter.textContent = `${len} / 500 characters`;
             if (len > 500) {
-                counterSpan.classList.add('text-danger');
+                counter.classList.add('text-danger');
             } else {
-                counterSpan.classList.remove('text-danger');
+                counter.classList.remove('text-danger');
             }
         });
     }
 
-    // Form Handling
-    const form = feedbackFormSection.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const nameInput = document.getElementById('user-name');
-            const phoneInput = document.getElementById('user-phone');
-            const dateInput = document.getElementById('visit-date');
-            const ratingInput = document.getElementById('service-rating');
-            const textInput = document.getElementById('review-text');
-            const consentCheckbox = document.getElementById('consent');
-
-            let isValid = true;
-            let firstInvalidField = null;
-
-            form.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
-            form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-
-            const showError = (field, message) => {
-                isValid = false;
-                field.classList.add('is-invalid');
-                const errDiv = document.createElement('div');
-                errDiv.className = 'invalid-feedback';
-                errDiv.textContent = message;
-                field.after(errDiv);
-                if (!firstInvalidField) firstInvalidField = field;
-            };
-
-            if (!nameInput.value.trim() || nameInput.value.trim().length < 1) {
-                showError(nameInput, 'Please enter a valid full name (at least 2 characters).');
-            }
-
-            const phoneRegEx = /^\+7\d{10}$/;
-            if (phoneInput.value.trim() && !phoneRegEx.test(phoneInput.value.trim())) {
-                showError(phoneInput, 'Format must be +7 (700) 000-00-00.');
-            }
-
-            if (!dateInput.value) {
-                showError(dateInput, 'Please select a visit date.');
-            } else {
-                const selectedDate = new Date(dateInput.value);
-                const today = new Date();
-                if (selectedDate > today) {
-                    showError(dateInput, 'Visit date cannot be in the future.');
+    // Валидация и отправка формы
+    if (feedbackFormSection) {
+        const form = feedbackFormSection.querySelector('form');
+        if (form) {
+            form.addEventListener('input', (e) => {
+                if (e.target.classList.contains('is-invalid')) {
+                    e.target.classList.remove('is-invalid');
+                    const err = e.target.nextElementSibling;
+                    if (err && err.classList.contains('invalid-feedback')) err.remove();
                 }
-            }
+            });
 
-            if (!textInput.value.trim() || textInput.value.trim().length < 10) {
-                showError(textInput, 'Review comment must be at least 10 characters long.');
-            }
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
 
-            if (!consentCheckbox.checked) {
-                showError(consentCheckbox, 'You must consent to publishing your review.');
-            }
+                const nameInput = document.getElementById('user-name');
+                const phoneInput = document.getElementById('user-phone');
+                const dateInput = document.getElementById('visit-date');
+                const ratingInput = document.getElementById('service-rating');
+                const textInput = document.getElementById('review-text');
+                const consentBox = document.getElementById('consent');
 
-            if (!isValid) {
-                if (firstInvalidField) firstInvalidField.focus();
-                return;
-            }
+                let isValid = true;
+                let firstInvalid = null;
 
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            const refCode = `REV-${randomNum}`;
+                form.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+                form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
 
-            const newReview = {
-                id: refCode,
-                name: nameInput.value.trim(),
-                rating: parseInt(ratingInput.value, 10),
-                text: textInput.value.trim(),
-                date: dateInput.value,
-                avatar: 'images/fb/ass1.jpeg',
-                photo: ''
-            };
+                const showError = (field, message) => {
+                    isValid = false;
+                    field.classList.add('is-invalid');
+                    const errDiv = document.createElement('div');
+                    errDiv.className = 'invalid-feedback d-block';
+                    errDiv.textContent = message;
+                    field.after(errDiv);
+                    if (!firstInvalid) firstInvalid = field;
+                };
 
-            reviewsData.unshift(newReview);
-            renderReviews();
-            renderFilterButtons();
+                const nameVal = nameInput.value.trim();
+                if (nameVal.length < 2) {
+                    showError(nameInput, 'Please enter a valid full name (at least 2 characters).');
+                }
 
-            const alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-success mt-4 shadow-sm';
+                const phoneVal = phoneInput.value.trim();
+                const phoneRegEx = /^\+7\d{10}$/;
+                if (phoneVal !== '' && !phoneRegEx.test(phoneVal)) {
+                    showError(phoneInput, 'Format must be +7 (700) 000-00-00.');
+                }
 
-            const h4 = document.createElement('h4');
-            h4.className = 'alert-heading h5';
-            h4.textContent = `Thank You, ${nameInput.value.trim()}!`;
+                const dateVal = dateInput.value;
+                if (!dateVal) {
+                    showError(dateInput, 'Please select a visit date.');
+                } else {
+                    const selectedDate = new Date(dateVal);
+                    if (selectedDate > new Date()) {
+                        showError(dateInput, 'Visit date cannot be in the future.');
+                    }
+                }
 
-            const pMsg = document.createElement('p');
-            pMsg.className = 'mb-1';
-            pMsg.textContent = 'Your feedback has been successfully recorded under Reference ';
+                const textVal = textInput.value.trim();
+                if (textVal.length < 10) {
+                    showError(textInput, 'Review comment must be at least 10 characters long.');
+                }
 
-            const strongRef = document.createElement('strong');
-            strongRef.textContent = refCode;
-            pMsg.appendChild(strongRef);
+                if (!consentBox.checked) {
+                    showError(consentBox.parentElement, 'You must consent to publishing your review.');
+                }
 
-            const smallNote = document.createElement('small');
-            smallNote.className = 'text-muted d-block mt-2';
-            smallNote.textContent = '* Demonstration Mode: No data was transmitted to a remote backend server.';
+                if (!isValid) {
+                    if (firstInvalid) firstInvalid.focus();
+                    return;
+                }
 
-            alertDiv.appendChild(h4);
-            alertDiv.appendChild(pMsg);
-            alertDiv.appendChild(smallNote);
+                const refCode = `REV-${Math.floor(1000 + Math.random() * 9000)}`;
 
-            form.reset();
-            if (document.getElementById('char-counter')) {
-                document.getElementById('char-counter').textContent = '0 / 500 characters';
-            }
-            form.replaceWith(alertDiv);
-        });
+                const newReview = {
+                    id: refCode,
+                    name: nameVal,
+                    rating: parseInt(ratingInput.value, 10),
+                    text: textVal,
+                    date: dateVal,
+                    avatar: 'images/fb/ass1.jpeg',
+                    photo: ''
+                };
+
+                reviewsData.unshift(newReview);
+                buildFilterButtons();
+                renderReviews(true);
+
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-success mt-4 shadow-sm';
+                alertDiv.innerHTML = `
+                    <h4 class="alert-heading h5">Thank You, ${nameVal}!</h4>
+                    <p class="mb-1">Your feedback has been successfully recorded under Reference <strong>${refCode}</strong>.</p>
+                    <small class="text-muted d-block mt-2">* Demonstration Mode: No data was transmitted to a remote backend server.</small>
+                `;
+
+                form.reset();
+                form.replaceWith(alertDiv);
+            });
+        }
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeedback);
+} else {
+    initFeedback();
+}

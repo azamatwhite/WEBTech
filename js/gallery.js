@@ -5,10 +5,7 @@
  * Author: Miko
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const galleryCarousel = document.getElementById('galleryCarousel');
-    if (!galleryCarousel) return;
-
+function initGallery() {
     const galleryItems = [
         { id: 1, title: 'Oriental VIP Lounge', branch: 'dostyk', category: 'interior', img: 'images/interior/IMG_1160.jpg', desc: 'Authentic eastern tapchan with hand-carved wood.' },
         { id: 2, title: 'Main Wooden Hall', branch: 'dostyk', category: 'interior', img: 'images/interior/IMG_1161.jpg', desc: 'Spacious dining area with carved wooden tables.' },
@@ -20,159 +17,183 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 8, title: 'Panoramic Dining Area', branch: 'auezov', category: 'interior', img: 'images/interior/IMG_1179.jpg', desc: 'Comfortable red armchairs with panoramic windows.' }
     ];
 
-    const galleryContainer = document.querySelector('main .container');
-    if (!galleryContainer) return;
+    const targetSection = document.querySelector('main .container section:first-of-type') || document.querySelector('main .container');
+    if (!targetSection) return;
 
-    // Controls Panel
+    if (document.getElementById('galleryControlsBar')) return;
+
+    let currentSort = 'default';
+
+    // Панель управления с поиском, филиалами и кнопками сортировки
     const controlsWrapper = document.createElement('div');
     controlsWrapper.className = 'card p-3 shadow-sm mb-4 border-0';
+    controlsWrapper.id = 'galleryControlsBar';
+    controlsWrapper.innerHTML = `
+        <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-4">
+                <input type="text" id="gallerySearch" class="form-control" placeholder="Search photos by keyword...">
+            </div>
+            <div class="col-12 col-md-4">
+                <select id="branchFilter" class="form-select">
+                    <option value="all">All Branches (Dostyk & Auezov)</option>
+                    <option value="dostyk">Dostyk Street, 1</option>
+                    <option value="auezov">Mukhtar Auezov, 33</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 text-md-end">
+                <span id="resultCount" class="fw-bold text-primary"></span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-3 pt-3 border-top flex-wrap">
+            <span class="fw-bold me-1">Sort Photos:</span>
+            <div class="btn-group btn-group-sm" id="gallerySortGroup" role="group">
+                <button type="button" class="btn btn-outline-primary active" data-sort="default">Default</button>
+                <button type="button" class="btn btn-outline-primary" data-sort="asc">Name (A-Z) ↑</button>
+                <button type="button" class="btn btn-outline-primary" data-sort="desc">Name (Z-A) ↓</button>
+            </div>
+        </div>
+    `;
 
-    const rowDiv = document.createElement('div');
-    rowDiv.className = 'row g-3 align-items-center';
+    // Секция динамической сетки
+    const dynamicSection = document.createElement('section');
+    dynamicSection.className = 'my-4';
+    dynamicSection.id = 'dynamicGallerySection';
+    dynamicSection.innerHTML = `
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Filtered Gallery Explorer</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" id="dynamicPhotoGrid"></div>
+    `;
 
-    const col1 = document.createElement('div');
-    col1.className = 'col-12 col-md-4';
-    const searchInput = document.createElement('input');
-    searchInput.type = 'text';
-    searchInput.id = 'gallerySearch';
-    searchInput.className = 'form-control';
-    searchInput.placeholder = 'Search photos by keyword...';
-    col1.appendChild(searchInput);
+    targetSection.before(controlsWrapper);
+    targetSection.before(dynamicSection);
 
-    const col2 = document.createElement('div');
-    col2.className = 'col-12 col-md-4';
-    const branchSelect = document.createElement('select');
-    branchSelect.id = 'branchFilter';
-    branchSelect.className = 'form-select';
+    const photoGrid = document.getElementById('dynamicPhotoGrid');
+    const searchInput = document.getElementById('gallerySearch');
+    const branchSelect = document.getElementById('branchFilter');
+    const resultCount = document.getElementById('resultCount');
 
-    const optAll = document.createElement('option');
-    optAll.value = 'all';
-    optAll.textContent = 'All Branches (Dostyk & Auezov)';
+    // Плавный CSS-переход для эффекта fade
+    photoGrid.style.transition = 'opacity 0.2s ease-in-out';
 
-    const optDostyk = document.createElement('option');
-    optDostyk.value = 'dostyk';
-    optDostyk.textContent = 'Dostyk Street, 1';
+    function updateGallery(animate = true) {
+        const updateDOM = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            const selectedBranch = branchSelect.value;
 
-    const optAuezov = document.createElement('option');
-    optAuezov.value = 'auezov';
-    optAuezov.textContent = 'Mukhtar Auezov, 33';
+            photoGrid.innerHTML = '';
 
-    branchSelect.appendChild(optAll);
-    branchSelect.appendChild(optDostyk);
-    branchSelect.appendChild(optAuezov);
-    col2.appendChild(branchSelect);
-
-    const col3 = document.createElement('div');
-    col3.className = 'col-12 col-md-4 text-md-end';
-    const resultCount = document.createElement('span');
-    resultCount.id = 'resultCount';
-    resultCount.className = 'fw-bold text-primary';
-    col3.appendChild(resultCount);
-
-    rowDiv.appendChild(col1);
-    rowDiv.appendChild(col2);
-    rowDiv.appendChild(col3);
-    controlsWrapper.appendChild(rowDiv);
-
-    const firstSection = galleryContainer.querySelector('section');
-    if (firstSection) {
-        firstSection.before(controlsWrapper);
-    }
-
-    // Dynamic Photo Grid
-    const dynamicGridSection = document.createElement('section');
-    dynamicGridSection.className = 'my-4';
-
-    const gridH2 = document.createElement('h2');
-    gridH2.className = 'fs-3 fw-bold text-primary border-bottom pb-2 mb-4';
-    gridH2.textContent = 'Filtered Gallery Explorer';
-
-    const photoGrid = document.createElement('div');
-    photoGrid.className = 'row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3';
-    photoGrid.id = 'dynamicPhotoGrid';
-
-    dynamicGridSection.appendChild(gridH2);
-    dynamicGridSection.appendChild(photoGrid);
-
-    if (firstSection) {
-        firstSection.before(dynamicGridSection);
-    }
-
-    function updateGallery() {
-        const query = searchInput.value.toLowerCase().trim();
-        const selectedBranch = branchSelect.value;
-
-        photoGrid.textContent = '';
-
-        const filtered = galleryItems.filter(item => {
-            const matchesQuery = item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-            const matchesBranch = selectedBranch === 'all' || item.branch === selectedBranch;
-            return matchesQuery && matchesBranch;
-        });
-
-        resultCount.textContent = `Showing ${filtered.length} photos`;
-
-        if (filtered.length === 0) {
-            const emptyState = document.createElement('div');
-            emptyState.className = 'col-12 text-center py-5 text-muted';
-
-            const emptyP = document.createElement('p');
-            emptyP.className = 'fs-5 mb-2 text-center';
-            emptyP.textContent = 'No photos matched your criteria.';
-
-            const resetBtn = document.createElement('button');
-            resetBtn.className = 'btn btn-sm btn-outline-secondary';
-            resetBtn.textContent = 'Reset Filters';
-
-            resetBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                branchSelect.value = 'all';
-                updateGallery();
+            let filtered = galleryItems.filter(item => {
+                const matchesQuery = item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                const matchesBranch = selectedBranch === 'all' || item.branch === selectedBranch;
+                return matchesQuery && matchesBranch;
             });
 
-            emptyState.appendChild(emptyP);
-            emptyState.appendChild(resetBtn);
-            photoGrid.appendChild(emptyState);
-            return;
+            // Сортировка по выбранной кнопке
+            if (currentSort === 'asc') {
+                filtered.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (currentSort === 'desc') {
+                filtered.sort((a, b) => b.title.localeCompare(a.title));
+            }
+
+            resultCount.textContent = `Showing ${filtered.length} photos`;
+
+            if (filtered.length === 0) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'col-12 text-center py-5 text-muted';
+                emptyState.innerHTML = `
+                    <p class="fs-5 mb-2">No photos matched your criteria.</p>
+                    <button class="btn btn-sm btn-outline-secondary" id="resetGalleryFilters">Reset Filters</button>
+                `;
+                photoGrid.appendChild(emptyState);
+
+                document.getElementById('resetGalleryFilters').addEventListener('click', () => {
+                    searchInput.value = '';
+                    branchSelect.value = 'all';
+                    currentSort = 'default';
+                    controlsWrapper.querySelectorAll('#gallerySortGroup button').forEach(b => b.classList.remove('active'));
+                    controlsWrapper.querySelector('#gallerySortGroup button[data-sort="default"]').classList.add('active');
+                    updateGallery(true);
+                });
+            } else {
+                filtered.forEach(item => {
+                    const col = document.createElement('div');
+                    col.className = 'col gallery-card-col';
+
+                    const card = document.createElement('figure');
+                    card.className = 'card h-100 shadow-sm overflow-hidden mb-0 border-0';
+
+                    const img = document.createElement('img');
+                    img.src = item.img;
+                    img.alt = item.title;
+                    img.className = 'card-img-top img-fluid object-fit-cover';
+                    img.style.height = '180px';
+                    img.loading = 'lazy';
+
+                    const caption = document.createElement('figcaption');
+                    caption.className = 'p-2 text-center small bg-white';
+
+                    const titleStrong = document.createElement('strong');
+                    titleStrong.className = 'd-block text-truncate';
+                    titleStrong.textContent = item.title;
+
+                    const descSpan = document.createElement('span');
+                    descSpan.className = 'text-muted';
+                    descSpan.textContent = item.desc;
+
+                    caption.appendChild(titleStrong);
+                    caption.appendChild(descSpan);
+                    card.appendChild(img);
+                    card.appendChild(caption);
+                    col.appendChild(card);
+
+                    photoGrid.appendChild(col);
+                });
+            }
+
+            if (animate) {
+                // Fade In (плавное появление)
+                requestAnimationFrame(() => {
+                    photoGrid.style.opacity = '1';
+                });
+            } else {
+                photoGrid.style.opacity = '1';
+            }
+        };
+
+        if (animate) {
+            // Fade Out (плавное растворение)
+            photoGrid.style.opacity = '0';
+            setTimeout(updateDOM, 160);
+        } else {
+            updateDOM();
         }
-
-        filtered.forEach(item => {
-            const col = document.createElement('div');
-            col.className = 'col';
-
-            const card = document.createElement('figure');
-            card.className = 'card h-100 shadow-sm overflow-hidden mb-0 border-0';
-
-            const img = document.createElement('img');
-            img.src = item.img;
-            img.alt = item.title;
-            img.className = 'card-img-top img-fluid object-fit-cover';
-            img.style.height = '180px';
-            img.loading = 'lazy';
-
-            const caption = document.createElement('figcaption');
-            caption.className = 'p-2 text-center small bg-white';
-
-            const titleStrong = document.createElement('strong');
-            titleStrong.className = 'd-block text-truncate';
-            titleStrong.textContent = item.title;
-
-            const descSpan = document.createElement('span');
-            descSpan.className = 'text-muted';
-            descSpan.textContent = item.desc;
-
-            caption.appendChild(titleStrong);
-            caption.appendChild(descSpan);
-            card.appendChild(img);
-            card.appendChild(caption);
-            col.appendChild(card);
-
-            photoGrid.appendChild(col);
-        });
     }
 
-    searchInput.addEventListener('input', updateGallery);
-    branchSelect.addEventListener('change', updateGallery);
+    // Обработка кнопок сортировки (Default, A-Z, Z-A) с запуском Fade
+    controlsWrapper.querySelector('#gallerySortGroup').addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        controlsWrapper.querySelectorAll('#gallerySortGroup button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSort = btn.dataset.sort;
+        updateGallery(true);
+    });
 
-    updateGallery();
-});
+    searchInput.addEventListener('input', () => updateGallery(true));
+    branchSelect.addEventListener('change', () => updateGallery(true));
+
+    photoGrid.addEventListener('click', (e) => {
+        const cardCol = e.target.closest('.gallery-card-col');
+        if (cardCol) {
+            const fig = cardCol.querySelector('figure');
+            if (fig) fig.classList.toggle('shadow-lg');
+        }
+    });
+
+    updateGallery(false);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGallery);
+} else {
+    initGallery();
+}
