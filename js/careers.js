@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // 1. Select ішіндегі позицияларды массив пен объектілерге жинау
     const positions = Array.from(positionSelect.options)
         .filter(option => !option.disabled && option.value.trim() !== '')
         .map(option => ({
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: option.textContent.trim()
         }));
 
-    // 2. Select ішіндегі позицияларды цикл арқылы шығару
+   
     const placeholder = positionSelect.querySelector('option:disabled');
 
     positionSelect.innerHTML = '';
@@ -81,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
         card.appendChild(button);
     });
 
-    // 6. Хабарлама контейнерін JavaScript арқылы жасау
+
     const notice = document.createElement('div');
 
     notice.className = 'alert alert-info mt-2 hidden';
@@ -89,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     positionSelect.parentElement.appendChild(notice);
 
-    // 7. Позиция өзгерген кездегі логика
+
     function updatePositionNotice() {
 
         const selectedValue = positionSelect.value;
@@ -110,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     positionSelect.addEventListener('change', updatePositionNotice);
 
-    // 8. Event Delegation: барлық Apply батырмаларын бір тыңдаушы басқарады
+    
     main.addEventListener('click', function (event) {
 
         const button = event.target.closest('button[data-position]');
@@ -121,35 +120,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const selectedPosition = button.dataset.position;
 
-        // Таңдалған позицияны select ішіне орнату
+       
         positionSelect.value = selectedPosition;
 
-        // change оқиғасын іске қосу
         positionSelect.dispatchEvent(
             new Event('change', { bubbles: true })
         );
 
-        // Бұрынғы active класын алып тастау
+        
         jobCards.forEach(function (card) {
             card.classList.remove('active');
         });
 
-        // Таңдалған карточкаға active класын қосу
+     
         button.closest('article.card').classList.add('active');
 
-        // Формаға дейін жылжу
+      
         form.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
         });
 
-        // Name өрісіне фокус беру
         if (nameInput) {
             nameInput.focus();
         }
     });
 
-    // Бет ашылған кезде бастапқы мәнді тексеру
+
     updatePositionNotice();
 
 });
