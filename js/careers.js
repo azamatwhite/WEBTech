@@ -1,152 +1,203 @@
-
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function () {
+/* Careers page — jQuery. Load order on the page: jQuery, Bootstrap, this file. */
+$(function () {
+    var $form = $('#careers-form');
+    if (!$form.length) { return; }
 
-    const form = document.querySelector('#careers-form');
-    const positionSelect = document.querySelector('#positionSelect');
-    const main = document.querySelector('main');
-    const nameInput = document.querySelector('#appName');
+    var STORAGE_KEY = 'careersApplications';
+    var KZ_MOBILE_CODES = ['700', '701', '702', '705', '706', '707', '708', '747', '771', '775', '776', '777', '778'];
 
-    if (!form || !positionSelect || !main) {
-        return;
-    }
+    var $name = $('#appName');
+    var $email = $('#appEmail');
+    var $phone = $('#appPhone');
+    var $position = $('#positionSelect');
+    var $experience = $('#appExperience');
+    var $success = $('#careers-success');
+    var $alert = $('#careers-alert');
 
-    const positions = Array.from(positionSelect.options)
-        .filter(option => !option.disabled && option.value.trim() !== '')
-        .map(option => ({
-            value: option.value,
-            title: option.textContent.trim()
-        }));
+    var touched = {};
+    var justSaved = false;
 
-   
-    const placeholder = positionSelect.querySelector('option:disabled');
-
-    positionSelect.innerHTML = '';
-
-    if (placeholder) {
-        positionSelect.appendChild(placeholder);
-    } else {
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select a position';
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        positionSelect.appendChild(defaultOption);
-    }
-
-    positions.forEach(function (position) {
-        const option = document.createElement('option');
-
-        option.value = position.value;
-        option.textContent = position.title;
-
-        positionSelect.appendChild(option);
-    });
-
-    // 3. Позицияны value арқылы іздейтін функция
-    function getPositionByValue(value) {
-        return positions.find(function (position) {
-            return position.value === value;
-        }) || null;
-    }
-
-    // 4. Apply батырмасын жасайтын функция
-    function createApplyButton(position) {
-        const button = document.createElement('button');
-
-        button.type = 'button';
-        button.className = 'btn btn-primary mt-3';
-        button.textContent = 'Apply for this position';
-        button.dataset.position = position.value;
-
-        return button;
-    }
-
-    // 5. Жұмыс карточкаларына батырмаларды қосу
-    const jobCards = document.querySelectorAll('article.card');
-
-    jobCards.forEach(function (card, index) {
-
-        const position = positions[index];
-
-        if (!position) {
-            return;
+    /* ---------- Phone and email checks (same rules as js/booking.js) ---------- */
+    function parseKzPhone(raw) {
+        var value = $.trim(raw);
+        if (!value) { return { error: 'Enter your phone number.' }; }
+        if (!/^\+?[\d\s()\-]+$/.test(value)) {
+            return { error: 'Use digits only. Spaces, hyphens and parentheses are allowed.' };
         }
+        if (value.split('(').length !== value.split(')').length) {
+            return { error: 'Check the parentheses in the phone number.' };
+        }
+        var digits = value.replace(/\D/g, '');
+        if (value.charAt(0) === '+' && digits.charAt(0) !== '7') {
+            return { error: 'Kazakhstan numbers start with +7.' };
+        }
+        if (digits.length === 11 && digits.charAt(0) === '8') { digits = '7' + digits.slice(1); }
+        if (digits.length !== 11) {
+            return { error: 'A Kazakhstan mobile number has 11 digits, for example +7 701 123 45 67.' };
+        }
+        if (digits.charAt(0) !== '7') {
+            return { error: 'Enter a Kazakhstan number starting with +7, 7 or 8.' };
+        }
+        if ($.inArray(digits.substr(1, 3), KZ_MOBILE_CODES) === -1) {
+            return { error: 'Enter a Kazakhstan mobile number (codes such as 701, 705, 707, 747, 775, 777).' };
+        }
+        return {
+            error: '',
+            formatted: '+7 ' + digits.substr(1, 3) + ' ' + digits.substr(4, 3) + ' ' + digits.substr(7, 2) + ' ' + digits.substr(9, 2)
+        };
+    }
 
-        const button = createApplyButton(position);
+    function getEmailError(raw) {
+        var value = $.trim(raw);
+        if (!value) { return 'Enter your email address.'; }
+        if (/\s/.test(value)) { return 'The email address must not contain spaces.'; }
+        var parts = value.split('@');
+        if (parts.length !== 2 || !parts[0] || !parts[1]) { return 'Enter an email like name@example.com.'; }
+        var local = parts[0];
+        var domain = parts[1];
+        if (value.length > 254 || local.length > 64) { return 'This email address is too long.'; }
+        if (!/^[A-Za-z0-9._%+\-]+$/.test(local)) { return 'The part before @ contains invalid characters.'; }
+        if (local.charAt(0) === '.' || local.slice(-1) === '.' || local.indexOf('..') !== -1) {
+            return 'The part before @ must not start or end with a dot or contain two dots in a row.';
+        }
+        var labels = domain.split('.');
+        if (labels.length < 2) { return 'The domain needs an extension, for example example.com.'; }
+        var badLabels = $.grep(labels, function (label) {
+            return !/^[A-Za-z0-9]([A-Za-z0-9\-]*[A-Za-z0-9])?$/.test(label);
+        });
+        if (badLabels.length) { return 'The domain after @ is not valid (check for double dots or odd characters).'; }
+        if (!/^[A-Za-z]{2,}$/.test(labels[labels.length - 1])) { return 'The domain extension must be at least two letters.'; }
+        return '';
+    }
 
-        card.classList.add('d-flex', 'flex-column');
-        card.appendChild(button);
-    });
+    /* ---------- Field validators: each returns an error message or '' ---------- */
+    var validators = {
+        name: function () {
+            var value = $.trim($name.val());
+            if (!value) { return 'Enter your full name.'; }
+            return /^[\p{L}][\p{L}\s'’\-]{1,59}$/u.test(value) ? '' : 'Name must be 2–60 letters (no digits or symbols).';
+        },
+        email: function () { return getEmailError($email.val()); },
+        phone: function () { return parseKzPhone($phone.val()).error; },
+        position: function () {
+            return $position.val() ? '' : 'Please select the position you are applying for.';
+        },
+        experience: function () {
+            var length = $.trim($experience.val()).length;
+            if (!length) { return 'Tell us about your experience.'; }
+            if (length < 20) { return 'Please write at least 20 characters about your experience or motivation.'; }
+            if (length > 1000) { return 'Your message must be 1,000 characters or fewer.'; }
+            return '';
+        }
+    };
+    var fieldOrder = ['name', 'email', 'phone', 'position', 'experience'];
+    var $controls = { name: $name, email: $email, phone: $phone, position: $position, experience: $experience };
 
-
-    const notice = document.createElement('div');
-
-    notice.className = 'alert alert-info mt-2 hidden';
-    notice.setAttribute('aria-live', 'polite');
-
-    positionSelect.parentElement.appendChild(notice);
-
-
-    function updatePositionNotice() {
-
-        const selectedValue = positionSelect.value;
-        const position = getPositionByValue(selectedValue);
-
-        if (position) {
-            notice.textContent =
-                `Selected role: ${position.title}. Mention your relevant experience below!`;
-
-            notice.classList.remove('hidden');
-            notice.hidden = false;
-
+    /* ---------- Showing errors directly under each field ---------- */
+    function showFieldState(key, message) {
+        var $control = $controls[key];
+        var $feedback = $control.nextAll('.invalid-feedback').first();
+        if (message) {
+            $control.addClass('is-invalid').removeClass('is-valid').attr('aria-invalid', 'true');
+            $feedback.text(message);
         } else {
-            notice.classList.add('hidden');
-            notice.hidden = true;
+            $control.removeClass('is-invalid').addClass('is-valid').removeAttr('aria-invalid');
+            $feedback.text('');
         }
     }
 
-    positionSelect.addEventListener('change', updatePositionNotice);
+    function clearFieldState(key) {
+        $controls[key].removeClass('is-invalid is-valid').removeAttr('aria-invalid');
+        $controls[key].nextAll('.invalid-feedback').first().text('');
+        touched[key] = false;
+    }
 
-    
-    main.addEventListener('click', function (event) {
+    function validateField(key) {
+        touched[key] = true;
+        var message = validators[key]();
+        showFieldState(key, message);
+        return !message;
+    }
 
-        const button = event.target.closest('button[data-position]');
+    function validateAll() {
+        var firstInvalid = null;
+        $.each(fieldOrder, function (i, key) {
+            if (!validateField(key) && !firstInvalid) { firstInvalid = key; }
+        });
+        return firstInvalid;
+    }
 
-        if (!button || !main.contains(button)) {
+    /* ---------- Saved applications (localStorage) ---------- */
+    function readApplications() {
+        try {
+            var stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            return Array.isArray(stored) ? stored : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function writeApplications(applications) {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(applications));
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    /* ---------- Events ---------- */
+    // After the first submit attempt, re-check each field as it is edited.
+    // (No check on blur: an error appearing under the field would move the Submit/Reset button mid-click.)
+    $form.on('input change', '[data-field]', function () {
+        var key = $(this).data('field');
+        $success.addClass('d-none');
+        if (touched[key]) { validateField(key); }
+        if (!$form.find('.is-invalid').length) { $alert.addClass('d-none'); }
+    });
+
+    $form.on('submit', function (event) {
+        event.preventDefault();
+        $success.addClass('d-none');
+        var firstInvalid = validateAll();
+        if (firstInvalid) {
+            $alert.text($alert.data('defaultText')).removeClass('d-none');
+            $controls[firstInvalid].trigger('focus');
+            return;
+        }
+        $alert.addClass('d-none');
+
+        var applications = readApplications();
+        applications.push({
+            name: $.trim($name.val()),
+            email: $.trim($email.val()),
+            phone: parseKzPhone($phone.val()).formatted,
+            position: $position.find('option:selected').text(),
+            experience: $.trim($experience.val()),
+            submittedAt: new Date().toISOString()
+        });
+        if (!writeApplications(applications)) {
+            $alert.text('Your application could not be saved: browser storage is unavailable or full.').removeClass('d-none');
             return;
         }
 
-        const selectedPosition = button.dataset.position;
-
-       
-        positionSelect.value = selectedPosition;
-
-        positionSelect.dispatchEvent(
-            new Event('change', { bubbles: true })
-        );
-
-        
-        jobCards.forEach(function (card) {
-            card.classList.remove('active');
-        });
-
-     
-        button.closest('article.card').classList.add('active');
-
-      
-        form.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-
-        if (nameInput) {
-            nameInput.focus();
-        }
+        justSaved = true;
+        $form[0].reset();
+        $success.text('Your application has been saved on this device. Thank you for your interest!').removeClass('d-none');
     });
 
+    $form.on('reset', function () {
+        var keepSuccess = justSaved;
+        justSaved = false;
+        // Wait for the browser to restore default values, then clear the validation state
+        setTimeout(function () {
+            $.each(fieldOrder, function (i, key) { clearFieldState(key); });
+            $alert.addClass('d-none');
+            if (!keepSuccess) { $success.addClass('d-none'); }
+        }, 0);
+    });
 
-    updatePositionNotice();
-
+    $alert.data('defaultText', $alert.text());
 });
