@@ -133,12 +133,12 @@
               <fieldset class="mb-4">
                 <legend class="h4 mb-3">Visit Details</legend>
                 <div class="row g-3">
-                  <div class="col-12 col-md-4">
+                  <div class="col-12 col-md-6">
                     <label class="form-label fw-medium" for="booking-date">Visit Date:</label>
                     <input class="form-control" id="booking-date" name="date" data-field="date" aria-describedby="err-date" required type="date">
                     <div class="invalid-feedback" id="err-date"></div>
                   </div>
-                  <div class="col-12 col-md-4">
+                  <div class="col-12 col-md-6">
                     <label class="form-label fw-medium" for="booking-time">Time Slot:</label>
                     <select class="form-select" id="booking-time" name="time" data-field="time" aria-describedby="err-time" required>
                       <option value="">Choose</option>
@@ -150,10 +150,11 @@
                     </select>
                     <div class="invalid-feedback" id="err-time"></div>
                   </div>
-                  <div class="col-12 col-md-4">
+                  <div class="col-12">
                     <label class="form-label fw-medium" for="guest-count">Number of Guests:</label>
                     <input class="form-control" id="guest-count" name="guests" data-field="guests" inputmode="numeric" max="20" min="1" placeholder="4" aria-describedby="err-guests" required type="number">
                     <div class="invalid-feedback" id="err-guests"></div>
+                    <div class="form-text" id="guests-hint">Choose a hall to see its guest limits.</div>
                   </div>
                   <div class="col-12">
                     <div class="form-check">
@@ -168,8 +169,49 @@
                 </div>
               </fieldset>
 
+              <fieldset class="mb-4">
+                <legend class="h4 mb-3">Pre-order</legend>
+                <p class="mb-2 fw-medium" id="preorder-question">Would you like to pre-order dishes for your visit?</p>
+                <div class="d-flex gap-4 mb-3" role="radiogroup" aria-labelledby="preorder-question">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preorder" id="preorder-no" value="no" data-field="preorder" checked>
+                    <label class="form-check-label" for="preorder-no">No, just the table</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preorder" id="preorder-yes" value="yes" data-field="preorder">
+                    <label class="form-check-label" for="preorder-yes">Yes, choose from the menu</label>
+                  </div>
+                </div>
+                <div class="d-none border rounded p-3 bg-body-tertiary" id="preorder-panel" aria-describedby="err-preorder">
+                  <div class="row g-2 mb-3">
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="menu-category">Category</label>
+                      <select class="form-select" id="menu-category">
+                        <option value="all">All categories</option>
+                        <option value="lagmans">Lagmans &amp; Ganfan</option>
+                        <option value="salads">Salads</option>
+                        <option value="turkish">Turkish Cuisine &amp; Kebabs</option>
+                        <option value="oriental">Oriental &amp; Main Dishes</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="menu-search">Search dishes</label>
+                      <input class="form-control" id="menu-search" type="search" placeholder="Search dishes...">
+                    </div>
+                  </div>
+                  <div class="overflow-y-auto bg-body border rounded px-3" id="menu-list" style="max-height: 22rem;"></div>
+                  <div class="mt-3" id="preorder-summary"></div>
+                </div>
+                <div class="invalid-feedback" id="err-preorder"></div>
+              </fieldset>
+
+              <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" role="note">
+                <span aria-hidden="true">💳</span>
+                <div>A booking deposit of <strong id="deposit-note">5 000 ₸</strong> is paid online to confirm your table. Pre-ordered dishes are paid at the same time.</div>
+              </div>
+
               <div class="d-flex flex-wrap gap-3">
-                <button class="btn btn-primary btn-lg px-4" type="submit">Submit Booking</button>
+                <button class="btn btn-primary btn-lg px-4" type="submit">Continue to payment</button>
                 <button class="btn btn-outline-secondary btn-lg px-4" type="reset">Reset</button>
               </div>
 
@@ -182,7 +224,9 @@
                 <p class="mb-1">Date and time: <span id="sum-date">Not selected</span></p>
                 <p class="mb-1">Guests: <span id="sum-guests">Not specified</span></p>
                 <p class="mb-1">High chair: <span id="sum-chair">No</span></p>
-                <p class="mb-0">Special requests: <span id="sum-wishes">None</span></p>
+                <p class="mb-1">Special requests: <span id="sum-wishes">None</span></p>
+                <p class="mb-1">Pre-order: <span id="sum-preorder">None</span></p>
+                <p class="mb-0 fs-5">To pay now: <strong id="sum-total">5 000 ₸</strong></p>
               </section>
             </div>
           </div>
@@ -226,7 +270,84 @@
     </div>
   </div>
 
-<!-- Floating Top Button -->
+<!-- Payment modal (demo checkout) -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="paymentModalLabel">Pay for your booking</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="pay-close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="pay-stage-form">
+            <div class="row g-4">
+              <div class="col-12 col-md-5">
+                <div class="card bg-body-tertiary border-0 p-3 h-100">
+                  <h3 class="h6 text-uppercase text-muted">Your order</h3>
+                  <p class="small mb-2" id="pay-booking-info"></p>
+                  <ul class="list-unstyled small mb-2" id="pay-lines"></ul>
+                  <hr class="mt-auto">
+                  <div class="d-flex justify-content-between fs-5"><span>Total</span><strong id="pay-total">0 ₸</strong></div>
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <p class="fw-medium mb-2" id="pay-method-label">Payment method</p>
+                <div class="btn-group w-100 mb-3" role="group" aria-labelledby="pay-method-label">
+                  <input type="radio" class="btn-check" name="payMethod" id="pay-kaspi" value="Kaspi" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="pay-kaspi">Kaspi</label>
+                  <input type="radio" class="btn-check" name="payMethod" id="pay-halyk" value="Halyk" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="pay-halyk">Halyk</label>
+                  <input type="radio" class="btn-check" name="payMethod" id="pay-other" value="Other card" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="pay-other">Other card</label>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-medium" for="pay-number">Card number</label>
+                  <input class="form-control" id="pay-number" data-pay="number" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" aria-describedby="err-pay-number" type="text">
+                  <div class="invalid-feedback" id="err-pay-number"></div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-medium" for="pay-holder">Cardholder name</label>
+                  <input class="form-control" id="pay-holder" data-pay="holder" autocomplete="cc-name" placeholder="NAME SURNAME" aria-describedby="err-pay-holder" type="text">
+                  <div class="invalid-feedback" id="err-pay-holder"></div>
+                </div>
+                <div class="row g-3">
+                  <div class="col-6">
+                    <label class="form-label fw-medium" for="pay-expiry">Expiry (MM/YY)</label>
+                    <input class="form-control" id="pay-expiry" data-pay="expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" aria-describedby="err-pay-expiry" type="text">
+                    <div class="invalid-feedback" id="err-pay-expiry"></div>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label fw-medium" for="pay-cvv">CVV</label>
+                    <input class="form-control" id="pay-cvv" data-pay="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="3" aria-describedby="err-pay-cvv" type="password">
+                    <div class="invalid-feedback" id="err-pay-cvv"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="alert alert-info small mt-4 mb-0" role="note">
+              <strong>Demo checkout.</strong> No real bank connection exists yet: no money is charged and card details are never saved or sent anywhere.
+              Use any card number that passes the check, e.g. 4242&nbsp;4242&nbsp;4242&nbsp;4242.
+            </div>
+          </div>
+          <div class="d-none text-center py-4" id="pay-stage-done" aria-live="polite">
+            <p class="display-4 mb-2" aria-hidden="true">✅</p>
+            <h3 class="h4 text-primary">Booking confirmed</h3>
+            <p class="mb-1" id="pay-done-text"></p>
+            <p class="text-muted mb-0">Reference: <strong id="pay-done-ref"></strong></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div id="pay-footer-form" class="d-flex gap-2 w-100 justify-content-end">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="pay-cancel">Back to booking</button>
+            <button type="button" class="btn btn-primary px-4" id="pay-submit">Pay</button>
+          </div>
+          <button type="button" class="btn btn-primary d-none" data-bs-dismiss="modal" id="pay-done-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Top Button -->
 <a class="btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow" href="#" id="backToTop">Top ↑</a>
 <!-- Footer -->
 <footer class="site-footer bg-dark py-5 mt-5">
@@ -240,6 +361,7 @@
 <!-- Load order: jQuery, Bootstrap, page script -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/menu-data.js"></script>
 <script src="js/booking.js"></script>
 </body>
 </html>
