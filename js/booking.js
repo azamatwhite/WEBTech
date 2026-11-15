@@ -642,6 +642,22 @@ $(function () {
         renderHistory();
     }
 
+    function syncBookingTimeSlots() {
+        var isToday = $date.val() === TODAY;
+        var current = new Date();
+        var currentMins = current.getHours() * 60 + current.getMinutes();
+        $time.find('option').each(function () {
+            var val = $(this).val();
+            if (!val) { return; }
+            var slot = val.split(':');
+            var slotMins = +slot[0] * 60 + +slot[1];
+            $(this).prop('disabled', isToday && slotMins <= currentMins);
+        });
+        if (isToday && $time.find('option:selected').prop('disabled')) {
+            $time.val('');
+        }
+    }
+
     /* ---------- Main-form events ---------- */
     $branch.on('change', onBranchChanged);
 
@@ -653,7 +669,7 @@ $(function () {
         if (key === 'preorder') { onPreorderToggled(); }
         revalidateIfTouched(key);
         if (key === 'zone') { updateGuestsHint(); revalidateIfTouched('guests'); }
-        if (key === 'date') { revalidateIfTouched('time'); }
+        if (key === 'date') { syncBookingTimeSlots(); revalidateIfTouched('time'); }
         if (!$form.find('.is-invalid').length) { $alert.addClass('d-none'); }
         updateSummary();
     });
@@ -709,6 +725,7 @@ $(function () {
             renderPhotos();
             onPreorderToggled();
             updateGuestsHint();
+            syncBookingTimeSlots();
             updateSummary();
         }, 0);
     });
@@ -719,5 +736,6 @@ $(function () {
     renderPhotos();
     renderHistory();
     updateGuestsHint();
+    syncBookingTimeSlots();
     updateSummary();
 });

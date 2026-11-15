@@ -134,3 +134,45 @@ h1, h2, h3, h4, h5, h6, th[id] {
 #toastNotificationContainer .alert {
   pointer-events: auto !important;
 }
+
+/* Fulfillment & Pickup selection cards */
+.fulfillment-card,
+.pickup-branch-card {
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.fulfillment-card:hover,
+.pickup-branch-card:hover {
+  border-color: var(--bs-warning) !important;
+}
+
+.fulfillment-card.active,
+.pickup-branch-card.active,
+.fulfillment-card:has(input:checked),
+.pickup-branch-card:has(input:checked) {
+  border-color: var(--bs-primary) !important;
+  background-color: #fff9f8 !important;
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.08) !important;
+}
+
+/* Fulfillment & Pickup selection cards */
+.fulfillment-card,
+.pickup-branch-card {
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.fulfillment-card:hover,
+.pickup-branch-card:hover {
+  border-color: var(--bs-warning) !important;
+}
+
+.fulfillment-card.active,
+.pickup-branch-card.active,
+.fulfillment-card:has(input:checked),
+.pickup-branch-card:has(input:checked) {
+  border-color: var(--bs-primary) !important;
+  background-color: #fff9f8 !important;
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.08) !important;
+}
