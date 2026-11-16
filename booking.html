@@ -13,18 +13,14 @@
 <link href="css/base.css" rel="stylesheet"/>
 <link href="images/favicon.png" rel="icon" type="image/png"/>
 <title>Booking — Dastarkhan</title>
-<!-- jQuery 3.7.1 CDN (booking.js алдында міндетті түрде қосылады) -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
-<script src="js/booking.js" defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <!-- Header & Navigation -->
   <header class="sticky-top shadow bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-      <a href="index.html" class="navbar-brand d-inline-flex align-items-center">
-  <img src="images/logo.png" alt="Dastarkhan Logo" style="max-height: 40px;" class="img-fluid">
-</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+      <a href="index.html" class="navbar-brand d-inline-flex align-items-center"><img src="images/logo.png" alt="Dastarkhan Logo" width="44" height="48" class="w-auto"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,140 +30,343 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="delivery.html">Delivery</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="booking.html">Booking</a></li>
           <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
           <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
         </ul>
       </div>
+      </div>
     </nav>
   </header>
 
   <main class="flex-grow-1">
-    <!-- Hero Banner — container-fluid for viewport-wide banner -->
+    <!-- Hero: same markup as the other pages, with extra inner padding so the banner is taller -->
     <div class="container-fluid p-0">
       <section class="hero text-center py-5 px-4">
-        <h1 class="display-4 text-white">Table Reservation</h1>
-        <p class="lead text-warning mb-3">Book your cozy dining experience with authentic Eastern hospitality</p>
+        <div class="py-md-4">
+          <h1 class="display-3 text-white mb-3">Table Reservation</h1>
+          <p class="lead text-warning mb-0"><span class="fw-bold fst-italic">Book your cozy dining experience with authentic Eastern hospitality.</span></p>
+        </div>
       </section>
     </div>
 
-    <!-- Booking Content Container -->
     <div class="container my-5">
-      <div class="row g-4">
-        <!-- LEFT COLUMN: Info Card with Nested Row for Mini Gallery -->
-        <div class="col-12 col-lg-6">
-          <div class="card p-4 shadow-sm h-100 border-0">
-            <h2 class="h3 mb-3">Our Dining Zones</h2>
-            <p class="text-muted">
-              Reserve a table in advance to enjoy authentic national and oriental cuisine in our comfortable main
-              hall, oriental tapchan zone, or private VIP room.
-            </p>
-<!-- Nested row inside column for mini gallery thumbnails -->
-<div class="row row-cols-3 g-2 mb-4">
-<div class="col text-center">
-<img alt="Main Hall" class="img-fluid rounded shadow-sm mb-1" height="1280" loading="lazy" src="images/interior/IMG_1170.jpg" width="860"/>
-<span class="d-block small fw-bold text-primary mt-1">Main Hall</span>
-</div>
-<div class="col text-center">
-<img alt="Tapchan Area" class="img-fluid rounded shadow-sm mb-1" height="1280" loading="lazy" src="images/interior/IMG_1157.jpg" width="901"/>
-<span class="d-block small fw-bold text-primary mt-1">Tapchan</span>
-</div>
-<div class="col text-center">
-<img alt="VIP Room" class="img-fluid rounded shadow-sm mb-1" height="850" loading="lazy" src="images/interior/IMG_1160.jpg" width="1280"/>
-<span class="d-block small fw-bold text-primary mt-1">VIP Room</span>
-</div>
-</div>
-<h3 class="h5">Reservation Policy:</h3>
-<ul class="text-muted mb-4 ps-4 lh-lg">
-<li>Table retention time is <strong>20 minutes</strong> from the reserved hour.</li>
-<li>For groups over 10 guests, an advance deposit may be requested.</li>
-<li>VIP rooms require a minimum order limit per person.</li>
-<li>No outside food or beverages are permitted.</li>
-</ul>
-<hr class="my-4"/>
-<h3 class="h5">Instant Assistance:</h3>
-<p class="mb-0">
-<strong>Hostess Desk:</strong> <a href="tel:+77172319595">+7 (7172) 31-95-95</a><br/>
-<strong>Working Hours:</strong> Mon-Sun, 11:00 – 23:00
-            </p>
-</div>
-</div>
-<!-- RIGHT COLUMN: Booking Form -->
-<div class="col-12 col-lg-6">
-<div class="card p-4 shadow-sm border-0">
-<form action="#" id="booking-form" method="post">
-<fieldset>
-<legend class="h4 mb-4">Booking Details</legend>
-<div class="mb-3">
-<label class="form-label fw-medium" for="guest-name">Full Name:</label>
-<input class="form-control" id="guest-name" name="name" placeholder="John Doe" required="" type="text"/>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium" for="guest-email">Email Address:</label>
-<input class="form-control" id="guest-email" name="email" placeholder="example@gmail.com" required="" type="email"/>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium" for="guest-phone">Phone Number:</label>
-<input class="form-control" id="guest-phone" name="phone" placeholder="+7 (7172) 31-95-95" required="" type="tel"/>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium" for="guest-count">Number of Guests:</label>
-<input class="form-control" id="guest-count" max="20" min="1" name="guests" placeholder="4" required="" type="number"/>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium" for="booking-date">Visit Date:</label>
-<input class="form-control" id="booking-date" name="date" required="" type="date"/>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium d-block">Preferred Zone:</label>
-<div class="d-flex flex-wrap gap-3">
-<div class="form-check">
-<input checked="" class="form-check-input" id="zoneHall" name="zone" type="radio" value="hall"/>
-<label class="form-check-label" for="zoneHall">Main Hall</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" id="zoneTapchan" name="zone" type="radio" value="tapchan"/>
-<label class="form-check-label" for="zoneTapchan">Tapchan Area</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" id="zoneVIP" name="zone" type="radio" value="vip"/>
-<label class="form-check-label" for="zoneVIP">VIP Room</label>
-</div>
-</div>
-</div>
-<div class="form-check mb-3">
-<input class="form-check-input" id="highChair" name="high_chair" type="checkbox"/>
-<label class="form-check-label" for="highChair">Require a child high chair</label>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium" for="booking-time">Time Slot:</label>
-<select class="form-select" id="booking-time" name="time" required="">
-<option value="">Select time slot</option>
-<option value="12:00">12:00</option>
-<option value="14:00">14:00</option>
-<option value="16:00">16:00</option>
-<option value="18:00">18:00</option>
-<option value="20:00">20:00</option>
-</select>
-</div>
-<div class="mb-3">
-<label class="form-label fw-medium" for="special-wishes">Special Requests:</label>
-<textarea class="form-control" id="special-wishes" name="wishes" placeholder="Specify any dietary requirements, anniversary celebration, or guest preferences..." rows="3"></textarea>
-</div>
-<div class="d-flex gap-2 mt-4">
-<button class="btn btn-primary px-4" type="submit">Submit Booking</button>
-<button class="btn btn-outline-secondary px-4" type="reset">Reset</button>
-</div>
-</fieldset>
-</form>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Floating Top Button -->
+      <form action="#" id="booking-form" method="post" novalidate>
+
+        <!-- Location -->
+        <section class="card p-4 shadow-sm border-0 mb-4" aria-labelledby="branch-heading">
+          <h2 id="branch-heading" class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Choose Your Dastarkhan Location</h2>
+          <p class="text-muted">Select the restaurant you would like to visit. The photos and hall options update automatically.</p>
+          <label class="form-label fw-medium" for="branch-select">Restaurant location:</label>
+          <select class="form-select" id="branch-select" name="branch" data-field="branch" aria-describedby="err-branch" required>
+            <option value="auezov" selected>Mukhtar Auezov 33 (Auezov)</option>
+            <option value="dostyk">Dostyk 1</option>
+          </select>
+          <div class="invalid-feedback" id="err-branch"></div>
+        </section>
+
+        <div class="row g-4">
+          <!-- LEFT: branch photos and visit information -->
+          <div class="col-12 col-lg-6">
+            <div class="sticky-lg-top" style="top: 5.5rem;">
+            <div class="card p-4 shadow-sm border-0">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <h2 class="h4 mb-0" id="branch-gallery-title">Mukhtar Auezov 33 — Interior</h2>
+                <span class="small text-muted">Select a photo to enlarge</span>
+              </div>
+              <!-- Three photos of the selected branch; filled by js/booking.js -->
+              <div class="row row-cols-3 g-2 mb-4" id="booking-gallery"></div>
+
+              <h3 class="h5">Reservation Policy:</h3>
+              <ul class="text-muted mb-4 ps-4 lh-lg">
+                <li>Table retention time is <strong>20 minutes</strong> from the reserved hour.</li>
+                <li>For groups over 10 guests, an advance deposit may be requested.</li>
+                <li>VIP rooms require a minimum order limit per person.</li>
+                <li>No outside food or beverages are permitted.</li>
+              </ul>
+              <hr class="my-4">
+              <h3 class="h5">Instant Assistance:</h3>
+              <p class="mb-0">
+                <strong>Hostess Desk:</strong> <a href="tel:+77172319595">+7 (7172) 31-95-95</a><br>
+                <strong>Working Hours:</strong> Mon-Sun, 11:00 – 23:00
+              </p>
+            </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: booking form fields -->
+          <div class="col-12 col-lg-6">
+            <div class="card p-4 shadow-sm border-0">
+              <div class="alert alert-success d-none" id="booking-success" role="status"></div>
+              <div class="alert alert-danger d-none" id="booking-alert" role="alert">Please correct the highlighted fields before submitting your booking.</div>
+              <div id="booking-notices" aria-live="polite"></div>
+
+              <fieldset class="mb-4">
+                <legend class="h4 mb-3">Hall</legend>
+                <p class="small text-muted mb-2">Halls available at the selected location:</p>
+                <div id="zone-options" class="d-grid gap-2" role="radiogroup" aria-label="Hall" aria-describedby="err-zone"></div>
+                <div class="invalid-feedback" id="err-zone"></div>
+              </fieldset>
+
+              <fieldset class="mb-4">
+                <legend class="h4 mb-3">Your Details</legend>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label fw-medium" for="guest-name">Full Name:</label>
+                    <input class="form-control" id="guest-name" name="name" data-field="name" placeholder="John Doe" autocomplete="name" aria-describedby="err-name" required type="text">
+                    <div class="invalid-feedback" id="err-name"></div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label fw-medium" for="guest-phone">Phone Number:</label>
+                    <input class="form-control" id="guest-phone" name="phone" data-field="phone" placeholder="+7 701 123 45 67" autocomplete="tel" aria-describedby="err-phone" required type="tel">
+                    <div class="invalid-feedback" id="err-phone"></div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label fw-medium" for="guest-email">Email Address:</label>
+                    <input class="form-control" id="guest-email" name="email" data-field="email" placeholder="example@gmail.com" autocomplete="email" aria-describedby="err-email" required type="email">
+                    <div class="invalid-feedback" id="err-email"></div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="mb-4">
+                <legend class="h4 mb-3">Visit Details</legend>
+                <div class="row g-3">
+                  <div class="col-12 col-md-6">
+                    <label class="form-label fw-medium" for="booking-date">Visit Date:</label>
+                    <input class="form-control" id="booking-date" name="date" data-field="date" aria-describedby="err-date" required type="date">
+                    <div class="invalid-feedback" id="err-date"></div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label fw-medium" for="booking-time">Time Slot:</label>
+                    <select class="form-select" id="booking-time" name="time" data-field="time" aria-describedby="err-time" required>
+                      <option value="">Choose a time slot (every 30 min)</option>
+                      <option value="11:00">11:00</option>
+                      <option value="11:30">11:30</option>
+                      <option value="12:00">12:00</option>
+                      <option value="12:30">12:30</option>
+                      <option value="13:00">13:00</option>
+                      <option value="13:30">13:30</option>
+                      <option value="14:00">14:00</option>
+                      <option value="14:30">14:30</option>
+                      <option value="15:00">15:00</option>
+                      <option value="15:30">15:30</option>
+                      <option value="16:00">16:00</option>
+                      <option value="16:30">16:30</option>
+                      <option value="17:00">17:00</option>
+                      <option value="17:30">17:30</option>
+                      <option value="18:00">18:00</option>
+                      <option value="18:30">18:30</option>
+                      <option value="19:00">19:00</option>
+                      <option value="19:30">19:30</option>
+                      <option value="20:00">20:00</option>
+                      <option value="20:30">20:30</option>
+                      <option value="21:00">21:00</option>
+                      <option value="21:30">21:30</option>
+                      <option value="22:00">22:00</option>
+                      <option value="22:30">22:30</option>
+                    </select>
+                    <div class="invalid-feedback" id="err-time"></div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-medium" for="guest-count">Number of Guests:</label>
+                    <input class="form-control" id="guest-count" name="guests" data-field="guests" inputmode="numeric" max="20" min="1" placeholder="4" aria-describedby="err-guests" required type="number">
+                    <div class="invalid-feedback" id="err-guests"></div>
+                    <div class="form-text" id="guests-hint">Choose a hall to see its guest limits.</div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" id="highChair" name="high_chair" type="checkbox">
+                      <label class="form-check-label" for="highChair">Require a child high chair</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-medium" for="special-wishes">Special Requests:</label>
+                    <textarea class="form-control" id="special-wishes" name="wishes" placeholder="Dietary requirements, anniversary celebration, guest preferences..." rows="3"></textarea>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="mb-4">
+                <legend class="h4 mb-3">Pre-order</legend>
+                <p class="mb-2 fw-medium" id="preorder-question">Would you like to pre-order dishes for your visit?</p>
+                <div class="d-flex gap-4 mb-3" role="radiogroup" aria-labelledby="preorder-question">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preorder" id="preorder-no" value="no" data-field="preorder" checked>
+                    <label class="form-check-label" for="preorder-no">No, just the table</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preorder" id="preorder-yes" value="yes" data-field="preorder">
+                    <label class="form-check-label" for="preorder-yes">Yes, choose from the menu</label>
+                  </div>
+                </div>
+                <div class="d-none border rounded p-3 bg-body-tertiary" id="preorder-panel" aria-describedby="err-preorder">
+                  <div class="row g-2 mb-3">
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="menu-category">Category</label>
+                      <select class="form-select" id="menu-category">
+                        <option value="all">All categories</option>
+                        <option value="lagmans">Lagmans &amp; Ganfan</option>
+                        <option value="salads">Salads</option>
+                        <option value="turkish">Turkish Cuisine &amp; Kebabs</option>
+                        <option value="oriental">Oriental &amp; Main Dishes</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="menu-search">Search dishes</label>
+                      <input class="form-control" id="menu-search" type="search" placeholder="Search dishes...">
+                    </div>
+                  </div>
+                  <div class="overflow-y-auto bg-body border rounded px-3" id="menu-list" style="max-height: 22rem;"></div>
+                  <div class="mt-3" id="preorder-summary"></div>
+                </div>
+                <div class="invalid-feedback" id="err-preorder"></div>
+              </fieldset>
+
+              <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" role="note">
+                <span aria-hidden="true">💳</span>
+                <div>A booking deposit of <strong id="deposit-note">5 000 ₸</strong> is paid online to confirm your table. Pre-ordered dishes are paid at the same time.</div>
+              </div>
+
+              <div class="d-flex flex-wrap gap-3">
+                <button class="btn btn-primary btn-lg px-4" type="submit">Continue to payment</button>
+                <button class="btn btn-outline-secondary btn-lg px-4" type="reset">Reset</button>
+              </div>
+
+              <section class="card bg-body-tertiary border-0 p-3 mt-4" aria-labelledby="summary-heading">
+                <h3 class="h5" id="summary-heading">Live Booking Summary</h3>
+                <p class="mb-1">Location: <strong id="sum-branch">—</strong></p>
+                <p class="mb-1">Hall: <span id="sum-zone">Not selected</span></p>
+                <p class="mb-1">Name: <span id="sum-name">Not provided</span></p>
+                <p class="mb-1">Contact: <span id="sum-contact">Not provided</span></p>
+                <p class="mb-1">Date and time: <span id="sum-date">Not selected</span></p>
+                <p class="mb-1">Guests: <span id="sum-guests">Not specified</span></p>
+                <p class="mb-1">High chair: <span id="sum-chair">No</span></p>
+                <p class="mb-1">Special requests: <span id="sum-wishes">None</span></p>
+                <p class="mb-1">Pre-order: <span id="sum-preorder">None</span></p>
+                <p class="mb-0 fs-5">To pay now: <strong id="sum-total">5 000 ₸</strong></p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Booking history (saved in this browser) -->
+      <section class="mt-5" aria-labelledby="history-heading">
+        <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4" id="history-heading">Booking History</h2>
+        <button type="button" class="btn btn-outline-primary" id="toggle-history" aria-expanded="false" aria-controls="history-box">
+          <span id="toggle-history-label">Show Booking History</span>
+          <span class="badge text-bg-warning ms-2" id="history-count">0</span>
+        </button>
+        <div class="d-none mt-3" id="history-box">
+          <div class="card shadow-sm border-0 p-3">
+            <div id="history-list"></div>
+            <button type="button" class="btn btn-outline-danger btn-sm align-self-start mt-3" id="clear-history">Clear History</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Photo lightbox (Bootstrap modal) -->
+  <div class="modal fade" id="bookingPhotoModal" tabindex="-1" aria-labelledby="bookingPhotoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg overflow-hidden">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="bookingPhotoModalLabel">Restaurant interior</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-body-tertiary d-flex justify-content-center p-2 p-md-3">
+          <img id="bookingModalImage" src="" alt="Restaurant interior" class="img-fluid rounded shadow-sm" style="max-height: calc(100vh - 14rem); width: auto; object-fit: contain;">
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-outline-secondary" id="bookingPhotoPrev" aria-label="Previous photo">&larr; Previous</button>
+          <span class="small text-muted" id="bookingPhotoCounter" aria-live="polite">1 / 3</span>
+          <button type="button" class="btn btn-outline-secondary" id="bookingPhotoNext" aria-label="Next photo">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Payment modal (demo checkout) -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="paymentModalLabel">Pay for your booking</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="pay-close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="pay-stage-form">
+            <div class="row g-4">
+              <div class="col-12 col-md-5">
+                <div class="card bg-body-tertiary border-0 p-3 h-100">
+                  <h3 class="h6 text-uppercase text-muted">Your order</h3>
+                  <p class="small mb-2" id="pay-booking-info"></p>
+                  <ul class="list-unstyled small mb-2" id="pay-lines"></ul>
+                  <hr class="mt-auto">
+                  <div class="d-flex justify-content-between fs-5"><span>Total</span><strong id="pay-total">0 ₸</strong></div>
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <p class="fw-medium mb-2" id="pay-method-label">Payment method</p>
+                <div class="btn-group w-100 mb-3" role="group" aria-labelledby="pay-method-label">
+                  <input type="radio" class="btn-check" name="payMethod" id="pay-kaspi" value="Kaspi" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="pay-kaspi">Kaspi</label>
+                  <input type="radio" class="btn-check" name="payMethod" id="pay-halyk" value="Halyk" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="pay-halyk">Halyk</label>
+                  <input type="radio" class="btn-check" name="payMethod" id="pay-other" value="Other card" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="pay-other">Other card</label>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-medium" for="pay-number">Card number</label>
+                  <input class="form-control" id="pay-number" data-pay="number" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" aria-describedby="err-pay-number" type="text">
+                  <div class="invalid-feedback" id="err-pay-number"></div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-medium" for="pay-holder">Cardholder name</label>
+                  <input class="form-control" id="pay-holder" data-pay="holder" autocomplete="cc-name" placeholder="NAME SURNAME" aria-describedby="err-pay-holder" type="text">
+                  <div class="invalid-feedback" id="err-pay-holder"></div>
+                </div>
+                <div class="row g-3">
+                  <div class="col-6">
+                    <label class="form-label fw-medium" for="pay-expiry">Expiry (MM/YY)</label>
+                    <input class="form-control" id="pay-expiry" data-pay="expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" aria-describedby="err-pay-expiry" type="text">
+                    <div class="invalid-feedback" id="err-pay-expiry"></div>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label fw-medium" for="pay-cvv">CVV</label>
+                    <input class="form-control" id="pay-cvv" data-pay="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="3" aria-describedby="err-pay-cvv" type="password">
+                    <div class="invalid-feedback" id="err-pay-cvv"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="alert alert-info small mt-4 mb-0" role="note">
+              <strong>Demo checkout.</strong> No real bank connection exists yet: no money is charged and card details are never saved or sent anywhere.
+              Use any card number that passes the check, e.g. 4242&nbsp;4242&nbsp;4242&nbsp;4242.
+            </div>
+          </div>
+          <div class="d-none text-center py-4" id="pay-stage-done" aria-live="polite">
+            <p class="display-4 mb-2" aria-hidden="true">✅</p>
+            <h3 class="h4 text-primary">Booking confirmed</h3>
+            <p class="mb-1" id="pay-done-text"></p>
+            <p class="text-muted mb-0">Reference: <strong id="pay-done-ref"></strong></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div id="pay-footer-form" class="d-flex gap-2 w-100 justify-content-end">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="pay-cancel">Back to booking</button>
+            <button type="button" class="btn btn-primary px-4" id="pay-submit">Pay</button>
+          </div>
+          <button type="button" class="btn btn-primary d-none" data-bs-dismiss="modal" id="pay-done-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Top Button -->
 <a class="btn btn-primary rounded-pill px-3 py-2 position-fixed bottom-0 end-0 m-4 shadow" href="#" id="backToTop">Top ↑</a>
 <!-- Footer -->
 <footer class="site-footer bg-dark py-5 mt-5">
@@ -178,6 +377,11 @@
 <p class="mb-0">© 2026 Dastarkhan Restaurant</p>
 </div>
 </footer>
+<!-- Load order: jQuery, Bootstrap, page script -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/menu-data.js"></script>
+<script defer src="js/cart.js"></script>
+<script src="js/booking.js"></script>
 </body>
 </html>

@@ -1,209 +1,203 @@
 'use strict';
 
-// Используется jQuery 3.7.1. Весь код обернут в $(function () { ... })
+/* Careers page — jQuery. Load order on the page: jQuery, Bootstrap, this file. */
 $(function () {
-    const $form = $('#careers-form');
-    if (!$form.length) return;
+    var $form = $('#careers-form');
+    if (!$form.length) { return; }
 
-    const $nameInput = $('#appName');
-    const $phoneInput = $('#appPhone');
-    const $positionSelect = $('#positionSelect');
-    const $experienceInput = $('#appExperience');
+    var STORAGE_KEY = 'careersApplications';
+    var KZ_MOBILE_CODES = ['700', '701', '702', '705', '706', '707', '708', '747', '771', '775', '776', '777', '778'];
 
-    const MAX_LENGTH = 500;
-    const STORAGE_KEY = 'careersApplications';
+    var $name = $('#appName');
+    var $email = $('#appEmail');
+    var $phone = $('#appPhone');
+    var $position = $('#positionSelect');
+    var $experience = $('#appExperience');
+    var $success = $('#careers-success');
+    var $alert = $('#careers-alert');
 
-    // Отключаем стандартную валидацию браузера через .prop()
-    $form.prop('noValidate', true);
+    var touched = {};
+    var justSaved = false;
 
-    // 1. Показ и очистка ошибок
-    function showError($input, message) {
-        if ($input.siblings('.error-message').length === 0) {
-            $input.parent().append('<small class="error-message text-danger d-block mt-1"></small>');
+    /* ---------- Phone and email checks (same rules as js/booking.js) ---------- */
+    function parseKzPhone(raw) {
+        var value = $.trim(raw);
+        if (!value) { return { error: 'Enter your phone number.' }; }
+        if (!/^\+?[\d\s()\-]+$/.test(value)) {
+            return { error: 'Use digits only. Spaces, hyphens and parentheses are allowed.' };
         }
-        // ЦЕПОЧКА (Chaining из 4 методов): 1) .addClass() добавляет красную рамку, 2) .attr() ставит ARIA-атрибут,
-        // 3) .siblings() находит соседний блок ошибки, 4) .text() записывает текст ошибки.
-        $input.addClass('is-invalid').attr('aria-invalid', 'true').siblings('.error-message').text(message);
+        if (value.split('(').length !== value.split(')').length) {
+            return { error: 'Check the parentheses in the phone number.' };
+        }
+        var digits = value.replace(/\D/g, '');
+        if (value.charAt(0) === '+' && digits.charAt(0) !== '7') {
+            return { error: 'Kazakhstan numbers start with +7.' };
+        }
+        if (digits.length === 11 && digits.charAt(0) === '8') { digits = '7' + digits.slice(1); }
+        if (digits.length !== 11) {
+            return { error: 'A Kazakhstan mobile number has 11 digits, for example +7 701 123 45 67.' };
+        }
+        if (digits.charAt(0) !== '7') {
+            return { error: 'Enter a Kazakhstan number starting with +7, 7 or 8.' };
+        }
+        if ($.inArray(digits.substr(1, 3), KZ_MOBILE_CODES) === -1) {
+            return { error: 'Enter a Kazakhstan mobile number (codes such as 701, 705, 707, 747, 775, 777).' };
+        }
+        return {
+            error: '',
+            formatted: '+7 ' + digits.substr(1, 3) + ' ' + digits.substr(4, 3) + ' ' + digits.substr(7, 2) + ' ' + digits.substr(9, 2)
+        };
     }
 
-    function clearError($input) {
-        $input.removeClass('is-invalid').attr('aria-invalid', 'false').siblings('.error-message').text('');
+    function getEmailError(raw) {
+        var value = $.trim(raw);
+        if (!value) { return 'Enter your email address.'; }
+        if (/\s/.test(value)) { return 'The email address must not contain spaces.'; }
+        var parts = value.split('@');
+        if (parts.length !== 2 || !parts[0] || !parts[1]) { return 'Enter an email like name@example.com.'; }
+        var local = parts[0];
+        var domain = parts[1];
+        if (value.length > 254 || local.length > 64) { return 'This email address is too long.'; }
+        if (!/^[A-Za-z0-9._%+\-]+$/.test(local)) { return 'The part before @ contains invalid characters.'; }
+        if (local.charAt(0) === '.' || local.slice(-1) === '.' || local.indexOf('..') !== -1) {
+            return 'The part before @ must not start or end with a dot or contain two dots in a row.';
+        }
+        var labels = domain.split('.');
+        if (labels.length < 2) { return 'The domain needs an extension, for example example.com.'; }
+        var badLabels = $.grep(labels, function (label) {
+            return !/^[A-Za-z0-9]([A-Za-z0-9\-]*[A-Za-z0-9])?$/.test(label);
+        });
+        if (badLabels.length) { return 'The domain after @ is not valid (check for double dots or odd characters).'; }
+        if (!/^[A-Za-z]{2,}$/.test(labels[labels.length - 1])) { return 'The domain extension must be at least two letters.'; }
+        return '';
     }
 
-    // 2. Счетчик символов и подсказка по вакансии (Эффект №3: .slideDown / .slideUp)
-    const $counter = $('<small class="text-muted d-block text-end mt-1"></small>');
-    $experienceInput.parent().append($counter);
+    /* ---------- Field validators: each returns an error message or '' ---------- */
+    var validators = {
+        name: function () {
+            var value = $.trim($name.val());
+            if (!value) { return 'Enter your full name.'; }
+            return /^[\p{L}][\p{L}\s'’\-]{1,59}$/u.test(value) ? '' : 'Name must be 2–60 letters (no digits or symbols).';
+        },
+        email: function () { return getEmailError($email.val()); },
+        phone: function () { return parseKzPhone($phone.val()).error; },
+        position: function () {
+            return $position.val() ? '' : 'Please select the position you are applying for.';
+        },
+        experience: function () {
+            var length = $.trim($experience.val()).length;
+            if (!length) { return 'Tell us about your experience.'; }
+            if (length < 20) { return 'Please write at least 20 characters about your experience or motivation.'; }
+            if (length > 1000) { return 'Your message must be 1,000 characters or fewer.'; }
+            return '';
+        }
+    };
+    var fieldOrder = ['name', 'email', 'phone', 'position', 'experience'];
+    var $controls = { name: $name, email: $email, phone: $phone, position: $position, experience: $experience };
 
-    const $posNotice = $('<div class="alert alert-info py-2 mt-2 mb-0 small"></div>').hide();
-    $positionSelect.parent().append($posNotice);
-
-    function updateCounter() {
-        const len = $experienceInput.val().length;
-        $counter.text(`${len} / ${MAX_LENGTH}`).toggleClass('text-danger fw-bold', len > MAX_LENGTH);
+    /* ---------- Showing errors directly under each field ---------- */
+    function showFieldState(key, message) {
+        var $control = $controls[key];
+        var $feedback = $control.nextAll('.invalid-feedback').first();
+        if (message) {
+            $control.addClass('is-invalid').removeClass('is-valid').attr('aria-invalid', 'true');
+            $feedback.text(message);
+        } else {
+            $control.removeClass('is-invalid').addClass('is-valid').removeAttr('aria-invalid');
+            $feedback.text('');
+        }
     }
-    updateCounter();
 
-    // 3. Сообщение об успехе и блок истории откликов (без класса d-none, так как !important ломает анимации jQuery)
-    const $success = $('<div class="alert alert-success mb-3" role="alert"></div>').hide();
-    $form.before($success);
+    function clearFieldState(key) {
+        $controls[key].removeClass('is-invalid is-valid').removeAttr('aria-invalid');
+        $controls[key].nextAll('.invalid-feedback').first().text('');
+        touched[key] = false;
+    }
 
-    const $card = $form.closest('.card');
-    const $history = $('<div class="card p-4 shadow-sm border-0 mt-4"></div>').html(`
-        <div class="d-flex justify-content-between align-items-center">
-            <h3 class="h5 mb-0">Submitted Applications</h3>
-            <button type="button" id="toggle-apps" class="btn btn-outline-dark btn-sm">Show / Hide History</button>
-        </div>
-        <div id="apps-box" class="mt-3">
-            <ul id="apps-list" class="list-group"></ul>
-        </div>
-    `);
-    $card.after($history);
+    function validateField(key) {
+        touched[key] = true;
+        var message = validators[key]();
+        showFieldState(key, message);
+        return !message;
+    }
 
-    const $appsBox = $history.find('#apps-box').hide();
-    const $appsList = $history.find('#apps-list');
+    function validateAll() {
+        var firstInvalid = null;
+        $.each(fieldOrder, function (i, key) {
+            if (!validateField(key) && !firstInvalid) { firstInvalid = key; }
+        });
+        return firstInvalid;
+    }
 
-    // 4. Кнопки "Apply" в карточках вакансий (.each(), фильтр :not(:disabled))
-    const $validOptions = $positionSelect.find('option:not(:disabled)');
-    $('article.card').each(function (index) {
-        const $option = $validOptions.eq(index);
-        if (!$option.length) return;
+    /* ---------- Saved applications (localStorage) ---------- */
+    function readApplications() {
+        try {
+            var stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            return Array.isArray(stored) ? stored : [];
+        } catch (error) {
+            return [];
+        }
+    }
 
-        const $btn = $('<button type="button" class="btn btn-outline-primary btn-sm mt-3 align-self-start">Apply for this position</button>')
-            .attr('data-val', $option.val());
+    function writeApplications(applications) {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(applications));
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
 
-        $(this).addClass('d-flex flex-column').append($btn);
+    /* ---------- Events ---------- */
+    // After the first submit attempt, re-check each field as it is edited.
+    // (No check on blur: an error appearing under the field would move the Submit/Reset button mid-click.)
+    $form.on('input change', '[data-field]', function () {
+        var key = $(this).data('field');
+        $success.addClass('d-none');
+        if (touched[key]) { validateField(key); }
+        if (!$form.find('.is-invalid').length) { $alert.addClass('d-none'); }
     });
 
-    // Делегирование клика по кнопкам "Apply" в карточках
-    $('main').on('click', 'article.card button[data-val]', function () {
-        const val = $(this).attr('data-val'); // 1-е использование $(this)
-        $positionSelect.val(val).trigger('change');
-        $('html, body').animate({ scrollTop: $form.offset().top - 80 }, 400);
-        $nameInput.trigger('focus');
-    });
+    $form.on('submit', function (event) {
+        event.preventDefault();
+        $success.addClass('d-none');
+        var firstInvalid = validateAll();
+        if (firstInvalid) {
+            $alert.text($alert.data('defaultText')).removeClass('d-none');
+            $controls[firstInvalid].trigger('focus');
+            return;
+        }
+        $alert.addClass('d-none');
 
-    // 5. Список откликов из localStorage (Шаг 1: рендер списка на jQuery)
-    // КОММЕНТАРИЙ: Вместо createElement, className и appendChild использованы $('<li>'), .addClass(),
-    // .text() и .append(). Код создания списка с кнопкой Delete стал компактнее и нагляднее.
-    function renderApplications() {
-        let list = [];
-        try { list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { list = []; }
-
-        $appsList.empty();
-        if (!list.length) {
-            $appsList.html('<li class="list-group-item text-muted">No applications submitted yet.</li>');
+        var applications = readApplications();
+        applications.push({
+            name: $.trim($name.val()),
+            email: $.trim($email.val()),
+            phone: parseKzPhone($phone.val()).formatted,
+            position: $position.find('option:selected').text(),
+            experience: $.trim($experience.val()),
+            submittedAt: new Date().toISOString()
+        });
+        if (!writeApplications(applications)) {
+            $alert.text('Your application could not be saved: browser storage is unavailable or full.').removeClass('d-none');
             return;
         }
 
-        $.each(list, function (i, app) {
-            const info = `${i + 1}. ${app.name} (${app.phone}) — ${app.position} [${app.date}]`;
-            const $delBtn = $('<button type="button" class="btn btn-sm btn-outline-danger delete-btn ms-2">Delete</button>').attr('data-index', i);
-            const $li = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>')
-                .append($('<span></span>').text(info), $delBtn);
-            $appsList.append($li);
-        });
-    }
-
-    // 6. Event Delegation для удаления (Шаг 2)
-    // КОММЕНТАРИЙ: Прямая привязка к .delete-btn не сработает, так как элементы списка создаются динамически
-    // при каждом вызове renderApplications(). Делегирование на #apps-list ловит клики по новым кнопкам.
-    $appsList.on('click', '.delete-btn', function () {
-        const $btn = $(this); // 2-е использование $(this)
-        const idx = Number($btn.attr('data-index'));
-        const list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        list.splice(idx, 1);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-        $btn.closest('li').slideUp(200, renderApplications);
-    });
-
-    // 7. Показ/скрытие истории (Шаг 3: Эффект №1 .slideToggle с длительностью 300 мс)
-    $('#toggle-apps').on('click', function () {
-        renderApplications();
-        $appsBox.slideToggle(300);
-    });
-
-    // 8. Валидация полей с Regex (Шаг 4)
-    // КОММЕНТАРИЙ: Атрибут required в браузере не заменяет серверную проверку, так как пользователь может
-    // удалить его через DevTools или отправить запрос напрямую на сервер в обход формы.
-    function validateForm() {
-        let valid = true;
-        $form.find('.form-control, .form-select').each(function () { clearError($(this)); });
-
-        const name = $.trim($nameInput.val());
-        const phone = $.trim($phoneInput.val());
-        const pos = $positionSelect.val();
-        const exp = $.trim($experienceInput.val());
-
-        const nameRegex = /^[a-zA-Zа-яА-ЯёЁәіңғүұқөһӘІҢҒҮҰҚӨҺ\s\-]{2,}$/;
-        const digits = phone.replace(/\D/g, '');
-        const phoneRegex = /^[78]\d{10}$/;
-
-        if (!nameRegex.test(name)) {
-            showError($nameInput, 'Enter a valid full name (at least 2 letters, no digits).');
-            valid = false;
-        }
-        if (!phoneRegex.test(digits)) {
-            showError($phoneInput, 'Enter a valid 11-digit phone number (e.g. +7 700 000 00 00).');
-            valid = false;
-        }
-        if (!pos) {
-            showError($positionSelect, 'Please select a position.');
-            valid = false;
-        }
-        if (exp.length > MAX_LENGTH) {
-            showError($experienceInput, `Maximum ${MAX_LENGTH} characters allowed.`);
-            valid = false;
-        }
-
-        if (!valid) $form.find('.is-invalid:first').trigger('focus');
-        return valid;
-    }
-
-    // 9. События input и change для полей формы
-    $form.find('input[name], select, textarea').on('input change', function () {
-        clearError($(this));
-        updateCounter();
-    });
-
-    $positionSelect.on('change', function () {
-        const selectedTitle = $(this).find('option:selected').text();
-        if ($(this).val()) {
-            $posNotice.text(`Selected role: ${selectedTitle}. Tip: Mention relevant experience below!`).slideDown(200);
-        } else {
-            $posNotice.slideUp(200);
-        }
-    });
-
-    // 10. Отправка формы (Submit)
-    // КОММЕНТАРИЙ: Без event.preventDefault() форма отправит GET-запрос и перезагрузит страницу,
-    // сбросив выполнение JS-скрипта, анимации и сохранение в localStorage.
-    $form.on('submit', function (event) {
-        event.preventDefault();
-        if (!validateForm()) return;
-
-        const selectedText = $positionSelect.find('option:selected').text();
-        const list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        list.push({
-            name: $.trim($nameInput.val()),
-            phone: $.trim($phoneInput.val()),
-            position: selectedText,
-            experience: $.trim($experienceInput.val()),
-            date: new Date().toLocaleDateString()
-        });
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-
-        // Эффект №2: .fadeIn() и в callback .fadeOut()
-        $success.stop(true, true)
-            .text(`Thank you, ${$.trim($nameInput.val())}! Your application for "${selectedText}" has been received.`)
-            .fadeIn(400, function () {
-                $(this).delay(3500).fadeOut(400);
-            });
-
+        justSaved = true;
         $form[0].reset();
-        $posNotice.slideUp(200);
-        updateCounter();
-        renderApplications();
+        $success.text('Your application has been saved on this device. Thank you for your interest!').removeClass('d-none');
     });
 
-    renderApplications();
+    $form.on('reset', function () {
+        var keepSuccess = justSaved;
+        justSaved = false;
+        // Wait for the browser to restore default values, then clear the validation state
+        setTimeout(function () {
+            $.each(fieldOrder, function (i, key) { clearFieldState(key); });
+            $alert.addClass('d-none');
+            if (!keepSuccess) { $success.addClass('d-none'); }
+        }, 0);
+    });
+
+    $alert.data('defaultText', $alert.text());
 });

@@ -37,7 +37,6 @@
             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
             <li class="nav-item"><a aria-current="page" class="nav-link active" href="delivery.html">Delivery</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
             <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
             <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
@@ -145,9 +144,40 @@
             <fieldset class="mb-4">
               <legend class="h5 fw-bold text-dark mb-3 d-flex align-items-center gap-2">
                 <span class="badge bg-primary text-white rounded-pill px-2 py-1 fs-6">2</span>
-                <span>Delivery Schedule &amp; Address</span>
+                <span id="fulfillmentSectionTitle">Order Method &amp; Schedule</span>
               </legend>
-              <div class="row g-3">
+
+              <!-- Fulfillment Method Selector: Delivery vs Pickup -->
+              <div class="mb-4">
+                <label class="form-label fw-medium mb-2">How would you like to receive your order? <span class="text-danger">*</span></label>
+                <div class="row g-3">
+                  <div class="col-12 col-sm-6">
+                    <label class="card h-100 p-3 border-2 shadow-sm fulfillment-card active" for="orderMethodDelivery" style="cursor: pointer;">
+                      <div class="form-check m-0">
+                        <input checked="" class="form-check-input" id="orderMethodDelivery" name="orderType" type="radio" value="delivery" />
+                        <div class="form-check-label ms-1">
+                          <span class="fw-bold fs-6 d-block text-dark">🚚 Courier Delivery</span>
+                          <small class="text-muted d-block mt-1">Delivered to your door in Astana. Standard fee: 1 000 ₸ (Free over 10 000 ₸)</small>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <label class="card h-100 p-3 border-2 shadow-sm fulfillment-card" for="orderMethodPickup" style="cursor: pointer;">
+                      <div class="form-check m-0">
+                        <input class="form-check-input" id="orderMethodPickup" name="orderType" type="radio" value="pickup" />
+                        <div class="form-check-label ms-1">
+                          <span class="fw-bold fs-6 d-block text-dark">🛍️ Restaurant Pickup (Takeout)</span>
+                          <small class="text-muted d-block mt-1">Pick up fresh at the restaurant counter. Zero delivery fee (0 ₸ Free)!</small>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shared schedule inputs -->
+              <div class="row g-3 mb-3">
                 <div class="col-12 col-md-4">
                   <label class="form-label fw-medium" for="portionCount">Number of People <span
                       class="text-danger">*</span></label>
@@ -156,16 +186,50 @@
                   <div class="form-text">Cutlery / portion sets (1–20)</div>
                 </div>
                 <div class="col-12 col-md-4">
-                  <label class="form-label fw-medium" for="deliveryDate">Delivery Date <span
+                  <label class="form-label fw-medium" for="deliveryDate" id="dateFieldLabel">Delivery Date <span
                       class="text-danger">*</span></label>
                   <input class="form-control" id="deliveryDate" name="deliveryDate" required="" type="date" />
                   <div class="form-text">Today or up to 7 days ahead</div>
                 </div>
                 <div class="col-12 col-md-4">
-                  <label class="form-label fw-medium" for="deliveryTime">Delivery Time <span
+                  <label class="form-label fw-medium" for="deliveryTime" id="timeFieldLabel">Delivery Time <span
                       class="text-danger">*</span></label>
-                  <input class="form-control" id="deliveryTime" name="deliveryTime" required="" type="time" />
-                  <div class="form-text" id="deliveryTimeHelp">Between 11:00 and 23:00</div>
+                  <select class="form-select" id="deliveryTime" name="deliveryTime" required="">
+                    <option disabled="" selected="" value="">Select time slot...</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                    <option value="23:00">23:00</option>
+                  </select>
+                  <div class="form-text" id="deliveryTimeHelp">Slots every 30 min (11:00 – 23:00)</div>
+                </div>
+              </div>
+
+              <!-- Delivery Address Fields (Active when Delivery is selected) -->
+              <div class="row g-3 pt-3 border-top" id="deliveryAddressSection">
+                <div class="col-12">
+                  <h6 class="fw-semibold text-secondary mb-1">📍 Delivery Address Details (Astana)</h6>
                 </div>
                 <div class="col-12 col-md-5">
                   <label class="form-label fw-medium" for="districtSelect">Delivery District <span
@@ -194,6 +258,42 @@
                   <label class="form-label fw-medium" for="apartmentNumber">Apartment / Office:</label>
                   <input class="form-control" id="apartmentNumber" name="apartmentNumber" placeholder="e.g. 45"
                     type="text" />
+                </div>
+              </div>
+
+              <!-- Pickup Location Details (Active when Pickup is selected, initially hidden) -->
+              <div class="row g-3 pt-3 border-top d-none" id="pickupLocationSection">
+                <div class="col-12">
+                  <h6 class="fw-semibold text-secondary mb-1">🏪 Select Pickup Branch (Astana)</h6>
+                  <p class="small text-muted mb-2">Choose which Dastarkhan restaurant location you would like to pick up your order from:</p>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="card h-100 p-3 bg-light border-2 pickup-branch-card active" for="pickupBranch1" style="cursor: pointer;">
+                    <div class="form-check m-0">
+                      <input checked="" class="form-check-input" id="pickupBranch1" name="pickupBranch" type="radio" value="auezov" />
+                      <div class="form-check-label ms-1">
+                        <span class="fw-bold fs-6 d-block text-dark">🏢 Mukhtar Auezov Street, 33</span>
+                        <small class="text-muted d-block mt-1">Right Bank (Old Center), Astana · Open daily 11:00–23:00</small>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="card h-100 p-3 bg-light border-2 pickup-branch-card" for="pickupBranch2" style="cursor: pointer;">
+                    <div class="form-check m-0">
+                      <input class="form-check-input" id="pickupBranch2" name="pickupBranch" type="radio" value="dostyk" />
+                      <div class="form-check-label ms-1">
+                        <span class="fw-bold fs-6 d-block text-dark">🏢 Dostyk Street, 1</span>
+                        <small class="text-muted d-block mt-1">Left Bank (Baiterek Area), Astana · Open daily 11:00–23:00</small>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div class="col-12">
+                  <div class="alert alert-info py-2 px-3 mb-0 small d-flex align-items-center gap-2">
+                    <span class="fs-5">ℹ️</span>
+                    <span>Your order will be cooked fresh and packed in thermo-containers ready for pickup at your chosen restaurant counter. Zero delivery fee!</span>
+                  </div>
                 </div>
               </div>
             </fieldset>

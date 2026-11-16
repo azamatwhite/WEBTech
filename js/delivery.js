@@ -17,11 +17,20 @@ $(function () {
     baikonyr: 'Baikonyr District'
   });
 
+  const BRANCHES = Object.freeze({
+    auezov: 'Mukhtar Auezov Street, 33 (Right Bank)',
+    dostyk: 'Dostyk Street, 1 (Left Bank)'
+  });
+
   const PAYMENTS = Object.freeze({
     online: 'Online via Card',
     kaspi: 'Kaspi.kz app',
     halyk: 'Halyk bank app'
   });
+
+  function isPickupMode() {
+    return $('input[name="orderType"]:checked').val() === 'pickup';
+  }
 
   const FALLBACK_DISH_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Crect width='100' height='100' rx='12' fill='%23f5ede0'/%3E%3Ccircle cx='50' cy='50' r='32' fill='%23e8ded0' stroke='%23d4a017' stroke-width='2' stroke-dasharray='3 2'/%3E%3Cpath d='M38 48 Q50 32 62 48 Z' fill='%23c8102e'/%3E%3Cpath d='M34 52 H66 Q64 66 50 66 Q36 66 34 52 Z' fill='%23d4a017'/%3E%3Ccircle cx='50' cy='36' r='3' fill='%23c8102e'/%3E%3C/svg%3E";
 
@@ -51,13 +60,19 @@ $(function () {
   }
 
   function validateTime(dateStr, timeStr) {
-    if (!timeStr) return { isValid: false, message: 'Please specify delivery time.' };
+    const isPickup = isPickupMode();
+    const actionWord = isPickup ? 'pickup' : 'delivery';
+    if (!timeStr) return { isValid: false, message: 'Please select a ' + actionWord + ' time slot.' };
     const parts = timeStr.split(':');
     if (parts.length !== 2) return { isValid: false, message: 'Invalid time format.' };
 
     const hours = parseInt(parts[0], 10);
     const mins = parseInt(parts[1], 10);
     if (Number.isNaN(hours) || Number.isNaN(mins)) return { isValid: false, message: 'Invalid time value.' };
+
+    if (mins !== 0 && mins !== 30) {
+      return { isValid: false, message: 'Please select a 30-minute time slot (e.g. 19:00 or 19:30).' };
+    }
 
     const open = (SITE.workHours && SITE.workHours.open) || '11:00';
     const close = (SITE.workHours && SITE.workHours.close) || '23:00';
@@ -68,7 +83,7 @@ $(function () {
 
     const totalMins = hours * 60 + mins;
     if (totalMins < openTotalMins || totalMins > closeTotalMins) {
-      return { isValid: false, message: 'Delivery time must be between ' + open + ' and ' + close + '.' };
+      return { isValid: false, message: (isPickup ? 'Pickup' : 'Delivery') + ' time must be between ' + open + ' and ' + close + '.' };
     }
 
     if (dateStr) {
@@ -85,7 +100,7 @@ $(function () {
           const timeFormatted = String(h).padStart(2, '0') + ':' + String(mn).padStart(2, '0');
           return {
             isValid: false,
-            message: 'For orders today, delivery must be at least ' + buffer + ' min from now (earliest: ' + timeFormatted + ').'
+            message: 'For orders today, ' + actionWord + ' must be at least ' + buffer + ' min from now (earliest: ' + timeFormatted + ').'
           };
         }
       }
@@ -94,6 +109,9 @@ $(function () {
   }
 
   function validateField(fieldId, value, dateVal) {
+    if (isPickupMode() && (fieldId === 'districtSelect' || fieldId === 'deliveryAddress')) {
+      return { isValid: true, message: '' };
+    }
     const v = $.trim(value); // trim BEFORE checking (jQuery utility instead of String.trim)
     switch (fieldId) {
       case 'userName':
@@ -108,11 +126,11 @@ $(function () {
         return { isValid: true, message: '' };
       }
       case 'deliveryDate': {
-        if (!v) return { isValid: false, message: 'Please select delivery date.' };
+        if (!v) return { isValid: false, message: 'Please select date.' };
         const d = new Date(v + 'T00:00:00');
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        if (Number.isNaN(d.getTime()) || d < today) return { isValid: false, message: 'Delivery date cannot be in the past.' };
+        if (Number.isNaN(d.getTime()) || d < today) return { isValid: false, message: 'Date cannot be in the past.' };
         return { isValid: true, message: '' };
       }
       case 'deliveryTime':
@@ -216,8 +234,11 @@ $(function () {
     const $block = getOrderBlock();
     if (!$block.length) return;
 
+    const isPickup = isPickupMode();
+    const headingText = isPickup ? 'Your Order for Pickup (Takeout)' : 'Your Order for Delivery';
+
     $block.empty().append(
-        $el('h3', 'fs-4 fw-bold text-primary border-bottom pb-2 mb-3', 'Your Order for Delivery')
+        $el('h3', 'fs-4 fw-bold text-primary border-bottom pb-2 mb-3', headingText)
     );
 
     const totals = getCartTotals();
@@ -225,7 +246,7 @@ $(function () {
     if (!totals.items.length) {
       $block.append($el('div', 'alert alert-warning text-center py-4 mb-0').append(
           $el('h4', 'h5 fw-semibold mb-2', 'Your cart is currently empty'),
-          $el('p', 'text-muted mb-3', 'Please choose dishes from our menu before placing a delivery order.'),
+          $el('p', 'text-muted mb-3', 'Please choose dishes from our menu before placing an order.'),
           $el('a', 'btn btn-primary rounded-pill px-4', 'Browse Dastarkhan Menu →', { href: 'menu.html' })
       ));
       return;
@@ -284,6 +305,9 @@ $(function () {
     });
 
     // Totals
+    const effectiveFee = isPickup ? 0 : totals.deliveryFee;
+    const effectiveTotal = isPickup ? totals.subtotal : totals.total;
+
     const $summary = $el('div', 'card bg-light border-0 p-3 rounded-3');
     function addRow(label, val) {
       $summary.append($el('div', 'd-flex justify-content-between mb-2').append(
@@ -291,25 +315,34 @@ $(function () {
       ));
     }
     addRow('Dishes Subtotal:', formatPrice(totals.subtotal));
-    addRow('Delivery (Astana):', totals.deliveryFee === 0
-        ? 'Free (order over ' + formatPrice(SITE.freeDeliveryThreshold) + ')'
-        : formatPrice(totals.deliveryFee));
 
-    if (totals.subtotal < SITE.minOrder) {
-      $summary.append($el('div', 'alert alert-warning py-2 px-3 my-2 small',
-          'Notice: Minimum order for delivery is ' + formatPrice(SITE.minOrder) +
-          '. Add ' + formatPrice(SITE.minOrder - totals.subtotal) + ' more to submit.'));
-    }
-    if (totals.subtotal < SITE.freeDeliveryThreshold) {
-      $summary.append($el('div', 'small text-muted mb-2',
-          'Add ' + formatPrice(SITE.freeDeliveryThreshold - totals.subtotal) + ' more for free delivery'));
+    if (isPickup) {
+      addRow('Fulfillment Method:', '🛍️ Restaurant Pickup (Takeout)');
+      addRow('Delivery Fee:', 'Free (0 ₸)');
+      $summary.append($el('div', 'alert alert-success py-2 px-3 my-2 small',
+          '🎉 Pickup perk: Zero delivery fee! Your order will be prepared hot for self-pickup.'));
+    } else {
+      addRow('Fulfillment Method:', '🚚 Courier Delivery (Astana)');
+      addRow('Delivery (Astana):', totals.deliveryFee === 0
+          ? 'Free (order over ' + formatPrice(SITE.freeDeliveryThreshold) + ')'
+          : formatPrice(totals.deliveryFee));
+
+      if (totals.subtotal < SITE.minOrder) {
+        $summary.append($el('div', 'alert alert-warning py-2 px-3 my-2 small',
+            'Notice: Minimum order for courier delivery is ' + formatPrice(SITE.minOrder) +
+            '. Add ' + formatPrice(SITE.minOrder - totals.subtotal) + ' more to submit, or choose Restaurant Pickup.'));
+      }
+      if (totals.subtotal < SITE.freeDeliveryThreshold) {
+        $summary.append($el('div', 'small text-muted mb-2',
+            'Add ' + formatPrice(SITE.freeDeliveryThreshold - totals.subtotal) + ' more for free courier delivery'));
+      }
     }
 
     $summary.append(
         $el('hr', 'my-2'),
         $el('div', 'd-flex justify-content-between fs-5').append(
             $el('strong', '', 'Order Total:'),
-            $el('strong', 'text-primary', formatPrice(totals.total))
+            $el('strong', 'text-primary', formatPrice(effectiveTotal))
         )
     );
 
@@ -325,6 +358,7 @@ $(function () {
   function validateForm() {
     const totals = getCartTotals();
     const $block = $('#deliveryOrderSummaryBlock');
+    const isPickup = isPickupMode();
 
     if (!totals.items.length) {
       showToast('Your cart is empty. Please add dishes from the menu before ordering.', 'danger');
@@ -332,8 +366,8 @@ $(function () {
       return { isValid: false, $firstInvalid: $() };
     }
 
-    if (totals.subtotal < SITE.minOrder) {
-      showToast('Minimum order amount is ' + formatPrice(SITE.minOrder) + '. Please add more dishes.', 'warning');
+    if (!isPickup && totals.subtotal < SITE.minOrder) {
+      showToast('Minimum order amount for courier delivery is ' + formatPrice(SITE.minOrder) + '. Please add more dishes or select Restaurant Pickup.', 'warning');
       $('html, body').animate({ scrollTop: $block.offset().top - 80 }, 400);
       return { isValid: false, $firstInvalid: $() };
     }
@@ -342,7 +376,11 @@ $(function () {
     let formIsValid = true;
     let $firstInvalid = $();
 
-    $.each(FIELD_IDS, function (_, fId) {
+    const activeFields = isPickup
+      ? ['userName', 'userPhone', 'portionCount', 'deliveryDate', 'deliveryTime']
+      : FIELD_IDS;
+
+    $.each(activeFields, function (_, fId) {
       const $f = $('#' + fId);
       const res = validateField(fId, $f.val(), curDate);
       setFieldState($f, res.isValid, res.message);
@@ -351,6 +389,11 @@ $(function () {
         if (!$firstInvalid.length) $firstInvalid = $f;
       }
     });
+
+    if (isPickup) {
+      $('#districtSelect, #deliveryAddress').removeClass('is-invalid is-valid').removeAttr('aria-invalid');
+      $('#districtSelect, #deliveryAddress').siblings('.invalid-feedback').text('');
+    }
 
     const $portion = $('#portionCount');
     if (!$portion.hasClass('is-invalid')) {
@@ -369,6 +412,8 @@ $(function () {
   function showSummaryModal(data) {
     $('#orderSummaryModal').remove();
 
+    const isPickupOrder = data.orderType === 'pickup';
+
     const $modal = $el('div', 'modal fade', '', {
       id: 'orderSummaryModal', tabindex: -1, role: 'dialog',
       'aria-labelledby': 'orderSummaryTitle', 'aria-hidden': 'true'
@@ -381,15 +426,27 @@ $(function () {
 
     const detailRows = [
       { l: 'Order number:', v: data.orderNumber },
+      { l: 'Order type:', v: isPickupOrder ? '🛍️ Restaurant Pickup (Takeout)' : '🚚 Courier Delivery' },
       { l: 'Recipient:', v: data.userName },
-      { l: 'Phone:', v: data.userPhone },
-      { l: 'District:', v: data.districtName },
-      { l: 'Address:', v: data.fullAddress },
-      { l: 'Time:', v: data.deliveryDate + ' at ' + data.deliveryTime },
+      { l: 'Phone:', v: data.userPhone }
+    ];
+
+    if (isPickupOrder) {
+      detailRows.push({ l: 'Pickup branch:', v: '🏢 ' + data.fullAddress });
+      detailRows.push({ l: 'Ready schedule:', v: data.deliveryDate + ' at ' + data.deliveryTime });
+      detailRows.push({ l: 'Delivery fee:', v: 'Free (0 ₸)' });
+    } else {
+      detailRows.push({ l: 'District:', v: data.districtName });
+      detailRows.push({ l: 'Delivery address:', v: data.fullAddress });
+      detailRows.push({ l: 'Delivery schedule:', v: data.deliveryDate + ' at ' + data.deliveryTime });
+      detailRows.push({ l: 'Delivery fee:', v: data.totals.deliveryFee === 0 ? 'Free' : formatPrice(data.totals.deliveryFee) });
+    }
+
+    detailRows.push(
       { l: 'Guests:', v: data.portionCount + ' person(s)' },
       { l: 'Payment:', v: data.paymentMethod },
       { l: 'Utensils:', v: data.needUtensils ? 'Yes, disposable utensils requested' : 'Not required' }
-    ];
+    );
     if (data.comments) detailRows.push({ l: 'Notes:', v: data.comments });
 
     const $dl = $el('dl', 'row mb-0');
@@ -405,9 +462,10 @@ $(function () {
       ));
     });
 
+    const detailsTitle = isPickupOrder ? 'Pickup Details:' : 'Delivery Details:';
     const $body = $el('div', 'modal-body p-4').append(
         $el('div', 'card bg-light border-0 p-3 mb-3').append(
-            $el('h5', 'fw-bold text-primary mb-3', 'Delivery Details:'), $dl
+            $el('h5', 'fw-bold text-primary mb-3', detailsTitle), $dl
         ),
         $el('div', 'card border-0 shadow-sm p-3 mb-3').append(
             $el('h6', 'fw-bold mb-2', 'Order Contents:'),
@@ -577,11 +635,17 @@ $(function () {
     $('#clearOrdersBtn').prop('disabled', false);
 
     $.each(orders, function (index, order) {
+      const isPickupOrder = order.orderType === 'pickup';
       const $orderCard = $el('div', 'card border rounded-3 p-3 bg-light shadow-sm order-item-card');
+
+      const typeBadge = isPickupOrder
+        ? $el('span', 'badge bg-warning text-dark border border-warning-subtle', '🛍️ Pickup')
+        : $el('span', 'badge bg-primary-subtle text-primary border border-primary-subtle', '🚚 Delivery');
 
       const $topRow = $el('div', 'd-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom pb-2 mb-2').append(
         $el('div', 'd-flex align-items-center gap-2').append(
           $el('strong', 'text-primary fs-5', order.orderNumber),
+          typeBadge,
           $el('span', 'badge bg-success-subtle text-success border border-success-subtle', 'Accepted')
         ),
         $el('div', 'd-flex align-items-center gap-2').append(
@@ -595,17 +659,21 @@ $(function () {
         )
       );
 
+      const locationLabel = isPickupOrder ? '🏢 Branch: ' : '📍 Delivery: ';
+      const locationVal = isPickupOrder ? order.fullAddress : (order.districtName + ', ' + order.fullAddress);
+      const scheduleLabel = isPickupOrder ? '⏰ Ready time: ' : '⏰ Schedule: ';
+
       const $infoRow = $el('div', 'row g-2 small text-muted mb-2').append(
         $el('div', 'col-12 col-md-6').append(
           $el('span', 'fw-medium text-dark', '👤 Recipient: '),
           $el('span', '', order.userName + ' (' + order.userPhone + ')')
         ),
         $el('div', 'col-12 col-md-6').append(
-          $el('span', 'fw-medium text-dark', '📍 Delivery: '),
-          $el('span', '', order.districtName + ', ' + order.fullAddress)
+          $el('span', 'fw-medium text-dark', locationLabel),
+          $el('span', '', locationVal)
         ),
         $el('div', 'col-12 col-md-6').append(
-          $el('span', 'fw-medium text-dark', '⏰ Schedule: '),
+          $el('span', 'fw-medium text-dark', scheduleLabel),
           $el('span', '', order.deliveryDate + ' at ' + order.deliveryTime)
         ),
         $el('div', 'col-12 col-md-6').append(
@@ -674,27 +742,54 @@ $(function () {
       const openTotal = openH * 60 + openM;
       const closeTotal = closeH * 60 + closeM;
 
-      $time.attr('max', pad(closeH, closeM));
+      const isPickup = isPickupMode();
+      const actionTitle = isPickup ? 'Pickup' : 'Delivery';
+      const buffer = SITE.prepMinutes || 60;
+      const earliestMins = isToday ? (current.getHours() * 60 + current.getMinutes() + buffer) : openTotal;
+
+      let hasAvailableSlots = false;
+      let firstAvailableVal = '';
+
+      $time.find('option').each(function () {
+        const val = $(this).val();
+        if (!val) return; // skip placeholder option
+
+        const [h, m] = val.split(':').map(Number);
+        const slotMins = h * 60 + m;
+
+        const isPastOrTooEarly = isToday && (slotMins < earliestMins);
+        const isOutsideHours = slotMins < openTotal || slotMins > closeTotal;
+
+        if (isPastOrTooEarly || isOutsideHours) {
+          $(this).prop('disabled', true);
+        } else {
+          $(this).prop('disabled', false);
+          hasAvailableSlots = true;
+          if (!firstAvailableVal) firstAvailableVal = val;
+        }
+      });
 
       if (isToday) {
-        const buffer = SITE.prepMinutes || 60;
-        const earliest = Math.max(openTotal, current.getHours() * 60 + current.getMinutes() + buffer);
-
-        if (earliest >= closeTotal) {
-          $time.attr('min', pad(openH, openM));
+        if (!hasAvailableSlots) {
+          $time.val('');
           $help.text('Kitchen orders for today are closed (kitchen closes at ' + close + '). Please select tomorrow.')
               .removeClass('text-muted').addClass('text-danger fw-semibold');
         } else {
-          const minTimeStr = pad(Math.floor(earliest / 60), earliest % 60);
-          $time.attr('min', minTimeStr);
-          if (!$time.val() || $time.val() < minTimeStr) $time.val(minTimeStr);
-          $help.text('Earliest delivery today is ' + minTimeStr + ' (includes ' + buffer + ' min prep time). Working hours: ' + open + ' – ' + close + '.')
+          const currentVal = $time.val();
+          const isSelectedDisabled = !currentVal || $time.find('option[value="' + currentVal + '"]').prop('disabled');
+          if (isSelectedDisabled) {
+            $time.val(firstAvailableVal);
+          }
+          $help.text('Earliest ' + actionTitle.toLowerCase() + ' slot today is ' + firstAvailableVal + ' (includes ' + buffer + ' min prep time). Working hours: ' + open + ' – ' + close + '.')
               .removeClass('text-danger fw-semibold').addClass('text-muted');
         }
       } else {
-        $time.attr('min', pad(openH, openM));
-        if (!$time.val()) $time.val('12:00');
-        $help.text('Delivery working hours: ' + open + ' – ' + close + '.')
+        const currentVal = $time.val();
+        const isSelectedDisabled = !currentVal || $time.find('option[value="' + currentVal + '"]').prop('disabled');
+        if (isSelectedDisabled) {
+          $time.val(firstAvailableVal || '12:00');
+        }
+        $help.text(actionTitle + ' slots available every 30 min (' + open + ' – ' + close + ').')
             .removeClass('text-danger fw-semibold').addClass('text-muted');
       }
     }
@@ -730,6 +825,45 @@ $(function () {
     }
   });
 
+  // Fulfillment method switch handler (Delivery vs Pickup)
+  $('input[name="orderType"]').on('change', function () {
+    const isPickup = $(this).val() === 'pickup';
+
+    $('.fulfillment-card').removeClass('active');
+    $(this).closest('.fulfillment-card').addClass('active');
+
+    if (isPickup) {
+      $('#deliveryAddressSection').slideUp(200, function () {
+        $('#pickupLocationSection').removeClass('d-none').hide().slideDown(200);
+      });
+      $('#districtSelect').removeAttr('required').removeClass('is-invalid is-valid');
+      $('#deliveryAddress').removeAttr('required').removeClass('is-invalid is-valid');
+      $('#districtSelect, #deliveryAddress').siblings('.invalid-feedback').text('');
+
+      $('#timeFieldLabel').html('Pickup / Ready Time <span class="text-danger">*</span>');
+      $('#dateFieldLabel').html('Pickup Date <span class="text-danger">*</span>');
+      $('#fulfillmentSectionTitle').text('Pickup Schedule & Restaurant Branch');
+    } else {
+      $('#pickupLocationSection').slideUp(200, function () {
+        $('#deliveryAddressSection').removeClass('d-none').hide().slideDown(200);
+      });
+      $('#districtSelect').attr('required', 'required');
+      $('#deliveryAddress').attr('required', 'required');
+
+      $('#timeFieldLabel').html('Delivery Time <span class="text-danger">*</span>');
+      $('#dateFieldLabel').html('Delivery Date <span class="text-danger">*</span>');
+      $('#fulfillmentSectionTitle').text('Order Method & Schedule');
+    }
+
+    initDateTimeAndDefaults();
+    renderOrderBlock();
+  });
+
+  $('input[name="pickupBranch"]').on('change', function () {
+    $('.pickup-branch-card').removeClass('active');
+    $(this).closest('.pickup-branch-card').addClass('active');
+  });
+
   $form.on('submit', function (event) {
     // Without preventDefault() the browser would send the form (GET with "?...")
     // and reload the page: our validation, the modal and the cart reset would be lost.
@@ -741,31 +875,51 @@ $(function () {
       return;
     }
 
-    const entrance = $.trim($('#entranceNumber').val());
-    const apt = $.trim($('#apartmentNumber').val());
-    const distKey = $('#districtSelect').val();
+    const isPickup = isPickupMode();
+    const pickupBranchKey = $('input[name="pickupBranch"]:checked').val() || 'auezov';
     const payKey = $('input[name="paymentMethod"]:checked').val() || 'online'; // filter :checked
 
-    let fullAddr = $.trim($('#deliveryAddress').val());
-    if (entrance) fullAddr += ', entrance ' + entrance;
-    if (apt) fullAddr += ', apt ' + apt;
+    let fullAddr = '';
+    let districtName = '';
+    if (isPickup) {
+      fullAddr = BRANCHES[pickupBranchKey] || 'Mukhtar Auezov Street, 33';
+      districtName = 'Restaurant Pickup';
+    } else {
+      const entrance = $.trim($('#entranceNumber').val());
+      const apt = $.trim($('#apartmentNumber').val());
+      const distKey = $('#districtSelect').val();
+      districtName = DISTRICTS[distKey] || distKey;
+      fullAddr = $.trim($('#deliveryAddress').val());
+      if (entrance) fullAddr += ', entrance ' + entrance;
+      if (apt) fullAddr += ', apt ' + apt;
+    }
+
+    const totals = getCartTotals();
+    const effectiveFee = isPickup ? 0 : totals.deliveryFee;
+    const effectiveTotal = isPickup ? totals.subtotal : totals.total;
 
     const orderData = {
       orderNumber: 'AST-' + Math.floor(100000 + Math.random() * 900000),
+      orderType: isPickup ? 'pickup' : 'delivery',
+      branchKey: isPickup ? pickupBranchKey : null,
       userName: $.trim($('#userName').val()),
       userPhone: $.trim($('#userPhone').val()),
       portionCount: parseInt($('#portionCount').val(), 10),
       deliveryDate: $('#deliveryDate').val(),
       deliveryTime: $('#deliveryTime').val(),
-      districtName: DISTRICTS[distKey] || distKey,
+      districtName: districtName,
       fullAddress: fullAddr,
       paymentMethod: PAYMENTS[payKey] || payKey,
       // .prop('checked') = the CURRENT state of the checkbox (true/false).
       // .attr('checked') would only read the initial HTML attribute and ignore the user's click.
       needUtensils: $('#needUtensils').prop('checked'),
       comments: $.trim($('#orderComments').val()),
-      totals: getCartTotals(),
-      createdAt: new Date().toLocaleDateString('ru-RU') + ' ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
+      totals: {
+        ...totals,
+        deliveryFee: effectiveFee,
+        total: effectiveTotal
+      },
+      createdAt: new Date().toLocaleDateString('en-GB') + ' ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
     };
 
     saveOrder(orderData); // Store order in the orders array (localStorage)
@@ -780,8 +934,26 @@ $(function () {
   $form.on('reset', function () {
     // The reset event fires BEFORE the fields are cleared, so we wait a tick
     setTimeout(function () {
+      $('#orderMethodDelivery').prop('checked', true);
+      $('.fulfillment-card').removeClass('active');
+      $('#orderMethodDelivery').closest('.fulfillment-card').addClass('active');
+
+      $('#pickupBranch1').prop('checked', true);
+      $('.pickup-branch-card').removeClass('active');
+      $('#pickupBranch1').closest('.pickup-branch-card').addClass('active');
+
+      $('#pickupLocationSection').hide().addClass('d-none');
+      $('#deliveryAddressSection').show().removeClass('d-none');
+      $('#districtSelect').attr('required', 'required');
+      $('#deliveryAddress').attr('required', 'required');
+
+      $('#timeFieldLabel').html('Delivery Time <span class="text-danger">*</span>');
+      $('#dateFieldLabel').html('Delivery Date <span class="text-danger">*</span>');
+      $('#fulfillmentSectionTitle').text('Order Method & Schedule');
+
       initDateTimeAndDefaults();
       clearStates();
+      renderOrderBlock();
     }, 10);
   });
 
