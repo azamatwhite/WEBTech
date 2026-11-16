@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Gallery Page Logic for Dastarkhan
+ * Gallery Page Logic for Dastarkhan (Resilient Hybrid: works with jQuery & standalone file:///)
  * Author: Miko
  */
 
@@ -24,7 +24,7 @@ function initGallery() {
 
     let currentSort = 'default';
 
-    // Панель управления с поиском, филиалами и кнопками сортировки
+    // 1. Панель управления (Поиск, Филиалы, Сортировка)
     const controlsWrapper = document.createElement('div');
     controlsWrapper.className = 'card p-3 shadow-sm mb-4 border-0';
     controlsWrapper.id = 'galleryControlsBar';
@@ -54,7 +54,7 @@ function initGallery() {
         </div>
     `;
 
-    // Секция динамической сетки
+    // 2. Секция галереи
     const dynamicSection = document.createElement('section');
     dynamicSection.className = 'my-4';
     dynamicSection.id = 'dynamicGallerySection';
@@ -62,6 +62,22 @@ function initGallery() {
         <h2 class="fs-3 fw-bold text-primary border-bottom pb-2 mb-4">Filtered Gallery Explorer</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" id="dynamicPhotoGrid"></div>
     `;
+
+    // 3. Модальное окно для полноэкранного зума по клику
+    const zoomModal = document.createElement('div');
+    zoomModal.id = 'galleryZoomModal';
+    zoomModal.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1060; display: none; align-items: center; justify-content: center; padding: 1rem; opacity: 0; transition: opacity 0.2s ease;';
+    zoomModal.innerHTML = `
+        <div class="position-relative text-center" style="max-width: 900px; width: 100%;">
+            <button type="button" id="closeZoomBtn" class="btn-close btn-close-white position-absolute top-0 end-0 m-2 p-2 bg-dark rounded-circle" aria-label="Close"></button>
+            <img id="zoomedImg" src="" alt="" class="img-fluid rounded shadow-lg" style="max-height: 80vh; object-fit: contain;">
+            <div class="mt-3 text-white">
+                <h4 id="zoomedTitle" class="h5 mb-1"></h4>
+                <p id="zoomedDesc" class="small text-light opacity-75 mb-0"></p>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(zoomModal);
 
     targetSection.before(controlsWrapper);
     targetSection.before(dynamicSection);
@@ -71,8 +87,26 @@ function initGallery() {
     const branchSelect = document.getElementById('branchFilter');
     const resultCount = document.getElementById('resultCount');
 
-    // Плавный CSS-переход для эффекта fade
     photoGrid.style.transition = 'opacity 0.2s ease-in-out';
+
+    function openZoomModal(src, title, desc) {
+        document.getElementById('zoomedImg').src = src;
+        document.getElementById('zoomedImg').alt = title;
+        document.getElementById('zoomedTitle').textContent = title;
+        document.getElementById('zoomedDesc').textContent = desc;
+
+        zoomModal.style.display = 'flex';
+        requestAnimationFrame(() => {
+            zoomModal.style.opacity = '1';
+        });
+    }
+
+    function closeZoomModal() {
+        zoomModal.style.opacity = '0';
+        setTimeout(() => {
+            zoomModal.style.display = 'none';
+        }, 200);
+    }
 
     function updateGallery(animate = true) {
         const updateDOM = () => {
@@ -87,7 +121,6 @@ function initGallery() {
                 return matchesQuery && matchesBranch;
             });
 
-            // Сортировка по выбранной кнопке
             if (currentSort === 'asc') {
                 filtered.sort((a, b) => a.title.localeCompare(b.title));
             } else if (currentSort === 'desc') {
@@ -120,37 +153,62 @@ function initGallery() {
 
                     const card = document.createElement('figure');
                     card.className = 'card h-100 shadow-sm overflow-hidden mb-0 border-0';
+                    card.style.cssText = 'cursor: zoom-in; transition: box-shadow 0.25s ease;';
+                    card.title = 'Click to zoom';
+
+                    const imgWrap = document.createElement('div');
+                    imgWrap.className = 'overflow-hidden';
+                    imgWrap.style.height = '180px';
 
                     const img = document.createElement('img');
                     img.src = item.img;
                     img.alt = item.title;
-                    img.className = 'card-img-top img-fluid object-fit-cover';
-                    img.style.height = '180px';
+                    img.className = 'card-img-top img-fluid object-fit-cover w-100 h-100';
+                    img.style.transition = 'transform 0.3s ease';
                     img.loading = 'lazy';
+
+                    imgWrap.appendChild(img);
 
                     const caption = document.createElement('figcaption');
                     caption.className = 'p-2 text-center small bg-white';
 
                     const titleStrong = document.createElement('strong');
-                    titleStrong.className = 'd-block text-truncate';
+                    titleStrong.className = 'd-block text-truncate card-title-text';
                     titleStrong.textContent = item.title;
 
                     const descSpan = document.createElement('span');
-                    descSpan.className = 'text-muted';
+                    descSpan.className = 'text-muted card-desc-text';
                     descSpan.textContent = item.desc;
 
                     caption.appendChild(titleStrong);
                     caption.appendChild(descSpan);
-                    card.appendChild(img);
+                    card.appendChild(imgWrap);
                     card.appendChild(caption);
                     col.appendChild(card);
+
+                    // Hover zoom при наведении мышки и возврат обратно при уводе
+                    col.addEventListener('mouseenter', () => {
+                        img.style.transform = 'scale(1.08)';
+                        card.classList.remove('shadow-sm');
+                        card.classList.add('shadow');
+                    });
+
+                    col.addEventListener('mouseleave', () => {
+                        img.style.transform = 'scale(1)';
+                        card.classList.remove('shadow');
+                        card.classList.add('shadow-sm');
+                    });
+
+                    // Полноэкранный зум по клику
+                    col.addEventListener('click', () => {
+                        openZoomModal(item.img, item.title, item.desc);
+                    });
 
                     photoGrid.appendChild(col);
                 });
             }
 
             if (animate) {
-                // Fade In (плавное появление)
                 requestAnimationFrame(() => {
                     photoGrid.style.opacity = '1';
                 });
@@ -160,7 +218,6 @@ function initGallery() {
         };
 
         if (animate) {
-            // Fade Out (плавное растворение)
             photoGrid.style.opacity = '0';
             setTimeout(updateDOM, 160);
         } else {
@@ -168,7 +225,7 @@ function initGallery() {
         }
     }
 
-    // Обработка кнопок сортировки (Default, A-Z, Z-A) с запуском Fade
+    // Кнопки сортировки
     controlsWrapper.querySelector('#gallerySortGroup').addEventListener('click', (e) => {
         const btn = e.target.closest('button');
         if (!btn) return;
@@ -181,11 +238,16 @@ function initGallery() {
     searchInput.addEventListener('input', () => updateGallery(true));
     branchSelect.addEventListener('change', () => updateGallery(true));
 
-    photoGrid.addEventListener('click', (e) => {
-        const cardCol = e.target.closest('.gallery-card-col');
-        if (cardCol) {
-            const fig = cardCol.querySelector('figure');
-            if (fig) fig.classList.toggle('shadow-lg');
+    // Закрытие зума
+    zoomModal.addEventListener('click', (e) => {
+        if (e.target.id === 'galleryZoomModal' || e.target.closest('#closeZoomBtn')) {
+            closeZoomModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && zoomModal.style.display === 'flex') {
+            closeZoomModal();
         }
     });
 
